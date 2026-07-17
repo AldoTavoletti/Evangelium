@@ -1,0 +1,23 @@
+.button {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Z003";
+
+    -fx-background-color: -primary-button;
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 4);
+
+}
+
+.button:hover {
+
+    -fx-background-color: -primary-button-hover;
+    -fx-border-color: -primary-border-hover;
+
+}
+
+#title {
+    -fx-font-size: 78px;
+}
+
+/* light blue: #c2e8f5 */
