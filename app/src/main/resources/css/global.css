@@ -1,9 +1,10 @@
 .root {
-    -primary-button: #fbc54a;
-    -primary-button-hover: #ca1313;
-    -primary-background: #F8F5EE;
+    /* color variables */
+    -primary-button-background: #fbc54a;
+    -primary-button-background-hover: #ca1313;
+    -primary-app-background: #F8F5EE;
 
     -fx-font-family: "LM Roman 10";
     -fx-font-size: 14px;
-    -fx-background-color: -primary-background;
+    -fx-background-color: -primary-app-background;
 }
