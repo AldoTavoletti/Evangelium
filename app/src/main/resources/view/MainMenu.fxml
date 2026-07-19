@@ -57,7 +57,7 @@
       </Pane>
    </children>
    <stylesheets>
-      <URL value="@../css/global.css" />
-      <URL value="@../css/menu.css" />
+      <URL value="@../css/Global.css" />
+      <URL value="@../css/Menu.css" />
    </stylesheets>
 </HBox>
