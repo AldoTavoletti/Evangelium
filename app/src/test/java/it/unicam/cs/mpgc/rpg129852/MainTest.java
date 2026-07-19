@@ -3,12 +3,31 @@
  */
 package it.unicam.cs.mpgc.rpg129852;
 
+import org.testfx.framework.junit5.ApplicationTest;
+import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class MainTest {
-    @Test void appHasAGreeting() {
-        Main classUnderTest = new Main();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+class MainTest extends ApplicationTest {
+
+    private Stage primaryStage;
+
+    @Override
+    public void start(Stage stage) throws Exception {
+
+        Main main = new Main();
+        main.start(stage);
+        this.primaryStage = stage;
+
+    }
+
+    @Test
+    public void shouldShowPrimaryStageWhenLaunched() {
+
+        assertNotNull(primaryStage);
+
+        assertEquals(true, primaryStage.isShowing());
+
     }
 }
