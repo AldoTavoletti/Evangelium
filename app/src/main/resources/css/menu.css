@@ -1,11 +1,10 @@
 #title {
-    -fx-font-size: 78px;
+    -fx-font-size: 70px;
 }
 
 .button {
-    -fx-font-size: 24px;
+    -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-font-family: "Z003";
 
     -fx-background-color: -primary-button-background;
 

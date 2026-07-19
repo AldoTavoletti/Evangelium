@@ -11,12 +11,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <HBox maxHeight="750.0" maxWidth="1250.0" minHeight="750.0" minWidth="1250.0" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane>
          <children>
-            <Label layoutX="49.0" layoutY="147.0" prefHeight="50.0" prefWidth="547.0" text="In principio era il Verbo, e il Verbo era presso Dio e il Verbo era Dio. Tutte le cose sono state fatte per mezzo di lui. In lui era la vita e la vita era la luce degli uomini." textAlignment="CENTER" wrapText="true" />
+            <Label layoutX="49.0" layoutY="147.0" prefHeight="50.0" prefWidth="547.0" text="In principio era il Verbo, e il Verbo era presso Dio e il Verbo era Dio. Tutte le cose sono state fatte per mezzo di lui. In lui era la vita e la vita era la luce degli uomini." textAlignment="CENTER" wrapText="true" AnchorPane.topAnchor="675.0" />
             <Label id="title" alignment="CENTER" contentDisplay="CENTER" layoutY="1.0" prefHeight="171.0" prefWidth="645.0" text="EVANGELIUM" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" />
             <VBox alignment="CENTER" maxHeight="750.0" maxWidth="671.0" minHeight="750.0" minWidth="600.0" prefHeight="750.0" prefWidth="645.0">
                <children>
@@ -40,6 +39,11 @@
                   <Insets />
                </opaqueInsets>
             </VBox>
+            <ImageView fitHeight="125.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="125.0">
+               <image>
+                  <Image url="@../images/cross.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <Pane prefHeight="764.0" prefWidth="629.0">
