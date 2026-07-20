@@ -30,7 +30,7 @@
                   </TextField>
                   <Label prefWidth="300.0" text="Lavoro:" />
                   <ChoiceBox fx:id="jobSelector" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
-                  <Button fx:id="startGameButton" mnemonicParsing="false" onAction="#onStartGameAction" text="Inizia l'avventura!">
+                  <Button fx:id="startGameButton" disable="true" mnemonicParsing="false" onAction="#onStartGameAction" text="Inizia l'avventura!">
                      <VBox.margin>
                         <Insets top="60.0" />
                      </VBox.margin>

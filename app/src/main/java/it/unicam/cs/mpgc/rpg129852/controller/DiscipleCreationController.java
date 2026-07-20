@@ -49,6 +49,19 @@ public class DiscipleCreationController {
 
         String[] jobs = {"Pescatore", "Falegname", "Esattore delle imposte", "Fabbricante di tende", "Contadino", "Fabbro", "Medico"};
         initJobSelector(jobs);
+
+        initNameField();
+    }
+
+    private void initNameField() {
+
+        nameField.textProperty().addListener((observable, oldContent, newContent) -> {
+            if (!newContent.isEmpty())
+                startGameButton.setDisable(false);
+            else
+                startGameButton.setDisable(true);
+        });
+
     }
 
     private void initDiscipleGifs(String[] colors) {
@@ -82,8 +95,18 @@ public class DiscipleCreationController {
     }
 
     @FXML
+    void onNameFieldAction(ActionEvent event) {
+        CharSequence nameFieldContent = nameField.getCharacters();
+
+        if (!nameFieldContent.isEmpty())
+            startGameButton.setDisable(false);
+        else
+            startGameButton.setDisable(true);
+    }
+
+    @FXML
     void onStartGameAction(ActionEvent event) {
-        System.out.println("Starting game...");
+            System.out.println("Starting game...");
     }
 
 
