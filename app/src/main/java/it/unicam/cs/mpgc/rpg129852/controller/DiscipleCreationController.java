@@ -2,9 +2,6 @@ package it.unicam.cs.mpgc.rpg129852.controller;
 
 import it.unicam.cs.mpgc.rpg129852.model.CircularImageNavigator;
 import it.unicam.cs.mpgc.rpg129852.model.DiscipleGifLoader;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,6 +15,12 @@ import java.util.List;
 import static it.unicam.cs.mpgc.rpg129852.util.SceneUtils.switchScene;
 
 public class DiscipleCreationController {
+
+    private static final String[] DISCIPLE_COLORS = {"red", "blue", "green", "yellow"};
+    private static final String[] AVAILABLE_JOBS = {
+            "Pescatore", "Falegname", "Esattore delle imposte",
+            "Fabbricante di tende", "Contadino", "Fabbro", "Medico"
+    };
 
     @FXML
     private ImageView currentGifImage;
@@ -44,12 +47,8 @@ public class DiscipleCreationController {
 
     @FXML
     public void initialize() {
-        String[] colors = {"red", "blue", "green", "yellow"};
-        initDiscipleGifs(colors);
-
-        String[] jobs = {"Pescatore", "Falegname", "Esattore delle imposte", "Fabbricante di tende", "Contadino", "Fabbro", "Medico"};
-        initJobSelector(jobs);
-
+        initDiscipleGifs();
+        initJobSelector();
         initNameField();
     }
 
@@ -64,16 +63,16 @@ public class DiscipleCreationController {
 
     }
 
-    private void initDiscipleGifs(String[] colors) {
-        List<Image> gifs = DiscipleGifLoader.initializeGifs(colors);
+    private void initDiscipleGifs() {
+        List<Image> gifs = DiscipleGifLoader.initializeGifs(DISCIPLE_COLORS);
 
         discipleGifNavigator = new CircularImageNavigator(gifs);
 
         currentGifImage.setImage(discipleGifNavigator.getCurrentImage());
     }
 
-    private void initJobSelector(String[] jobs) {
-        jobSelector.getItems().addAll(jobs);
+    private void initJobSelector() {
+        jobSelector.getItems().addAll(AVAILABLE_JOBS);
         jobSelector.getSelectionModel().selectFirst();
     }
 
