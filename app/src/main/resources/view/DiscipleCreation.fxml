@@ -23,26 +23,35 @@
             <VBox alignment="CENTER" maxHeight="750.0" maxWidth="625.0" minHeight="750.0" minWidth="625.0" prefHeight="750.0" prefWidth="625.0">
                <children>
                   <Label prefHeight="22.0" prefWidth="300.0" text="Nome:" />
-                  <TextField fx:id="NameFIeld" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="e.g. Aldo">
+                  <TextField fx:id="nameField" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="e.g. Aldo">
                      <VBox.margin>
                         <Insets bottom="30.0" />
                      </VBox.margin>
                   </TextField>
                   <Label prefWidth="300.0" text="Lavoro:" />
-                  <ChoiceBox fx:id="JobSelector" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
-                  <Button fx:id="StartGameButton" mnemonicParsing="false" onAction="#startGame" text="Inizia l'avventura!">
+                  <ChoiceBox fx:id="jobSelector" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
+                  <Button fx:id="startGameButton" mnemonicParsing="false" onAction="#onStartGameAction" text="Inizia l'avventura!">
                      <VBox.margin>
                         <Insets top="60.0" />
                      </VBox.margin>
                   </Button>
                </children>
             </VBox>
-            <Label alignment="CENTER" prefHeight="132.0" prefWidth="629.0" styleClass="scene-title" text="CREA IL TUO DISCEPOLO!" />
+            <Label alignment="CENTER" layoutY="54.0" prefHeight="81.0" prefWidth="629.0" styleClass="scene-title" text="CREA IL TUO DISCEPOLO!" />
+            <Button fx:id="returnToMenuButton" mnemonicParsing="false" onAction="#onReturnToMenuAction" styleClass="arrow" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+               <graphic>
+                  <ImageView pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/go-back-arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
       <HBox alignment="CENTER" maxHeight="750.0" maxWidth="625.0" minHeight="750.0" minWidth="625.0" prefHeight="750.0" prefWidth="625.0">
          <children>
-            <Button fx:id="PreviousGifButton" mnemonicParsing="false" onAction="#showPreviousGif">
+            <Button fx:id="previousGifButton" mnemonicParsing="false" onAction="#onPreviousGifAction" styleClass="arrow">
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                      <image>
@@ -51,12 +60,8 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ImageView fx:id="CurrentGif" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../gifs/red-disciple.gif" />
-               </image>
-            </ImageView>
-            <Button fx:id="NextGifButton" mnemonicParsing="false" onAction="#showNextGif">
+            <ImageView fx:id="currentGifImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="nextGifButton" mnemonicParsing="false" onAction="#onNextGifAction" styleClass="arrow">
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>

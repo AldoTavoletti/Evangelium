@@ -1,45 +1,75 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
+import it.unicam.cs.mpgc.rpg129852.model.CircularImageNavigator;
+import it.unicam.cs.mpgc.rpg129852.model.DiscipleGifLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import java.util.List;
+
+import static it.unicam.cs.mpgc.rpg129852.util.SceneUtils.switchScene;
 
 public class DiscipleCreationController {
 
     @FXML
-    private ImageView CurrentGif;
+    private ImageView currentGifImage;
 
     @FXML
-    private ChoiceBox<?> JobSelector;
+    private ChoiceBox<?> jobSelector;
 
     @FXML
-    private TextField NameField;
+    private TextField nameField;
 
     @FXML
-    private Button NextGifButton;
+    private Button nextGifButton;
 
     @FXML
-    private Button PreviousGifButton;
+    private Button previousGifButton;
 
     @FXML
-    private Button StartGameButton;
+    private Button returnToMenuButton;
 
     @FXML
-    void showNextGif(ActionEvent event) {
+    private Button startGameButton;
 
+    private CircularImageNavigator discipleGifNavigator;
+
+    @FXML
+    public void initialize() {
+
+        String[] colors = {"red", "blue", "green", "yellow"};
+        List<Image> gifs = DiscipleGifLoader.initializeGifs(colors);
+
+        discipleGifNavigator = new CircularImageNavigator(gifs);
+
+        currentGifImage.setImage(discipleGifNavigator.getCurrentImage());
     }
 
     @FXML
-    void showPreviousGif(ActionEvent event) {
-
+    void onReturnToMenuAction(ActionEvent event) {
+        switchScene("/view/MainMenu.fxml", event);
     }
 
     @FXML
-    void startGame(ActionEvent event) {
-
+    void onNextGifAction(ActionEvent event) {
+        discipleGifNavigator.moveToNext();
+        currentGifImage.setImage(discipleGifNavigator.getCurrentImage());
     }
+
+    @FXML
+    void onPreviousGifAction(ActionEvent event) {
+        discipleGifNavigator.moveToPrevious();
+        currentGifImage.setImage(discipleGifNavigator.getCurrentImage());
+    }
+
+    @FXML
+    void onStartGameAction(ActionEvent event) {
+        System.out.println("Starting game...");
+    }
+
 
 }

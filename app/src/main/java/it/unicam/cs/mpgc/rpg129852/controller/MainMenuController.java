@@ -4,31 +4,32 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
+import static it.unicam.cs.mpgc.rpg129852.util.SceneUtils.switchScene;
+
 public class MainMenuController {
 
     @FXML
-    private Button LoadGameButton;
+    private Button loadGameButton;
 
     @FXML
-    private Button NewGameButton;
+    private Button newGameButton;
 
     @FXML
-    private Button QuitButton;
+    private Button quitButton;
 
     @FXML
-    void loadGameButtonPressed(ActionEvent event) {
+    void onNewGameAction(ActionEvent event) {
+        switchScene("/view/DiscipleCreation.fxml", event);
+    }
+
+    @FXML
+    void onLoadGameAction(ActionEvent event) {
         System.out.println("Loading game...");
     }
 
     @FXML
-    void newGameButtonPressed(ActionEvent event) {
-        System.out.println("Starting new game...");
-    }
-
-    @FXML
-    void quitButtonPressed(ActionEvent event) {
+    void onQuitAction(ActionEvent event) {
         System.out.println("Quitting...");
     }
-
 
 }
