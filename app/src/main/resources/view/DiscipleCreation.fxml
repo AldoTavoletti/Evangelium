@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox maxHeight="750.0" maxWidth="1250.0" minHeight="750.0" minWidth="1250.0" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.rpg129852.controller.DiscipleCreationController">
+   <stylesheets>
+      <URL value="@../css/Global.css" />
+      <URL value="@../css/DiscipleCreation.css" />
+   </stylesheets>
+   <children>
+      <AnchorPane>
+         <children>
+            <VBox alignment="CENTER" maxHeight="750.0" maxWidth="625.0" minHeight="750.0" minWidth="625.0" prefHeight="750.0" prefWidth="625.0">
+               <children>
+                  <Label prefHeight="22.0" prefWidth="300.0" text="Nome:" />
+                  <TextField fx:id="nameField" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="e.g. Aldo">
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label prefWidth="300.0" text="Lavoro:" />
+                  <ChoiceBox fx:id="jobSelector" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
+                  <Button fx:id="startGameButton" disable="true" mnemonicParsing="false" onAction="#onStartGameAction" text="Inizia l'avventura!">
+                     <VBox.margin>
+                        <Insets top="60.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <Label alignment="CENTER" layoutY="54.0" prefHeight="81.0" prefWidth="629.0" styleClass="scene-title" text="CREA IL TUO DISCEPOLO!" />
+            <Button fx:id="returnToMenuButton" mnemonicParsing="false" onAction="#onReturnToMenuAction" styleClass="arrow" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+               <graphic>
+                  <ImageView pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/go-back-arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <HBox alignment="CENTER" maxHeight="750.0" maxWidth="625.0" minHeight="750.0" minWidth="625.0" prefHeight="750.0" prefWidth="625.0">
+         <children>
+            <Button fx:id="previousGifButton" mnemonicParsing="false" onAction="#onPreviousGifAction" styleClass="arrow">
+               <graphic>
+                  <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                     <image>
+                        <Image url="@../images/arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fx:id="currentGifImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="nextGifButton" mnemonicParsing="false" onAction="#onNextGifAction" styleClass="arrow">
+               <graphic>
+                  <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</HBox>
