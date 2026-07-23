@@ -7,6 +7,7 @@ import it.unicam.cs.mpgc.rpg129852.model.GameState;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -19,6 +20,7 @@ import java.util.stream.Stream;
 
 public class JsonGameRepository implements GameRepository {
 
+    private final String EXTENSION = ".json";
     private final Gson gson;
     private final Path saveDirectory;
 
@@ -36,13 +38,13 @@ public class JsonGameRepository implements GameRepository {
                 Files.createDirectories(saveDirectory);
             }
         } catch (IOException e) {
-            throw new RuntimeException("Impossibile creare la cartella di salvataggio in: " + saveDirectory, e);
+            throw new RuntimeException("Cannot create the save directory in: " + saveDirectory, e);
         }
     }
 
     @Override
     public void save(Game game) {
-        String fileName = game.getSaveName() + ".json";
+        String fileName = game.getSaveName() + EXTENSION;
         Path fullPath = saveDirectory.resolve(fileName);
 
         try (Writer writer = Files.newBufferedWriter(fullPath, StandardCharsets.UTF_8)) {
@@ -53,8 +55,19 @@ public class JsonGameRepository implements GameRepository {
     }
 
     @Override
-    public GameState load(String saveFileName) {
-        return null;
+    public Game load(String saveName) {
+        Path fullPath = saveDirectory.resolve(saveName + EXTENSION);
+
+        if (!Files.exists(fullPath)) {
+            throw new IllegalArgumentException("The saving doesn't exist: " + saveName);
+        }
+
+        try (Reader reader = Files.newBufferedReader(fullPath, StandardCharsets.UTF_8)) {
+            GameState loadedState = gson.fromJson(reader, GameState.class);
+            return new Game(saveName, loadedState);
+        } catch (Exception e) {
+            throw new RuntimeException("Cannot load the saving.", e);
+        }
     }
 
     @Override
@@ -63,13 +76,13 @@ public class JsonGameRepository implements GameRepository {
             return paths
                     .filter(Files::isRegularFile) // exclude subdirectories
                     .filter(path -> path.toString().endsWith(".json")) // get only the JSON
-                    .map(Path::getFileName) // get only the filename (es. "Partita1.json")
+                    .map(Path::getFileName) // get only the filename (es. "game1.json")
                     .map(Path::toString)
                     .map(fileName -> fileName.substring(0, fileName.length() - 5)) // remove the extension ".json"
                     .collect(Collectors.toList());
 
         } catch (IOException e) {
-            System.err.println("Impossibile leggere la cartella dei salvataggi: " + e.getMessage());
+            System.err.println("Cannot read the save directory: " + e.getMessage());
             return Collections.emptyList();
         }
     }

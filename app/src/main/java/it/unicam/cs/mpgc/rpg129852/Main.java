@@ -3,7 +3,10 @@ package it.unicam.cs.mpgc.rpg129852;
 import it.unicam.cs.mpgc.rpg129852.asset.AssetRegistry;
 import it.unicam.cs.mpgc.rpg129852.asset.DiscipleAsset;
 import it.unicam.cs.mpgc.rpg129852.asset.DiscipleAssetRegistry;
+import it.unicam.cs.mpgc.rpg129852.context.GameContextImpl;
+import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
 import it.unicam.cs.mpgc.rpg129852.controller.DiscipleCreationController;
+import it.unicam.cs.mpgc.rpg129852.controller.LoadGameController;
 import it.unicam.cs.mpgc.rpg129852.controller.MainMenuController;
 import it.unicam.cs.mpgc.rpg129852.navigation.SceneManager;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
@@ -32,7 +35,11 @@ public class Main extends Application {
 
         GameRepository repository = new JsonGameRepository();
 
+        GameSessionManager gameSessionManager = new GameContextImpl();
+
         GameStarter gameStarter = createGameStarter(repository);
+        GameLoader gameLoader = createGameLoader(repository, gameSessionManager);
+
         AssetRegistry<DiscipleAsset> discipleAssetRegistry = createDiscipleAssetRegistry();
 
         ControllerFactory controllerFactory = new ControllerFactory();
@@ -44,7 +51,14 @@ public class Main extends Application {
         controllerFactory.register(DiscipleCreationController.class,
                 () -> new DiscipleCreationController(gameStarter, discipleAssetRegistry, JOBS, sceneManager));
 
+        controllerFactory.register(LoadGameController.class,
+                ()-> new LoadGameController(repository, gameLoader, sceneManager));
+
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
+    }
+
+    private GameLoader createGameLoader(GameRepository repository, GameSessionManager gameSessionManager) {
+        return new GameLoaderImpl(repository, gameSessionManager);
     }
 
     private GameStarter createGameStarter(GameRepository repository) {

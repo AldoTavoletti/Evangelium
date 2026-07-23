@@ -45,10 +45,6 @@ public class DiscipleCreationController {
     private Button previousGifButton;
 
     @FXML
-    private Button returnToMenuButton;
-
-
-    @FXML
     private Button startGameButton;
 
     public DiscipleCreationController(GameStarter gameStarter,

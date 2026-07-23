@@ -30,7 +30,7 @@ public class MainMenuController {
 
     @FXML
     void onLoadGameAction(ActionEvent event) {
-        System.out.println("Loading game...");
+        sceneManager.switchScene(ViewRoute.LOAD_GAME);
     }
 
     @FXML

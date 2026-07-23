@@ -9,7 +9,7 @@ public interface GameRepository {
 
     void save(Game game);
 
-    GameState load(String saveFileName);
+    Game load(String saveName);
 
     List<String> getAvailableSaves();
 
