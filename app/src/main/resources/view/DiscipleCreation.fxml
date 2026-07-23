@@ -23,7 +23,7 @@
             <VBox alignment="CENTER" maxHeight="750.0" maxWidth="625.0" minHeight="750.0" minWidth="625.0" prefHeight="750.0" prefWidth="625.0">
                <children>
                   <Label prefHeight="22.0" prefWidth="300.0" text="Nome del discepolo:" />
-                  <TextField fx:id="nameField" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="e.g. Aldo">
+                  <TextField fx:id="discipleNameField" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="e.g. Aldo">
                      <VBox.margin>
                         <Insets bottom="30.0" />
                      </VBox.margin>
@@ -33,11 +33,10 @@
                      <VBox.margin>
                         <Insets bottom="30.0" />
                      </VBox.margin></ChoiceBox>
-                  <Label prefWidth="300.0" text="Percorso di salvataggio:" />
+                  <Label prefWidth="300.0" text="Nome del file di salvataggio:" />
                   <HBox maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
                      <children>
-                        <TextField fx:id="pathField" editable="false" maxWidth="0.0" minWidth="240.0" promptText="Percorso file" />
-                        <Button fx:id="saveAsButton" minWidth="60.0" mnemonicParsing="false" onAction="#onSaveAsAction" text="Sfoglia" />
+                        <TextField fx:id="saveNameField" maxWidth="0.0" minWidth="300.0" promptText="e.g. mysave-1" />
                      </children>
                   </HBox>
                   <Button fx:id="startGameButton" disable="true" mnemonicParsing="false" onAction="#onStartGameAction" text="Inizia l'avventura!">

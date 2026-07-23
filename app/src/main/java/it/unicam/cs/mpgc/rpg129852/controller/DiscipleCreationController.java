@@ -8,15 +8,12 @@ import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigator;
 import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigatorImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
-import java.io.File;
 import java.util.List;
 
 public class DiscipleCreationController {
@@ -36,10 +33,10 @@ public class DiscipleCreationController {
     private ChoiceBox<String> jobSelector;
 
     @FXML
-    private TextField nameField;
+    private TextField discipleNameField;
 
     @FXML
-    private TextField pathField;
+    private TextField saveNameField;
 
     @FXML
     private Button nextGifButton;
@@ -50,8 +47,6 @@ public class DiscipleCreationController {
     @FXML
     private Button returnToMenuButton;
 
-    @FXML
-    private Button saveAsButton;
 
     @FXML
     private Button startGameButton;
@@ -86,7 +81,7 @@ public class DiscipleCreationController {
     }
 
     private void initNameField() {
-        nameField.textProperty().addListener((observable, oldContent, newContent) -> {
+        discipleNameField.textProperty().addListener((observable, oldContent, newContent) -> {
             startGameButton.setDisable(newContent.isEmpty());
         });
     }
@@ -109,50 +104,29 @@ public class DiscipleCreationController {
     }
 
     @FXML
-    void onSaveAsAction(ActionEvent event) {
+    void onStartGameAction(ActionEvent event) {
+        String name = discipleNameField.getText();
+        String job = jobSelector.getValue();
+        String color = discipleAssetNavigator.getCurrentElement().id();
+        String saveName = saveNameField.getText();
 
-        FileChooser jsonChooser = createJsonChooser();
-        File selectedFile = getFileFrom(jsonChooser);
-
-        if (selectedFile != null) {
-            String rawPath = selectedFile.getAbsolutePath();
-            String finalPath = formatJsonPath(rawPath);
-
-            pathField.setText(finalPath);
+        try {
+            gameStarter.startNewGame(name, job, color, saveName);
+        } catch (IllegalStateException e) {
+            showErrorAlert("Salvataggio esistente", e.getMessage());
+        }catch (IllegalArgumentException e) {
+            showErrorAlert("Nome non adatto", e.getMessage());
         }
 
     }
-    private FileChooser createJsonChooser() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Scegli percorso e nome file");
 
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
-        fileChooser.getExtensionFilters().add(extFilter);
+    private void showErrorAlert(String headerText, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Errore Creazione Partita");
+        alert.setHeaderText(headerText);
+        alert.setContentText(message);
 
-        return fileChooser;
-    }
-
-    private File getFileFrom(FileChooser fileChooser) {
-        Stage stage = (Stage) pathField.getScene().getWindow();
-        File selectedFile = fileChooser.showSaveDialog(stage);
-
-        return selectedFile;
-    }
-
-    private String formatJsonPath(String rawPath) {
-        boolean hasExtension = rawPath.toLowerCase().endsWith(".json");
-        return hasExtension ? rawPath : rawPath + ".json";
-    }
-
-    @FXML
-    void onStartGameAction(ActionEvent event) {
-        String name = nameField.getText();
-        String job = jobSelector.getValue();
-        String color = discipleAssetNavigator.getCurrentElement().id();
-        String savePath = pathField.getText();
-
-        gameStarter.startNewGame(name, job, color, savePath);
-
+        alert.showAndWait();
     }
 
 }

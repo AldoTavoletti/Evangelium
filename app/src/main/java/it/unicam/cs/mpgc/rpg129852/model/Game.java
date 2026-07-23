@@ -2,16 +2,16 @@ package it.unicam.cs.mpgc.rpg129852.model;
 
 public class Game {
 
-    private String savePath;
+    private String saveName;
     private GameState  gameState;
 
-    public Game(String savePath, GameState gameState){
-        this.savePath = savePath;
+    public Game(String saveName, GameState gameState){
+        this.saveName = saveName;
         this.gameState = gameState;
     }
 
-    public String getSavePath(){
-        return savePath;
+    public String getSaveName(){
+        return saveName;
     }
 
     public GameState getGameState() {

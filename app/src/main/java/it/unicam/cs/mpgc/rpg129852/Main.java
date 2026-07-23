@@ -11,6 +11,8 @@ import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
 import it.unicam.cs.mpgc.rpg129852.persistence.JsonGameRepository;
 import it.unicam.cs.mpgc.rpg129852.service.*;
+import it.unicam.cs.mpgc.rpg129852.util.NameValidator;
+import it.unicam.cs.mpgc.rpg129852.util.SaveNameValidator;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -47,7 +49,8 @@ public class Main extends Application {
 
     private GameStarter createGameStarter(GameRepository repository) {
         GameFactory gameFactory = new GameFactoryImpl();
-        return new GameStarterImpl(repository, gameFactory);
+        NameValidator saveNameValidator = new SaveNameValidator();
+        return new GameStarterImpl(repository, gameFactory, saveNameValidator);
     }
 
     private AssetRegistry<DiscipleAsset> createDiscipleAssetRegistry() {

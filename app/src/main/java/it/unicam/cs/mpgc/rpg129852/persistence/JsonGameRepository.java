@@ -8,24 +8,47 @@ import it.unicam.cs.mpgc.rpg129852.model.GameState;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class JsonGameRepository implements GameRepository {
 
     private final Gson gson;
+    private final Path saveDirectory;
 
     public JsonGameRepository(){
         this.gson = new GsonBuilder().setPrettyPrinting().create();
+
+        String userHome = System.getProperty("user.home");
+        this.saveDirectory = Paths.get(userHome, ".evangelium", "saves");
+        initializeDirectory();
+    }
+
+    private void initializeDirectory() {
+        try {
+            if (!Files.exists(saveDirectory)) {
+                Files.createDirectories(saveDirectory);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Impossibile creare la cartella di salvataggio in: " + saveDirectory, e);
+        }
     }
 
     @Override
     public void save(Game game) {
+        String fileName = game.getSaveName() + ".json";
+        Path fullPath = saveDirectory.resolve(fileName);
 
-        try (Writer writer = new FileWriter(game.getSavePath())) {
+        try (Writer writer = Files.newBufferedWriter(fullPath, StandardCharsets.UTF_8)) {
             gson.toJson(game.getGameState(), writer);
         } catch (IOException e) {
-            System.err.println("Error during game saving: " + e.getMessage());
-            e.printStackTrace();
+            throw new RuntimeException("Cannot save the game '" + game.getSaveName() + "' on disk.", e);
         }
     }
 
@@ -36,6 +59,18 @@ public class JsonGameRepository implements GameRepository {
 
     @Override
     public List<String> getAvailableSaves() {
-        return List.of();
+        try (Stream<Path> paths = Files.list(saveDirectory)) {
+            return paths
+                    .filter(Files::isRegularFile) // exclude subdirectories
+                    .filter(path -> path.toString().endsWith(".json")) // get only the JSON
+                    .map(Path::getFileName) // get only the filename (es. "Partita1.json")
+                    .map(Path::toString)
+                    .map(fileName -> fileName.substring(0, fileName.length() - 5)) // remove the extension ".json"
+                    .collect(Collectors.toList());
+
+        } catch (IOException e) {
+            System.err.println("Impossibile leggere la cartella dei salvataggi: " + e.getMessage());
+            return Collections.emptyList();
+        }
     }
 }
