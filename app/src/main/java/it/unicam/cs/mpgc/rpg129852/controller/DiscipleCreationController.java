@@ -1,7 +1,11 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
-import it.unicam.cs.mpgc.rpg129852.model.CircularImageNavigator;
-import it.unicam.cs.mpgc.rpg129852.model.DiscipleGifLoader;
+import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
+import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
+import it.unicam.cs.mpgc.rpg129852.asset.*;
+import it.unicam.cs.mpgc.rpg129852.service.GameStarter;
+import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigator;
+import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigatorImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,18 +13,21 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.List;
-
-import static it.unicam.cs.mpgc.rpg129852.util.SceneUtils.switchScene;
 
 public class DiscipleCreationController {
 
-    private static final String[] DISCIPLE_COLORS = {"red", "blue", "green", "yellow"};
-    private static final String[] AVAILABLE_JOBS = {
-            "Pescatore", "Falegname", "Esattore delle imposte",
-            "Fabbricante di tende", "Contadino", "Fabbro", "Medico"
-    };
+    private GameStarter gameStarter;
+
+    private final CircularListNavigator<DiscipleAsset> discipleAssetNavigator;
+
+    private final List<String> jobs;
+
+    private final ViewRouter sceneManager;
 
     @FXML
     private ImageView currentGifImage;
@@ -32,6 +39,9 @@ public class DiscipleCreationController {
     private TextField nameField;
 
     @FXML
+    private TextField pathField;
+
+    @FXML
     private Button nextGifButton;
 
     @FXML
@@ -41,72 +51,108 @@ public class DiscipleCreationController {
     private Button returnToMenuButton;
 
     @FXML
+    private Button saveAsButton;
+
+    @FXML
     private Button startGameButton;
 
-    private CircularImageNavigator discipleGifNavigator;
+    public DiscipleCreationController(GameStarter gameStarter,
+                                      AssetRegistry<DiscipleAsset> discipleAssetRegistry,
+                                      List<String> jobs,
+                                      ViewRouter sceneManager) {
+        this.gameStarter = gameStarter;
+        this.discipleAssetNavigator = new CircularListNavigatorImpl<>(discipleAssetRegistry.getAllAssets());
+        this.jobs = jobs;
+        this.sceneManager = sceneManager;
+    }
 
     @FXML
     public void initialize() {
-        initDiscipleGifs();
+        updateGifImage();
         initJobSelector();
         initNameField();
     }
 
-    private void initNameField() {
+    private void updateGifImage() {
+        DiscipleAsset discipleAsset = discipleAssetNavigator.getCurrentElement();
+        String currentGifPath = discipleAsset.gifPath();
 
-        nameField.textProperty().addListener((observable, oldContent, newContent) -> {
-            if (!newContent.isEmpty())
-                startGameButton.setDisable(false);
-            else
-                startGameButton.setDisable(true);
-        });
-
-    }
-
-    private void initDiscipleGifs() {
-        List<Image> gifs = DiscipleGifLoader.initializeGifs(DISCIPLE_COLORS);
-
-        discipleGifNavigator = new CircularImageNavigator(gifs);
-
-        currentGifImage.setImage(discipleGifNavigator.getCurrentImage());
+        currentGifImage.setImage(new Image(currentGifPath));
     }
 
     private void initJobSelector() {
-        jobSelector.getItems().addAll(AVAILABLE_JOBS);
+        jobSelector.getItems().addAll(jobs);
         jobSelector.getSelectionModel().selectFirst();
+    }
+
+    private void initNameField() {
+        nameField.textProperty().addListener((observable, oldContent, newContent) -> {
+            startGameButton.setDisable(newContent.isEmpty());
+        });
     }
 
     @FXML
     void onReturnToMenuAction(ActionEvent event) {
-        switchScene("/view/MainMenu.fxml", event);
+        sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }
 
     @FXML
     void onNextGifAction(ActionEvent event) {
-        discipleGifNavigator.moveToNext();
-        currentGifImage.setImage(discipleGifNavigator.getCurrentImage());
+        discipleAssetNavigator.moveToNext();
+        updateGifImage();
     }
 
     @FXML
     void onPreviousGifAction(ActionEvent event) {
-        discipleGifNavigator.moveToPrevious();
-        currentGifImage.setImage(discipleGifNavigator.getCurrentImage());
+        discipleAssetNavigator.moveToPrevious();
+        updateGifImage();
     }
 
     @FXML
-    void onNameFieldAction(ActionEvent event) {
-        CharSequence nameFieldContent = nameField.getCharacters();
+    void onSaveAsAction(ActionEvent event) {
 
-        if (!nameFieldContent.isEmpty())
-            startGameButton.setDisable(false);
-        else
-            startGameButton.setDisable(true);
+        FileChooser jsonChooser = createJsonChooser();
+        File selectedFile = getFileFrom(jsonChooser);
+
+        if (selectedFile != null) {
+            String rawPath = selectedFile.getAbsolutePath();
+            String finalPath = formatJsonPath(rawPath);
+
+            pathField.setText(finalPath);
+        }
+
+    }
+    private FileChooser createJsonChooser() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Scegli percorso e nome file");
+
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        return fileChooser;
+    }
+
+    private File getFileFrom(FileChooser fileChooser) {
+        Stage stage = (Stage) pathField.getScene().getWindow();
+        File selectedFile = fileChooser.showSaveDialog(stage);
+
+        return selectedFile;
+    }
+
+    private String formatJsonPath(String rawPath) {
+        boolean hasExtension = rawPath.toLowerCase().endsWith(".json");
+        return hasExtension ? rawPath : rawPath + ".json";
     }
 
     @FXML
     void onStartGameAction(ActionEvent event) {
-            System.out.println("Starting game...");
-    }
+        String name = nameField.getText();
+        String job = jobSelector.getValue();
+        String color = discipleAssetNavigator.getCurrentElement().id();
+        String savePath = pathField.getText();
 
+        gameStarter.startNewGame(name, job, color, savePath);
+
+    }
 
 }
