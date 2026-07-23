@@ -46,6 +46,8 @@ public class LoadGameController {
         for (String saveName : saves) {
             Button saveButton = new Button(saveName);
 
+            saveButton.getStyleClass().add("save-btn");
+
             saveButton.setMaxWidth(Double.MAX_VALUE);
 
             saveButton.setOnAction(event -> loadSelectedGame(saveName));
