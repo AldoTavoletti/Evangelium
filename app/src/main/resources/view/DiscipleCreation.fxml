@@ -39,7 +39,7 @@
                         <TextField fx:id="saveNameField" maxWidth="0.0" minWidth="300.0" promptText="e.g. mysave-1" />
                      </children>
                   </HBox>
-                  <Button fx:id="startGameButton" disable="true" mnemonicParsing="false" onAction="#onStartGameAction" text="Inizia l'avventura!">
+                  <Button fx:id="startGameButton" disable="true" mnemonicParsing="false" onAction="#onStartGameAction" styleClass="start-button" text="Inizia l'avventura!">
                      <VBox.margin>
                         <Insets top="60.0" />
                      </VBox.margin>
@@ -47,7 +47,7 @@
                </children>
             </VBox>
             <Label alignment="CENTER" layoutY="54.0" prefHeight="81.0" prefWidth="629.0" styleClass="scene-title" text="CREA IL TUO DISCEPOLO!" />
-            <Button fx:id="returnToMenuButton" mnemonicParsing="false" onAction="#onReturnToMenuAction" styleClass="arrow" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+            <Button fx:id="returnToMenuButton" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#onReturnToMenuAction" prefHeight="60.0" prefWidth="60.0" styleClass="arrow" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                <graphic>
                   <ImageView pickOnBounds="true" preserveRatio="true">
                      <image>
