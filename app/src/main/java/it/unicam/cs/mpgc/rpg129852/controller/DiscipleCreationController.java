@@ -1,14 +1,19 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
+import it.unicam.cs.mpgc.rpg129852.asset.AssetRegistry;
+import it.unicam.cs.mpgc.rpg129852.asset.DiscipleAsset;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
-import it.unicam.cs.mpgc.rpg129852.asset.*;
 import it.unicam.cs.mpgc.rpg129852.service.GameStarter;
 import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigator;
 import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigatorImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -17,32 +22,25 @@ import java.util.Optional;
 
 public class DiscipleCreationController {
 
-    private GameStarter gameStarter;
+    private static final String ERROR_TITLE = "Errore Creazione Partita";
+    private static final String INVALID_NAME_HEADER = "Nome non adatto";
+    private static final String OVERWRITE_TITLE = "Salvataggio Esistente";
+    private static final String OVERWRITE_HEADER = "Esiste già un salvataggio con questo nome.";
+    private static final String OVERWRITE_CONTENT = "Vuoi sovrascriverlo e perdere i vecchi progressi?";
 
+    private final GameStarter gameStarter;
     private final CircularListNavigator<DiscipleAsset> discipleAssetNavigator;
-
     private final List<String> jobs;
-
     private final ViewRouter sceneManager;
 
     @FXML
     private ImageView currentGifImage;
-
     @FXML
     private ChoiceBox<String> jobSelector;
-
     @FXML
     private TextField discipleNameField;
-
     @FXML
     private TextField saveNameField;
-
-    @FXML
-    private Button nextGifButton;
-
-    @FXML
-    private Button previousGifButton;
-
     @FXML
     private Button startGameButton;
 
@@ -65,9 +63,7 @@ public class DiscipleCreationController {
 
     private void updateGifImage() {
         DiscipleAsset discipleAsset = discipleAssetNavigator.getCurrentElement();
-        String currentGifPath = discipleAsset.gifPath();
-
-        currentGifImage.setImage(new Image(currentGifPath));
+        currentGifImage.setImage(new Image(discipleAsset.gifPath()));
     }
 
     private void initJobSelector() {
@@ -76,9 +72,9 @@ public class DiscipleCreationController {
     }
 
     private void initNameField() {
-        discipleNameField.textProperty().addListener((observable, oldContent, newContent) -> {
-            startGameButton.setDisable(newContent.isEmpty());
-        });
+        discipleNameField.textProperty().addListener((observable, oldContent, newContent) ->
+                startGameButton.setDisable(newContent.isEmpty())
+        );
     }
 
     @FXML
@@ -100,9 +96,7 @@ public class DiscipleCreationController {
 
     @FXML
     void onStartGameAction(ActionEvent event) {
-
         attemptStartGame(false);
-
     }
 
     private void attemptStartGame(boolean forceOverwrite) {
@@ -113,37 +107,30 @@ public class DiscipleCreationController {
 
         try {
             gameStarter.startNewGame(name, job, color, saveName, forceOverwrite);
-            // todo: should switch scene
-
         } catch (IllegalStateException e) {
             if (askOverwriteConfirmation()) {
                 attemptStartGame(true);
             }
-
         } catch (IllegalArgumentException e) {
-            showErrorAlert("Nome non adatto", e.getMessage());
+            showErrorAlert(INVALID_NAME_HEADER, e.getMessage());
         }
     }
 
     private void showErrorAlert(String headerText, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Errore Creazione Partita");
+        alert.setTitle(ERROR_TITLE);
         alert.setHeaderText(headerText);
         alert.setContentText(message);
-
         alert.showAndWait();
     }
 
     private boolean askOverwriteConfirmation() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Salvataggio Esistente");
-        alert.setHeaderText("Esiste già un salvataggio con questo nome.");
-        alert.setContentText("Vuoi sovrascriverlo e perdere i vecchi progressi?");
+        alert.setTitle(OVERWRITE_TITLE);
+        alert.setHeaderText(OVERWRITE_HEADER);
+        alert.setContentText(OVERWRITE_CONTENT);
 
-        // Aspettiamo la risposta dell'utente
         Optional<ButtonType> result = alert.showAndWait();
-
         return result.isPresent() && result.get() == ButtonType.OK;
     }
-
 }

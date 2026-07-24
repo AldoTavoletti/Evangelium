@@ -22,6 +22,11 @@ import java.util.Optional;
 
 public class LoadGameController {
 
+    private static final String TRASH_ICON_PATH = "/images/recycle-bin.png";
+    private static final double ICON_SIZE = 24.0;
+    private static final String LOAD_BTN_CLASS = "load-btn";
+    private static final String DELETE_BTN_CLASS = "delete-btn";
+
     @FXML
     private VBox savesContainer;
 
@@ -37,10 +42,10 @@ public class LoadGameController {
 
     @FXML
     public void initialize() {
-        initSavesList();
+        refreshSavesList();
     }
 
-    private void initSavesList() {
+    private void refreshSavesList() {
         savesContainer.getChildren().clear();
 
         List<String> saves = repository.getAvailableSaves();
@@ -51,47 +56,56 @@ public class LoadGameController {
         }
 
         for (String saveName : saves) {
-
-            HBox row = new HBox(10);
-            row.setAlignment(Pos.CENTER);
-
-            Button loadButton = new Button(saveName);
-            loadButton.getStyleClass().add("save-btn");
-            loadButton.setMaxWidth(Double.MAX_VALUE);
-
-            HBox.setHgrow(loadButton, Priority.ALWAYS);
-            loadButton.setOnAction(event -> loadSelectedGame(saveName));
-
-            Button deleteButton = new Button();
-            deleteButton.getStyleClass().add("delete-btn");
-
-            try {
-                ImageView trashIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/recycle-bin.png")));
-                trashIcon.setFitWidth(24);
-                trashIcon.setFitHeight(24);
-                deleteButton.setGraphic(trashIcon);
-            } catch (Exception e) {
-                deleteButton.setText("X");
-            }
-
-            deleteButton.setOnAction(event -> confirmAndDeleteSave(saveName));
-
-            row.getChildren().addAll(loadButton, deleteButton);
-            savesContainer.getChildren().add(row);
+            savesContainer.getChildren().add(createSaveRow(saveName));
         }
     }
+
+    private HBox createSaveRow(String saveName) {
+        HBox row = new HBox(10);
+        row.setAlignment(Pos.CENTER);
+
+        Button loadButton = createLoadButton(saveName);
+        Button deleteButton = createDeleteButton(saveName);
+
+        row.getChildren().addAll(loadButton, deleteButton);
+        return row;
+    }
+
+    private Button createLoadButton(String saveName) {
+        Button loadButton = new Button(saveName);
+        loadButton.getStyleClass().add(LOAD_BTN_CLASS);
+        loadButton.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(loadButton, Priority.ALWAYS);
+
+        loadButton.setOnAction(event -> loadSelectedGame(saveName));
+
+        return loadButton;
+    }
+
+    private Button createDeleteButton(String saveName) {
+        Button deleteButton = new Button();
+        deleteButton.getStyleClass().add(DELETE_BTN_CLASS);
+
+        try {
+            ImageView trashIcon = new ImageView(new Image(getClass().getResourceAsStream(TRASH_ICON_PATH)));
+            trashIcon.setFitWidth(ICON_SIZE);
+            trashIcon.setFitHeight(ICON_SIZE);
+            deleteButton.setGraphic(trashIcon);
+        } catch (Exception e) {
+            deleteButton.setText("X");
+        }
+
+        deleteButton.setOnAction(event -> confirmAndDeleteSave(saveName));
+
+        return deleteButton;
+    }
+
     private void loadSelectedGame(String saveName) {
         try {
             gameLoader.loadGame(saveName);
-
-            //todo: switch to next scene
-
+            // todo: switch to next scene
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Errore");
-            alert.setHeaderText("Impossibile caricare il salvataggio");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            showErrorAlert("Impossibile caricare il salvataggio", e.getMessage());
         }
     }
 
@@ -103,18 +117,25 @@ public class LoadGameController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            try {
-                repository.delete(saveName);
-
-                initSavesList();
-            } catch (Exception e) {
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                errorAlert.setTitle("Errore");
-                errorAlert.setHeaderText("Impossibile eliminare il file");
-                errorAlert.setContentText(e.getMessage());
-                errorAlert.showAndWait();
-            }
+            executeDeletion(saveName);
         }
+    }
+
+    private void executeDeletion(String saveName) {
+        try {
+            repository.delete(saveName);
+            refreshSavesList();
+        } catch (Exception e) {
+            showErrorAlert("Impossibile eliminare il file", e.getMessage());
+        }
+    }
+
+    private void showErrorAlert(String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Errore");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     @FXML
