@@ -2,13 +2,13 @@ package it.unicam.cs.mpgc.rpg129852.util;
 
 import java.util.List;
 
-public class DefaultSaveNameGenerator implements SaveNameGenerator {
+public class SaveNameFallbackProviderImpl implements SaveNameFallbackProvider {
 
     private static final String BASE_NAME = "untitled";
 
     @Override
-    public String generate(List<String> existingSaves) {
-        if (!existingSaves.contains(BASE_NAME)) {
+    public String provideFirstAvailable(List<String> takenNames) {
+        if (!takenNames.contains(BASE_NAME)) {
             return BASE_NAME;
         }
 
@@ -18,7 +18,7 @@ public class DefaultSaveNameGenerator implements SaveNameGenerator {
         do {
             newName = BASE_NAME + "(" + counter + ")";
             counter++;
-        } while (existingSaves.contains(newName));
+        } while (takenNames.contains(newName));
 
         return newName;
     }

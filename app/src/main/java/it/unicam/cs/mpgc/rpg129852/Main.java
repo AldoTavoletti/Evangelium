@@ -65,15 +65,12 @@ public class Main extends Application {
     private GameStarter createGameStarter(GameRepository repository) {
         GameFactory gameFactory = new GameFactoryImpl();
 
-        NameValidator saveNameValidator = new SaveNameValidator();
-        SaveNameGenerator saveNameGenerator = new DefaultSaveNameGenerator();
+        SyntaxValidator syntaxValidator = new SaveNameSyntaxValidator();
+        SaveNameFallbackProvider fallbackProvider = new SaveNameFallbackProviderImpl();
 
-        // Passiamo il 'repository' al SaveNameManagerImpl.
-        // Poiché SaveNameManagerImpl richiede un AvailableSavesProvider,
-        // Java nasconderà automaticamente i metodi save(), load() e delete().
-        SaveNameManager saveNameManager = new SaveNameManagerImpl(repository, saveNameValidator, saveNameGenerator);
+        SaveNameResolver saveNameResolver = new SaveNameResolverImpl(repository, syntaxValidator, fallbackProvider);
 
-        return new GameStarterImpl(repository, gameFactory, saveNameManager);
+        return new GameStarterImpl(repository, gameFactory, saveNameResolver);
     }
 
     private AssetRegistry<DiscipleAsset> createDiscipleAssetRegistry() {
