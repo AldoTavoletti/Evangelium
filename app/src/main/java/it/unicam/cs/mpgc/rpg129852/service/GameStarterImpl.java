@@ -15,10 +15,20 @@ public class GameStarterImpl implements GameStarter {
         this.saveNameResolver = saveNameResolver;
     }
 
-    public void startNewGame(String discipleName, String discipleJob, String color, String saveName, boolean forceOverwrite) {
-        String finalSaveName = saveNameResolver.resolveFinalName(saveName, forceOverwrite);
+    @Override
+    public void startNewGame(NewGameRequest request) {
+        doStart(request, false);
+    }
 
-        DiscipleData discipleData = new DiscipleData(discipleName, discipleJob, color);
+    @Override
+    public void overwriteAndStartNewGame(NewGameRequest request) {
+        doStart(request, true);
+    }
+
+    private void doStart(NewGameRequest request, boolean forceOverwrite) {
+        String finalSaveName = saveNameResolver.resolveFinalName(request.saveName(), forceOverwrite);
+
+        DiscipleData discipleData = new DiscipleData(request.discipleName(), request.job(), request.color());
         GameState gameState = new GameState(discipleData);
         Game game = new Game(finalSaveName, gameState);
 

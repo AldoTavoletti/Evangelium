@@ -5,20 +5,19 @@ import it.unicam.cs.mpgc.rpg129852.asset.DiscipleAsset;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.service.GameStarter;
+import it.unicam.cs.mpgc.rpg129852.service.NewGameRequest;
+import it.unicam.cs.mpgc.rpg129852.ui.AlertHelper;
 import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigator;
 import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigatorImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.List;
-import java.util.Optional;
 
 public class DiscipleCreationController {
 
@@ -96,41 +95,27 @@ public class DiscipleCreationController {
 
     @FXML
     void onStartGameAction(ActionEvent event) {
-        attemptStartGame(false);
-    }
 
-    private void attemptStartGame(boolean forceOverwrite) {
-        String name = discipleNameField.getText();
-        String job = jobSelector.getValue();
-        String saveName = saveNameField.getText();
-        String color = discipleAssetNavigator.getCurrentElement().id();
+        NewGameRequest request = buildRequest();
 
         try {
-            gameStarter.startNewGame(name, job, color, saveName, forceOverwrite);
+            gameStarter.startNewGame(request);
         } catch (IllegalStateException e) {
-            if (askOverwriteConfirmation()) {
-                attemptStartGame(true);
+            if (AlertHelper.askConfirmation(OVERWRITE_TITLE, OVERWRITE_HEADER, OVERWRITE_CONTENT)) {
+                gameStarter.overwriteAndStartNewGame(request);
             }
         } catch (IllegalArgumentException e) {
-            showErrorAlert(INVALID_NAME_HEADER, e.getMessage());
+            AlertHelper.showError(INVALID_NAME_HEADER, e.getMessage());
         }
     }
 
-    private void showErrorAlert(String headerText, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(ERROR_TITLE);
-        alert.setHeaderText(headerText);
-        alert.setContentText(message);
-        alert.showAndWait();
+    private NewGameRequest buildRequest() {
+        return new NewGameRequest(
+                discipleNameField.getText(),
+                jobSelector.getValue(),
+                discipleAssetNavigator.getCurrentElement().id(),
+                saveNameField.getText()
+        );
     }
 
-    private boolean askOverwriteConfirmation() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(OVERWRITE_TITLE);
-        alert.setHeaderText(OVERWRITE_HEADER);
-        alert.setContentText(OVERWRITE_CONTENT);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        return result.isPresent() && result.get() == ButtonType.OK;
-    }
 }
