@@ -23,12 +23,16 @@ public class GameStarterImpl implements GameStarter {
         DiscipleData discipleData = new DiscipleData(discipleName, discipleJob, color);
         GameState gameState = new GameState(discipleData);
 
+        List<String> existingSaves = repository.getAvailableSaves();
+
+        if (saveName == null || saveName.trim().isEmpty()) {
+            saveName = generateDefaultSaveName(existingSaves);
+        }
+
         // syntax validation
         nameValidator.validate(saveName);
 
         // semantic validation
-        List<String> existingSaves = repository.getAvailableSaves();
-
         if (existingSaves.contains(saveName) && !forceOverwrite) {
             throw new IllegalStateException("A saving with the same name already exists.");
         }
@@ -36,6 +40,23 @@ public class GameStarterImpl implements GameStarter {
         Game game = gameFactory.create(saveName, gameState);
 
         repository.save(game);
+    }
+
+    private String generateDefaultSaveName(List<String> existingSaves) {
+        String baseName = "untitled";
+
+        if (!existingSaves.contains(baseName)) {
+            return baseName;
+        }
+
+        int counter = 1;
+        String newName;
+        do {
+            newName = baseName + "(" + counter + ")";
+            counter++;
+        } while (existingSaves.contains(newName));
+
+        return newName;
     }
 
 }
