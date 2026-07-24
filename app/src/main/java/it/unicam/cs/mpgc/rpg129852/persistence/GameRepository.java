@@ -13,4 +13,6 @@ public interface GameRepository {
 
     List<String> getAvailableSaves();
 
+    void delete(String saveName);
+
 }

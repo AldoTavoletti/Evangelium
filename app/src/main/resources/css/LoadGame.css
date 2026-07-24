@@ -1,3 +1,22 @@
+.delete-btn {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 15px;
+    -fx-background-radius: 8px;
+    -fx-border-color: #E2DFD8;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+}
+
+.delete-btn:hover {
+    -fx-background-color: #FFF0F0;
+    -fx-border-color: #FFD6D6;
+}
+
+.delete-btn:pressed {
+    -fx-background-color: #FFE6E6;
+}
+
 .save-btn {
     -fx-font-size: 20px;
     -fx-font-weight: normal;

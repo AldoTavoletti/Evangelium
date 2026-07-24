@@ -6,12 +6,19 @@ import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
 import it.unicam.cs.mpgc.rpg129852.service.GameLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
+import java.util.Optional;
 
 public class LoadGameController {
 
@@ -44,18 +51,41 @@ public class LoadGameController {
         }
 
         for (String saveName : saves) {
-            Button saveButton = new Button(saveName);
+            // 1. Crea il contenitore della riga
+            HBox row = new HBox(10); // 10 è lo spazio tra il bottone di caricamento e il cestino
+            row.setAlignment(Pos.CENTER);
 
-            saveButton.getStyleClass().add("save-btn");
+            // 2. Crea il bottone principale di caricamento (il tuo vecchio saveButton)
+            Button loadButton = new Button(saveName);
+            loadButton.getStyleClass().add("save-btn");
+            loadButton.setMaxWidth(Double.MAX_VALUE);
 
-            saveButton.setMaxWidth(Double.MAX_VALUE);
+            // Diciamo all'HBox di far espandere il loadButton il più possibile
+            HBox.setHgrow(loadButton, Priority.ALWAYS);
+            loadButton.setOnAction(event -> loadSelectedGame(saveName));
 
-            saveButton.setOnAction(event -> loadSelectedGame(saveName));
+            // 3. Crea il bottone di eliminazione
+            Button deleteButton = new Button();
+            deleteButton.getStyleClass().add("delete-btn");
 
-            savesContainer.getChildren().add(saveButton);
+            // Aggiungi l'icona del cestino (assicurati di avere un'immagine trash.png nella cartella images)
+            try {
+                ImageView trashIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/recycle-bin.png")));
+                trashIcon.setFitWidth(24);
+                trashIcon.setFitHeight(24);
+                deleteButton.setGraphic(trashIcon);
+            } catch (Exception e) {
+                // Se non trova l'immagine, mette una X come testo di ripiego
+                deleteButton.setText("X");
+            }
+
+            deleteButton.setOnAction(event -> confirmAndDeleteSave(saveName));
+
+            // 4. Aggiungi entrambi i bottoni alla riga, e la riga al contenitore principale
+            row.getChildren().addAll(loadButton, deleteButton);
+            savesContainer.getChildren().add(row);
         }
     }
-
     private void loadSelectedGame(String saveName) {
         try {
             gameLoader.loadGame(saveName);
@@ -68,6 +98,30 @@ public class LoadGameController {
             alert.setHeaderText("Impossibile caricare il salvataggio");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
+        }
+    }
+
+    private void confirmAndDeleteSave(String saveName) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Elimina Salvataggio");
+        alert.setHeaderText("Stai per eliminare il salvataggio: " + saveName);
+        alert.setContentText("L'operazione è irreversibile. Vuoi continuare?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                // Usa il metodo delete che abbiamo creato prima nel repository
+                repository.delete(saveName);
+
+                // Ricarica la lista a schermo per far sparire la riga eliminata
+                initSavesList();
+            } catch (Exception e) {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Errore");
+                errorAlert.setHeaderText("Impossibile eliminare il file");
+                errorAlert.setContentText(e.getMessage());
+                errorAlert.showAndWait();
+            }
         }
     }
 

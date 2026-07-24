@@ -71,6 +71,22 @@ public class JsonGameRepository implements GameRepository {
     }
 
     @Override
+    public void delete(String saveName) {
+        Path fullPath = saveDirectory.resolve(saveName + EXTENSION);
+
+        try {
+            boolean deleted = Files.deleteIfExists(fullPath);
+
+            if (!deleted) {
+                // Se preferisci che fallisca silenziosamente, puoi rimuovere questa eccezione
+                throw new IllegalArgumentException("Il salvataggio da eliminare non esiste: " + saveName);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Impossibile eliminare il file di salvataggio '" + saveName + "'.", e);
+        }
+    }
+
+    @Override
     public List<String> getAvailableSaves() {
         try (Stream<Path> paths = Files.list(saveDirectory)) {
             return paths
