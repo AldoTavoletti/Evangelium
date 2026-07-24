@@ -19,7 +19,7 @@ public class GameStarterImpl implements GameStarter {
         this.nameValidator = nameValidator;
     }
 
-    public void startNewGame(String discipleName, String discipleJob, String color, String saveName) {
+    public void startNewGame(String discipleName, String discipleJob, String color, String saveName, boolean forceOverwrite) {
         DiscipleData discipleData = new DiscipleData(discipleName, discipleJob, color);
         GameState gameState = new GameState(discipleData);
 
@@ -29,7 +29,7 @@ public class GameStarterImpl implements GameStarter {
         // semantic validation
         List<String> existingSaves = repository.getAvailableSaves();
 
-        if (existingSaves.contains(saveName)) {
+        if (existingSaves.contains(saveName) && !forceOverwrite) {
             throw new IllegalStateException("A saving with the same name already exists.");
         }
 

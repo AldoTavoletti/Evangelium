@@ -8,13 +8,12 @@ import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigator;
 import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigatorImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
 import java.util.List;
+import java.util.Optional;
 
 public class DiscipleCreationController {
 
@@ -101,19 +100,29 @@ public class DiscipleCreationController {
 
     @FXML
     void onStartGameAction(ActionEvent event) {
+
+        attemptStartGame(false);
+
+    }
+
+    private void attemptStartGame(boolean forceOverwrite) {
         String name = discipleNameField.getText();
         String job = jobSelector.getValue();
-        String color = discipleAssetNavigator.getCurrentElement().id();
         String saveName = saveNameField.getText();
+        String color = discipleAssetNavigator.getCurrentElement().id();
 
         try {
-            gameStarter.startNewGame(name, job, color, saveName);
+            gameStarter.startNewGame(name, job, color, saveName, forceOverwrite);
+            // todo: should switch scene
+
         } catch (IllegalStateException e) {
-            showErrorAlert("Salvataggio esistente", e.getMessage());
-        }catch (IllegalArgumentException e) {
+            if (askOverwriteConfirmation()) {
+                attemptStartGame(true);
+            }
+
+        } catch (IllegalArgumentException e) {
             showErrorAlert("Nome non adatto", e.getMessage());
         }
-
     }
 
     private void showErrorAlert(String headerText, String message) {
@@ -123,6 +132,18 @@ public class DiscipleCreationController {
         alert.setContentText(message);
 
         alert.showAndWait();
+    }
+
+    private boolean askOverwriteConfirmation() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Salvataggio Esistente");
+        alert.setHeaderText("Esiste già un salvataggio con questo nome.");
+        alert.setContentText("Vuoi sovrascriverlo e perdere i vecchi progressi?");
+
+        // Aspettiamo la risposta dell'utente
+        Optional<ButtonType> result = alert.showAndWait();
+
+        return result.isPresent() && result.get() == ButtonType.OK;
     }
 
 }
