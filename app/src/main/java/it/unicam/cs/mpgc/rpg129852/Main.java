@@ -11,14 +11,15 @@ import it.unicam.cs.mpgc.rpg129852.controller.MainMenuController;
 import it.unicam.cs.mpgc.rpg129852.navigation.SceneManager;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
+import it.unicam.cs.mpgc.rpg129852.persistence.AvailableSavesProvider;
 import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
 import it.unicam.cs.mpgc.rpg129852.persistence.JsonGameRepository;
 import it.unicam.cs.mpgc.rpg129852.service.*;
-import it.unicam.cs.mpgc.rpg129852.util.NameValidator;
-import it.unicam.cs.mpgc.rpg129852.util.SaveNameValidator;
+import it.unicam.cs.mpgc.rpg129852.util.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import javax.naming.Name;
 import java.util.List;
 
 public class Main extends Application {
@@ -63,8 +64,16 @@ public class Main extends Application {
 
     private GameStarter createGameStarter(GameRepository repository) {
         GameFactory gameFactory = new GameFactoryImpl();
+
         NameValidator saveNameValidator = new SaveNameValidator();
-        return new GameStarterImpl(repository, gameFactory, saveNameValidator);
+        SaveNameGenerator saveNameGenerator = new DefaultSaveNameGenerator();
+
+        // Passiamo il 'repository' al SaveNameManagerImpl.
+        // Poiché SaveNameManagerImpl richiede un AvailableSavesProvider,
+        // Java nasconderà automaticamente i metodi save(), load() e delete().
+        SaveNameManager saveNameManager = new SaveNameManagerImpl(repository, saveNameValidator, saveNameGenerator);
+
+        return new GameStarterImpl(repository, gameFactory, saveNameManager);
     }
 
     private AssetRegistry<DiscipleAsset> createDiscipleAssetRegistry() {

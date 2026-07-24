@@ -78,7 +78,6 @@ public class JsonGameRepository implements GameRepository {
             boolean deleted = Files.deleteIfExists(fullPath);
 
             if (!deleted) {
-                // Se preferisci che fallisca silenziosamente, puoi rimuovere questa eccezione
                 throw new IllegalArgumentException("Il salvataggio da eliminare non esiste: " + saveName);
             }
         } catch (IOException e) {

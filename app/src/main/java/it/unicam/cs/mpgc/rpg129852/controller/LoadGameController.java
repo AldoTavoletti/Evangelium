@@ -51,37 +51,31 @@ public class LoadGameController {
         }
 
         for (String saveName : saves) {
-            // 1. Crea il contenitore della riga
-            HBox row = new HBox(10); // 10 è lo spazio tra il bottone di caricamento e il cestino
+
+            HBox row = new HBox(10);
             row.setAlignment(Pos.CENTER);
 
-            // 2. Crea il bottone principale di caricamento (il tuo vecchio saveButton)
             Button loadButton = new Button(saveName);
             loadButton.getStyleClass().add("save-btn");
             loadButton.setMaxWidth(Double.MAX_VALUE);
 
-            // Diciamo all'HBox di far espandere il loadButton il più possibile
             HBox.setHgrow(loadButton, Priority.ALWAYS);
             loadButton.setOnAction(event -> loadSelectedGame(saveName));
 
-            // 3. Crea il bottone di eliminazione
             Button deleteButton = new Button();
             deleteButton.getStyleClass().add("delete-btn");
 
-            // Aggiungi l'icona del cestino (assicurati di avere un'immagine trash.png nella cartella images)
             try {
                 ImageView trashIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/recycle-bin.png")));
                 trashIcon.setFitWidth(24);
                 trashIcon.setFitHeight(24);
                 deleteButton.setGraphic(trashIcon);
             } catch (Exception e) {
-                // Se non trova l'immagine, mette una X come testo di ripiego
                 deleteButton.setText("X");
             }
 
             deleteButton.setOnAction(event -> confirmAndDeleteSave(saveName));
 
-            // 4. Aggiungi entrambi i bottoni alla riga, e la riga al contenitore principale
             row.getChildren().addAll(loadButton, deleteButton);
             savesContainer.getChildren().add(row);
         }
@@ -110,10 +104,8 @@ public class LoadGameController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
-                // Usa il metodo delete che abbiamo creato prima nel repository
                 repository.delete(saveName);
 
-                // Ricarica la lista a schermo per far sparire la riga eliminata
                 initSavesList();
             } catch (Exception e) {
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);

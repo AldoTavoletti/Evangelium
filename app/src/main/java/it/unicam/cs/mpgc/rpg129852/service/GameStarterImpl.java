@@ -3,60 +3,36 @@ package it.unicam.cs.mpgc.rpg129852.service;
 import it.unicam.cs.mpgc.rpg129852.model.*;
 import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
 import it.unicam.cs.mpgc.rpg129852.util.NameValidator;
+import it.unicam.cs.mpgc.rpg129852.util.SaveNameGenerator;
+import it.unicam.cs.mpgc.rpg129852.util.SaveNameManager;
 
 import javax.xml.validation.Validator;
 import java.util.List;
 
 public class GameStarterImpl implements GameStarter {
 
-    private GameRepository repository;
-    private GameFactory gameFactory;
-    private NameValidator nameValidator;
+    private final GameRepository repository;
+    private final GameFactory gameFactory;
+    private final SaveNameManager saveNameManager;
 
-    public GameStarterImpl(GameRepository repository, GameFactory gameFactory, NameValidator nameValidator) {
+    public GameStarterImpl(GameRepository repository,
+                           GameFactory gameFactory,
+                           SaveNameManager saveNameManager) {
         this.repository = repository;
         this.gameFactory = gameFactory;
-        this.nameValidator = nameValidator;
+        this.saveNameManager = saveNameManager;
     }
 
     public void startNewGame(String discipleName, String discipleJob, String color, String saveName, boolean forceOverwrite) {
+
+        String finalSaveName = saveNameManager.resolveAndValidate(saveName, forceOverwrite);
+
         DiscipleData discipleData = new DiscipleData(discipleName, discipleJob, color);
         GameState gameState = new GameState(discipleData);
 
-        List<String> existingSaves = repository.getAvailableSaves();
-
-        if (saveName == null || saveName.trim().isEmpty()) {
-            saveName = generateDefaultSaveName(existingSaves);
-        }
-
-        // syntax validation
-        nameValidator.validate(saveName);
-
-        // semantic validation
-        if (existingSaves.contains(saveName) && !forceOverwrite) {
-            throw new IllegalStateException("A saving with the same name already exists.");
-        }
-
-        Game game = gameFactory.create(saveName, gameState);
+        Game game = gameFactory.create(finalSaveName, gameState);
 
         repository.save(game);
-    }
-
-    private String generateDefaultSaveName(List<String> existingSaves) {
-        String baseName = "untitled";
-
-        if (!existingSaves.contains(baseName)) {
-            return baseName;
-        }
-
-        int counter = 1;
-        String newName;
-        do {
-            newName = baseName + "(" + counter + ")";
-            counter++;
-        } while (existingSaves.contains(newName));
-
-        return newName;
     }
 
 }
