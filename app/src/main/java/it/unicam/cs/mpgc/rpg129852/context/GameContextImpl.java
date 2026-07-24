@@ -9,7 +9,7 @@ public class GameContextImpl implements GameSessionManager {
     @Override
     public Game getCurrentGame() {
         if (currentGame == null) {
-            throw new IllegalStateException("Nessuna partita attiva nel contesto.");
+            throw new IllegalStateException("No active game in the context.");
         }
         return currentGame;
     }

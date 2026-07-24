@@ -63,14 +63,11 @@ public class Main extends Application {
     }
 
     private GameStarter createGameStarter(GameRepository repository) {
-        GameFactory gameFactory = new GameFactoryImpl();
-
         SyntaxValidator syntaxValidator = new SaveNameSyntaxValidator();
         SaveNameFallbackProvider fallbackProvider = new SaveNameFallbackProviderImpl();
-
         SaveNameResolver saveNameResolver = new SaveNameResolverImpl(repository, syntaxValidator, fallbackProvider);
 
-        return new GameStarterImpl(repository, gameFactory, saveNameResolver);
+        return new GameStarterImpl(repository, saveNameResolver);
     }
 
     private AssetRegistry<DiscipleAsset> createDiscipleAssetRegistry() {

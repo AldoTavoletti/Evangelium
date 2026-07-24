@@ -24,7 +24,7 @@ public class JsonGameRepository implements GameRepository {
     private final Gson gson;
     private final Path saveDirectory;
 
-    public JsonGameRepository(){
+    public JsonGameRepository() {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
 
         String userHome = System.getProperty("user.home");
@@ -44,8 +44,7 @@ public class JsonGameRepository implements GameRepository {
 
     @Override
     public void save(Game game) {
-        String fileName = game.getSaveName() + EXTENSION;
-        Path fullPath = saveDirectory.resolve(fileName);
+        Path fullPath = saveDirectory.resolve(game.getSaveName() + EXTENSION);
 
         try (Writer writer = Files.newBufferedWriter(fullPath, StandardCharsets.UTF_8)) {
             gson.toJson(game.getGameState(), writer);
@@ -78,10 +77,10 @@ public class JsonGameRepository implements GameRepository {
             boolean deleted = Files.deleteIfExists(fullPath);
 
             if (!deleted) {
-                throw new IllegalArgumentException("Il salvataggio da eliminare non esiste: " + saveName);
+                throw new IllegalArgumentException("The saving to delete doesn't exist: " + saveName);
             }
         } catch (IOException e) {
-            throw new RuntimeException("Impossibile eliminare il file di salvataggio '" + saveName + "'.", e);
+            throw new RuntimeException("Cannot delete save file '" + saveName + "'.", e);
         }
     }
 
