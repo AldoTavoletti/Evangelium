@@ -3,6 +3,7 @@ package it.unicam.cs.mpgc.rpg129852.util;
 import java.util.List;
 
 public class CircularListNavigatorImpl<T> implements CircularListNavigator {
+
     private final List<T> list;
     private int currentIndex = 0;
 

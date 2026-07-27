@@ -3,19 +3,25 @@ package it.unicam.cs.mpgc.rpg129852;
 import it.unicam.cs.mpgc.rpg129852.asset.AssetRegistry;
 import it.unicam.cs.mpgc.rpg129852.asset.DiscipleAsset;
 import it.unicam.cs.mpgc.rpg129852.asset.DiscipleAssetRegistry;
+import it.unicam.cs.mpgc.rpg129852.context.GameContextImpl;
+import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
 import it.unicam.cs.mpgc.rpg129852.controller.DiscipleCreationController;
+import it.unicam.cs.mpgc.rpg129852.controller.LoadGameController;
 import it.unicam.cs.mpgc.rpg129852.controller.MainMenuController;
 import it.unicam.cs.mpgc.rpg129852.navigation.SceneManager;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
+import it.unicam.cs.mpgc.rpg129852.persistence.AvailableSavesProvider;
 import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
 import it.unicam.cs.mpgc.rpg129852.persistence.JsonGameRepository;
 import it.unicam.cs.mpgc.rpg129852.service.*;
-import it.unicam.cs.mpgc.rpg129852.util.NameValidator;
-import it.unicam.cs.mpgc.rpg129852.util.SaveNameValidator;
+import it.unicam.cs.mpgc.rpg129852.util.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import javax.naming.Name;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class Main extends Application {
@@ -30,9 +36,15 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Evangelium");
 
-        GameRepository repository = new JsonGameRepository();
+        String userHome = System.getProperty("user.home");
+        Path saveDirectory = Paths.get(userHome, ".evangelium", "saves");
 
-        GameStarter gameStarter = createGameStarter(repository);
+        GameRepository repository = new JsonGameRepository(saveDirectory);
+        GameSessionManager gameSessionManager = new GameContextImpl();
+
+        GameStarter gameStarter = createGameStarter(repository, gameSessionManager);
+        GameLoader gameLoader = createGameLoader(repository, gameSessionManager);
+
         AssetRegistry<DiscipleAsset> discipleAssetRegistry = createDiscipleAssetRegistry();
 
         ControllerFactory controllerFactory = new ControllerFactory();
@@ -44,13 +56,24 @@ public class Main extends Application {
         controllerFactory.register(DiscipleCreationController.class,
                 () -> new DiscipleCreationController(gameStarter, discipleAssetRegistry, JOBS, sceneManager));
 
+        controllerFactory.register(LoadGameController.class,
+                ()-> new LoadGameController(repository, gameLoader, sceneManager));
+
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }
 
-    private GameStarter createGameStarter(GameRepository repository) {
+    private GameLoader createGameLoader(GameRepository repository, GameSessionManager gameSessionManager) {
+        return new GameLoaderImpl(repository, gameSessionManager);
+    }
+
+    private GameStarter createGameStarter(GameRepository repository, GameSessionManager sessionManager) {
+        SyntaxValidator syntaxValidator = new SaveNameSyntaxValidator();
+        SaveNameFallbackProvider fallbackProvider = new SaveNameFallbackProviderImpl();
+        SaveNameResolver saveNameResolver = new SaveNameResolverImpl(repository, syntaxValidator, fallbackProvider);
+
         GameFactory gameFactory = new GameFactoryImpl();
-        NameValidator saveNameValidator = new SaveNameValidator();
-        return new GameStarterImpl(repository, gameFactory, saveNameValidator);
+
+        return new GameStarterImpl(repository, sessionManager, gameFactory, saveNameResolver);
     }
 
     private AssetRegistry<DiscipleAsset> createDiscipleAssetRegistry() {

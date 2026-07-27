@@ -3,9 +3,11 @@ package it.unicam.cs.mpgc.rpg129852.asset;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,22 +18,22 @@ public class DiscipleAssetRegistry implements AssetRegistry<DiscipleAsset> {
     private final Map<String, DiscipleAsset> assets = new HashMap<>();
 
     public void loadAssets(String jsonFilePath) {
-        Gson gson = new Gson();
+        InputStream inputStream = getClass().getResourceAsStream(jsonFilePath);
 
-        try (Reader reader = new InputStreamReader(
-                Objects.requireNonNull(getClass().getResourceAsStream(jsonFilePath)))) {
+        if (inputStream == null) {
+            throw new IllegalArgumentException("File JSON not found in the classpath: " + jsonFilePath);
+        }
 
-            // to avoid type erasure
-            Type listType = new TypeToken<List<DiscipleAsset>>(){}.getType();
+        try (Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
 
-            List<DiscipleAsset> loadedAssets = gson.fromJson(reader, listType);
+            // java uses type erasure, so we need to save the type
+            Type listType = new TypeToken<List<DiscipleAsset>>() {}.getType();
+            List<DiscipleAsset> loadedAssets = new Gson().fromJson(reader, listType);
 
-            for (DiscipleAsset asset : loadedAssets) {
-                assets.put(asset.id(), asset);
-            }
+            loadedAssets.forEach(asset -> assets.put(asset.id(), asset));
 
         } catch (Exception e) {
-            throw new RuntimeException("Error during disciples' assets loading", e);
+            throw new RuntimeException("Error during asset loading from: " + jsonFilePath, e);
         }
     }
 

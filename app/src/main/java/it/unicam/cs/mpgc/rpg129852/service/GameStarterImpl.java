@@ -1,41 +1,44 @@
 package it.unicam.cs.mpgc.rpg129852.service;
 
+import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
 import it.unicam.cs.mpgc.rpg129852.model.*;
 import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
-import it.unicam.cs.mpgc.rpg129852.util.NameValidator;
-
-import javax.xml.validation.Validator;
-import java.util.List;
+import it.unicam.cs.mpgc.rpg129852.util.SaveNameResolver;
 
 public class GameStarterImpl implements GameStarter {
 
-    private GameRepository repository;
-    private GameFactory gameFactory;
-    private NameValidator nameValidator;
+    private final GameRepository repository;
+    private final SaveNameResolver saveNameResolver;
+    private final GameSessionManager sessionManager;
+    private final GameFactory gameFactory;
 
-    public GameStarterImpl(GameRepository repository, GameFactory gameFactory, NameValidator nameValidator) {
-        this.repository = repository;
+
+    public GameStarterImpl(GameRepository repository, GameSessionManager sessionManager, GameFactory gameFactory,
+                           SaveNameResolver saveNameResolver) {
         this.gameFactory = gameFactory;
-        this.nameValidator = nameValidator;
+        this.repository = repository;
+        this.sessionManager = sessionManager;
+        this.saveNameResolver = saveNameResolver;
     }
 
-    public void startNewGame(String discipleName, String discipleJob, String color, String saveName) {
-        DiscipleData discipleData = new DiscipleData(discipleName, discipleJob, color);
-        GameState gameState = new GameState(discipleData);
+    @Override
+    public void startNewGame(NewGameRequest request) {
+        doStart(request, false);
+    }
 
-        // syntax validation
-        nameValidator.validate(saveName);
+    @Override
+    public void overwriteAndStartNewGame(NewGameRequest request) {
+        doStart(request, true);
+    }
 
-        // semantic validation
-        List<String> existingSaves = repository.getAvailableSaves();
+    private void doStart(NewGameRequest request, boolean forceOverwrite) {
+        String finalSaveName = saveNameResolver.resolveFinalName(request.saveName(), forceOverwrite);
 
-        if (existingSaves.contains(saveName)) {
-            throw new IllegalStateException("A saving with the same name already exists.");
-        }
-
-        Game game = gameFactory.create(saveName, gameState);
+        Game game = gameFactory.create(request ,finalSaveName);
 
         repository.save(game);
+
+        sessionManager.setCurrentGame(game);
     }
 
 }

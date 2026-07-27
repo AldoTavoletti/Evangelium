@@ -1,6 +1,6 @@
 package it.unicam.cs.mpgc.rpg129852.util;
 
-public class SaveNameValidator implements NameValidator {
+public class SaveNameSyntaxValidator implements SyntaxValidator {
 
     private static final String ILLEGAL_CHARACTERS_REGEX = ".*[\\\\/:*?\"<>|].*";
     private static final int MAX_LENGTH = 30;

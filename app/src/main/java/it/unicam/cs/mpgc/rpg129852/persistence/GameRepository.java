@@ -5,12 +5,12 @@ import it.unicam.cs.mpgc.rpg129852.model.GameState;
 
 import java.util.List;
 
-public interface GameRepository {
+public interface GameRepository extends AvailableSavesProvider {
 
     void save(Game game);
 
-    GameState load(String saveFileName);
+    Game load(String saveName);
 
-    List<String> getAvailableSaves();
+    void delete(String saveName);
 
 }
