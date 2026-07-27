@@ -20,6 +20,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import javax.naming.Name;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class Main extends Application {
@@ -34,11 +36,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Evangelium");
 
-        GameRepository repository = new JsonGameRepository();
+        String userHome = System.getProperty("user.home");
+        Path saveDirectory = Paths.get(userHome, ".evangelium", "saves");
 
+        GameRepository repository = new JsonGameRepository(saveDirectory);
         GameSessionManager gameSessionManager = new GameContextImpl();
 
-        GameStarter gameStarter = createGameStarter(repository);
+        GameStarter gameStarter = createGameStarter(repository, gameSessionManager);
         GameLoader gameLoader = createGameLoader(repository, gameSessionManager);
 
         AssetRegistry<DiscipleAsset> discipleAssetRegistry = createDiscipleAssetRegistry();
@@ -62,12 +66,14 @@ public class Main extends Application {
         return new GameLoaderImpl(repository, gameSessionManager);
     }
 
-    private GameStarter createGameStarter(GameRepository repository) {
+    private GameStarter createGameStarter(GameRepository repository, GameSessionManager sessionManager) {
         SyntaxValidator syntaxValidator = new SaveNameSyntaxValidator();
         SaveNameFallbackProvider fallbackProvider = new SaveNameFallbackProviderImpl();
         SaveNameResolver saveNameResolver = new SaveNameResolverImpl(repository, syntaxValidator, fallbackProvider);
 
-        return new GameStarterImpl(repository, saveNameResolver);
+        GameFactory gameFactory = new GameFactoryImpl();
+
+        return new GameStarterImpl(repository, sessionManager, gameFactory, saveNameResolver);
     }
 
     private AssetRegistry<DiscipleAsset> createDiscipleAssetRegistry() {

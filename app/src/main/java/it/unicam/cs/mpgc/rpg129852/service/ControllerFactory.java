@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class ControllerFactory implements Callback<Class<?>, Object> {
+
     private final Map<Class<?>, Callable<Object>> registry = new HashMap<>();
 
     public void register(Class<?> type, Callable<Object> supplier) {
