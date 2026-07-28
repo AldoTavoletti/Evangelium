@@ -5,18 +5,13 @@ import com.google.gson.GsonBuilder;
 import it.unicam.cs.mpgc.rpg129852.model.Game;
 import it.unicam.cs.mpgc.rpg129852.model.GameState;
 import org.jspecify.annotations.NonNull;
-
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class JsonGameRepository implements GameRepository {

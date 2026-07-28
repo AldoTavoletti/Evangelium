@@ -34,7 +34,9 @@ public class GameStarterImpl implements GameStarter {
     private void doStart(NewGameRequest request, boolean forceOverwrite) {
         String finalSaveName = saveNameResolver.resolveFinalName(request.saveName(), forceOverwrite);
 
-        Game game = gameFactory.create(request ,finalSaveName);
+        NewGameRequest updatedRequest = new NewGameRequest(request.discipleName(), request.job(), request.color(), finalSaveName);
+
+        Game game = gameFactory.create(updatedRequest);
 
         repository.save(game);
 
