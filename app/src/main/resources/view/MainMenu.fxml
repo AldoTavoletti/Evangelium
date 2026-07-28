@@ -58,6 +58,6 @@
    </children>
    <stylesheets>
       <URL value="@../css/Global.css" />
-      <URL value="@../css/Menu.css" />
+      <URL value="@../css/MainMenu.css" />
    </stylesheets>
 </HBox>

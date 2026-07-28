@@ -8,7 +8,7 @@ public class DiscipleData {
 
     private int faith;
     private int hope;
-    private int charity;
+    private int love;
 
     // required by Gson
     public DiscipleData() {}
@@ -27,8 +27,8 @@ public class DiscipleData {
         return hope;
     }
 
-    public int getCharity() {
-        return charity;
+    public int getLove() {
+        return love;
     }
 
     public String getName() {
@@ -51,7 +51,7 @@ public class DiscipleData {
         this.hope = hope;
     }
 
-    public void setCharity(int charity) {
-        this.charity = charity;
+    public void setLove(int love) {
+        this.love = love;
     }
 }
