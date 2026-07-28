@@ -98,14 +98,19 @@ public class DiscipleCreationController {
 
     @FXML
     void onStartGameAction(ActionEvent event) {
-
         NewGameRequest request = buildRequest();
+        executeStart(request);
+    }
 
+    private void executeStart(NewGameRequest request) {
         try {
             gameStarter.startNewGame(request);
+            sceneManager.switchScene(ViewRoute.PLAYER_MENU);
+
         } catch (IllegalStateException e) {
             if (AlertHelper.askConfirmation(OVERWRITE_TITLE, OVERWRITE_HEADER, OVERWRITE_CONTENT)) {
                 gameStarter.overwriteAndStartNewGame(request);
+                sceneManager.switchScene(ViewRoute.PLAYER_MENU);
             }
         } catch (IllegalArgumentException e) {
             AlertHelper.showError(INVALID_NAME_HEADER, e.getMessage());

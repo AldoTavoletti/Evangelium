@@ -120,7 +120,7 @@ public class LoadGameController {
     private void loadSelectedGame(String saveName) {
         try {
             gameLoader.loadGame(saveName);
-            // todo: switch to next scene
+            sceneManager.switchScene(ViewRoute.PLAYER_MENU);
         } catch (Exception e) {
             AlertHelper.showError(ERR_LOAD_MSG, e.getMessage());
         }
