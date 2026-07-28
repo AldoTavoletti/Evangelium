@@ -8,6 +8,7 @@ import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
 import it.unicam.cs.mpgc.rpg129852.controller.DiscipleCreationController;
 import it.unicam.cs.mpgc.rpg129852.controller.LoadGameController;
 import it.unicam.cs.mpgc.rpg129852.controller.MainMenuController;
+import it.unicam.cs.mpgc.rpg129852.controller.PlayerMenuController;
 import it.unicam.cs.mpgc.rpg129852.navigation.SceneManager;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
@@ -51,13 +52,16 @@ public class Main extends Application {
         ViewRouter sceneManager = new SceneManager(primaryStage, controllerFactory);
 
         controllerFactory.register(MainMenuController.class,
-                () -> new MainMenuController(sceneManager));
+                () -> new MainMenuController(gameSessionManager, sceneManager));
 
         controllerFactory.register(DiscipleCreationController.class,
                 () -> new DiscipleCreationController(gameStarter, discipleAssetRegistry, JOBS, sceneManager));
 
         controllerFactory.register(LoadGameController.class,
                 ()-> new LoadGameController(repository, gameLoader, sceneManager));
+
+        controllerFactory.register(PlayerMenuController.class,
+                ()-> new PlayerMenuController(gameSessionManager,discipleAssetRegistry,sceneManager));
 
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }

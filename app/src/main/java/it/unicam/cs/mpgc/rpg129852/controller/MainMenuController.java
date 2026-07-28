@@ -1,5 +1,7 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
+import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
+import it.unicam.cs.mpgc.rpg129852.model.Game;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import javafx.event.ActionEvent;
@@ -19,8 +21,16 @@ public class MainMenuController {
 
     private final ViewRouter sceneManager;
 
-    public MainMenuController(ViewRouter sceneManager) {
+    private final GameSessionManager sessionManager;
+
+    public MainMenuController(GameSessionManager sessionManager, ViewRouter sceneManager) {
         this.sceneManager = sceneManager;
+        this.sessionManager = sessionManager;
+    }
+
+    @FXML
+    public void initialize() {
+        sessionManager.clearSession();
     }
 
     @FXML
