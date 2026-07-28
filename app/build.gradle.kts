@@ -12,10 +12,6 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation(libs.guava)
 
-    testImplementation("org.testfx:testfx-core:4.0.18")
-    testImplementation("org.testfx:testfx-junit5:4.0.18")
-    testImplementation("org.hamcrest:hamcrest:2.2")
-
     implementation("com.google.code.gson:gson:2.14.0")
 }
 

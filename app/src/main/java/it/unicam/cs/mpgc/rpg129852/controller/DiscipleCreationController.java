@@ -71,6 +71,9 @@ public class DiscipleCreationController {
     }
 
     private void initNameField() {
+
+        startGameButton.setDisable(discipleNameField.getText().isEmpty());
+
         discipleNameField.textProperty().addListener((observable, oldContent, newContent) ->
                 startGameButton.setDisable(newContent.isEmpty())
         );
