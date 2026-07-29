@@ -82,8 +82,9 @@
                   </GridPane>
                </children>
             </VBox>
-            <VBox fx:id="detailsContainer" alignment="BOTTOM_CENTER" HBox.hgrow="ALWAYS">
+            <VBox alignment="BOTTOM_CENTER" HBox.hgrow="ALWAYS">
                <children>
+                  <VBox fx:id="detailsContainer" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
                   <Button fx:id="playButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayLevelAction" styleClass="start-button" text="Gioca!" />
                </children>
             </VBox>

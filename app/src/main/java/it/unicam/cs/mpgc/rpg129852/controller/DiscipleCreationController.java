@@ -1,7 +1,7 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
-import it.unicam.cs.mpgc.rpg129852.asset.AssetRegistry;
 import it.unicam.cs.mpgc.rpg129852.asset.DiscipleAsset;
+import it.unicam.cs.mpgc.rpg129852.asset.ResourceRegistry;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.service.GameStarter;
@@ -44,11 +44,11 @@ public class DiscipleCreationController {
     private Button startGameButton;
 
     public DiscipleCreationController(GameStarter gameStarter,
-                                      AssetRegistry<DiscipleAsset> discipleAssetRegistry,
+                                      ResourceRegistry<DiscipleAsset> discipleAssetRegistry,
                                       List<String> jobs,
                                       ViewRouter sceneManager) {
         this.gameStarter = gameStarter;
-        this.discipleAssetNavigator = new CircularListNavigatorImpl<>(discipleAssetRegistry.getAllAssets());
+        this.discipleAssetNavigator = new CircularListNavigatorImpl<>(discipleAssetRegistry.getAllResources());
         this.jobs = jobs;
         this.sceneManager = sceneManager;
     }

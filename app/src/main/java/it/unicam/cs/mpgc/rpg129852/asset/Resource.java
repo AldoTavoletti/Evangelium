@@ -1,5 +1,5 @@
 package it.unicam.cs.mpgc.rpg129852.asset;
 
-public interface Asset {
+public interface Resource {
     String id();
 }

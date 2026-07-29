@@ -1,65 +1,132 @@
+/* =========================================
+   START BUTTON
+   ========================================= */
 .start-button {
     -fx-font-size: 18px;
-    -fx-font-weight: normal;
+    -fx-font-weight: bold;
     -fx-text-fill: -text-color-main;
-
     -fx-background-color: -primary-button-background;
-
-    -fx-border-color: #E2DFD8;
-
-    -fx-padding: 12px 35px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: transparent;
+    -fx-padding: 15px 40px;
     -fx-cursor: hand;
-
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.03), 8, 0, 0, 4);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.15), 10, 0, 0, 4);
+    -fx-transition: all 0.2s;
 }
 
 .start-button:hover {
     -fx-background-color: -primary-button-background-hover;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.08), 12, 0, 0, 6);
-    -fx-translate-y: -1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.25), 15, 0, 0, 6);
+    -fx-translate-y: -2px;
 }
 
 .start-button:pressed {
-    -fx-background-color: #E6E2D8;
-    -fx-effect: none;
+    -fx-background-color: #E6E2D8; /* Fallback o variabile */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
     -fx-translate-y: 1px;
 }
 
-/* Stile principale della ToolBar */
+.start-button:disabled {
+    -fx-opacity: 0.4;
+    -fx-cursor: default;
+    -fx-effect: none;
+    -fx-translate-y: 0;
+}
+
+/* =========================================
+   TOOLBAR (CATEGORIE)
+   ========================================= */
 .tool-bar {
     -fx-background-color: transparent;
-    -fx-border-color: #cccccc;
-    -fx-border-width: 0 0 1 0; /* Aggiunge solo una linea di separazione in basso */
-    -fx-padding: 10 20 10 20;
-    -fx-spacing: 15; /* Distanza tra i bottoni */
+    -fx-padding: 15 20 20 20;
+    -fx-spacing: 25;
 }
 
-/* Stile base per i bottoni all'interno della ToolBar */
 .tool-bar .button {
     -fx-background-color: transparent;
-    -fx-text-fill: #555555;
+    -fx-text-fill: #7f8c8d;
     -fx-font-size: 16px;
-    -fx-font-family: "Georgia"; /* Puoi sostituirlo con il font principale del tuo gioco */
-    -fx-padding: 8 16 8 16;
+    -fx-font-weight: bold;
+    -fx-padding: 8 16 10 16;
     -fx-cursor: hand;
-    -fx-border-color: transparent;
-    -fx-border-width: 0 0 2 0; /* Predispone lo spazio per la sottolineatura all'hover */
+    -fx-border-color: transparent transparent #ecf0f1 transparent;
+    -fx-border-width: 0 0 3 0;
 }
 
-/* Effetto quando il mouse passa sopra il bottone */
 .tool-bar .button:hover {
-    -fx-background-color: #f4f4f4; /* Leggero sfondo per dare feedback */
-    -fx-text-fill: #111111;
-    -fx-border-color: #333333; /* Sottolineatura elegante in basso */
+    -fx-text-fill: #2c3e50;
+    -fx-border-color: transparent transparent #2c3e50 transparent;
 }
 
-/* Effetto quando il bottone viene cliccato */
 .tool-bar .button:pressed {
-    -fx-background-color: #e8e8e8;
-    -fx-translate-y: 1px; /* Sposta il testo leggermente in basso per simulare la pressione */
+    -fx-translate-y: 1px;
 }
 
-/* Nasconde un bordo fastidioso che JavaFX aggiunge quando il bottone ha il focus (opzionale ma consigliato) */
 .tool-bar .button:focused {
     -fx-background-insets: 0;
+}
+
+/* =========================================
+   LEVEL CARDS (GRIGLIA)
+   ========================================= */
+.level-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12px;
+    -fx-padding: 20px;
+    -fx-alignment: center;
+    -fx-min-width: 140px;
+    -fx-min-height: 100px;
+    /* Ombra base leggera per far staccare la card dallo sfondo */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.06), 10, 0, 0, 4);
+}
+
+.level-card-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.level-card-unlocked {
+    -fx-cursor: hand;
+}
+
+.level-card-unlocked:hover {
+    /* Effetto sollevamento al passaggio del mouse */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.15), 20, 0, 0, 8);
+    -fx-translate-y: -4px;
+}
+
+/* =========================================
+   PANNELLO DETTAGLI (DESTRA)
+   ========================================= */
+.level-detail-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 15 0;
+}
+
+.level-detail-description {
+    -fx-font-size: 16px;
+    -fx-text-fill: #555555;
+    -fx-line-spacing: 5px; /* Aumenta lo spazio tra le righe per la leggibilità */
+    -fx-padding: 0 0 25 0;
+}
+
+.level-detail-rewards {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8e44ad; /* Un colore accento per le ricompense */
+    -fx-padding: 0 0 30 0;
+}
+
+.level-card-selected {
+    -fx-background-color: #ebf5fb;
+    -fx-border-color: #3498db;
+    -fx-border-width: 2px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
 }

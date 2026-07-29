@@ -1,0 +1,26 @@
+[
+  {
+    "id": "lvl_1",
+    "category": "spiritual_guidance",
+    "title": "L'ira di Marco",
+    "description": "Marco ha perso il lavoro ingiustamente ed è consumato dal rancore",
+    "maxRewards": {
+      "faith": 10,
+      "hope": 20,
+      "love": 50
+    },
+    "levelScenarioPath": "/scenarios/spiritual-guidance/lvl_1_scenario.json"
+  },
+  {
+    "id": "lvl_10",
+    "category": "theological_debate",
+    "title": "Il dubbio di Tommaso",
+    "description": "Una discussione sulla fede cieca.",
+    "maxRewards": {
+      "faith": 40,
+      "hope": 10,
+      "love": 10
+    },
+    "levelScenarioPath": "/scenarios/theological-debate/lvl_10_scenario.json"
+  }
+]

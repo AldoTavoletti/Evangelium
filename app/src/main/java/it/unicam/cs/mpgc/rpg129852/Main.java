@@ -1,8 +1,8 @@
 package it.unicam.cs.mpgc.rpg129852;
 
-import it.unicam.cs.mpgc.rpg129852.asset.AssetRegistry;
-import it.unicam.cs.mpgc.rpg129852.asset.DiscipleAsset;
-import it.unicam.cs.mpgc.rpg129852.asset.DiscipleAssetRegistry;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import it.unicam.cs.mpgc.rpg129852.asset.*;
 import it.unicam.cs.mpgc.rpg129852.context.GameContextImpl;
 import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
 import it.unicam.cs.mpgc.rpg129852.controller.DiscipleCreationController;
@@ -12,7 +12,6 @@ import it.unicam.cs.mpgc.rpg129852.controller.PlayerMenuController;
 import it.unicam.cs.mpgc.rpg129852.navigation.SceneManager;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
-import it.unicam.cs.mpgc.rpg129852.persistence.AvailableSavesProvider;
 import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
 import it.unicam.cs.mpgc.rpg129852.persistence.JsonGameRepository;
 import it.unicam.cs.mpgc.rpg129852.service.*;
@@ -20,7 +19,6 @@ import it.unicam.cs.mpgc.rpg129852.util.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import javax.naming.Name;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -40,13 +38,19 @@ public class Main extends Application {
         String userHome = System.getProperty("user.home");
         Path saveDirectory = Paths.get(userHome, ".evangelium", "saves");
 
-        GameRepository repository = new JsonGameRepository(saveDirectory);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        GameRepository repository = new JsonGameRepository(saveDirectory, gson);
         GameSessionManager gameSessionManager = new GameContextImpl();
 
         GameStarter gameStarter = createGameStarter(repository, gameSessionManager);
         GameLoader gameLoader = createGameLoader(repository, gameSessionManager);
 
-        AssetRegistry<DiscipleAsset> discipleAssetRegistry = createDiscipleAssetRegistry();
+        ResourceRegistry<DiscipleAsset> discipleAssetRegistry = new ResourceRegistryImpl<>("/disciples_assets.json", DiscipleAsset.class, gson);
+        discipleAssetRegistry.loadResources();
+
+        ResourceRegistry<LevelMetadata> levelMetadataRegistry = new ResourceRegistryImpl<>("/levels_metadata.json", LevelMetadata.class, gson);
+        levelMetadataRegistry.loadResources();
 
         ControllerFactory controllerFactory = new ControllerFactory();
         ViewRouter sceneManager = new SceneManager(primaryStage, controllerFactory);
@@ -61,7 +65,7 @@ public class Main extends Application {
                 ()-> new LoadGameController(repository, gameLoader, sceneManager));
 
         controllerFactory.register(PlayerMenuController.class,
-                ()-> new PlayerMenuController(gameSessionManager,discipleAssetRegistry,sceneManager));
+                ()-> new PlayerMenuController(gameSessionManager, levelMetadataRegistry, discipleAssetRegistry,sceneManager));
 
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }
@@ -78,12 +82,6 @@ public class Main extends Application {
         GameFactory gameFactory = new GameFactoryImpl();
 
         return new GameStarterImpl(repository, sessionManager, gameFactory, saveNameResolver);
-    }
-
-    private AssetRegistry<DiscipleAsset> createDiscipleAssetRegistry() {
-        AssetRegistry<DiscipleAsset> registry = new DiscipleAssetRegistry();
-        registry.loadAssets(DISCIPLE_ASSETS_PATH);
-        return registry;
     }
 
     public static void main(String[] args) {

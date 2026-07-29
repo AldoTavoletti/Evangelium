@@ -4,4 +4,4 @@ public record DiscipleAsset(
         String id,
         String gifPath,
         String imagePath
-) implements Asset {}
+) implements Resource {}
