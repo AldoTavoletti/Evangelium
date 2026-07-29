@@ -59,9 +59,9 @@
                <children>
                   <ToolBar prefHeight="49.0" prefWidth="522.0">
                     <items>
-                      <Button mnemonicParsing="false" text="Direzione Spirituale" />
-                        <Button mnemonicParsing="false" text="Livelli della Misericordia" />
-                        <Button mnemonicParsing="false" text="Dibattiti Teologici" />
+                      <Button fx:id="spiritualGuidanceMenuButton" mnemonicParsing="false" onAction="#onSwitchToSpiritualGuidanceAction" text="Direzione Spirituale" />
+                        <Button fx:id="mercyMenuButton" mnemonicParsing="false" onAction="#onSwitchToMercyAction" text="Livelli della Misericordia" />
+                        <Button fx:id="theologicalDebatesMenuButton" mnemonicParsing="false" onAction="#onSwitchToTheologicalDebatesAction" text="Dibattiti Teologici" />
                     </items>
                   </ToolBar>
                   <GridPane fx:id="levelsContainer" alignment="CENTER" hgap="50.0" vgap="50.0">

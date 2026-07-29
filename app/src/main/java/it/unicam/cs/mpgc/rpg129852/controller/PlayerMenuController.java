@@ -22,57 +22,46 @@ import java.util.List;
 public class PlayerMenuController {
 
     private static final int MAX_GRID_COLUMNS = 3;
-    private static final int REQ_THEOLOGICAL_DEBATE = 50;
-    private static final int REQ_BIBLE_STUDY = 120;
+    private static final int REQ_MERCY = 50;
+    private static final int REQ_THEOLOGICAL_DEBATE = 120;
 
     private final GameSessionManager sessionManager;
-
     private final ResourceRegistry<DiscipleAsset> discipleAssetRegistry;
-
     private final ResourceRegistry<LevelMetadata> levelMetadataRegistry;
-
     private final ViewRouter sceneManager;
 
-    private LevelCategory currentCategory = LevelCategory.SPIRITUAL_GUIDANCE;
-    private LevelMetadata selectedLevel = null;
-    private VBox selectedCardNode = null;
+    private int totalVirtues;
+    private LevelCategory currentCategory;
+    private LevelMetadata selectedLevel;
+    private VBox selectedCardNode;
 
-    @FXML
-    private VBox detailsContainer;
+    @FXML private VBox detailsContainer;
+    @FXML private GridPane levelsContainer;
+    @FXML private Label discipleNameLabel;
+    @FXML private Button mercyMenuButton;
+    @FXML private Button spiritualGuidanceMenuButton;
+    @FXML private Button theologicalDebatesMenuButton;
+    @FXML private ImageView discipleImageView;
+    @FXML private Label faithLabel;
+    @FXML private Label hopeLabel;
+    @FXML private Label loveLabel;
+    @FXML private Button playButton;
 
-    @FXML
-    private GridPane levelsContainer;
-
-    @FXML
-    private Label discipleNameLabel;
-
-    @FXML
-    private ImageView discipleImageView;
-
-    @FXML
-    private Label faithLabel;
-
-    @FXML
-    private Label hopeLabel;
-
-    @FXML
-    private Label loveLabel;
-
-    @FXML
-    private Button playButton;
-
-    public PlayerMenuController(GameSessionManager sessionManager, ResourceRegistry<LevelMetadata> levelMetadataRegistry, ResourceRegistry<DiscipleAsset> discipleAssetRegistry, ViewRouter sceneManager) {
+    public PlayerMenuController(GameSessionManager sessionManager,
+                                ResourceRegistry<LevelMetadata> levelMetadataRegistry,
+                                ResourceRegistry<DiscipleAsset> discipleAssetRegistry,
+                                ViewRouter sceneManager) {
         this.sessionManager = sessionManager;
-        this.discipleAssetRegistry = discipleAssetRegistry;
         this.levelMetadataRegistry = levelMetadataRegistry;
+        this.discipleAssetRegistry = discipleAssetRegistry;
         this.sceneManager = sceneManager;
     }
 
     @FXML
     public void initialize() {
-
-        if (!sessionManager.hasActiveGame())
+        if (!sessionManager.hasActiveGame()) {
             throw new IllegalStateException("No game is active while in the player menu");
+        }
 
         Game game = sessionManager.getCurrentGame();
         GameState gameState = game.getGameState();
@@ -80,36 +69,28 @@ public class PlayerMenuController {
 
         initDiscipleInfo(discipleData);
 
-        initLevelCards();
-
-    }
-
-    private void initLevelCards() {
-        loadCardsForCategory(currentCategory);
+        this.totalVirtues = calculateTotalVirtues(discipleData);
+        loadCardsForCategory(LevelCategory.SPIRITUAL_GUIDANCE);
     }
 
     private void loadCardsForCategory(LevelCategory category) {
         resetUI();
-
-        int totalVirtues = calculateTotalVirtues();
+        currentCategory = category;
         boolean isUnlocked = isCategoryUnlocked(category, totalVirtues);
         List<LevelMetadata> categoryLevels = fetchLevelsByCategory(category);
-
         populateGrid(categoryLevels, isUnlocked);
     }
 
     private void resetUI() {
         levelsContainer.getChildren().clear();
         detailsContainer.getChildren().clear();
-
         selectedLevel = null;
         selectedCardNode = null;
         playButton.setDisable(true);
     }
 
-    private int calculateTotalVirtues() {
-        DiscipleData data = sessionManager.getCurrentGame().getGameState().getDiscipleData();
-        return data.getFaith() + data.getHope() + data.getLove();
+    private int calculateTotalVirtues(DiscipleData discipleData) {
+        return discipleData.getFaith() + discipleData.getHope() + discipleData.getLove();
     }
 
     private List<LevelMetadata> fetchLevelsByCategory(LevelCategory category) {
@@ -143,37 +124,54 @@ public class PlayerMenuController {
         if (!isUnlocked) {
             card.setOpacity(0.5);
         } else {
-            card.setOnMouseClicked(e -> {
-                if (level.equals(this.selectedLevel))
-                    selectLevel(null, null);
-                else
-                    selectLevel(level, card);
-            });
+            card.setOnMouseClicked(e -> handleCardClick(level, card));
             card.getStyleClass().add("level-card-unlocked");
         }
 
         return card;
     }
 
-    private void selectLevel(LevelMetadata level, VBox clickedCard) {
+    private void handleCardClick(LevelMetadata level, VBox card) {
+        if (level.equals(this.selectedLevel)) {
+            unselectCurrentLevel();
+        } else {
+            selectLevel(level, card);
+        }
+    }
+
+    private void unselectCurrentLevel() {
         if (selectedCardNode != null) {
             selectedCardNode.getStyleClass().remove("level-card-selected");
         }
+        selectedCardNode = null;
+        selectedLevel = null;
+        playButton.setDisable(true);
+        detailsContainer.getChildren().clear();
+    }
+
+    private void selectLevel(LevelMetadata level, VBox clickedCard) {
+        if (clickedCard == null) {
+            throw new IllegalArgumentException("The card passed cannot be null.");
+        }
+
+        if (selectedCardNode != null) {
+            selectedCardNode.getStyleClass().remove("level-card-selected");
+        }
+
         selectedCardNode = clickedCard;
+        selectedCardNode.getStyleClass().add("level-card-selected");
 
-        if (selectedCardNode != null)
-            selectedCardNode.getStyleClass().add("level-card-selected");
-
-        this.selectedLevel = level;
-        this.playButton.setDisable(false);
+        selectedLevel = level;
+        playButton.setDisable(false);
         updateDetailsContainer(level);
     }
 
     private void updateDetailsContainer(LevelMetadata level) {
-        detailsContainer.getChildren().clear();
+        if (level == null) {
+            throw new IllegalArgumentException("The level passed cannot be null.");
+        }
 
-        if (level == null)
-            return;
+        detailsContainer.getChildren().clear();
 
         Label title = new Label(level.title());
         title.getStyleClass().add("level-detail-title");
@@ -185,7 +183,7 @@ public class PlayerMenuController {
         Label rewards = new Label(formatRewardsText(level.maxRewards()));
         rewards.getStyleClass().add("level-detail-rewards");
 
-        detailsContainer.getChildren().addAll(title, description, rewards, playButton);
+        detailsContainer.getChildren().addAll(title, description, rewards);
     }
 
     private String formatRewardsText(VirtueRewards rewards) {
@@ -198,8 +196,8 @@ public class PlayerMenuController {
     private boolean isCategoryUnlocked(LevelCategory category, int totalVirtues) {
         return switch (category) {
             case SPIRITUAL_GUIDANCE -> true;
+            case MERCY -> totalVirtues >= REQ_MERCY;
             case THEOLOGICAL_DEBATE -> totalVirtues >= REQ_THEOLOGICAL_DEBATE;
-            case BIBLE_STUDY -> totalVirtues >= REQ_BIBLE_STUDY;
         };
     }
 
@@ -216,7 +214,6 @@ public class PlayerMenuController {
     }
 
     private void initDiscipleInfo(DiscipleData discipleData) {
-
         discipleNameLabel.setText(discipleData.getName() + " | " + discipleData.getJob());
         faithLabel.setText("Fede: " + discipleData.getFaith());
         hopeLabel.setText("Speranza: " + discipleData.getHope());
@@ -225,7 +222,6 @@ public class PlayerMenuController {
         DiscipleAsset discipleAsset = discipleAssetRegistry.getResource(discipleData.getColor());
         Image discipleGif = loadImage(discipleAsset.gifPath());
         discipleImageView.setImage(discipleGif);
-
     }
 
     private Image loadImage(String path) {
@@ -236,4 +232,18 @@ public class PlayerMenuController {
         }
     }
 
+    @FXML
+    void onSwitchToMercyAction(ActionEvent event) {
+        loadCardsForCategory(LevelCategory.MERCY);
+    }
+
+    @FXML
+    void onSwitchToSpiritualGuidanceAction(ActionEvent event) {
+        loadCardsForCategory(LevelCategory.SPIRITUAL_GUIDANCE);
+    }
+
+    @FXML
+    void onSwitchToTheologicalDebatesAction(ActionEvent event) {
+        loadCardsForCategory(LevelCategory.THEOLOGICAL_DEBATE);
+    }
 }

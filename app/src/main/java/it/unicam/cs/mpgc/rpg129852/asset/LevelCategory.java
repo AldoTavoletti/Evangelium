@@ -6,9 +6,9 @@ public enum LevelCategory {
     @SerializedName("spiritual_guidance")
     SPIRITUAL_GUIDANCE,
 
-    @SerializedName("theological_debate")
-    THEOLOGICAL_DEBATE,
+    @SerializedName("mercy")
+    MERCY,
 
-    @SerializedName("bible_study")
-    BIBLE_STUDY
+    @SerializedName("theological_debate")
+    THEOLOGICAL_DEBATE
 }
