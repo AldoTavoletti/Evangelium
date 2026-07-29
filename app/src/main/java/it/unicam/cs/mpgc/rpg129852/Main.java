@@ -2,7 +2,7 @@ package it.unicam.cs.mpgc.rpg129852;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import it.unicam.cs.mpgc.rpg129852.asset.*;
+import it.unicam.cs.mpgc.rpg129852.dto.*;
 import it.unicam.cs.mpgc.rpg129852.context.GameContextImpl;
 import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
 import it.unicam.cs.mpgc.rpg129852.controller.DiscipleCreationController;
@@ -14,6 +14,8 @@ import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
 import it.unicam.cs.mpgc.rpg129852.persistence.JsonGameRepository;
+import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistry;
+import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistryImpl;
 import it.unicam.cs.mpgc.rpg129852.service.*;
 import it.unicam.cs.mpgc.rpg129852.util.*;
 import javafx.application.Application;

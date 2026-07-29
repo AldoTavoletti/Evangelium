@@ -1,5 +1,6 @@
 package it.unicam.cs.mpgc.rpg129852.context;
 
+import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
 import it.unicam.cs.mpgc.rpg129852.model.Game;
 
 public class GameContextImpl implements GameSessionManager {
@@ -8,9 +9,9 @@ public class GameContextImpl implements GameSessionManager {
 
     @Override
     public Game getCurrentGame() {
-        if (currentGame == null) {
+        if (!hasActiveGame())
             throw new IllegalStateException("No active game in the context.");
-        }
+
         return currentGame;
     }
 
@@ -22,6 +23,14 @@ public class GameContextImpl implements GameSessionManager {
     @Override
     public boolean hasActiveGame() {
         return currentGame != null;
+    }
+
+    @Override
+    public DiscipleData getCurrentDiscipleData() {
+        if (!hasActiveGame())
+            throw new IllegalStateException("No active game in the context.");
+
+        return currentGame.getGameState().getDiscipleData();
     }
 
     @Override

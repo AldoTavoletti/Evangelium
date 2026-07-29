@@ -1,5 +1,6 @@
 package it.unicam.cs.mpgc.rpg129852.context;
 
+import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
 import it.unicam.cs.mpgc.rpg129852.model.Game;
 
 /**
@@ -29,4 +30,6 @@ public interface GameProvider {
      * @return true if a game is currently active, false otherwise.
      */
     boolean hasActiveGame();
+
+    DiscipleData getCurrentDiscipleData();
 }

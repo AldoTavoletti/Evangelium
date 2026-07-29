@@ -14,7 +14,7 @@ public interface GameStarter {
      * Creates, saves, and activates a new game session.
      *
      * @param request the data transfer object containing the initial player choices
-     *                (e.g., disciple name, job, asset ID, and desired save name).
+     *                (e.g., disciple name, job, dto ID, and desired save name).
      * @throws IllegalStateException if a save file with the resolved name already exists,
      *                               preventing accidental data loss.
      * @throws IllegalArgumentException if the provided save name violates the syntax rules

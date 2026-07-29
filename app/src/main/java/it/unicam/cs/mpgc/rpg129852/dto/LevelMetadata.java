@@ -1,4 +1,7 @@
-package it.unicam.cs.mpgc.rpg129852.asset;
+package it.unicam.cs.mpgc.rpg129852.dto;
+
+import it.unicam.cs.mpgc.rpg129852.model.LevelCategory;
+import it.unicam.cs.mpgc.rpg129852.model.VirtueRewards;
 
 public record LevelMetadata(
         String id,

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<HBox alignment="CENTER_LEFT" prefHeight="80.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.rpg129852.controller.DiscipleHeaderController">
+    <children>
+        <Label fx:id="discipleNameLabel">
+            <HBox.margin>
+                <Insets left="30.0" />
+            </HBox.margin>
+        </Label>
+        <ImageView fx:id="discipleImageView" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+            <HBox.margin>
+                <Insets left="30.0" />
+            </HBox.margin>
+        </ImageView>
+
+        <!-- Questo Region spinge Fede, Speranza e Amore verso il margine destro -->
+        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+
+        <Label fx:id="faithLabel">
+            <HBox.margin>
+                <Insets right="30.0" />
+            </HBox.margin>
+        </Label>
+        <Label fx:id="hopeLabel">
+            <HBox.margin>
+                <Insets right="30.0" />
+            </HBox.margin>
+        </Label>
+        <Label fx:id="loveLabel">
+            <HBox.margin>
+                <Insets right="30.0" />
+            </HBox.margin>
+        </Label>
+    </children>
+</HBox>

@@ -1,4 +1,6 @@
-package it.unicam.cs.mpgc.rpg129852.asset;
+package it.unicam.cs.mpgc.rpg129852.persistence;
+
+import it.unicam.cs.mpgc.rpg129852.dto.Resource;
 
 import java.util.List;
 
