@@ -19,6 +19,10 @@ public class DiscipleData {
         this.color = color;
     }
 
+    public int getTotalVirtues() {
+        return faith+hope+love;
+    }
+
     public int getFaith() {
         return faith;
     }

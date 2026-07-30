@@ -5,6 +5,7 @@ import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
 import it.unicam.cs.mpgc.rpg129852.service.GameLoader;
 import it.unicam.cs.mpgc.rpg129852.ui.AlertHelper;
+import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -50,16 +51,9 @@ public class LoadGameController {
 
     @FXML
     public void initialize() {
-        preloadTrashImage();
+        // for performance reasons
+        trashImageCache = ImageUtils.loadImage(TRASH_ICON_PATH);
         refreshSavesList();
-    }
-
-    private void preloadTrashImage() {
-        try {
-            trashImageCache = new Image(getClass().getResourceAsStream(TRASH_ICON_PATH));
-        } catch (Exception e) {
-            trashImageCache = null;
-        }
     }
 
     private void refreshSavesList() {

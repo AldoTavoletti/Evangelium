@@ -3,82 +3,71 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
+<VBox maxHeight="750.0" maxWidth="1250.0" minHeight="750.0" minWidth="1250.0" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.rpg129852.controller.PlayerMenuController">
+    <children>
 
-<VBox maxHeight="750.0" maxWidth="1250.0" minHeight="750.0" minWidth="1250.0" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0">
-         <children>
-            <Label>
+        <!-- HBox contenitore per la barra superiore: include il bottone Back e il custom header -->
+        <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#onReturnToMenuAction" styleClass="back-to-main-menu" text="Back to Main Menu">
+                    <HBox.margin>
+                        <Insets left="30.0" />
+                    </HBox.margin>
+                </Button>
+                <!-- Include the external component -->
+                <fx:include fx:id="discipleHeader" source="DiscipleHeader.fxml" />
+            </children>
+        </HBox>
+
+        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <children>
+
+                <VBox maxWidth="850.0" HBox.hgrow="ALWAYS">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                    <children>
+                        <!-- ToolBar dinamica: i bottoni vengono generati dal controller (Data-Driven UI) -->
+                        <ToolBar fx:id="categoryToolBar" prefHeight="49.0" prefWidth="522.0" />
+
+                        <!-- TilePane: gestisce automaticamente il layout a griglia dei livelli (Layout Delegato) -->
+                        <TilePane fx:id="levelsContainer" alignment="TOP_LEFT" hgap="50.0" prefColumns="3" prefTileHeight="100.0" prefTileWidth="250.0" vgap="50.0">
+                            <padding>
+                                <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                            </padding>
+                        </TilePane>
+                    </children>
+                </VBox>
+
+                <VBox alignment="BOTTOM_CENTER" HBox.hgrow="ALWAYS">
+                    <children>
+                        <!-- Contenitore vuoto: il LevelDetailsNode verrà iniettato qui dal controller -->
+                        <VBox fx:id="detailsContainer" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></VBox>
+                        <Button fx:id="playButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayLevelAction" styleClass="start-button" text="Gioca!">
+                            <VBox.margin>
+                                <Insets top="30.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
                <HBox.margin>
-                  <Insets left="30.0" />
+                  <Insets bottom="30.0" right="30.0" />
                </HBox.margin>
-            </Label>
-            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets left="30.0" />
-               </HBox.margin>
-            </ImageView>
-            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Label>
-               <HBox.margin>
-                  <Insets right="30.0" />
-               </HBox.margin>
-            </Label>
-            <Label>
-               <HBox.margin>
-                  <Insets right="30.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-         <children>
-            <GridPane alignment="CENTER" hgap="50.0" maxWidth="850.0" vgap="50.0" HBox.hgrow="ALWAYS">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="256.0" minWidth="10.0" prefWidth="250.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="506.0" minWidth="10.0" prefWidth="250.0" />
-                  <ColumnConstraints hgrow="ALWAYS" maxWidth="669.0" minWidth="10.0" prefWidth="250.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <BorderPane minWidth="100.0" prefHeight="100.0" prefWidth="100.0">
-                     <center>
-                        <Label BorderPane.alignment="CENTER" />
-                     </center>
-                  </BorderPane>
-               </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <padding>
-                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-               </padding>
-            </GridPane>
-            <VBox alignment="BOTTOM_CENTER" HBox.hgrow="ALWAYS">
-               <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="start-button" text="Gioca!" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-   </children>
-   <stylesheets>
-      <URL value="@../css/Global.css" />
-      <URL value="@../css/PlayerMenu.css" />
-   </stylesheets>
+                </VBox>
+
+            </children>
+        </HBox>
+    </children>
+
+    <stylesheets>
+        <URL value="@../css/Global.css" />
+        <URL value="@../css/PlayerMenu.css" />
+    </stylesheets>
 </VBox>

@@ -1,7 +1,7 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
-import it.unicam.cs.mpgc.rpg129852.asset.AssetRegistry;
-import it.unicam.cs.mpgc.rpg129852.asset.DiscipleAsset;
+import it.unicam.cs.mpgc.rpg129852.dto.DiscipleAsset;
+import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistry;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.service.GameStarter;
@@ -9,12 +9,12 @@ import it.unicam.cs.mpgc.rpg129852.service.NewGameRequest;
 import it.unicam.cs.mpgc.rpg129852.ui.AlertHelper;
 import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigator;
 import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigatorImpl;
+import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.List;
@@ -44,11 +44,11 @@ public class DiscipleCreationController {
     private Button startGameButton;
 
     public DiscipleCreationController(GameStarter gameStarter,
-                                      AssetRegistry<DiscipleAsset> discipleAssetRegistry,
+                                      ResourceRegistry<DiscipleAsset> discipleAssetRegistry,
                                       List<String> jobs,
                                       ViewRouter sceneManager) {
         this.gameStarter = gameStarter;
-        this.discipleAssetNavigator = new CircularListNavigatorImpl<>(discipleAssetRegistry.getAllAssets());
+        this.discipleAssetNavigator = new CircularListNavigatorImpl<>(discipleAssetRegistry.getAllResources());
         this.jobs = jobs;
         this.sceneManager = sceneManager;
     }
@@ -62,7 +62,7 @@ public class DiscipleCreationController {
 
     private void updateGifImage() {
         DiscipleAsset discipleAsset = discipleAssetNavigator.getCurrentElement();
-        currentGifImage.setImage(new Image(discipleAsset.gifPath()));
+        currentGifImage.setImage(ImageUtils.loadImage(discipleAsset.gifPath()));
     }
 
     private void initJobSelector() {

@@ -20,8 +20,8 @@ public class JsonGameRepository implements GameRepository {
     private final Gson gson;
     private final Path saveDirectory;
 
-    public JsonGameRepository(Path saveDirectory) {
-        this.gson = new GsonBuilder().setPrettyPrinting().create();
+    public JsonGameRepository(Path saveDirectory, Gson gson) {
+        this.gson = gson;
         this.saveDirectory = saveDirectory;
         initializeDirectory();
     }

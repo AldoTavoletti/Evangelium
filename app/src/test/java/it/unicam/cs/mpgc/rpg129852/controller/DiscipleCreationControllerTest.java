@@ -1,7 +1,7 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
-import it.unicam.cs.mpgc.rpg129852.asset.AssetRegistry;
-import it.unicam.cs.mpgc.rpg129852.asset.DiscipleAsset;
+import it.unicam.cs.mpgc.rpg129852.dto.AssetRegistry;
+import it.unicam.cs.mpgc.rpg129852.dto.DiscipleAsset;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.service.GameStarter;
