@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.logging.Level;
 
 public class Main extends Application {
 
@@ -51,8 +52,7 @@ public class Main extends Application {
         ResourceRegistry<DiscipleAsset> discipleAssetRegistry = new ResourceRegistryImpl<>("/disciples_assets.json", DiscipleAsset.class, gson);
         discipleAssetRegistry.loadResources();
 
-        ResourceRegistry<LevelMetadata> levelMetadataRegistry = new ResourceRegistryImpl<>("/levels_metadata.json", LevelMetadata.class, gson);
-        levelMetadataRegistry.loadResources();
+        LevelCatalog levelCatalog = createLevelCatalog(gson);
 
         ControllerFactory controllerFactory = new ControllerFactory();
         ViewRouter sceneManager = new SceneManager(primaryStage, controllerFactory);
@@ -67,9 +67,15 @@ public class Main extends Application {
                 ()-> new LoadGameController(repository, gameLoader, sceneManager));
 
         controllerFactory.register(PlayerMenuController.class,
-                ()-> new PlayerMenuController(gameSessionManager, levelMetadataRegistry, discipleAssetRegistry,sceneManager));
+                ()-> new PlayerMenuController(gameSessionManager, levelCatalog, discipleAssetRegistry,sceneManager));
 
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
+    }
+
+    private LevelCatalog createLevelCatalog(Gson gson) {
+        ResourceRegistry<LevelMetadata> levelMetadataRegistry = new ResourceRegistryImpl<>("/levels_metadata.json", LevelMetadata.class, gson);
+        levelMetadataRegistry.loadResources();
+        return new LevelCatalogImpl(levelMetadataRegistry);
     }
 
     private GameLoader createGameLoader(GameRepository repository, GameSessionManager gameSessionManager) {

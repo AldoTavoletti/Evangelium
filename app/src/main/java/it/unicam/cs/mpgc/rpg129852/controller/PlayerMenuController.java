@@ -1,12 +1,14 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
-import it.unicam.cs.mpgc.rpg129852.dto.*;
 import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
+import it.unicam.cs.mpgc.rpg129852.dto.DiscipleAsset;
+import it.unicam.cs.mpgc.rpg129852.dto.LevelMetadata;
 import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
 import it.unicam.cs.mpgc.rpg129852.model.LevelCategory;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistry;
+import it.unicam.cs.mpgc.rpg129852.service.LevelCatalog;
 import it.unicam.cs.mpgc.rpg129852.ui.LevelCardNode;
 import it.unicam.cs.mpgc.rpg129852.ui.LevelDetailsNode;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
@@ -26,7 +28,7 @@ public class PlayerMenuController {
     private final ViewRouter sceneManager;
     private final GameSessionManager sessionManager;
     private final ResourceRegistry<DiscipleAsset> discipleAssetRegistry;
-    private final ResourceRegistry<LevelMetadata> levelMetadataRegistry;
+    private final LevelCatalog levelCatalog;
 
     private LevelMetadata selectedLevel;
     private LevelCardNode selectedCardNode;
@@ -39,11 +41,11 @@ public class PlayerMenuController {
     @FXML private Button playButton;
 
     public PlayerMenuController(GameSessionManager sessionManager,
-                                ResourceRegistry<LevelMetadata> levelMetadataRegistry,
+                                LevelCatalog levelCatalog,
                                 ResourceRegistry<DiscipleAsset> discipleAssetRegistry,
                                 ViewRouter sceneManager) {
         this.sessionManager = sessionManager;
-        this.levelMetadataRegistry = levelMetadataRegistry;
+        this.levelCatalog = levelCatalog;
         this.discipleAssetRegistry = discipleAssetRegistry;
         this.sceneManager = sceneManager;
     }
@@ -58,6 +60,18 @@ public class PlayerMenuController {
         setupHeader(discipleData);
         initCategoryButtons();
         loadCardsForCategory(LevelCategory.SPIRITUAL_GUIDANCE);
+    }
+
+    @FXML
+    void onPlayLevelAction(ActionEvent event) {
+        if (selectedLevel != null) {
+            System.out.println("Avvio scenario: " + selectedLevel.levelScenarioPath());
+        }
+    }
+
+    @FXML
+    void onReturnToMenuAction(ActionEvent event) {
+        sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }
 
     private void validateSession() {
@@ -91,14 +105,8 @@ public class PlayerMenuController {
     private void loadCardsForCategory(LevelCategory category) {
         resetUI();
         boolean isUnlocked = category.isUnlocked(totalVirtues);
-        List<LevelMetadata> categoryLevels = fetchLevelsByCategory(category);
+        List<LevelMetadata> categoryLevels = levelCatalog.getLevelsByCategory(category);
         populateGrid(categoryLevels, isUnlocked);
-    }
-
-    private List<LevelMetadata> fetchLevelsByCategory(LevelCategory category) {
-        return levelMetadataRegistry.getAllResources().stream()
-                .filter(level -> level.category() == category)
-                .toList();
     }
 
     private void populateGrid(List<LevelMetadata> levels, boolean isUnlocked) {
@@ -154,17 +162,5 @@ public class PlayerMenuController {
         if (level != null) {
             detailsContainer.getChildren().add(new LevelDetailsNode(level));
         }
-    }
-
-    @FXML
-    void onPlayLevelAction(ActionEvent event) {
-        if (selectedLevel != null) {
-            System.out.println("Avvio scenario: " + selectedLevel.levelScenarioPath());
-        }
-    }
-
-    @FXML
-    void onReturnToMenuAction(ActionEvent event) {
-        sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }
 }
