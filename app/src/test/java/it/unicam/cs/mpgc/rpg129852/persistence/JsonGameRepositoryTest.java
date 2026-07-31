@@ -1,8 +1,11 @@
 package it.unicam.cs.mpgc.rpg129852.persistence;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
 import it.unicam.cs.mpgc.rpg129852.model.Game;
 import it.unicam.cs.mpgc.rpg129852.model.GameState;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -23,13 +26,20 @@ class JsonGameRepositoryTest {
     @TempDir
     Path tempDir;
 
+    static Gson gson;
+
+    @BeforeAll
+    static void setUpGson(){
+        gson = new GsonBuilder().setPrettyPrinting().create();
+    }
+
     private JsonGameRepository repository;
     private Game loadedGame;
     private List<String> availableSaves;
 
     @BeforeEach
     void setUp() {
-        repository = new JsonGameRepository(tempDir);
+        repository = new JsonGameRepository(tempDir, gson);
         loadedGame = null;
         availableSaves = null;
     }

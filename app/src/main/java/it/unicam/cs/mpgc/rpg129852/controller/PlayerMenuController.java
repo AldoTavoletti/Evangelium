@@ -9,6 +9,7 @@ import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistry;
 import it.unicam.cs.mpgc.rpg129852.service.LevelCatalog;
+import it.unicam.cs.mpgc.rpg129852.service.LevelStarter;
 import it.unicam.cs.mpgc.rpg129852.ui.LevelCardNode;
 import it.unicam.cs.mpgc.rpg129852.ui.LevelDetailsNode;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
@@ -29,6 +30,7 @@ public class PlayerMenuController {
     private final GameSessionManager sessionManager;
     private final ResourceRegistry<DiscipleAsset> discipleAssetRegistry;
     private final LevelCatalog levelCatalog;
+    private final LevelStarter levelStarter;
 
     private LevelMetadata selectedLevel;
     private LevelCardNode selectedCardNode;
@@ -42,10 +44,12 @@ public class PlayerMenuController {
 
     public PlayerMenuController(GameSessionManager sessionManager,
                                 LevelCatalog levelCatalog,
+                                LevelStarter levelStarter,
                                 ResourceRegistry<DiscipleAsset> discipleAssetRegistry,
                                 ViewRouter sceneManager) {
         this.sessionManager = sessionManager;
         this.levelCatalog = levelCatalog;
+        this.levelStarter  = levelStarter;
         this.discipleAssetRegistry = discipleAssetRegistry;
         this.sceneManager = sceneManager;
     }
@@ -65,7 +69,9 @@ public class PlayerMenuController {
     @FXML
     void onPlayLevelAction(ActionEvent event) {
         if (selectedLevel != null) {
-            System.out.println("Avvio scenario: " + selectedLevel.levelScenarioPath());
+            levelStarter.start(selectedLevel);
+            sceneManager.switchScene(ViewRoute.GAMEPLAY);
+
         }
     }
 

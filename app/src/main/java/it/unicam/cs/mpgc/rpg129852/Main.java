@@ -2,20 +2,13 @@ package it.unicam.cs.mpgc.rpg129852;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import it.unicam.cs.mpgc.rpg129852.context.*;
+import it.unicam.cs.mpgc.rpg129852.controller.*;
 import it.unicam.cs.mpgc.rpg129852.dto.*;
-import it.unicam.cs.mpgc.rpg129852.context.GameContextImpl;
-import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
-import it.unicam.cs.mpgc.rpg129852.controller.DiscipleCreationController;
-import it.unicam.cs.mpgc.rpg129852.controller.LoadGameController;
-import it.unicam.cs.mpgc.rpg129852.controller.MainMenuController;
-import it.unicam.cs.mpgc.rpg129852.controller.PlayerMenuController;
 import it.unicam.cs.mpgc.rpg129852.navigation.SceneManager;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
-import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
-import it.unicam.cs.mpgc.rpg129852.persistence.JsonGameRepository;
-import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistry;
-import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistryImpl;
+import it.unicam.cs.mpgc.rpg129852.persistence.*;
 import it.unicam.cs.mpgc.rpg129852.service.*;
 import it.unicam.cs.mpgc.rpg129852.util.*;
 import javafx.application.Application;
@@ -49,6 +42,9 @@ public class Main extends Application {
         GameStarter gameStarter = createGameStarter(repository, gameSessionManager);
         GameLoader gameLoader = createGameLoader(repository, gameSessionManager);
 
+        LevelSessionManager levelContext = new LevelContextImpl();
+        LevelStarter levelStarter = createLevelStarter(levelContext, gson);
+
         ResourceRegistry<DiscipleAsset> discipleAssetRegistry = new ResourceRegistryImpl<>("/disciples_assets.json", DiscipleAsset.class, gson);
         discipleAssetRegistry.loadResources();
 
@@ -67,7 +63,10 @@ public class Main extends Application {
                 ()-> new LoadGameController(repository, gameLoader, sceneManager));
 
         controllerFactory.register(PlayerMenuController.class,
-                ()-> new PlayerMenuController(gameSessionManager, levelCatalog, discipleAssetRegistry,sceneManager));
+                ()-> new PlayerMenuController(gameSessionManager, levelCatalog, levelStarter, discipleAssetRegistry, sceneManager));
+
+        controllerFactory.register(GameplayController.class,
+                ()-> new GameplayController(levelContext.getEngine(), gameSessionManager));
 
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }
@@ -76,6 +75,11 @@ public class Main extends Application {
         ResourceRegistry<LevelMetadata> levelMetadataRegistry = new ResourceRegistryImpl<>("/levels_metadata.json", LevelMetadata.class, gson);
         levelMetadataRegistry.loadResources();
         return new LevelCatalogImpl(levelMetadataRegistry);
+    }
+
+    private LevelStarter createLevelStarter(LevelSessionManager levelContext, Gson gson) {
+        ScenarioLoader scenarioLoader = new ScenarioLoaderImpl(gson);
+        return new LevelStarterImpl(levelContext, scenarioLoader);
     }
 
     private GameLoader createGameLoader(GameRepository repository, GameSessionManager gameSessionManager) {

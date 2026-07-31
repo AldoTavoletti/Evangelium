@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg129852.dto;
 
 import it.unicam.cs.mpgc.rpg129852.model.LevelCategory;
 import it.unicam.cs.mpgc.rpg129852.model.VirtueRewards;
+import it.unicam.cs.mpgc.rpg129852.persistence.Resource;
 
 public record LevelMetadata(
         String id,
@@ -9,6 +10,6 @@ public record LevelMetadata(
         String title,
         String description,
         VirtueRewards maxRewards,
-        String levelScenarioPath
+        String scenarioPath
 ) implements Resource {}
 

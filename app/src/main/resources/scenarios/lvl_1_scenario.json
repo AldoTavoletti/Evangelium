@@ -1,0 +1,31 @@
+{
+  "backgroundPath": "/assets/backgrounds/village_square.png",
+  "npc": {
+    "name": "Abitante Furioso",
+    "imagePath": "/assets/characters/angry_villager.png",
+    "problemType": "Rabbia",
+    "maxProblemValue": 100
+  },
+  "phases": [
+    {
+      "npcDialogue": "Non posso perdonarlo per quello che ha fatto alla mia famiglia!",
+      "responses": [
+        {
+          "displayReference": "Luca 7:14",
+          "scriptureId": "Luca-7:14",
+          "healValue": 50
+        },
+        {
+          "displayReference": "Romani 12:19",
+          "scriptureId": "Romani-12:19",
+          "healValue": 30
+        },
+        {
+          "displayReference": "Proverbi 15:1",
+          "scriptureId": "Proverbi-15:1",
+          "healValue": 10
+        }
+      ]
+    }
+  ]
+}

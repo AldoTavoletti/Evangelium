@@ -9,7 +9,7 @@
       "hope": 20,
       "love": 50
     },
-    "levelScenarioPath": "/scenarios/spiritual-guidance/lvl_1_scenario.json"
+    "scenarioPath": "/scenarios/lvl_1_scenario.json"
   },
   {
     "id": "lvl_10",
@@ -21,6 +21,6 @@
       "hope": 10,
       "love": 10
     },
-    "levelScenarioPath": "/scenarios/theological-debate/lvl_10_scenario.json"
+    "scenarioPath": "/scenarios/lvl_10_scenario.json"
   }
 ]
