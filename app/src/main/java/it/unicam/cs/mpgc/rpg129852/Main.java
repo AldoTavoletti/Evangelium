@@ -48,6 +48,9 @@ public class Main extends Application {
         ResourceRegistry<DiscipleAsset> discipleAssetRegistry = new ResourceRegistryImpl<>("/disciples_assets.json", DiscipleAsset.class, gson);
         discipleAssetRegistry.loadResources();
 
+        ResourceRegistry<ScriptureResource> scriptureRegistry = new ResourceRegistryImpl<>("/scripture.json", ScriptureResource.class, gson);
+        scriptureRegistry.loadResources();
+
         LevelCatalog levelCatalog = createLevelCatalog(gson);
 
         ControllerFactory controllerFactory = new ControllerFactory();
@@ -66,7 +69,7 @@ public class Main extends Application {
                 ()-> new PlayerMenuController(gameSessionManager, levelCatalog, levelStarter, discipleAssetRegistry, sceneManager));
 
         controllerFactory.register(GameplayController.class,
-                ()-> new GameplayController(levelContext.getEngine(), gameSessionManager));
+                ()-> new GameplayController(levelContext.getEngine(), gameSessionManager, discipleAssetRegistry, scriptureRegistry));
 
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }

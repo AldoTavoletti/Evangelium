@@ -19,6 +19,11 @@ public class LevelDataImpl implements LevelData {
 
     @Override
     public LevelScenario getScenario() {
-        return null;
+        return scenario;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

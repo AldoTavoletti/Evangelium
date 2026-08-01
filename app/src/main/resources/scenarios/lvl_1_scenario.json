@@ -1,8 +1,8 @@
 {
   "backgroundPath": "/assets/backgrounds/village_square.png",
   "npc": {
-    "name": "Abitante Furioso",
-    "imagePath": "/assets/characters/angry_villager.png",
+    "name": "Marco",
+    "imagePath": "/images/npcs/blue-npc.png",
     "problemType": "Rabbia",
     "maxProblemValue": 100
   },
