@@ -120,6 +120,11 @@ public class GameplayController {
         hoverPopup.hide();
     }
 
+    @FXML
+    void onReturnToMenuAction(ActionEvent event) {
+        sceneManager.switchScene(ViewRoute.PLAYER_MENU);
+    }
+
     private void initOptionButtons(DiscipleResponse[] responses) {
 
         List<DiscipleResponse> shuffledResponses = getShuffledResponses(responses);
