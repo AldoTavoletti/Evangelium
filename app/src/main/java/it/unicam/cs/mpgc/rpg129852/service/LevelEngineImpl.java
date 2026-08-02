@@ -16,8 +16,16 @@ public class LevelEngineImpl implements LevelEngine {
         return levelData.getScenario().npc().imagePath();
     }
 
+    public boolean hasNextPhase() {
+        return phaseIndex < levelData.getScenario().phases().length;
+    }
+
     public LevelPhase getNextPhase(){
         return levelData.getScenario().phases()[phaseIndex++];
+    }
+
+    public double getMaxProblemValue(){
+        return levelData.getScenario().npc().maxProblemValue();
     }
 
 }

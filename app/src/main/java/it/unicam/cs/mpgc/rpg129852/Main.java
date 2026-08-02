@@ -69,7 +69,7 @@ public class Main extends Application {
                 ()-> new PlayerMenuController(gameSessionManager, levelCatalog, levelStarter, discipleAssetRegistry, sceneManager));
 
         controllerFactory.register(GameplayController.class,
-                ()-> new GameplayController(levelContext.getEngine(), gameSessionManager, discipleAssetRegistry, scriptureRegistry));
+                ()-> new GameplayController(levelContext.getEngine(), gameSessionManager, discipleAssetRegistry, scriptureRegistry, sceneManager));
 
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }

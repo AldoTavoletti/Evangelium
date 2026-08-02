@@ -4,26 +4,66 @@
     "name": "Marco",
     "imagePath": "/images/npcs/blue-npc.png",
     "problemType": "Rabbia",
-    "maxProblemValue": 100
+    "maxProblemValue": 1
   },
   "phases": [
     {
-      "npcDialogue": "Non posso perdonarlo per quello che ha fatto alla mia famiglia!",
+      "npcDialogue": "Non posso perdonarlo per quello che ha fatto alla mia famiglia! Mi hanno umiliato e derubato di tutto!",
       "responses": [
         {
-          "displayReference": "Luca 7:14",
-          "scriptureId": "Luca-7:14",
+          "displayReference": "Levitico 19:18",
+          "scriptureId": "Levitico-19:18",
+          "healValue": 0.5
+        },
+        {
+          "displayReference": "Salmi 37:8",
+          "scriptureId": "Salmi-37:8",
+          "healValue": 0.3
+        },
+        {
+          "displayReference": "Esodo 21:24",
+          "scriptureId": "Esodo-21:24",
+          "healValue": 0.0
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Perché dovrei rinunciare alla mia giustizia? Se non mi difendo io, continueranno a passarla liscia!",
+      "responses": [
+        {
+          "displayReference": "Deuteronomio 32:35",
+          "scriptureId": "Deuteronomio-32:35",
+          "healValue": 0.5
+        },
+        {
+          "displayReference": "Proverbi 20:22",
+          "scriptureId": "Proverbi-20:22",
+          "healValue": 0.3
+        },
+        {
+          "displayReference": "Nahum 1:2",
+          "scriptureId": "Nahum-1:2",
+          "healValue": 0.0
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Forse hai ragione... Ma il fuoco che ho dentro mi consuma. Come faccio a rispondere al male senza diventarne schiavo?",
+      "responses": [
+        {
+          "displayReference": "Proverbi 25:21",
+          "scriptureId": "Proverbi-25:21",
           "healValue": 50
         },
         {
-          "displayReference": "Romani 12:19",
-          "scriptureId": "Romani-12:19",
+          "displayReference": "Michea 6:8",
+          "scriptureId": "Michea-6:8",
           "healValue": 30
         },
         {
-          "displayReference": "Proverbi 15:1",
-          "scriptureId": "Proverbi-15:1",
-          "healValue": 10
+          "displayReference": "Salmi 137:8-9",
+          "scriptureId": "Salmi-137:8-9",
+          "healValue": 0
         }
       ]
     }

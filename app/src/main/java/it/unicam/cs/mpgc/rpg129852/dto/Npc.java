@@ -6,5 +6,5 @@ public record Npc(
         String name,
         String imagePath,
         ProblemType problemType,
-        int maxProblemValue
+        double maxProblemValue
 ) {}
