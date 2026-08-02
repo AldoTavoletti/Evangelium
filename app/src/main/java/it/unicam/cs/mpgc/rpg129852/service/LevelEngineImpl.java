@@ -58,7 +58,7 @@ public class LevelEngineImpl implements LevelEngine {
     }
 
     public boolean hasNextPhase() {
-        return phaseIndex < levelData.getScenario().phases().length;
+        return phaseIndex < getTotalNumberOfPhases();
     }
 
     public LevelPhase getNextPhase(){
@@ -72,6 +72,16 @@ public class LevelEngineImpl implements LevelEngine {
 
     public double getMaxProblemValue(){
         return levelData.getScenario().npc().maxProblemValue();
+    }
+
+    @Override
+    public int getCurrentPhaseNumber() {
+        return phaseIndex;
+    }
+
+    @Override
+    public int getTotalNumberOfPhases() {
+        return levelData.getScenario().phases().length;
     }
 
 }

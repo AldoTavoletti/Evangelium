@@ -11,6 +11,9 @@ import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistry;
 import it.unicam.cs.mpgc.rpg129852.service.LevelEngine;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
@@ -24,6 +27,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.PopupWindow;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,6 +38,8 @@ public class GameplayController {
     private final LevelEngine levelEngine;
     private final GameSessionManager sessionManager;
     private final ResourceRegistry<DiscipleAsset> discipleAssetRegistry;
+    private final ResourceRegistry<ScriptureResource> scriptureResourceRegistry;
+    private final ViewRouter sceneManager;
 
     @FXML
     private ImageView discipleImageView;
@@ -56,11 +62,16 @@ public class GameplayController {
     @FXML
     private ProgressBar problemProgressBar;
 
+    @FXML
+    private Label healFeedbackLabel;
+
+    @FXML
+    private Label currentPhaseLabel;
+
     private Popup hoverPopup;
     private Label popupText;
     private LevelPhase currentPhase;
-    private ResourceRegistry<ScriptureResource> scriptureResourceRegistry;
-    private ViewRouter sceneManager;
+    private SequentialTransition healAnimation;
 
     public GameplayController(LevelEngine levelEngine,
                               GameSessionManager sessionManager,
@@ -78,70 +89,14 @@ public class GameplayController {
     void initialize() {
         initDiscipleImage();
         initNpcImage();
+        initHoverPopup();
+        if (healFeedbackLabel != null) {
+            healFeedbackLabel.setOpacity(0.0);
+            healFeedbackLabel.setVisible(false);
+        }
 
         problemProgressBar.setProgress(levelEngine.getMaxProblemValue());
-
         goToNextPhase();
-        initHoverPopup();
-    }
-
-    @FXML
-    void onOptionButtonAction(ActionEvent event) {
-        Button button = (Button) event.getSource();
-
-        DiscipleResponse discipleResponse = (DiscipleResponse) button.getUserData();
-        double healValue = discipleResponse.healValue();
-
-        updateProgressBar(healValue);
-
-        if (problemProgressBar.getProgress() <= 0.0) {
-            levelEngine.endLevel(problemProgressBar.getProgress());
-            sceneManager.switchScene(ViewRoute.PLAYER_MENU);
-        }
-
-        if (levelEngine.hasNextPhase()) {
-            goToNextPhase();
-        } else {
-            levelEngine.endLevel(problemProgressBar.getProgress());
-            sceneManager.switchScene(ViewRoute.PLAYER_MENU);
-        }
-    }
-
-    @FXML
-    void onOptionButtonHover(MouseEvent event) {
-        Button button = (Button) event.getSource();
-
-        DiscipleResponse discipleResponse = (DiscipleResponse) button.getUserData();
-        String scriptureID = discipleResponse.scriptureId();
-        String content = scriptureResourceRegistry.getResource(scriptureID).text();
-
-        showPopup(button, content);
-    }
-
-    @FXML
-    void onOptionButtonExit(MouseEvent event) {
-        hoverPopup.hide();
-    }
-
-    @FXML
-    void onReturnToMenuAction(ActionEvent event) {
-        sceneManager.switchScene(ViewRoute.PLAYER_MENU);
-    }
-
-    private void initOptionButtons(DiscipleResponse[] responses) {
-
-        List<DiscipleResponse> shuffledResponses = getShuffledResponses(responses);
-
-        List<Button> optionButtons = List.of(firstOptionButton, secondOptionButton, thirdOptionButton);
-
-        for (int i = 0; i < 3; i++) {
-            DiscipleResponse response = shuffledResponses.get(i);
-            Button btn = optionButtons.get(i);
-
-            btn.setText(response.displayReference());
-            btn.setUserData(response);
-        }
-
     }
 
     private void initDiscipleImage() {
@@ -158,10 +113,6 @@ public class GameplayController {
 
         Image npcImage = ImageUtils.loadImage(npcImagePath);
         npcImageView.setImage(npcImage);
-    }
-
-    private void initDialogueTextArea(String npcDialogue) {
-        npcDialogueTextArea.setText(npcDialogue);
     }
 
     private void initHoverPopup() {
@@ -183,8 +134,123 @@ public class GameplayController {
         );
 
         hoverPopup.getContent().add(pane);
-
         hoverPopup.setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_BOTTOM_LEFT);
+    }
+
+    private void goToNextPhase() {
+        this.currentPhase = levelEngine.getNextPhase();
+        initDialogueTextArea(currentPhase.npcDialogue());
+        initOptionButtons(currentPhase.responses());
+        initPhaseLabel();
+
+    }
+
+    private void initPhaseLabel() {
+        currentPhaseLabel.setText("Turno: " + levelEngine.getCurrentPhaseNumber() + "/" + levelEngine.getTotalNumberOfPhases());
+    }
+
+    private void initDialogueTextArea(String npcDialogue) {
+        npcDialogueTextArea.setText(npcDialogue);
+    }
+
+    private void initOptionButtons(DiscipleResponse[] responses) {
+        List<DiscipleResponse> shuffledResponses = getShuffledResponses(responses);
+
+        List<Button> optionButtons = List.of(firstOptionButton, secondOptionButton, thirdOptionButton);
+
+        for (int i = 0; i < 3; i++) {
+            DiscipleResponse response = shuffledResponses.get(i);
+            Button btn = optionButtons.get(i);
+
+            btn.setText(response.displayReference());
+            btn.setUserData(response);
+        }
+    }
+
+    private List<DiscipleResponse> getShuffledResponses(DiscipleResponse[] responses) {
+        List<DiscipleResponse> shuffledResponses = new ArrayList<>(List.of(responses));
+        Collections.shuffle(shuffledResponses);
+
+        return shuffledResponses;
+    }
+
+    @FXML
+    void onOptionButtonAction(ActionEvent event) {
+        Button button = (Button) event.getSource();
+
+        DiscipleResponse discipleResponse = (DiscipleResponse) button.getUserData();
+        double healValue = discipleResponse.healValue();
+
+        updateProgressBar(healValue);
+
+        if (problemProgressBar.getProgress() <= 0.0) {
+            setOptionsDisable(true);
+            levelEngine.endLevel(problemProgressBar.getProgress());
+            playFeedbackAnimation("Hai vinto!", () -> sceneManager.switchScene(ViewRoute.PLAYER_MENU));
+        } else if (levelEngine.hasNextPhase()) {
+            goToNextPhase();
+            int displayValue = (int) (healValue * 100);
+            playFeedbackAnimation("-" + displayValue, () -> {});
+        } else {
+            setOptionsDisable(true);
+            levelEngine.endLevel(problemProgressBar.getProgress());
+            playFeedbackAnimation("Hai perso!", () -> sceneManager.switchScene(ViewRoute.PLAYER_MENU));
+        }
+    }
+
+    private void updateProgressBar(double healValue) {
+        Double currentProgress = problemProgressBar.getProgress();
+        problemProgressBar.setProgress(currentProgress - healValue);
+    }
+
+    private void setOptionsDisable(boolean disable) {
+        firstOptionButton.setDisable(disable);
+        secondOptionButton.setDisable(disable);
+        thirdOptionButton.setDisable(disable);
+    }
+
+    private void playFeedbackAnimation(String message, Runnable onFinished) {
+        if (healFeedbackLabel == null) {
+            if (onFinished != null) onFinished.run();
+            return;
+        }
+
+        if (healAnimation != null && healAnimation.getStatus() == SequentialTransition.Status.RUNNING) {
+            healAnimation.stop();
+        }
+
+        healFeedbackLabel.setText(message);
+        healFeedbackLabel.setVisible(true);
+
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), healFeedbackLabel);
+        fadeIn.setFromValue(healFeedbackLabel.getOpacity());
+        fadeIn.setToValue(1.0);
+
+        PauseTransition pause = new PauseTransition(Duration.seconds(1.0));
+
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), healFeedbackLabel);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+
+        healAnimation = new SequentialTransition(fadeIn, pause, fadeOut);
+        healAnimation.setOnFinished(e -> {
+            healFeedbackLabel.setVisible(false);
+            if (onFinished != null) {
+                onFinished.run();
+            }
+        });
+        healAnimation.play();
+    }
+
+    @FXML
+    void onOptionButtonHover(MouseEvent event) {
+        Button button = (Button) event.getSource();
+
+        DiscipleResponse discipleResponse = (DiscipleResponse) button.getUserData();
+        String scriptureID = discipleResponse.scriptureId();
+        String content = scriptureResourceRegistry.getResource(scriptureID).text();
+
+        showPopup(button, content);
     }
 
     private void showPopup(Button button, String content) {
@@ -199,22 +265,14 @@ public class GameplayController {
         );
     }
 
-    private void goToNextPhase() {
-        this.currentPhase = levelEngine.getNextPhase();
-        initDialogueTextArea(currentPhase.npcDialogue());
-        initOptionButtons(currentPhase.responses());
+    @FXML
+    void onOptionButtonExit(MouseEvent event) {
+        hoverPopup.hide();
     }
 
-    private List<DiscipleResponse> getShuffledResponses(DiscipleResponse[] responses) {
-        List<DiscipleResponse> shuffledResponses = new ArrayList<>(List.of(responses));
-        Collections.shuffle(shuffledResponses);
-
-        return shuffledResponses;
-    }
-
-    private void updateProgressBar(double healValue) {
-        Double currentProgress = problemProgressBar.getProgress();
-        problemProgressBar.setProgress(currentProgress - healValue);
+    @FXML
+    void onReturnToMenuAction(ActionEvent event) {
+        sceneManager.switchScene(ViewRoute.PLAYER_MENU);
     }
 
 }

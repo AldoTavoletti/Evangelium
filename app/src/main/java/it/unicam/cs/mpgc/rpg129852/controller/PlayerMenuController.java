@@ -3,8 +3,7 @@ package it.unicam.cs.mpgc.rpg129852.controller;
 import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
 import it.unicam.cs.mpgc.rpg129852.dto.DiscipleAsset;
 import it.unicam.cs.mpgc.rpg129852.dto.LevelMetadata;
-import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
-import it.unicam.cs.mpgc.rpg129852.model.LevelCategory;
+import it.unicam.cs.mpgc.rpg129852.model.*;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistry;
@@ -23,6 +22,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class PlayerMenuController {
 
@@ -166,7 +166,9 @@ public class PlayerMenuController {
     private void updateDetailsContainer(LevelMetadata level) {
         detailsContainer.getChildren().clear();
         if (level != null) {
-            detailsContainer.getChildren().add(new LevelDetailsNode(level));
+            GameState currentGameState = sessionManager.getCurrentGame().getGameState();
+            Optional<Virtues> bestAttempt = currentGameState.getScoreForLevel(level.id());
+            detailsContainer.getChildren().add(new LevelDetailsNode(level, bestAttempt));
         }
     }
 }

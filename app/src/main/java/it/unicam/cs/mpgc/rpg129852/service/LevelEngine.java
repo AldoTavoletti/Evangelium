@@ -8,4 +8,8 @@ public interface LevelEngine {
     boolean hasNextPhase();
     LevelPhase getNextPhase();
     double getMaxProblemValue();
+
+    int getCurrentPhaseNumber();
+
+    int getTotalNumberOfPhases();
 }
