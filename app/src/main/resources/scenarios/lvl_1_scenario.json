@@ -1,69 +1,69 @@
 {
-  "backgroundPath": "/assets/backgrounds/village_square.png",
+  "backgroundPath": "/assets/backgrounds/modern_office.png",
   "npc": {
     "name": "Marco",
     "imagePath": "/images/npcs/blue-npc.png",
     "problemType": "Rabbia",
-    "maxProblemValue": 1
+    "maxProblemValue": 1.0
   },
   "phases": [
     {
-      "npcDialogue": "Non posso perdonarlo per quello che ha fatto alla mia famiglia! Mi hanno umiliato e derubato di tutto!",
+      "npcDialogue": "Non ne posso più! Per mesi ho lavorato giorno e notte su quel progetto aziendale, sacrificando i miei weekend e saltando ogni cena in famiglia, solo perché il mio superiore si prendesse tutti i meriti davanti al consiglio di amministrazione e mi facesse passare per incompetente di fronte ai colleghi. Mi hanno tolto l'aumento che mi spettava di diritto e ora mi guardano pure con aria di superiorità nei corridoi. Ho una tale rabbia dentro che spaccherei tutto, e sto scrivendo una mail al sindacato e a tutta la direzione per sputtanarli pubblicamente e rovinarli professionalmente!",
       "responses": [
+        {
+          "displayReference": "Proverbi 24:29",
+          "scriptureId": "Proverbi-24:29",
+          "healValue": 0.0
+        },
         {
           "displayReference": "Levitico 19:18",
           "scriptureId": "Levitico-19:18",
           "healValue": 0.5
         },
         {
-          "displayReference": "Salmi 37:8",
-          "scriptureId": "Salmi-37:8",
+          "displayReference": "Salmi 37:1-2",
+          "scriptureId": "Salmi-37:1-2",
           "healValue": 0.3
-        },
-        {
-          "displayReference": "Esodo 21:24",
-          "scriptureId": "Esodo-21:24",
-          "healValue": 0.0
         }
       ]
     },
     {
-      "npcDialogue": "Perché dovrei rinunciare alla mia giustizia? Se non mi difendo io, continueranno a passarla liscia!",
+      "npcDialogue": "La rabbia iniziale si è trasformata in un'ossessione costante che mi perseguita anche quando torno a casa la sera. Non riesco a dormire, rigirandomi nel letto mentre pianifico ogni singola mossa per fargliela pagare, e finisco per scaricare questa tensione nervosa sui miei familiari che non c'entrano nulla. Sento che questo rancore mi sta logorando dall'interno, ma l'idea di far finta di niente e lasciare che l'impunità trionfi mi fa ribollire il sangue ancora di più.",
       "responses": [
-        {
-          "displayReference": "Deuteronomio 32:35",
-          "scriptureId": "Deuteronomio-32:35",
-          "healValue": 0.5
-        },
         {
           "displayReference": "Proverbi 20:22",
           "scriptureId": "Proverbi-20:22",
           "healValue": 0.3
         },
         {
-          "displayReference": "Nahum 1:2",
-          "scriptureId": "Nahum-1:2",
+          "displayReference": "Esodo 21:24",
+          "scriptureId": "Esodo-21:24",
           "healValue": 0.0
+        },
+        {
+          "displayReference": "Giobbe 31:29-31",
+          "scriptureId": "Giobbe-31:29-31",
+          "healValue": 0.5
         }
       ]
     },
     {
-      "npcDialogue": "Forse hai ragione... Ma il fuoco che ho dentro mi consuma. Come faccio a rispondere al male senza diventarne schiavo?",
+      "npcDialogue": "Il punto è che in questo ambiente lavorativo spietato tutti ti insegnano che chi si ferma è perduto e che bisogna difendersi con ogni mezzo per non essere calpestati dai più forti. Se decido di mollare la presa sulla vendetta, ho il terrore costante che penseranno tutti che sono un debole e che potranno continuare a sfruttarmi impunemente. Vorrei trovare un modo per recuperare la mia dignità e la mia pace interiore senza dover per forza distruggere gli altri o distruggere me stesso nel processo.",
       "responses": [
         {
-          "displayReference": "Proverbi 25:21",
-          "scriptureId": "Proverbi-25:21",
-          "healValue": 50
+          "displayReference": "Proverbi 25:21-22",
+          "scriptureId": "Proverbi-25:21-22",
+          "healValue": 0.5
         },
         {
           "displayReference": "Michea 6:8",
           "scriptureId": "Michea-6:8",
-          "healValue": 30
+          "healValue": 0.3
         },
         {
           "displayReference": "Salmi 137:8-9",
           "scriptureId": "Salmi-137:8-9",
-          "healValue": 0
+          "healValue": 0.0
         }
       ]
     }

@@ -6,33 +6,30 @@ public class DiscipleData {
     private String job;
     private String color;
 
-    private int faith;
-    private int hope;
-    private int love;
+    private Virtues virtues;
 
     // required by Gson
-    public DiscipleData() {}
+    public DiscipleData() {
+    }
 
     public DiscipleData(String name, String job, String color) {
         this.name = name;
         this.job = job;
         this.color = color;
+        this.virtues = getStartingVirtues(job);
+    }
+
+    private Virtues getStartingVirtues(String job) {
+        return new Virtues(0, 0, 0);
     }
 
     public int getTotalVirtues() {
-        return faith+hope+love;
+
+        return virtues.getTotalPoints();
     }
 
-    public int getFaith() {
-        return faith;
-    }
-
-    public int getHope() {
-        return hope;
-    }
-
-    public int getLove() {
-        return love;
+    public Virtues getVirtues() {
+        return virtues;
     }
 
     public String getName() {
@@ -47,15 +44,15 @@ public class DiscipleData {
         return color;
     }
 
-    public void setFaith(int faith) {
-        this.faith = faith;
+    public void setVirtues(Virtues virtues) {
+        this.virtues = virtues;
     }
 
-    public void setHope(int hope) {
-        this.hope = hope;
+    public void addVirtues(Virtues virtuesToAdd) {
+        virtues = new Virtues(virtues.faith() + virtuesToAdd.faith(), virtues.hope() + virtuesToAdd.hope(), virtues.love() + virtuesToAdd.love());
     }
 
-    public void setLove(int love) {
-        this.love = love;
+    public void subtractVirtues(Virtues virtuesToSubtract) {
+        virtues = new Virtues(virtues.faith() - virtuesToSubtract.faith(), virtues.hope() - virtuesToSubtract.hope(), virtues.love() - virtuesToSubtract.love());
     }
 }

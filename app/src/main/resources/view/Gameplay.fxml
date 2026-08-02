@@ -28,7 +28,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </ProgressBar>
-            <TextArea fx:id="npcDialogueTextArea" editable="false" maxHeight="150.0" maxWidth="1000.0" prefHeight="200.0" prefWidth="200.0" />
+            <TextArea fx:id="npcDialogueTextArea" editable="false" maxHeight="150.0" maxWidth="1000.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                <children>
                   <Button id="0" fx:id="firstOptionButton" mnemonicParsing="false" onAction="#onOptionButtonAction" onMouseEntered="#onOptionButtonHover" onMouseExited="#onOptionButtonExit" styleClass="option-button" text="Button" />

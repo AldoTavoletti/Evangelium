@@ -43,7 +43,7 @@ public class Main extends Application {
         GameLoader gameLoader = createGameLoader(repository, gameSessionManager);
 
         LevelSessionManager levelContext = new LevelContextImpl();
-        LevelStarter levelStarter = createLevelStarter(levelContext, gson);
+        LevelStarter levelStarter = createLevelStarter(levelContext, repository, gameSessionManager, gson);
 
         ResourceRegistry<DiscipleAsset> discipleAssetRegistry = new ResourceRegistryImpl<>("/disciples_assets.json", DiscipleAsset.class, gson);
         discipleAssetRegistry.loadResources();
@@ -80,9 +80,9 @@ public class Main extends Application {
         return new LevelCatalogImpl(levelMetadataRegistry);
     }
 
-    private LevelStarter createLevelStarter(LevelSessionManager levelContext, Gson gson) {
+    private LevelStarter createLevelStarter(LevelSessionManager levelContext, GameRepository repository, GameSessionManager gameSessionManager,Gson gson) {
         ScenarioLoader scenarioLoader = new ScenarioLoaderImpl(gson);
-        return new LevelStarterImpl(levelContext, scenarioLoader);
+        return new LevelStarterImpl(levelContext, scenarioLoader, repository, gameSessionManager);
     }
 
     private GameLoader createGameLoader(GameRepository repository, GameSessionManager gameSessionManager) {

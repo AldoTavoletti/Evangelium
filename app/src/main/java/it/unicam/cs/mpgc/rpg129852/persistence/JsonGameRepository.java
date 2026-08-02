@@ -63,6 +63,7 @@ public class JsonGameRepository implements GameRepository {
     private void setGameState(GameState gameState, Path fullPath) {
         try (Writer writer = Files.newBufferedWriter(fullPath, StandardCharsets.UTF_8)) {
             gson.toJson(gameState, writer);
+            System.out.println(gameState.getDiscipleData().getVirtues());
         } catch (IOException e) {
             throw new RuntimeException("Cannot save the game in this path: " + fullPath, e);
         }

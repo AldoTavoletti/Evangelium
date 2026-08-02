@@ -94,14 +94,17 @@ public class GameplayController {
 
         updateProgressBar(healValue);
 
-        if (problemProgressBar.getProgress() <= 0.0)
+        if (problemProgressBar.getProgress() <= 0.0) {
+            levelEngine.endLevel(problemProgressBar.getProgress());
             sceneManager.switchScene(ViewRoute.PLAYER_MENU);
+        }
 
-
-        if (levelEngine.hasNextPhase())
+        if (levelEngine.hasNextPhase()) {
             goToNextPhase();
-        else
+        } else {
+            levelEngine.endLevel(problemProgressBar.getProgress());
             sceneManager.switchScene(ViewRoute.PLAYER_MENU);
+        }
     }
 
     @FXML

@@ -16,9 +16,9 @@ public class DiscipleHeaderController {
 
     public void initData(DiscipleData data, Image image) {
         discipleNameLabel.setText(data.getName() + " | " + data.getJob());
-        faithLabel.setText("Fede: " + data.getFaith());
-        hopeLabel.setText("Speranza: " + data.getHope());
-        loveLabel.setText("Carità: " + data.getLove());
+        faithLabel.setText("Fede: " + data.getVirtues().faith());
+        hopeLabel.setText("Speranza: " + data.getVirtues().hope());
+        loveLabel.setText("Carità: " + data.getVirtues().love());
 
         if (image != null) {
             discipleImageView.setImage(image);

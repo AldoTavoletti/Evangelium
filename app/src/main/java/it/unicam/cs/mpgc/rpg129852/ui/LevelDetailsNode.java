@@ -1,7 +1,7 @@
 package it.unicam.cs.mpgc.rpg129852.ui;
 
 import it.unicam.cs.mpgc.rpg129852.dto.LevelMetadata;
-import it.unicam.cs.mpgc.rpg129852.model.VirtueRewards;
+import it.unicam.cs.mpgc.rpg129852.model.Virtues;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -23,7 +23,7 @@ public class LevelDetailsNode extends VBox {
         this.getChildren().addAll(title, description, rewards);
     }
 
-    private String formatRewardsText(VirtueRewards rewards) {
+    private String formatRewardsText(Virtues rewards) {
         return String.format("Max Ottenibile: %d Fede | %d Speranza | %d Amore",
                 rewards.faith(),
                 rewards.hope(),
