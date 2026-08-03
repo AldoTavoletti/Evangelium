@@ -15,6 +15,7 @@ public class LevelStarterImpl implements  LevelStarter {
     private final ScenarioLoader scenarioLoader;
     private GameRepository repository;
     private GameSessionManager gameSessionManager;
+
     public LevelStarterImpl(LevelSessionManager levelContext, ScenarioLoader scenarioLoader, GameRepository repository, GameSessionManager gameSessionManager){
         this.levelContext = levelContext;
         this.scenarioLoader = scenarioLoader;

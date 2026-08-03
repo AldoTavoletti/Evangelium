@@ -12,6 +12,18 @@
     "scenarioPath": "/scenarios/lvl_1_scenario.json"
   },
   {
+    "id": "lvl_2",
+    "category": "spiritual_guidance",
+    "title": "L'ansia di Elena",
+    "description": "Elena è schiacciata dalle incertezze economiche e dal terrore di non poter provvedere alla sua famiglia.",
+    "maxRewards": {
+      "faith": 40,
+      "hope": 30,
+      "love": 10
+    },
+    "scenarioPath": "/scenarios/lvl_2_scenario.json"
+  },
+  {
     "id": "lvl_10",
     "category": "theological_debate",
     "title": "Il dubbio di Tommaso",

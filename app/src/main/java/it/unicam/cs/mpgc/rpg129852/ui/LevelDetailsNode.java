@@ -22,10 +22,13 @@ public class LevelDetailsNode extends VBox {
         Label rewards = new Label("Massimo ottenibile:\n" + formatRewardsText(level.maxRewards()));
         rewards.getStyleClass().add("level-detail-rewards");
 
-        Label bestAttemptLabel = new Label("Miglior tentativo:\n" + formatRewardsText(bestAttempt.get()));
-        bestAttemptLabel.getStyleClass().add("level-detail-rewards");
-
-        this.getChildren().addAll(title, description, rewards, bestAttemptLabel);
+        if (bestAttempt.isPresent()) {
+            Label bestAttemptLabel = new Label("Miglior tentativo:\n" + formatRewardsText(bestAttempt.get()));
+            bestAttemptLabel.getStyleClass().add("level-detail-rewards");
+            this.getChildren().addAll(title, description, rewards, bestAttemptLabel);
+        }else{
+            this.getChildren().addAll(title, description, rewards);
+        }
     }
 
     private String formatRewardsText(Virtues rewards) {
