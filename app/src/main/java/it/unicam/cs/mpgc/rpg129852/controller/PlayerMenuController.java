@@ -71,7 +71,6 @@ public class PlayerMenuController {
         if (selectedLevel != null) {
             levelStarter.start(selectedLevel);
             sceneManager.switchScene(ViewRoute.GAMEPLAY);
-
         }
     }
 

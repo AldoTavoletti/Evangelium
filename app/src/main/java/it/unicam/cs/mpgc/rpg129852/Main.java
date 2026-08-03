@@ -43,7 +43,7 @@ public class Main extends Application {
         GameLoader gameLoader = createGameLoader(repository, gameSessionManager);
 
         LevelSessionManager levelContext = new LevelContextImpl();
-        LevelStarter levelStarter = createLevelStarter(levelContext, repository, gameSessionManager, gson);
+        LevelStarter levelStarter = createLevelStarter(levelContext, gson);
 
         ResourceRegistry<DiscipleAsset> discipleAssetRegistry = new ResourceRegistryImpl<>("/disciples_assets.json", DiscipleAsset.class, gson);
         discipleAssetRegistry.loadResources();
@@ -63,15 +63,24 @@ public class Main extends Application {
                 () -> new DiscipleCreationController(gameStarter, discipleAssetRegistry, JOBS, sceneManager));
 
         controllerFactory.register(LoadGameController.class,
-                ()-> new LoadGameController(repository, gameLoader, sceneManager));
+                () -> new LoadGameController(repository, gameLoader, sceneManager));
 
         controllerFactory.register(PlayerMenuController.class,
-                ()-> new PlayerMenuController(gameSessionManager, levelCatalog, levelStarter, discipleAssetRegistry, sceneManager));
+                () -> new PlayerMenuController(gameSessionManager, levelCatalog, levelStarter, discipleAssetRegistry, sceneManager));
 
         controllerFactory.register(GameplayController.class,
-                ()-> new GameplayController(levelContext.getEngine(), gameSessionManager, discipleAssetRegistry, scriptureRegistry, sceneManager));
+                () -> new GameplayController(createGameplayService(levelContext, gameSessionManager, repository), gameSessionManager, discipleAssetRegistry, scriptureRegistry, sceneManager));
 
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
+    }
+
+    private GameplayService createGameplayService(LevelSessionManager levelContext, GameSessionManager gameSessionManager, GameRepository repository) {
+
+        LevelSaver levelSaver = new LevelSaverImpl(gameSessionManager, repository);
+        LevelRewardsCalculator rewardsCalculator = new LevelRewardsCalculatorImpl();
+        LevelEngine levelEngine = new LevelEngineImpl(levelContext.getPhases());
+
+        return new GameplayService(levelContext, levelSaver, rewardsCalculator, levelEngine);
     }
 
     private LevelCatalog createLevelCatalog(Gson gson) {
@@ -80,9 +89,9 @@ public class Main extends Application {
         return new LevelCatalogImpl(levelMetadataRegistry);
     }
 
-    private LevelStarter createLevelStarter(LevelSessionManager levelContext, GameRepository repository, GameSessionManager gameSessionManager,Gson gson) {
+    private LevelStarter createLevelStarter(LevelSessionManager levelContext, Gson gson) {
         ScenarioLoader scenarioLoader = new ScenarioLoaderImpl(gson);
-        return new LevelStarterImpl(levelContext, scenarioLoader, repository, gameSessionManager);
+        return new LevelStarterImpl(levelContext, scenarioLoader);
     }
 
     private GameLoader createGameLoader(GameRepository repository, GameSessionManager gameSessionManager) {

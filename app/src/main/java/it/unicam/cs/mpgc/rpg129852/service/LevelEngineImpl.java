@@ -7,71 +7,23 @@ import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
 
 public class LevelEngineImpl implements LevelEngine {
 
-    private final LevelData levelData;
     private int phaseIndex = 0;
-    private GameSessionManager gameSessionManager;
-    private GameRepository repository;
+    private LevelPhase[] phases;
 
-    public LevelEngineImpl(LevelData levelData, GameSessionManager gameSessionManager, GameRepository repository) {
-        this.levelData = levelData;
-        this.gameSessionManager = gameSessionManager;
-        this.repository = repository;
-    }
-
-    public void endLevel(double problemValue) {
-        Virtues virtueRewards = getVirtueRewards(problemValue);
-        Game currentGame = gameSessionManager.getCurrentGame();
-        GameState currentGameState = currentGame.getGameState();
-
-        currentGameState.recordLevelScore(levelData.getMetadata().id(), virtueRewards);
-
-        repository.save(currentGame);
-    }
-
-    private Virtues getVirtueRewards(double problemValue) {
-        if (problemValue > 0.0)
-            return new Virtues(0, 0, 0);
-
-        return switch (phaseIndex) {
-            case 2 -> getMaxRewards();
-            case 3 -> getHalfMaxRewards();
-            default -> throw new RuntimeException();
-        };
-    }
-
-    private Virtues getHalfMaxRewards() {
-        Virtues maxRewards = getMaxRewards();
-
-        int faith = maxRewards.faith() / 2;
-        int hope = maxRewards.hope() / 2;
-        int love = maxRewards.love() / 2;
-
-        return new Virtues(faith, hope, love);
-    }
-
-    private Virtues getMaxRewards() {
-        return levelData.getMetadata().maxRewards();
-    }
-
-    public String getNpcImagePath() {
-        return levelData.getScenario().npc().imagePath();
+    public LevelEngineImpl(LevelPhase[] phases) {
+        this.phases = phases;
     }
 
     public boolean hasNextPhase() {
         return phaseIndex < getTotalNumberOfPhases();
     }
 
-    public LevelPhase getNextPhase(){
+    public LevelPhase getNextPhase() {
 
-        LevelPhase nextPhase = levelData.getScenario().phases()[phaseIndex];
-
+        LevelPhase nextPhase = phases[phaseIndex];
         phaseIndex++;
 
         return nextPhase;
-    }
-
-    public double getMaxProblemValue(){
-        return levelData.getScenario().npc().maxProblemValue();
     }
 
     @Override
@@ -81,7 +33,7 @@ public class LevelEngineImpl implements LevelEngine {
 
     @Override
     public int getTotalNumberOfPhases() {
-        return levelData.getScenario().phases().length;
+        return phases.length;
     }
 
 }

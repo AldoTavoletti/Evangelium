@@ -19,6 +19,14 @@ public class DiscipleData {
         this.virtues = getStartingVirtues(job);
     }
 
+    public void addVirtues(Virtues virtuesToAdd) {
+        virtues = new Virtues(virtues.faith() + virtuesToAdd.faith(), virtues.hope() + virtuesToAdd.hope(), virtues.love() + virtuesToAdd.love());
+    }
+
+    public void subtractVirtues(Virtues virtuesToSubtract) {
+        virtues = new Virtues(virtues.faith() - virtuesToSubtract.faith(), virtues.hope() - virtuesToSubtract.hope(), virtues.love() - virtuesToSubtract.love());
+    }
+
     private Virtues getStartingVirtues(String job) {
         return new Virtues(0, 0, 0);
     }
@@ -48,11 +56,4 @@ public class DiscipleData {
         this.virtues = virtues;
     }
 
-    public void addVirtues(Virtues virtuesToAdd) {
-        virtues = new Virtues(virtues.faith() + virtuesToAdd.faith(), virtues.hope() + virtuesToAdd.hope(), virtues.love() + virtuesToAdd.love());
-    }
-
-    public void subtractVirtues(Virtues virtuesToSubtract) {
-        virtues = new Virtues(virtues.faith() - virtuesToSubtract.faith(), virtues.hope() - virtuesToSubtract.hope(), virtues.love() - virtuesToSubtract.love());
-    }
 }

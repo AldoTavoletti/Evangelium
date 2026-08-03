@@ -1,15 +1,12 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
 import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
-import it.unicam.cs.mpgc.rpg129852.dto.DiscipleAsset;
-import it.unicam.cs.mpgc.rpg129852.dto.DiscipleResponse;
-import it.unicam.cs.mpgc.rpg129852.dto.LevelPhase;
-import it.unicam.cs.mpgc.rpg129852.dto.ScriptureResource;
+import it.unicam.cs.mpgc.rpg129852.dto.*;
 import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistry;
-import it.unicam.cs.mpgc.rpg129852.service.LevelEngine;
+import it.unicam.cs.mpgc.rpg129852.service.GameplayService;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
@@ -35,11 +32,11 @@ import java.util.List;
 
 public class GameplayController {
 
-    private final LevelEngine levelEngine;
-    private final GameSessionManager sessionManager;
+    private final GameplayService gameplayService;
     private final ResourceRegistry<DiscipleAsset> discipleAssetRegistry;
     private final ResourceRegistry<ScriptureResource> scriptureResourceRegistry;
     private final ViewRouter sceneManager;
+    private final GameSessionManager gameSessionManager;
 
     @FXML
     private ImageView discipleImageView;
@@ -73,13 +70,13 @@ public class GameplayController {
     private LevelPhase currentPhase;
     private SequentialTransition healAnimation;
 
-    public GameplayController(LevelEngine levelEngine,
-                              GameSessionManager sessionManager,
+    public GameplayController(GameplayService gameplayService,
+                              GameSessionManager gameSessionManager,
                               ResourceRegistry<DiscipleAsset> discipleAssetRegistry,
                               ResourceRegistry<ScriptureResource> scriptureResourceRegistry,
                               ViewRouter sceneManager) {
-        this.levelEngine = levelEngine;
-        this.sessionManager = sessionManager;
+        this.gameplayService = gameplayService;
+        this.gameSessionManager = gameSessionManager;
         this.discipleAssetRegistry = discipleAssetRegistry;
         this.scriptureResourceRegistry = scriptureResourceRegistry;
         this.sceneManager = sceneManager;
@@ -90,17 +87,18 @@ public class GameplayController {
         initDiscipleImage();
         initNpcImage();
         initHoverPopup();
+
         if (healFeedbackLabel != null) {
             healFeedbackLabel.setOpacity(0.0);
             healFeedbackLabel.setVisible(false);
         }
 
-        problemProgressBar.setProgress(levelEngine.getMaxProblemValue());
+        problemProgressBar.setProgress(gameplayService.getSessionManager().getMaxProblemValue());
         goToNextPhase();
     }
 
     private void initDiscipleImage() {
-        DiscipleData currentDiscipleData = sessionManager.getCurrentDiscipleData();
+        DiscipleData currentDiscipleData = gameSessionManager.getCurrentDiscipleData();
         String colorId = currentDiscipleData.getColor();
         DiscipleAsset discipleImage = discipleAssetRegistry.getResource(colorId);
 
@@ -109,7 +107,7 @@ public class GameplayController {
     }
 
     private void initNpcImage() {
-        String npcImagePath = this.levelEngine.getNpcImagePath();
+        String npcImagePath = gameplayService.getSessionManager().getNpcImagePath();
 
         Image npcImage = ImageUtils.loadImage(npcImagePath);
         npcImageView.setImage(npcImage);
@@ -138,15 +136,14 @@ public class GameplayController {
     }
 
     private void goToNextPhase() {
-        this.currentPhase = levelEngine.getNextPhase();
+        this.currentPhase = gameplayService.getEngine().getNextPhase();
         initDialogueTextArea(currentPhase.npcDialogue());
         initOptionButtons(currentPhase.responses());
         initPhaseLabel();
-
     }
 
     private void initPhaseLabel() {
-        currentPhaseLabel.setText("Turno: " + levelEngine.getCurrentPhaseNumber() + "/" + levelEngine.getTotalNumberOfPhases());
+        currentPhaseLabel.setText("Turno: " + gameplayService.getEngine().getCurrentPhaseNumber() + "/" + gameplayService.getEngine().getTotalNumberOfPhases());
     }
 
     private void initDialogueTextArea(String npcDialogue) {
@@ -155,7 +152,6 @@ public class GameplayController {
 
     private void initOptionButtons(DiscipleResponse[] responses) {
         List<DiscipleResponse> shuffledResponses = getShuffledResponses(responses);
-
         List<Button> optionButtons = List.of(firstOptionButton, secondOptionButton, thirdOptionButton);
 
         for (int i = 0; i < 3; i++) {
@@ -170,14 +166,12 @@ public class GameplayController {
     private List<DiscipleResponse> getShuffledResponses(DiscipleResponse[] responses) {
         List<DiscipleResponse> shuffledResponses = new ArrayList<>(List.of(responses));
         Collections.shuffle(shuffledResponses);
-
         return shuffledResponses;
     }
 
     @FXML
     void onOptionButtonAction(ActionEvent event) {
         Button button = (Button) event.getSource();
-
         DiscipleResponse discipleResponse = (DiscipleResponse) button.getUserData();
         double healValue = discipleResponse.healValue();
 
@@ -185,15 +179,17 @@ public class GameplayController {
 
         if (problemProgressBar.getProgress() <= 0.0) {
             setOptionsDisable(true);
-            levelEngine.endLevel(problemProgressBar.getProgress());
+            gameplayService.completeLevel(problemProgressBar.getProgress());
             playFeedbackAnimation("Hai vinto!", () -> sceneManager.switchScene(ViewRoute.PLAYER_MENU));
-        } else if (levelEngine.hasNextPhase()) {
+
+        } else if (gameplayService.getEngine().hasNextPhase()) {
             goToNextPhase();
             int displayValue = (int) (healValue * 100);
             playFeedbackAnimation("-" + displayValue, () -> {});
+
         } else {
             setOptionsDisable(true);
-            levelEngine.endLevel(problemProgressBar.getProgress());
+            gameplayService.completeLevel(problemProgressBar.getProgress());
             playFeedbackAnimation("Hai perso!", () -> sceneManager.switchScene(ViewRoute.PLAYER_MENU));
         }
     }
@@ -245,7 +241,6 @@ public class GameplayController {
     @FXML
     void onOptionButtonHover(MouseEvent event) {
         Button button = (Button) event.getSource();
-
         DiscipleResponse discipleResponse = (DiscipleResponse) button.getUserData();
         String scriptureID = discipleResponse.scriptureId();
         String content = scriptureResourceRegistry.getResource(scriptureID).text();
@@ -255,7 +250,6 @@ public class GameplayController {
 
     private void showPopup(Button button, String content) {
         popupText.setText(content);
-
         Bounds boundsInScreen = button.localToScreen(button.getBoundsInLocal());
 
         hoverPopup.show(
@@ -274,5 +268,4 @@ public class GameplayController {
     void onReturnToMenuAction(ActionEvent event) {
         sceneManager.switchScene(ViewRoute.PLAYER_MENU);
     }
-
 }

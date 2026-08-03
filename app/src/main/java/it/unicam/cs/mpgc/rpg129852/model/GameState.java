@@ -20,28 +20,28 @@ public class GameState {
         this.levelScores = new HashMap<>(savedScores);
     }
 
-    public DiscipleData getDiscipleData() {
-        return discipleData;
+    public void recordLevelScore(String levelId, Virtues score) {
+        validateInputs(levelId, score);
+
+        Optional<Virtues> previousScore = getScoreForLevel(levelId);
+
+        if (previousScore.isPresent() && score.compareTo(previousScore.get()) <= 0) {
+            return;
+        }
+
+        previousScore.ifPresent(discipleData::subtractVirtues);
+
+        levelScores.put(levelId, score);
+        discipleData.addVirtues(score);
     }
 
-    public void recordLevelScore(String levelId, Virtues score) {
+    private void validateInputs(String levelId, Virtues score) {
         if (levelId == null || levelId.isBlank()) {
             throw new IllegalArgumentException("L'ID del livello non può essere nullo o vuoto.");
         }
         if (score == null) {
             throw new IllegalArgumentException("Lo score non può essere nullo.");
         }
-
-        Virtues previousScore = levelScores.get(levelId);
-
-        if (previousScore != null) {
-            if (score.compareTo(previousScore) <= 0)
-                return;
-            discipleData.subtractVirtues(levelScores.get(levelId));
-        }
-
-        levelScores.put(levelId, score);
-        discipleData.addVirtues(score);
     }
 
     public Optional<Virtues> getScoreForLevel(String levelId) {
@@ -52,7 +52,8 @@ public class GameState {
         return levelScores.containsKey(levelId);
     }
 
-    public Map<String, Virtues> getAllScores() {
-        return Collections.unmodifiableMap(levelScores);
+    public DiscipleData getDiscipleData() {
+        return discipleData;
     }
+
 }

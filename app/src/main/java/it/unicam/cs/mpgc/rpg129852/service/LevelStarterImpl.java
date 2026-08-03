@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg129852.service;
 
 import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
+import it.unicam.cs.mpgc.rpg129852.model.Level;
 import it.unicam.cs.mpgc.rpg129852.model.LevelData;
 import it.unicam.cs.mpgc.rpg129852.model.LevelDataImpl;
 import it.unicam.cs.mpgc.rpg129852.context.LevelSessionManager;
@@ -13,22 +14,17 @@ public class LevelStarterImpl implements  LevelStarter {
 
     private final LevelSessionManager levelContext;
     private final ScenarioLoader scenarioLoader;
-    private GameRepository repository;
-    private GameSessionManager gameSessionManager;
 
-    public LevelStarterImpl(LevelSessionManager levelContext, ScenarioLoader scenarioLoader, GameRepository repository, GameSessionManager gameSessionManager){
+    public LevelStarterImpl(LevelSessionManager levelContext, ScenarioLoader scenarioLoader){
         this.levelContext = levelContext;
         this.scenarioLoader = scenarioLoader;
-        this.repository = repository;
-        this.repository = repository;
-        this.gameSessionManager = gameSessionManager;
     }
 
     @Override
     public void start(LevelMetadata metadata) {
         LevelScenario scenario = scenarioLoader.loadScenario(metadata.scenarioPath());
-        LevelData levelData = new LevelDataImpl(metadata, scenario);
-        LevelEngine levelEngine = new LevelEngineImpl(levelData, gameSessionManager, repository);
-        levelContext.setEngine(levelEngine);
+
+        Level level = new Level(metadata, scenario);
+        levelContext.setCurrentLevel(level);
     }
 }
