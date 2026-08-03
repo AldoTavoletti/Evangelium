@@ -65,6 +65,7 @@ public class GameplayController {
 
     private Popup hoverPopup;
     private Label popupText;
+    private Label popupSource;
     private SequentialTransition healAnimation;
 
     public GameplayController(GameplayService gameplayService,
@@ -114,12 +115,18 @@ public class GameplayController {
         hoverPopup = new Popup();
         hoverPopup.setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_BOTTOM_LEFT);
 
+        popupSource = new Label();
+        popupSource.setWrapText(true);
+        popupSource.setPrefWidth(350);
+        popupSource.getStyleClass().add("popup-source");
+
         popupText = new Label();
         popupText.setWrapText(true);
         popupText.setPrefWidth(350);
         popupText.getStyleClass().add("popup-text");
 
-        VBox pane = new VBox(popupText);
+        VBox pane = new VBox(popupSource, popupText);
+        pane.setSpacing(10.0);
         pane.getStyleClass().add("popup-pane");
 
         String cssPath = getClass().getResource("/css/Gameplay.css").toExternalForm();
@@ -249,11 +256,13 @@ public class GameplayController {
         Button button = (Button) event.getSource();
         DiscipleResponse response = (DiscipleResponse) button.getUserData();
         String content = scriptureResourceRegistry.getResource(response.scriptureId()).text();
+        String source = response.displayReference();
 
-        showPopup(button, content);
+        showPopup(button, content, source);
     }
 
-    private void showPopup(Button button, String content) {
+    private void showPopup(Button button, String content, String source) {
+        popupSource.setText(source);
         popupText.setText(content);
         Bounds bounds = button.localToScreen(button.getBoundsInLocal());
         hoverPopup.show(button, bounds.getMinX(), bounds.getMinY() - 5);

@@ -26,7 +26,10 @@
                   <Insets bottom="100.0" />
                </VBox.margin>
             </HBox>
-            <Label fx:id="healFeedbackLabel" opacity="0.0" />
+            <Label fx:id="healFeedbackLabel" opacity="0.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Label>
             <ProgressBar fx:id="problemProgressBar" maxWidth="1000.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="5.0" />
@@ -36,8 +39,8 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                <children>
                   <Button id="0" fx:id="firstOptionButton" mnemonicParsing="false" onAction="#onOptionButtonAction" onMouseEntered="#onOptionButtonHover" onMouseExited="#onOptionButtonExit" styleClass="option-button" text="Button" />
-                  <Button id="1" fx:id="secondOptionButton" mnemonicParsing="false" onAction="#onOptionButtonAction" onMouseEntered="#onOptionButtonHover" onMouseExited="#onOptionButtonExit" text="Button" />
-                  <Button id="2" fx:id="thirdOptionButton" mnemonicParsing="false" onAction="#onOptionButtonAction" onMouseEntered="#onOptionButtonHover" onMouseExited="#onOptionButtonExit" text="Button" />
+                  <Button id="1" fx:id="secondOptionButton" mnemonicParsing="false" onAction="#onOptionButtonAction" onMouseEntered="#onOptionButtonHover" onMouseExited="#onOptionButtonExit" styleClass="option-button" text="Button" />
+                  <Button id="2" fx:id="thirdOptionButton" mnemonicParsing="false" onAction="#onOptionButtonAction" onMouseEntered="#onOptionButtonHover" onMouseExited="#onOptionButtonExit" styleClass="option-button" text="Button" />
                </children>
             </HBox>
          </children>
