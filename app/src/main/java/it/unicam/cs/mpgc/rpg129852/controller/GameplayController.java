@@ -1,7 +1,10 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
 import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
-import it.unicam.cs.mpgc.rpg129852.dto.*;
+import it.unicam.cs.mpgc.rpg129852.dto.DiscipleAsset;
+import it.unicam.cs.mpgc.rpg129852.dto.DiscipleResponse;
+import it.unicam.cs.mpgc.rpg129852.dto.LevelPhase;
+import it.unicam.cs.mpgc.rpg129852.dto.ScriptureResource;
 import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
@@ -32,42 +35,36 @@ import java.util.List;
 
 public class GameplayController {
 
+    private static final String MSG_VICTORY = "Hai vinto!";
+    private static final String MSG_DEFEAT = "Hai perso!";
+
     private final GameplayService gameplayService;
+    private final GameSessionManager gameSessionManager;
     private final ResourceRegistry<DiscipleAsset> discipleAssetRegistry;
     private final ResourceRegistry<ScriptureResource> scriptureResourceRegistry;
     private final ViewRouter sceneManager;
-    private final GameSessionManager gameSessionManager;
 
     @FXML
     private ImageView discipleImageView;
-
-    @FXML
-    private TextArea npcDialogueTextArea;
-
     @FXML
     private ImageView npcImageView;
-
+    @FXML
+    private TextArea npcDialogueTextArea;
     @FXML
     private Button firstOptionButton;
-
     @FXML
     private Button secondOptionButton;
-
     @FXML
     private Button thirdOptionButton;
-
     @FXML
     private ProgressBar problemProgressBar;
-
     @FXML
     private Label healFeedbackLabel;
-
     @FXML
     private Label currentPhaseLabel;
 
     private Popup hoverPopup;
     private Label popupText;
-    private LevelPhase currentPhase;
     private SequentialTransition healAnimation;
 
     public GameplayController(GameplayService gameplayService,
@@ -84,119 +81,122 @@ public class GameplayController {
 
     @FXML
     void initialize() {
+        setupUIComponents();
+        loadNextPhase();
+    }
+
+    private void setupUIComponents() {
         initDiscipleImage();
         initNpcImage();
         initHoverPopup();
+        resetHealFeedbackLabel();
+        problemProgressBar.setProgress(gameplayService.getMaxProblemValue());
+    }
 
+    private void resetHealFeedbackLabel() {
         if (healFeedbackLabel != null) {
             healFeedbackLabel.setOpacity(0.0);
             healFeedbackLabel.setVisible(false);
         }
-
-        problemProgressBar.setProgress(gameplayService.getSessionManager().getMaxProblemValue());
-        goToNextPhase();
     }
 
     private void initDiscipleImage() {
         DiscipleData currentDiscipleData = gameSessionManager.getCurrentDiscipleData();
-        String colorId = currentDiscipleData.getColor();
-        DiscipleAsset discipleImage = discipleAssetRegistry.getResource(colorId);
-
-        Image discipleGif = ImageUtils.loadImage(discipleImage.gifPath());
-        discipleImageView.setImage(discipleGif);
+        DiscipleAsset discipleImage = discipleAssetRegistry.getResource(currentDiscipleData.getColor());
+        discipleImageView.setImage(ImageUtils.loadImage(discipleImage.gifPath()));
     }
 
     private void initNpcImage() {
-        String npcImagePath = gameplayService.getSessionManager().getNpcImagePath();
-
-        Image npcImage = ImageUtils.loadImage(npcImagePath);
-        npcImageView.setImage(npcImage);
+        npcImageView.setImage(ImageUtils.loadImage(gameplayService.getNpcImagePath()));
     }
 
     private void initHoverPopup() {
         hoverPopup = new Popup();
+        hoverPopup.setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_BOTTOM_LEFT);
 
         popupText = new Label();
         popupText.setWrapText(true);
         popupText.setPrefWidth(350);
-        popupText.setStyle("-fx-text-fill: white; -fx-font-size: 14px; -fx-line-spacing: 5px;");
+        popupText.getStyleClass().add("popup-text");
 
         VBox pane = new VBox(popupText);
-        pane.setStyle(
-                "-fx-background-color: rgba(30, 30, 30, 0.95);" +
-                        "-fx-padding: 15;" +
-                        "-fx-background-radius: 8;" +
-                        "-fx-border-color: #555555;" +
-                        "-fx-border-radius: 8;" +
-                        "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 5);"
-        );
+        pane.getStyleClass().add("popup-pane");
+
+        String cssPath = getClass().getResource("/css/Gameplay.css").toExternalForm();
+        pane.getStylesheets().add(cssPath);
 
         hoverPopup.getContent().add(pane);
-        hoverPopup.setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_BOTTOM_LEFT);
     }
 
-    private void goToNextPhase() {
-        this.currentPhase = gameplayService.getEngine().getNextPhase();
-        initDialogueTextArea(currentPhase.npcDialogue());
-        initOptionButtons(currentPhase.responses());
-        initPhaseLabel();
+    private void loadNextPhase() {
+        LevelPhase currentPhase = gameplayService.getNextPhase();
+        npcDialogueTextArea.setText(currentPhase.npcDialogue());
+        updateOptionButtons(currentPhase.responses());
+        updatePhaseLabel();
     }
 
-    private void initPhaseLabel() {
-        currentPhaseLabel.setText("Turno: " + gameplayService.getEngine().getCurrentPhaseNumber() + "/" + gameplayService.getEngine().getTotalNumberOfPhases());
+    private void updatePhaseLabel() {
+        String phaseText = String.format("Turno: %d/%d",
+                gameplayService.getCurrentPhaseNumber(),
+                gameplayService.getTotalNumberOfPhases());
+        currentPhaseLabel.setText(phaseText);
     }
 
-    private void initDialogueTextArea(String npcDialogue) {
-        npcDialogueTextArea.setText(npcDialogue);
-    }
+    private void updateOptionButtons(DiscipleResponse[] responses) {
+        List<DiscipleResponse> shuffledResponses = new ArrayList<>(List.of(responses));
+        Collections.shuffle(shuffledResponses);
 
-    private void initOptionButtons(DiscipleResponse[] responses) {
-        List<DiscipleResponse> shuffledResponses = getShuffledResponses(responses);
-        List<Button> optionButtons = List.of(firstOptionButton, secondOptionButton, thirdOptionButton);
-
-        for (int i = 0; i < 3; i++) {
+        List<Button> buttons = List.of(firstOptionButton, secondOptionButton, thirdOptionButton);
+        for (int i = 0; i < buttons.size(); i++) {
+            Button btn = buttons.get(i);
             DiscipleResponse response = shuffledResponses.get(i);
-            Button btn = optionButtons.get(i);
 
             btn.setText(response.displayReference());
             btn.setUserData(response);
         }
     }
 
-    private List<DiscipleResponse> getShuffledResponses(DiscipleResponse[] responses) {
-        List<DiscipleResponse> shuffledResponses = new ArrayList<>(List.of(responses));
-        Collections.shuffle(shuffledResponses);
-        return shuffledResponses;
-    }
-
     @FXML
     void onOptionButtonAction(ActionEvent event) {
-        Button button = (Button) event.getSource();
-        DiscipleResponse discipleResponse = (DiscipleResponse) button.getUserData();
-        double healValue = discipleResponse.healValue();
+        DiscipleResponse response = extractResponseFromEvent(event);
+        applyHealing(response.healValue());
+        evaluateGameState(response.healValue());
+    }
 
-        updateProgressBar(healValue);
+    private DiscipleResponse extractResponseFromEvent(ActionEvent event) {
+        Button clickedButton = (Button) event.getSource();
+        return (DiscipleResponse) clickedButton.getUserData();
+    }
 
-        if (problemProgressBar.getProgress() <= 0.0) {
-            setOptionsDisable(true);
-            gameplayService.completeLevel(problemProgressBar.getProgress());
-            playFeedbackAnimation("Hai vinto!", () -> sceneManager.switchScene(ViewRoute.PLAYER_MENU));
+    private void applyHealing(double healValue) {
+        problemProgressBar.setProgress(problemProgressBar.getProgress() - healValue);
+    }
 
-        } else if (gameplayService.getEngine().hasNextPhase()) {
-            goToNextPhase();
-            int displayValue = (int) (healValue * 100);
-            playFeedbackAnimation("-" + displayValue, () -> {});
-
+    private void evaluateGameState(double healValue) {
+        if (isLevelWon()) {
+            endLevel(MSG_VICTORY);
+        } else if (gameplayService.hasNextPhase()) {
+            continueLevel(healValue);
         } else {
-            setOptionsDisable(true);
-            gameplayService.completeLevel(problemProgressBar.getProgress());
-            playFeedbackAnimation("Hai perso!", () -> sceneManager.switchScene(ViewRoute.PLAYER_MENU));
+            endLevel(MSG_DEFEAT);
         }
     }
 
-    private void updateProgressBar(double healValue) {
-        Double currentProgress = problemProgressBar.getProgress();
-        problemProgressBar.setProgress(currentProgress - healValue);
+    private boolean isLevelWon() {
+        return problemProgressBar.getProgress() <= 0.0;
+    }
+
+    private void endLevel(String finalMessage) {
+        setOptionsDisable(true);
+        gameplayService.completeLevel(problemProgressBar.getProgress());
+        playFeedbackAnimation(finalMessage, this::returnToMenu);
+    }
+
+    private void continueLevel(double healValue) {
+        loadNextPhase();
+        int displayValue = (int) (healValue * 100);
+        playFeedbackAnimation("-" + displayValue, () -> {
+        });
     }
 
     private void setOptionsDisable(boolean disable) {
@@ -211,13 +211,26 @@ public class GameplayController {
             return;
         }
 
-        if (healAnimation != null && healAnimation.getStatus() == SequentialTransition.Status.RUNNING) {
-            healAnimation.stop();
-        }
+        stopRunningAnimation();
 
         healFeedbackLabel.setText(message);
         healFeedbackLabel.setVisible(true);
 
+        healAnimation = buildAnimationSequence();
+        healAnimation.setOnFinished(e -> {
+            healFeedbackLabel.setVisible(false);
+            if (onFinished != null) onFinished.run();
+        });
+        healAnimation.play();
+    }
+
+    private void stopRunningAnimation() {
+        if (healAnimation != null && healAnimation.getStatus() == SequentialTransition.Status.RUNNING) {
+            healAnimation.stop();
+        }
+    }
+
+    private SequentialTransition buildAnimationSequence() {
         FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), healFeedbackLabel);
         fadeIn.setFromValue(healFeedbackLabel.getOpacity());
         fadeIn.setToValue(1.0);
@@ -228,35 +241,22 @@ public class GameplayController {
         fadeOut.setFromValue(1.0);
         fadeOut.setToValue(0.0);
 
-        healAnimation = new SequentialTransition(fadeIn, pause, fadeOut);
-        healAnimation.setOnFinished(e -> {
-            healFeedbackLabel.setVisible(false);
-            if (onFinished != null) {
-                onFinished.run();
-            }
-        });
-        healAnimation.play();
+        return new SequentialTransition(fadeIn, pause, fadeOut);
     }
 
     @FXML
     void onOptionButtonHover(MouseEvent event) {
         Button button = (Button) event.getSource();
-        DiscipleResponse discipleResponse = (DiscipleResponse) button.getUserData();
-        String scriptureID = discipleResponse.scriptureId();
-        String content = scriptureResourceRegistry.getResource(scriptureID).text();
+        DiscipleResponse response = (DiscipleResponse) button.getUserData();
+        String content = scriptureResourceRegistry.getResource(response.scriptureId()).text();
 
         showPopup(button, content);
     }
 
     private void showPopup(Button button, String content) {
         popupText.setText(content);
-        Bounds boundsInScreen = button.localToScreen(button.getBoundsInLocal());
-
-        hoverPopup.show(
-                button,
-                boundsInScreen.getMinX(),
-                boundsInScreen.getMinY() - 5
-        );
+        Bounds bounds = button.localToScreen(button.getBoundsInLocal());
+        hoverPopup.show(button, bounds.getMinX(), bounds.getMinY() - 5);
     }
 
     @FXML
@@ -266,6 +266,10 @@ public class GameplayController {
 
     @FXML
     void onReturnToMenuAction(ActionEvent event) {
+        returnToMenu();
+    }
+
+    private void returnToMenu() {
         sceneManager.switchScene(ViewRoute.PLAYER_MENU);
     }
 }

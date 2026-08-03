@@ -1,46 +1,21 @@
 package it.unicam.cs.mpgc.rpg129852.service;
 
-import it.unicam.cs.mpgc.rpg129852.context.LevelSessionManager;
-import it.unicam.cs.mpgc.rpg129852.dto.UserPerformanceDetails;
-import it.unicam.cs.mpgc.rpg129852.model.Virtues;
+import it.unicam.cs.mpgc.rpg129852.dto.LevelPhase;
 
-public class GameplayService {
+public interface GameplayService {
 
-    private final LevelSessionManager levelSessionManager;
-    private final LevelSaver levelSaver;
-    private final LevelRewardsCalculator rewardsCalculator;
-    private final LevelEngine levelEngine;
+    boolean hasNextPhase();
 
-    public GameplayService(LevelSessionManager levelSessionManager,
-                           LevelSaver levelSaver,
-                           LevelRewardsCalculator rewardsCalculator,
-                           LevelEngine levelEngine) {
-        this.levelSessionManager = levelSessionManager;
-        this.levelSaver = levelSaver;
-        this.rewardsCalculator = rewardsCalculator;
-        this.levelEngine = levelEngine;
-    }
+    LevelPhase getNextPhase();
 
-    public LevelEngine getEngine() {
-        return levelEngine;
-    }
+    int getCurrentPhaseNumber();
 
-    public LevelSessionManager getSessionManager() {
-        return levelSessionManager;
-    }
+    int getTotalNumberOfPhases();
 
-    public void completeLevel(double remainingProblem) {
-        UserPerformanceDetails details = new UserPerformanceDetails(
-                remainingProblem,
-                levelEngine.getCurrentPhaseNumber()
-        );
+    double getMaxProblemValue();
 
-        Virtues obtainedRewards = rewardsCalculator.calculate(
-                levelSessionManager.getMaxRewards(),
-                levelEngine.getTotalNumberOfPhases(),
-                details
-        );
+    String getNpcImagePath();
 
-        levelSaver.save(levelSessionManager.getCurrentLevelId(), obtainedRewards);
-    }
+    void completeLevel(double remainingProblem);
+
 }

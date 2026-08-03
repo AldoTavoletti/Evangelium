@@ -13,25 +13,17 @@ public class LevelContextImpl implements LevelSessionManager {
     }
 
     @Override
-    public String getCurrentLevelId() {
-        return level.getMetadata().id();
-    }
-
-    public Virtues getMaxRewards() {
-        return level.getMetadata().maxRewards();
-    }
-
-    public double getMaxProblemValue() {
-        return level.getScenario().npc().maxProblemValue();
-    }
-
-    public LevelPhase[] getPhases(){
-        return level.getScenario().phases();
+    public void clearSession() {
+        this.level = null;
     }
 
     @Override
-    public String getNpcImagePath() {
-         return level.getScenario().npc().imagePath();
+    public Level getCurrentLevel() {
+        return level;
     }
 
+    @Override
+    public boolean hasActiveLevel() {
+        return level != null;
+    }
 }

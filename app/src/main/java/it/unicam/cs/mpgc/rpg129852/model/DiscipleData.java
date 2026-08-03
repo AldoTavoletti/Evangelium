@@ -27,10 +27,6 @@ public class DiscipleData {
         virtues = new Virtues(virtues.faith() - virtuesToSubtract.faith(), virtues.hope() - virtuesToSubtract.hope(), virtues.love() - virtuesToSubtract.love());
     }
 
-    private Virtues getStartingVirtues(String job) {
-        return new Virtues(0, 0, 0);
-    }
-
     public int getTotalVirtues() {
 
         return virtues.getTotalPoints();
@@ -54,6 +50,10 @@ public class DiscipleData {
 
     public void setVirtues(Virtues virtues) {
         this.virtues = virtues;
+    }
+
+    private Virtues getStartingVirtues(String job) {
+        return new Virtues(0, 0, 0);
     }
 
 }

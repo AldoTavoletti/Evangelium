@@ -19,7 +19,7 @@ public class LevelSaverImpl implements LevelSaver {
     @Override
     public void save(String levelId, Virtues obtainedVirtues) {
         Game currentGame = gameSessionManager.getCurrentGame();
-        GameState currentGameState = currentGame.getGameState();
+        GameState currentGameState = currentGame.gameState();
 
         currentGameState.recordLevelScore(levelId, obtainedVirtues);
 

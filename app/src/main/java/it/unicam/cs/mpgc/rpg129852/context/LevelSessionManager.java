@@ -1,14 +1,14 @@
 package it.unicam.cs.mpgc.rpg129852.context;
 
-import it.unicam.cs.mpgc.rpg129852.dto.LevelPhase;
 import it.unicam.cs.mpgc.rpg129852.model.Level;
-import it.unicam.cs.mpgc.rpg129852.model.Virtues;
 
-public interface LevelSessionManager {
+/**
+ * Gestisce il ciclo di vita del livello attivo, permettendo
+ * di impostare un nuovo livello o terminarlo.
+ */
+public interface LevelSessionManager extends LevelProvider {
+
     void setCurrentLevel(Level level);
-    String getCurrentLevelId();
-    Virtues getMaxRewards();
-    double getMaxProblemValue();
-    String getNpcImagePath();
-    LevelPhase[] getPhases();
+
+    void clearSession(); // Utile per pulire quando si torna al menu
 }

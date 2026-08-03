@@ -30,7 +30,7 @@ public class GameContextImpl implements GameSessionManager {
         if (!hasActiveGame())
             throw new IllegalStateException("No active game in the context.");
 
-        return currentGame.getGameState().getDiscipleData();
+        return currentGame.gameState().getDiscipleData();
     }
 
     @Override
