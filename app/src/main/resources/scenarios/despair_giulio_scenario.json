@@ -12,17 +12,17 @@
         {
           "displayReference": "Matteo 9:13",
           "scriptureId": "Matteo-9:13",
-          "healValue": 0.5
+          "answerValue": "PERFECT"
         },
         {
           "displayReference": "Giovanni 8:11",
           "scriptureId": "Giovanni-8:11",
-          "healValue": 0.3
+          "answerValue": "GOOD"
         },
         {
           "displayReference": "Matteo 3:10",
           "scriptureId": "Matteo-3:10",
-          "healValue": 0.0
+          "answerValue": "BAD"
         }
       ]
     },
@@ -32,17 +32,17 @@
         {
           "displayReference": "Luca 6:36",
           "scriptureId": "Luca-6:36",
-          "healValue": 0.0
+          "answerValue": "BAD"
         },
         {
           "displayReference": "Matteo 18:21-22",
           "scriptureId": "Matteo-18:21-22",
-          "healValue": 0.3
+          "answerValue": "GOOD"
         },
         {
           "displayReference": "Matteo 6:14-15",
           "scriptureId": "Matteo-6:14-15",
-          "healValue": 0.5
+          "answerValue": "PERFECT"
         }
       ]
     },
@@ -52,17 +52,17 @@
         {
           "displayReference": "Matteo 25:41",
           "scriptureId": "Matteo-25:41",
-          "healValue": 0.0
+          "answerValue": "BAD"
         },
         {
           "displayReference": "Matteo 11:28",
           "scriptureId": "Matteo-11:28",
-          "healValue": 0.3
+          "answerValue": "GOOD"
         },
         {
           "displayReference": "Luca 15:20",
           "scriptureId": "Luca-15:20",
-          "healValue": 0.5
+          "answerValue": "PERFECT"
         }
       ]
     }

@@ -12,17 +12,17 @@
         {
           "displayReference": "Isaia 41:10",
           "scriptureId": "Isaia-41:10",
-          "healValue": 0.5
+          "answerValue": "PERFECT"
         },
         {
           "displayReference": "Salmi 55:22",
           "scriptureId": "Salmi-55:22",
-          "healValue": 0.3
+          "answerValue": "GOOD"
         },
         {
           "displayReference": "Ecclesiaste 2:22-23",
           "scriptureId": "Ecclesiaste-2:22-23",
-          "healValue": 0.0
+          "answerValue": "BAD"
         }
       ]
     },
@@ -32,17 +32,17 @@
         {
           "displayReference": "Proverbi 3:5-6",
           "scriptureId": "Proverbi-3:5-6",
-          "healValue": 0.5
+          "answerValue": "PERFECT"
         },
         {
           "displayReference": "Salmi 23:4",
           "scriptureId": "Salmi-23:4",
-          "healValue": 0.3
+          "answerValue": "GOOD"
         },
         {
           "displayReference": "Ecclesiaste 1:14",
           "scriptureId": "Ecclesiaste-1:14",
-          "healValue": 0.0
+          "answerValue": "BAD"
         }
       ]
     },
@@ -52,17 +52,17 @@
         {
           "displayReference": "Geremia 17:5",
           "scriptureId": "Geremia-17:5",
-          "healValue": 0.0
+          "answerValue": "BAD"
         },
         {
           "displayReference": "Lamentazioni 3:25",
           "scriptureId": "Lamentazioni-3:25",
-          "healValue": 0.3
+          "answerValue": "GOOD"
         },
         {
           "displayReference": "Salmi 121:1-2",
           "scriptureId": "Salmi-121:1-2",
-          "healValue": 0.5
+          "answerValue": "PERFECT"
         }
       ]
     }

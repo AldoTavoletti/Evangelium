@@ -45,10 +45,7 @@ public class PlayerMenuServiceImpl implements PlayerMenuService {
 
     @Override
     public List<LevelMetadata> getLevelsByCategory(LevelCategory category) {
-        return levelCatalog.getLevelsByCategory(category).stream()
-                // Ordina i livelli in base all'ID in ordine alfabetico/numerico
-                .sorted(Comparator.comparing(LevelMetadata::id))
-                .toList();
+        return levelCatalog.getLevelsByCategory(category);
     }
 
     @Override

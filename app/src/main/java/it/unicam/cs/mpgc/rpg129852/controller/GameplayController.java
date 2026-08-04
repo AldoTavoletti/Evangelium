@@ -173,8 +173,9 @@ public class GameplayController {
     @FXML
     void onOptionButtonAction(ActionEvent event) {
         DiscipleResponse response = extractResponseFromEvent(event);
-        applyHealing(response.healValue());
-        evaluateGameState(response.healValue());
+        gameplayService.saveAnswer(response.answerValue());
+        applyHealing(response.answerValue().getHealValue());
+        evaluateGameState(response.answerValue().getHealValue());
     }
 
     private DiscipleResponse extractResponseFromEvent(ActionEvent event) {

@@ -9,12 +9,13 @@ import java.io.Reader;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ResourceRegistryImpl<T extends Resource> implements ResourceRegistry<T> {
 
-    private final Map<String, T> resources = new HashMap<>();
+    private final Map<String, T> resources = new LinkedHashMap<>();
     private final String jsonFilePath;
     private final Type listType;
     private final Gson gson;

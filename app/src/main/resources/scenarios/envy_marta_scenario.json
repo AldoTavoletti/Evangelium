@@ -12,17 +12,17 @@
         {
           "displayReference": "Salmi 37:1-2",
           "scriptureId": "Salmi-37:1-2",
-          "healValue": 0.5
+          "answerValue": "PERFECT"
         },
         {
           "displayReference": "Proverbi 23:17",
           "scriptureId": "Proverbi-23:17",
-          "healValue": 0.3
+          "answerValue": "GOOD"
         },
         {
           "displayReference": "Ecclesiaste 8:14",
           "scriptureId": "Ecclesiaste-8:14",
-          "healValue": 0.0
+          "answerValue": "BAD"
         }
       ]
     },
@@ -32,17 +32,17 @@
         {
           "displayReference": "Ecclesiaste 7:15",
           "scriptureId": "Ecclesiaste-7:15",
-          "healValue": 0.0
+          "answerValue": "BAD"
         },
         {
           "displayReference": "Salmi 37:16",
           "scriptureId": "Salmi-37:16",
-          "healValue": 0.3
+          "answerValue": "GOOD"
         },
         {
           "displayReference": "Proverbi 11:18",
           "scriptureId": "Proverbi-11:18",
-          "healValue": 0.5
+          "answerValue": "PERFECT"
         }
       ]
     },
@@ -52,17 +52,17 @@
         {
           "displayReference": "Salmi 37:7",
           "scriptureId": "Salmi-37:7",
-          "healValue": 0.5
+          "answerValue": "PERFECT"
         },
         {
           "displayReference": "Isaia 32:17",
           "scriptureId": "Isaia-32:17",
-          "healValue": 0.3
+          "answerValue": "GOOD"
         },
         {
           "displayReference": "Giobbe 21:7",
           "scriptureId": "Giobbe-21:7",
-          "healValue": 0.0
+          "answerValue": "BAD"
         }
       ]
     }

@@ -12,17 +12,17 @@
         {
           "displayReference": "Proverbi 24:29",
           "scriptureId": "Proverbi-24:29",
-          "healValue": 0.0
+          "answerValue": "BAD"
         },
         {
           "displayReference": "Levitico 19:18",
           "scriptureId": "Levitico-19:18",
-          "healValue": 0.5
+          "answerValue": "PERFECT"
         },
         {
           "displayReference": "Salmi 37:1-2",
           "scriptureId": "Salmi-37:1-2",
-          "healValue": 0.3
+          "answerValue": "GOOD"
         }
       ]
     },
@@ -32,17 +32,17 @@
         {
           "displayReference": "Proverbi 20:22",
           "scriptureId": "Proverbi-20:22",
-          "healValue": 0.3
+          "answerValue": "GOOD"
         },
         {
           "displayReference": "Esodo 21:24",
           "scriptureId": "Esodo-21:24",
-          "healValue": 0.0
+          "answerValue": "BAD"
         },
         {
           "displayReference": "Giobbe 31:29-31",
           "scriptureId": "Giobbe-31:29-31",
-          "healValue": 0.5
+          "answerValue": "PERFECT"
         }
       ]
     },
@@ -52,17 +52,17 @@
         {
           "displayReference": "Proverbi 25:21-22",
           "scriptureId": "Proverbi-25:21-22",
-          "healValue": 0.5
+          "answerValue": "PERFECT"
         },
         {
           "displayReference": "Michea 6:8",
           "scriptureId": "Michea-6:8",
-          "healValue": 0.3
+          "answerValue": "GOOD"
         },
         {
           "displayReference": "Salmi 137:8-9",
           "scriptureId": "Salmi-137:8-9",
-          "healValue": 0.0
+          "answerValue": "BAD"
         }
       ]
     }

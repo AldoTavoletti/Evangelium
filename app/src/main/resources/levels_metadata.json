@@ -1,6 +1,6 @@
 [
   {
-    "id": "lvl_01",
+    "id": "anger_marco",
     "category": "spiritual_guidance",
     "title": "L'ira di Marco",
     "description": "Marco ha subito un grave torto sul lavoro ed è consumato dal rancore.",
@@ -9,10 +9,10 @@
       "hope": 20,
       "love": 50
     },
-    "scenarioPath": "/scenarios/lvl_01_scenario.json"
+    "scenarioPath": "/scenarios/anger_marco_scenario.json"
   },
   {
-    "id": "lvl_02",
+    "id": "anxiety_elena",
     "category": "spiritual_guidance",
     "title": "L'ansia di Elena",
     "description": "Elena è schiacciata dalle incertezze economiche e dal terrore di non poter provvedere alla sua famiglia.",
@@ -21,22 +21,22 @@
       "hope": 30,
       "love": 10
     },
-    "scenarioPath": "/scenarios/lvl_02_scenario.json"
+    "scenarioPath": "/scenarios/anxiety_elena_scenario.json"
   },
   {
-  "id": "lvl_03",
-  "category": "spiritual_guidance",
-  "title": "Lorenzo",
-  "description": "Lorenzo",
-  "maxRewards": {
-  "faith": 30,
-  "hope": 50,
-  "love": 20
-},
-  "scenarioPath": "/scenarios/lvl_03_scenario.json"
+    "id": "guidance_lorenzo",
+    "category": "spiritual_guidance",
+    "title": "Lorenzo",
+    "description": "Lorenzo",
+    "maxRewards": {
+      "faith": 30,
+      "hope": 50,
+      "love": 20
+    },
+    "scenarioPath": "/scenarios/guidance_lorenzo_scenario.json"
   },
   {
-    "id": "lvl_04",
+    "id": "envy_marta",
     "category": "spiritual_guidance",
     "title": "Marta",
     "description": "Marta",
@@ -45,10 +45,10 @@
       "hope": 50,
       "love": 20
     },
-    "scenarioPath": "/scenarios/lvl_04_scenario.json"
+    "scenarioPath": "/scenarios/envy_marta_scenario.json"
   },
   {
-    "id": "lvl_06",
+    "id": "despair_giulio",
     "category": "mercy",
     "title": "Giulio",
     "description": "Giulio",
@@ -57,10 +57,22 @@
       "hope": 50,
       "love": 20
     },
-    "scenarioPath": "/scenarios/lvl_06_scenario.json"
+    "scenarioPath": "/scenarios/despair_giulio_scenario.json"
   },
   {
-    "id": "lvl_10",
+    "id": "rancor_simone",
+    "category": "mercy",
+    "title": "Simone",
+    "description": "Simone",
+    "maxRewards": {
+      "faith": 30,
+      "hope": 50,
+      "love": 20
+    },
+    "scenarioPath": "/scenarios/rancor_simone_scenario.json"
+  },
+  {
+    "id": "doubt_tommaso",
     "category": "theological_debate",
     "title": "Il dubbio di Tommaso",
     "description": "Una discussione sulla fede cieca.",
@@ -69,6 +81,6 @@
       "hope": 10,
       "love": 10
     },
-    "scenarioPath": "/scenarios/lvl_10_scenario.json"
+    "scenarioPath": "/scenarios/doubt_tommaso_scenario.json"
   }
 ]

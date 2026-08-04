@@ -1,10 +1,13 @@
 package it.unicam.cs.mpgc.rpg129852.service;
 
 import it.unicam.cs.mpgc.rpg129852.context.LevelSessionManager;
-import it.unicam.cs.mpgc.rpg129852.dto.UserPerformanceDetails;
+import it.unicam.cs.mpgc.rpg129852.dto.PhaseAnswer;
 import it.unicam.cs.mpgc.rpg129852.model.ProblemType;
 import it.unicam.cs.mpgc.rpg129852.model.Virtues;
 import it.unicam.cs.mpgc.rpg129852.dto.LevelPhase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameplayServiceImpl implements GameplayService {
 
@@ -12,6 +15,7 @@ public class GameplayServiceImpl implements GameplayService {
     private final LevelSaver levelSaver;
     private final LevelRewardsCalculator rewardsCalculator;
     private final LevelEngine levelEngine;
+    private List<PhaseAnswer> phaseAnswers;
 
     public GameplayServiceImpl(LevelSessionManager levelSessionManager,
                                LevelSaver levelSaver,
@@ -21,6 +25,11 @@ public class GameplayServiceImpl implements GameplayService {
         this.levelSaver = levelSaver;
         this.rewardsCalculator = rewardsCalculator;
         this.levelEngine = levelEngine;
+        phaseAnswers = new ArrayList<>();
+    }
+
+    public void saveAnswer(PhaseAnswer answer) {
+        phaseAnswers.add(answer);
     }
 
     @Override
@@ -65,9 +74,7 @@ public class GameplayServiceImpl implements GameplayService {
         Virtues maxRewards = levelSessionManager.getCurrentLevel().metadata().maxRewards();
         String currentLevelId = levelSessionManager.getCurrentLevel().metadata().id();
 
-        UserPerformanceDetails details = new UserPerformanceDetails(remainingProblem, currentPhase);
-
-        Virtues obtainedRewards = rewardsCalculator.calculate(maxRewards, totalPhases, details);
+        Virtues obtainedRewards = rewardsCalculator.calculate(maxRewards, phaseAnswers);
 
         levelSaver.save(currentLevelId, obtainedRewards);
     }

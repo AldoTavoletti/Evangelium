@@ -6,7 +6,8 @@ public enum ProblemType {
     ANXIETY ("Ansia"),
     LOST ("Smarrimento"),
     ENVY ("Invidia"),
-    DESPAIR ("Disperazione");
+    DESPAIR ("Disperazione"),
+    RANCOR ("Rancore");
 
         private final String problem;
 
