@@ -36,6 +36,18 @@
   "scenarioPath": "/scenarios/lvl_03_scenario.json"
   },
   {
+    "id": "lvl_04",
+    "category": "spiritual_guidance",
+    "title": "Marta",
+    "description": "Marta",
+    "maxRewards": {
+      "faith": 30,
+      "hope": 50,
+      "love": 20
+    },
+    "scenarioPath": "/scenarios/lvl_04_scenario.json"
+  },
+  {
     "id": "lvl_10",
     "category": "theological_debate",
     "title": "Il dubbio di Tommaso",

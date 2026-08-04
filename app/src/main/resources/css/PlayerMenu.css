@@ -197,3 +197,24 @@
     -fx-background-color: #d6eaf8;
     -fx-translate-y: 1px;
 }
+
+.check-perfect {
+    -fx-fill: #2ecc71; /* Verde pastello della virtù Hope */
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-effect: dropshadow(three-pass-box, rgba(46, 204, 113, 0.4), 5, 0, 0, 2);
+}
+
+.check-partial {
+    -fx-fill: #f39c12; /* Arancione per il parziale */
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-effect: dropshadow(three-pass-box, rgba(243, 156, 18, 0.4), 5, 0, 0, 2);
+}
+
+.check-failed {
+    -fx-fill: #e74c3c; /* Rosso pastello usato anche per il danno */
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-effect: dropshadow(three-pass-box, rgba(231, 76, 60, 0.4), 5, 0, 0, 2);
+}

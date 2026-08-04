@@ -101,10 +101,36 @@ public class PlayerMenuController {
 
     private void populateGrid(List<LevelMetadata> levels, boolean isUnlocked) {
         List<LevelCardNode> cards = levels.stream()
-                .map(level -> new LevelCardNode(level, isUnlocked, clickedCard -> handleCardClick(level, clickedCard)))
+                .map(level -> {
+                    // Recuperiamo il punteggio dal salvataggio
+                    Optional<Virtues> bestAttempt = menuService.getScoreForLevel(level.id());
+
+                    // Calcoliamo lo stato
+                    LevelCardNode.CompletionState state = determineCompletionState(level, bestAttempt);
+
+                    return new LevelCardNode(level, isUnlocked, state, clickedCard -> handleCardClick(level, clickedCard));
+                })
                 .toList();
 
         levelsContainer.getChildren().setAll(cards);
+    }
+
+    private LevelCardNode.CompletionState determineCompletionState(LevelMetadata level, Optional<Virtues> bestAttempt) {
+        if (bestAttempt.isEmpty()) {
+            return LevelCardNode.CompletionState.NONE;
+        }
+
+        Virtues scoreObtained = bestAttempt.get();
+        Virtues maxRewards = level.maxRewards();
+
+        // Verifica se tutte e tre le virtù ottenute sono a 0
+        if (scoreObtained.faith() == 0 && scoreObtained.hope() == 0 && scoreObtained.love() == 0) {
+            return LevelCardNode.CompletionState.FAILED;
+        } else if (scoreObtained.equals(maxRewards)) {
+            return LevelCardNode.CompletionState.PERFECT;
+        } else {
+            return LevelCardNode.CompletionState.PARTIAL;
+        }
     }
 
     private void handleCardClick(LevelMetadata level, LevelCardNode card) {
