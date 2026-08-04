@@ -24,6 +24,18 @@
     "scenarioPath": "/scenarios/lvl_2_scenario.json"
   },
   {
+  "id": "lvl_3",
+  "category": "spiritual_guidance",
+  "title": "Lorenzo",
+  "description": "Lorenzo",
+  "maxRewards": {
+  "faith": 30,
+  "hope": 50,
+  "love": 20
+},
+  "scenarioPath": "/scenarios/lvl_3_scenario.json"
+  },
+  {
     "id": "lvl_10",
     "category": "theological_debate",
     "title": "Il dubbio di Tommaso",

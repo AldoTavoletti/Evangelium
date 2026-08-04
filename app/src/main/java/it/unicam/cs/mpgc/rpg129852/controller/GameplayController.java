@@ -45,6 +45,8 @@ public class GameplayController {
     private final ViewRouter sceneManager;
 
     @FXML
+    private Label problemLabel;
+    @FXML
     private ImageView discipleImageView;
     @FXML
     private ImageView npcImageView;
@@ -140,6 +142,11 @@ public class GameplayController {
         npcDialogueTextArea.setText(currentPhase.npcDialogue());
         updateOptionButtons(currentPhase.responses());
         updatePhaseLabel();
+        updateProblemLabel();
+    }
+
+    private void updateProblemLabel() {
+        problemLabel.setText(gameplayService.getProblemType().getDisplayValue() + ": " + problemProgressBar.getProgress()*100);
     }
 
     private void updatePhaseLabel() {

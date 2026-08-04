@@ -2,7 +2,7 @@
   "npc": {
     "name": "Elena",
     "imagePath": "/images/npcs/blue-npc.png",
-    "problemType": "Ansia",
+    "problemType": "ANXIETY",
     "maxProblemValue": 1.0
   },
   "phases": [

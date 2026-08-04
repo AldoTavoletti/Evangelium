@@ -2,7 +2,7 @@
   "npc": {
     "name": "Marco",
     "imagePath": "/images/npcs/blue-npc.png",
-    "problemType": "Rabbia",
+    "problemType": "ANGER",
     "maxProblemValue": 1.0
   },
   "phases": [

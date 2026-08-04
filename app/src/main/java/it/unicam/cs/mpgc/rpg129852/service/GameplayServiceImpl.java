@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg129852.service;
 
 import it.unicam.cs.mpgc.rpg129852.context.LevelSessionManager;
 import it.unicam.cs.mpgc.rpg129852.dto.UserPerformanceDetails;
+import it.unicam.cs.mpgc.rpg129852.model.ProblemType;
 import it.unicam.cs.mpgc.rpg129852.model.Virtues;
 import it.unicam.cs.mpgc.rpg129852.dto.LevelPhase;
 
@@ -50,6 +51,11 @@ public class GameplayServiceImpl implements GameplayService {
     @Override
     public String getNpcImagePath() {
         return levelSessionManager.getCurrentLevel().scenario().npc().imagePath();
+    }
+
+    public ProblemType getProblemType() {
+        System.out.println(levelSessionManager.getCurrentLevel().scenario().npc());
+        return levelSessionManager.getCurrentLevel().scenario().npc().problemType();
     }
 
     @Override

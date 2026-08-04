@@ -2,7 +2,9 @@ package it.unicam.cs.mpgc.rpg129852.model;
 
 public enum ProblemType {
     ANGER ("Rabbia"),
-    SADNESS ("Tristezza");
+    SADNESS ("Tristezza"),
+    ANXIETY ("Ansia"),
+    LOST ("Smarrimento");
 
         private final String problem;
 
@@ -10,7 +12,7 @@ public enum ProblemType {
             this.problem = problem;
         }
 
-        public String getProblem() {
+        public String getDisplayValue() {
             return problem;
         }
 }
