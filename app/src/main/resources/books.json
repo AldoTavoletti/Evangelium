@@ -1,0 +1,20 @@
+[
+  {
+    "id": "SALMI",
+    "displayName": "Salmi",
+    "price": {
+      "faith": 200,
+      "hope": 100,
+      "love": 50
+    }
+  },
+  {
+    "id": "GALATI",
+    "displayName": "Galati",
+    "price": {
+      "faith": 200,
+      "hope": 100,
+      "love": 50
+    }
+  }
+]

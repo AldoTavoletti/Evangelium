@@ -2,9 +2,12 @@ package it.unicam.cs.mpgc.rpg129852;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
 import it.unicam.cs.mpgc.rpg129852.context.*;
 import it.unicam.cs.mpgc.rpg129852.controller.*;
 import it.unicam.cs.mpgc.rpg129852.dto.*;
+import it.unicam.cs.mpgc.rpg129852.model.Inventory;
+import it.unicam.cs.mpgc.rpg129852.model.InventoryImpl;
 import it.unicam.cs.mpgc.rpg129852.model.Level;
 import it.unicam.cs.mpgc.rpg129852.navigation.SceneManager;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
@@ -34,7 +37,8 @@ public class Main extends Application {
         String userHome = System.getProperty("user.home");
         Path saveDirectory = Paths.get(userHome, ".evangelium", "saves");
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(Inventory.class, (JsonDeserializer<Inventory>) (json, typeOfT, context) ->
+                context.deserialize(json, InventoryImpl.class)).create();
 
         GameRepository repository = new JsonGameRepository(saveDirectory, gson);
         GameSessionManager gameSessionManager = new GameContextImpl();
@@ -51,12 +55,18 @@ public class Main extends Application {
         ResourceRegistry<ScriptureResource> scriptureRegistry = new ResourceRegistryImpl<>("/scripture.json", ScriptureResource.class, gson);
         scriptureRegistry.loadResources();
 
+        ResourceRegistry<Book> bookRegistry = new ResourceRegistryImpl<>("/books.json", Book.class, gson);
+        bookRegistry.loadResources();
+
+        BookCatalog bookCatalog = new BookCatalogImpl(bookRegistry);
         LevelCatalog levelCatalog = createLevelCatalog(gson);
 
         PlayerMenuService playerMenuService = new PlayerMenuServiceImpl(gameSessionManager, levelCatalog, levelStarter);
 
         ControllerFactory controllerFactory = new ControllerFactory();
         ViewRouter sceneManager = new SceneManager(primaryStage, controllerFactory);
+
+        ShopService shopService = new ShopServiceImpl(gameSessionManager, repository);
 
         controllerFactory.register(MainMenuController.class,
                 () -> new MainMenuController(gameSessionManager, sceneManager));
@@ -72,6 +82,9 @@ public class Main extends Application {
 
         controllerFactory.register(GameplayController.class,
                 () -> new GameplayController(createGameplayService(levelSessionManager, gameSessionManager, repository), gameSessionManager, discipleAssetRegistry, scriptureRegistry, sceneManager));
+
+        controllerFactory.register(ShopController.class,
+                () -> new ShopController(bookCatalog, shopService, sceneManager));
 
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }

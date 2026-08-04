@@ -49,6 +49,9 @@ public class PlayerMenuController {
     @FXML
     private Button playButton;
 
+    @FXML
+    private Button shopButton;
+
     public PlayerMenuController(PlayerMenuService menuService,
                                 ResourceRegistry<DiscipleAsset> discipleAssetRegistry,
                                 ViewRouter sceneManager) {
@@ -74,6 +77,12 @@ public class PlayerMenuController {
 
         discipleHeaderController.initData(data, gif);
     }
+
+    @FXML
+    void onGoToShopButton(ActionEvent event){
+        sceneManager.switchScene(ViewRoute.SHOP);
+    }
+
 
     private void initCategoryButtons() {
         List<Button> buttons = Arrays.stream(LevelCategory.values())

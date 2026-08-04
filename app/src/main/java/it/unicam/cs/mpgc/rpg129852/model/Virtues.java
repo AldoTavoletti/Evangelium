@@ -20,4 +20,8 @@ public record Virtues(
         return 0;
     }
 
+    @Override
+    public String toString() {
+        return "Fede: " + faith + ", Speranza: " + hope + ", Carità: " + love;
+    }
 }

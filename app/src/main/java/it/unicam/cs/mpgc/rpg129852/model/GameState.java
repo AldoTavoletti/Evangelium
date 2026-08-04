@@ -8,16 +8,23 @@ import java.util.Optional;
 public class GameState {
 
     private DiscipleData discipleData;
+    private final Inventory inventory;
     private final Map<String, Virtues> levelScores;
 
-    public GameState(DiscipleData discipleData) {
+    public GameState(DiscipleData discipleData, Inventory inventory) {
         this.discipleData = discipleData;
+        this.inventory = inventory;
         this.levelScores = new HashMap<>();
     }
 
-    public GameState(DiscipleData discipleData, Map<String, Virtues> savedScores) {
+    public GameState(DiscipleData discipleData, Map<String, Virtues> savedScores, Inventory inventory) {
         this.discipleData = discipleData;
         this.levelScores = new HashMap<>(savedScores);
+        this.inventory = inventory;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 
     public void recordLevelScore(String levelId, Virtues score) {

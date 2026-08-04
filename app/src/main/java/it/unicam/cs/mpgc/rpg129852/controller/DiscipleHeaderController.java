@@ -1,7 +1,9 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
 import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,4 +26,6 @@ public class DiscipleHeaderController {
             discipleImageView.setImage(image);
         }
     }
+
+
 }

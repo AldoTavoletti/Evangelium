@@ -117,6 +117,7 @@ public class LoadGameController {
             sceneManager.switchScene(ViewRoute.PLAYER_MENU);
         } catch (Exception e) {
             AlertHelper.showError(ERR_LOAD_MSG, e.getMessage());
+            e.printStackTrace();
         }
     }
 
