@@ -48,6 +48,18 @@
     "scenarioPath": "/scenarios/lvl_04_scenario.json"
   },
   {
+    "id": "lvl_06",
+    "category": "mercy",
+    "title": "Giulio",
+    "description": "Giulio",
+    "maxRewards": {
+      "faith": 30,
+      "hope": 50,
+      "love": 20
+    },
+    "scenarioPath": "/scenarios/lvl_06_scenario.json"
+  },
+  {
     "id": "lvl_10",
     "category": "theological_debate",
     "title": "Il dubbio di Tommaso",
