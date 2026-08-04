@@ -184,7 +184,12 @@ public class GameplayController {
     }
 
     private void applyHealing(double healValue) {
-        problemProgressBar.setProgress(problemProgressBar.getProgress() - healValue);
+        double currentProgress = problemProgressBar.getProgress();
+        double newProgress = currentProgress - healValue;
+
+        newProgress = Math.round(newProgress * 100.0) / 100.0;
+
+        problemProgressBar.setProgress(newProgress);
     }
 
     private void evaluateGameState(double healValue) {
@@ -203,6 +208,7 @@ public class GameplayController {
 
     private void endLevel(String finalMessage) {
         setOptionsDisable(true);
+        updateProblemLabel();
         gameplayService.completeLevel(problemProgressBar.getProgress());
         playFeedbackAnimation(finalMessage, this::returnToMenu);
     }
