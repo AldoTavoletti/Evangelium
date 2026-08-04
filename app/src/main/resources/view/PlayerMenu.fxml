@@ -35,9 +35,11 @@
                         <ToolBar fx:id="categoryToolBar" prefHeight="49.0" prefWidth="522.0" />
 
                         <!-- TilePane: gestisce automaticamente il layout a griglia dei livelli (Layout Delegato) -->
-                        <TilePane fx:id="levelsContainer" alignment="TOP_LEFT" hgap="50.0" prefColumns="3" prefTileHeight="100.0" prefTileWidth="250.0" vgap="50.0">
+                        <!-- TilePane: gestisce automaticamente il layout a griglia dei livelli -->
+                        <!-- Ho cambiato prefTileHeight da 160.0 a 110.0 -->
+                        <TilePane fx:id="levelsContainer" alignment="TOP_LEFT" hgap="25.0" vgap="25.0" prefColumns="3" prefTileWidth="240.0" prefTileHeight="110.0">
                             <padding>
-                                <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                             </padding>
                         </TilePane>
                     </children>

@@ -6,6 +6,7 @@ import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
 import it.unicam.cs.mpgc.rpg129852.model.LevelCategory;
 import it.unicam.cs.mpgc.rpg129852.model.Virtues;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +45,10 @@ public class PlayerMenuServiceImpl implements PlayerMenuService {
 
     @Override
     public List<LevelMetadata> getLevelsByCategory(LevelCategory category) {
-        return levelCatalog.getLevelsByCategory(category);
+        return levelCatalog.getLevelsByCategory(category).stream()
+                // Ordina i livelli in base all'ID in ordine alfabetico/numerico
+                .sorted(Comparator.comparing(LevelMetadata::id))
+                .toList();
     }
 
     @Override
