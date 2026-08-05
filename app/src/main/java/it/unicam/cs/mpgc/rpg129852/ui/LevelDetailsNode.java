@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class LevelDetailsNode extends VBox {
 
-    public LevelDetailsNode(LevelMetadata level, Optional<Virtues> bestAttempt) {
+    public LevelDetailsNode(LevelMetadata level, String requiredBookNames, Optional<Virtues> bestAttempt) {
         this.setSpacing(10);
 
         Label title = new Label(level.title());
@@ -22,12 +22,15 @@ public class LevelDetailsNode extends VBox {
         Label rewards = new Label("Massimo ottenibile:\n" + formatRewardsText(level.maxRewards()));
         rewards.getStyleClass().add("level-detail-rewards");
 
+        Label requiredBooks = new Label("Libri necessari:\n" + requiredBookNames);
+        requiredBooks.getStyleClass().add("level-detail-rewards");
+
         if (bestAttempt.isPresent()) {
             Label bestAttemptLabel = new Label("Miglior tentativo:\n" + formatRewardsText(bestAttempt.get()));
             bestAttemptLabel.getStyleClass().add("level-detail-rewards");
-            this.getChildren().addAll(title, description, rewards, bestAttemptLabel);
+            this.getChildren().addAll(title, description, rewards, requiredBooks, bestAttemptLabel);
         }else{
-            this.getChildren().addAll(title, description, rewards);
+            this.getChildren().addAll(title, description, requiredBooks, rewards);
         }
     }
 

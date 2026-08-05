@@ -33,4 +33,12 @@ public class BookCatalogImpl implements BookCatalog {
                 .filter(book -> bookIds.contains(book.id()))
                 .toList();
     }
+
+    @Override
+    public List<String> getBookNamesFromIds(List<String> bookIds) {
+        return registry.getAllResources().stream()
+                .filter(book -> bookIds.contains(book.id()))
+                .map(Book::displayName)
+                .toList();
+    }
 }

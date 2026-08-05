@@ -102,53 +102,21 @@ public class PlayerMenuController {
     private void loadCardsForCategory(LevelCategory category) {
         resetUI();
 
-        boolean isUnlocked = checkCategoryUnlocked(category);
         List<LevelMetadata> categoryLevels = menuService.getLevelsByCategory(category);
 
-        populateGrid(categoryLevels, isUnlocked);
+        populateGrid(categoryLevels);
     }
 
-    private boolean checkCategoryUnlocked(LevelCategory category) {
-        Optional<LevelCategory> previousCategoryOpt = category.getPrevious();
 
-        // Se non c'è una categoria precedente (è la prima), è sempre sbloccata
-        if (previousCategoryOpt.isEmpty()) {
-            return true;
-        }
-
-        LevelCategory previousCategory = previousCategoryOpt.get();
-        List<LevelMetadata> previousLevels = menuService.getLevelsByCategory(previousCategory);
-
-        // Controlliamo ogni livello della categoria precedente
-        for (LevelMetadata level : previousLevels) {
-            Optional<Virtues> bestAttempt = menuService.getScoreForLevel(level.id());
-
-            // Se il livello non è mai stato giocato, blocca la categoria successiva
-            if (bestAttempt.isEmpty()) {
-                return false;
-            }
-
-            // Se il livello è stato giocato ma il punteggio è tutto zero (faccina rossa), blocca
-            Virtues score = bestAttempt.get();
-            if (score.faith() == 0 && score.hope() == 0 && score.love() == 0) {
-                return false;
-            }
-        }
-
-        // Se tutti i livelli sono stati superati almeno parzialmente, la categoria è sbloccata
-        return true;
-    }
-
-    private void populateGrid(List<LevelMetadata> levels, boolean isUnlocked) {
+    private void populateGrid(List<LevelMetadata> levels) {
         List<LevelCardNode> cards = levels.stream()
                 .map(level -> {
-                    // Recuperiamo il punteggio dal salvataggio
                     Optional<Virtues> bestAttempt = menuService.getScoreForLevel(level.id());
 
-                    // Calcoliamo lo stato
+
                     LevelCardNode.CompletionState state = determineCompletionState(level, bestAttempt);
 
-                    return new LevelCardNode(level, isUnlocked, state, clickedCard -> handleCardClick(level, clickedCard));
+                    return new LevelCardNode(level, state, clickedCard -> handleCardClick(level, clickedCard));
                 })
                 .toList();
 
@@ -163,7 +131,6 @@ public class PlayerMenuController {
         Virtues scoreObtained = bestAttempt.get();
         Virtues maxRewards = level.maxRewards();
 
-        // Verifica se tutte e tre le virtù ottenute sono a 0
         if (scoreObtained.faith() == 0 && scoreObtained.hope() == 0 && scoreObtained.love() == 0) {
             return LevelCardNode.CompletionState.FAILED;
         } else if (scoreObtained.equals(maxRewards)) {
@@ -190,7 +157,11 @@ public class PlayerMenuController {
         selectedCardNode.setSelected(true);
         selectedLevel = level;
 
-        playButton.setDisable(false);
+        boolean isUnlocked = menuService.hasRequiredBooks(level.requiredBookIds());
+
+        if (isUnlocked)
+            playButton.setDisable(false);
+
         updateDetailsContainer(level);
     }
 
@@ -218,7 +189,8 @@ public class PlayerMenuController {
 
         if (level != null) {
             Optional<Virtues> bestAttempt = menuService.getScoreForLevel(level.id());
-            detailsContainer.getChildren().add(new LevelDetailsNode(level, bestAttempt));
+            String requiredBookNames = menuService.getFormattedRequiredBookNames(level.requiredBookIds());
+            detailsContainer.getChildren().add(new LevelDetailsNode(level, requiredBookNames, bestAttempt));
         }
     }
 

@@ -15,4 +15,8 @@ public interface PlayerMenuService {
     List<LevelMetadata> getLevelsByCategory(LevelCategory category);
     void startLevel(LevelMetadata level);
     Optional<Virtues> getScoreForLevel(String levelId);
+
+    boolean hasRequiredBooks(List<String> requiredBookIds);
+
+    String getFormattedRequiredBookNames(List<String> requiredBookIds);
 }

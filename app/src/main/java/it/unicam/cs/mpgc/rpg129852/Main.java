@@ -61,7 +61,7 @@ public class Main extends Application {
         BookCatalog bookCatalog = new BookCatalogImpl(bookRegistry);
         LevelCatalog levelCatalog = createLevelCatalog(gson);
 
-        PlayerMenuService playerMenuService = new PlayerMenuServiceImpl(gameSessionManager, levelCatalog, levelStarter);
+        PlayerMenuService playerMenuService = new PlayerMenuServiceImpl(gameSessionManager, bookCatalog, levelCatalog, levelStarter);
 
         ControllerFactory controllerFactory = new ControllerFactory();
         ViewRouter sceneManager = new SceneManager(primaryStage, controllerFactory);

@@ -17,7 +17,7 @@ public class LevelCardNode extends StackPane {
         NONE, FAILED, PARTIAL, PERFECT
     }
 
-    public LevelCardNode(LevelMetadata level, boolean isUnlocked, CompletionState state, Consumer<LevelCardNode> onSelectAction) {
+    public LevelCardNode(LevelMetadata level, CompletionState state, Consumer<LevelCardNode> onSelectAction) {
         this.getStyleClass().add("level-card");
         this.setPrefSize(240, 110);
 
@@ -60,12 +60,8 @@ public class LevelCardNode extends StackPane {
             this.getChildren().add(statusIcon);
         }
 
-        if (!isUnlocked) {
-            this.setOpacity(0.5);
-        } else {
-            this.getStyleClass().add("level-card-unlocked");
-            this.setOnMouseClicked(e -> onSelectAction.accept(this));
-        }
+        this.getStyleClass().add("level-card-unlocked");
+        this.setOnMouseClicked(e -> onSelectAction.accept(this));
     }
 
     public void setSelected(boolean selected) {
