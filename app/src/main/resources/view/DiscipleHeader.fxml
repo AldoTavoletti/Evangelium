@@ -8,7 +8,7 @@
 
 <HBox alignment="CENTER_LEFT" prefHeight="80.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.rpg129852.controller.DiscipleHeaderController">
     <children>
-        <Label fx:id="discipleNameLabel">
+        <Label fx:id="discipleLabel">
             <HBox.margin>
                 <Insets left="30.0" />
             </HBox.margin>

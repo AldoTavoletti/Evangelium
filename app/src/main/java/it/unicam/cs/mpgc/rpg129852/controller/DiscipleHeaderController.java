@@ -1,31 +1,53 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
 import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
-import javafx.event.ActionEvent;
+import it.unicam.cs.mpgc.rpg129852.model.Virtues;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class DiscipleHeaderController {
 
-    @FXML private Label discipleNameLabel;
-    @FXML private ImageView discipleImageView;
-    @FXML private Label faithLabel;
-    @FXML private Label hopeLabel;
-    @FXML private Label loveLabel;
+    @FXML
+    private Label discipleLabel;
+
+    @FXML
+    private ImageView discipleImageView;
+
+    @FXML
+    private Label faithLabel;
+
+    @FXML
+    private Label hopeLabel;
+
+    @FXML
+    private Label loveLabel;
 
     public void initData(DiscipleData data, Image image) {
-        discipleNameLabel.setText(data.getName() + " | " + data.getJob());
-        faithLabel.setText("Fede: " + data.getVirtues().faith());
-        hopeLabel.setText("Speranza: " + data.getVirtues().hope());
-        loveLabel.setText("Carità: " + data.getVirtues().love());
 
+        Virtues virtues = data.getVirtues();
+        fillVirtuesLabels(virtues);
+
+        fillDiscipleLabel(data.getName(), data.getJob());
+
+        setDiscipleImage(image);
+
+    }
+
+    private void fillVirtuesLabels(Virtues virtues) {
+        faithLabel.setText("Fede: " + virtues.faith());
+        hopeLabel.setText("Speranza: " + virtues.hope());
+        loveLabel.setText("Carità: " + virtues.love());
+    }
+
+    private void fillDiscipleLabel(String discipleName, String discipleJob) {
+        discipleLabel.setText(discipleName + " | " + discipleJob);
+    }
+
+    private void setDiscipleImage(Image image) {
         if (image != null) {
             discipleImageView.setImage(image);
         }
     }
-
-
 }
