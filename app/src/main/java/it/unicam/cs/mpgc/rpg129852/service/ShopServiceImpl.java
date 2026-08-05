@@ -48,4 +48,9 @@ public class ShopServiceImpl implements ShopService {
                 .toList();
     }
 
+    @Override
+    public boolean canAfford(Book book) {
+        return !getAvailableVirtues().isGreaterThanOrEqualTo(book.price());
+    }
+
 }

@@ -10,4 +10,5 @@ public interface ShopService {
     Virtues getAvailableVirtues();
     List<Book> getAvailableBooks();
 
+    boolean canAfford(Book book);
 }
