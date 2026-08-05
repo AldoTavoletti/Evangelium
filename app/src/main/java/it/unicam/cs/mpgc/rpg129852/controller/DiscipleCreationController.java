@@ -1,15 +1,17 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
+import it.unicam.cs.mpgc.rpg129852.InvalidSaveNameException;
+import it.unicam.cs.mpgc.rpg129852.SaveAlreadyExistsException;
 import it.unicam.cs.mpgc.rpg129852.dto.DiscipleAsset;
-import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistry;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.service.GameStarter;
 import it.unicam.cs.mpgc.rpg129852.service.NewGameRequest;
 import it.unicam.cs.mpgc.rpg129852.ui.AlertHelper;
 import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigator;
-import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigatorImpl;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,7 +23,6 @@ import java.util.List;
 
 public class DiscipleCreationController {
 
-    private static final String ERROR_TITLE = "Errore Creazione Partita";
     private static final String INVALID_NAME_HEADER = "Nome non adatto";
     private static final String OVERWRITE_TITLE = "Salvataggio Esistente";
     private static final String OVERWRITE_HEADER = "Esiste già un salvataggio con questo nome.";
@@ -44,39 +45,20 @@ public class DiscipleCreationController {
     private Button startGameButton;
 
     public DiscipleCreationController(GameStarter gameStarter,
-                                      ResourceRegistry<DiscipleAsset> discipleAssetRegistry,
+                                      CircularListNavigator<DiscipleAsset> discipleAssetNavigator,
                                       List<String> jobs,
                                       ViewRouter sceneManager) {
         this.gameStarter = gameStarter;
-        this.discipleAssetNavigator = new CircularListNavigatorImpl<>(discipleAssetRegistry.getAllResources());
+        this.discipleAssetNavigator = discipleAssetNavigator;
         this.jobs = jobs;
         this.sceneManager = sceneManager;
     }
 
     @FXML
     public void initialize() {
-        updateGifImage();
         initJobSelector();
-        initNameField();
-    }
-
-    private void updateGifImage() {
-        DiscipleAsset discipleAsset = discipleAssetNavigator.getCurrentElement();
-        currentGifImage.setImage(ImageUtils.loadImage(discipleAsset.gifPath()));
-    }
-
-    private void initJobSelector() {
-        jobSelector.getItems().addAll(jobs);
-        jobSelector.getSelectionModel().selectFirst();
-    }
-
-    private void initNameField() {
-
-        startGameButton.setDisable(discipleNameField.getText().isEmpty());
-
-        discipleNameField.textProperty().addListener((observable, oldContent, newContent) ->
-                startGameButton.setDisable(newContent.isEmpty())
-        );
+        bindStartButtonToNameField();
+        updateGifImage();
     }
 
     @FXML
@@ -106,15 +88,37 @@ public class DiscipleCreationController {
         try {
             gameStarter.startNewGame(request);
             sceneManager.switchScene(ViewRoute.PLAYER_MENU);
-
-        } catch (IllegalStateException e) {
-            if (AlertHelper.askConfirmation(OVERWRITE_TITLE, OVERWRITE_HEADER, OVERWRITE_CONTENT)) {
-                gameStarter.overwriteAndStartNewGame(request);
-                sceneManager.switchScene(ViewRoute.PLAYER_MENU);
-            }
-        } catch (IllegalArgumentException e) {
+        } catch (SaveAlreadyExistsException e) {
+            handleExistingSave(request);
+        } catch (InvalidSaveNameException e) {
             AlertHelper.showError(INVALID_NAME_HEADER, e.getMessage());
         }
+    }
+
+    private void handleExistingSave(NewGameRequest request) {
+        if (AlertHelper.askConfirmation(OVERWRITE_TITLE, OVERWRITE_HEADER, OVERWRITE_CONTENT)) {
+            gameStarter.overwriteAndStartNewGame(request);
+            sceneManager.switchScene(ViewRoute.PLAYER_MENU);
+        }
+    }
+
+    private void updateGifImage() {
+        DiscipleAsset discipleAsset = discipleAssetNavigator.getCurrentElement();
+        currentGifImage.setImage(ImageUtils.loadImage(discipleAsset.gifPath()));
+    }
+
+    private void initJobSelector() {
+        jobSelector.getItems().addAll(jobs);
+        jobSelector.getSelectionModel().selectFirst();
+    }
+
+    private void bindStartButtonToNameField() {
+        BooleanBinding isNameBlank = Bindings.createBooleanBinding(
+                () -> discipleNameField.getText().isBlank(),
+                discipleNameField.textProperty()
+        );
+
+        startGameButton.disableProperty().bind(isNameBlank);
     }
 
     private NewGameRequest buildRequest() {

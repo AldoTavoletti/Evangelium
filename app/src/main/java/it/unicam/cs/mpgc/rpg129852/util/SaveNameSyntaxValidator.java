@@ -1,5 +1,7 @@
 package it.unicam.cs.mpgc.rpg129852.util;
 
+import it.unicam.cs.mpgc.rpg129852.InvalidSaveNameException;
+
 public class SaveNameSyntaxValidator implements SyntaxValidator {
 
     private static final String ILLEGAL_CHARACTERS_REGEX = ".*[\\\\/:*?\"<>|].*";
@@ -8,19 +10,19 @@ public class SaveNameSyntaxValidator implements SyntaxValidator {
     @Override
     public void validate(String name) {
         if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Il nome del salvataggio non può essere vuoto.");
+            throw new InvalidSaveNameException("The save name cannot be blank.");
         }
 
         if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException("Il nome del salvataggio non può superare i " + MAX_LENGTH + " caratteri.");
+            throw new InvalidSaveNameException("The save name cannot have more than " + MAX_LENGTH + " chars.");
         }
 
         if (name.matches(ILLEGAL_CHARACTERS_REGEX)) {
-            throw new IllegalArgumentException("Il nome contiene caratteri non validi per il file system: \\ / : * ? \" < > |");
+            throw new InvalidSaveNameException("The save name contains invalid symbols: \\ / : * ? \" < > |");
         }
 
         if (isReservedWindowsName(name)) {
-            throw new IllegalArgumentException("Il nome scelto è riservato dal sistema e non può essere utilizzato.");
+            throw new InvalidSaveNameException("The save name is reserved for your system.");
         }
     }
 

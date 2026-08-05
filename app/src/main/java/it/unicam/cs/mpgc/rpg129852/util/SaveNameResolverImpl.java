@@ -1,5 +1,6 @@
 package it.unicam.cs.mpgc.rpg129852.util;
 
+import it.unicam.cs.mpgc.rpg129852.SaveAlreadyExistsException;
 import it.unicam.cs.mpgc.rpg129852.persistence.AvailableSavesProvider;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class SaveNameResolverImpl implements SaveNameResolver {
 
         // semantic validation
         if (!forceOverwrite && takenNames.contains(name)) {
-            throw new IllegalStateException("A saving with the same name already exists.");
+            throw new SaveAlreadyExistsException("A saving with the same name already exists.");
         }
     }
 }

@@ -21,16 +21,16 @@ public class MainMenuController {
 
     private final ViewRouter sceneManager;
 
-    private final GameSessionManager sessionManager;
+    private final GameSessionManager gameSessionManager;
 
-    public MainMenuController(GameSessionManager sessionManager, ViewRouter sceneManager) {
+    public MainMenuController(GameSessionManager gameSessionManager, ViewRouter sceneManager) {
         this.sceneManager = sceneManager;
-        this.sessionManager = sessionManager;
+        this.gameSessionManager = gameSessionManager;
     }
 
     @FXML
     public void initialize() {
-        sessionManager.clearSession();
+        gameSessionManager.clearSession();
     }
 
     @FXML

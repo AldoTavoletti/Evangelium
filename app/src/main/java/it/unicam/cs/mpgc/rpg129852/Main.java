@@ -52,6 +52,8 @@ public class Main extends Application {
         ResourceRegistry<DiscipleAsset> discipleAssetRegistry = new ResourceRegistryImpl<>("/disciples_assets.json", DiscipleAsset.class, gson);
         discipleAssetRegistry.loadResources();
 
+        CircularListNavigator<DiscipleAsset> discipleAssetNavigator = new CircularListNavigatorImpl<>(discipleAssetRegistry.getAllResources());
+
         ResourceRegistry<ScriptureResource> scriptureRegistry = new ResourceRegistryImpl<>("/scripture.json", ScriptureResource.class, gson);
         scriptureRegistry.loadResources();
 
@@ -72,7 +74,7 @@ public class Main extends Application {
                 () -> new MainMenuController(gameSessionManager, sceneManager));
 
         controllerFactory.register(DiscipleCreationController.class,
-                () -> new DiscipleCreationController(gameStarter, discipleAssetRegistry, JOBS, sceneManager));
+                () -> new DiscipleCreationController(gameStarter, discipleAssetNavigator, JOBS, sceneManager));
 
         controllerFactory.register(LoadGameController.class,
                 () -> new LoadGameController(repository, gameLoader, sceneManager));
