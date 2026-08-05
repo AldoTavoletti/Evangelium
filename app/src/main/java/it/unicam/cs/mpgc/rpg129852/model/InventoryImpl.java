@@ -5,12 +5,12 @@ import it.unicam.cs.mpgc.rpg129852.dto.Book;
 import java.util.ArrayList;
 import java.util.List;
 
-public record InventoryImpl(List<Book> books) implements Inventory {
+public record InventoryImpl(List<String> bookIds) implements Inventory {
 
     // Compact constructor: fondamentale per Gson!
     // Intercetta la creazione dell'oggetto e forza la lista ad essere un'ArrayList mutabile.
     public InventoryImpl {
-        books = new ArrayList<>(books != null ? books : new ArrayList<>());
+        bookIds = new ArrayList<>(bookIds != null ? bookIds : new ArrayList<>());
     }
 
     public InventoryImpl() {
@@ -18,12 +18,17 @@ public record InventoryImpl(List<Book> books) implements Inventory {
     }
 
     @Override
-    public void addBook(Book bookToAdd) {
-        books.add(bookToAdd);
+    public void addBookId(String bookId) {
+        bookIds.add(bookId);
     }
 
     @Override
-    public boolean contains(List<Book> booksToCheck) {
-        return this.books.containsAll(booksToCheck);
+    public List<String> getBookIds() {
+        return List.copyOf(bookIds);
+    }
+
+    @Override
+    public boolean contains(List<String> bookIdsToCheck) {
+        return this.bookIds.containsAll(bookIdsToCheck);
     }
 }

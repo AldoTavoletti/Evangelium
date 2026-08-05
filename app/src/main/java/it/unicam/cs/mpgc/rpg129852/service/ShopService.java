@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ShopService {
     void buy(Book book);
-    List<Book> getBoughtBooks();
     Virtues getAvailableVirtues();
+    List<Book> getAvailableBooks();
+
 }

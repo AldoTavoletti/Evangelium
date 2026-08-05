@@ -66,7 +66,7 @@ public class Main extends Application {
         ControllerFactory controllerFactory = new ControllerFactory();
         ViewRouter sceneManager = new SceneManager(primaryStage, controllerFactory);
 
-        ShopService shopService = new ShopServiceImpl(gameSessionManager, repository);
+        ShopService shopService = new ShopServiceImpl(bookCatalog, gameSessionManager, repository);
 
         controllerFactory.register(MainMenuController.class,
                 () -> new MainMenuController(gameSessionManager, sceneManager));
@@ -84,7 +84,7 @@ public class Main extends Application {
                 () -> new GameplayController(createGameplayService(levelSessionManager, gameSessionManager, repository), gameSessionManager, discipleAssetRegistry, scriptureRegistry, sceneManager));
 
         controllerFactory.register(ShopController.class,
-                () -> new ShopController(bookCatalog, shopService, sceneManager));
+                () -> new ShopController(shopService, sceneManager));
 
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }

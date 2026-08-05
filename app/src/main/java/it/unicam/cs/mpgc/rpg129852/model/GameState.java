@@ -32,7 +32,7 @@ public class GameState {
 
         Optional<Virtues> previousScore = getScoreForLevel(levelId);
 
-        if (previousScore.isPresent() && score.compareTo(previousScore.get()) <= 0) {
+        if (previousScore.isPresent() && score.isLessThanOrEqualTo(previousScore.get())) {
             return;
         }
 

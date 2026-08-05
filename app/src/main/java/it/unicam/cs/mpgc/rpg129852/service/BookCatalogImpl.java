@@ -15,12 +15,22 @@ public class BookCatalogImpl implements BookCatalog {
         this.registry = registry;
     }
 
-    public List<Book> getNotBoughtBooks(List<Book> boughtBooks) {
-        List<Book> allBooks = registry.getAllResources();
+    @Override
+    public List<Book> getBooks() {
+        return List.copyOf(registry.getAllResources());
+    }
 
-        return allBooks.stream()
-                .filter(book -> !boughtBooks.contains(book))
+    @Override
+    public List<String> getBookIds() {
+        return registry.getAllResources().stream()
+                .map(Book::id)
                 .toList();
     }
 
+    @Override
+    public List<Book> getBooksFromIds(List<String> bookIds) {
+        return registry.getAllResources().stream()
+                .filter(book -> bookIds.contains(book.id()))
+                .toList();
+    }
 }

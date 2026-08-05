@@ -3,18 +3,18 @@
     "id": "SALMI",
     "displayName": "Salmi",
     "price": {
-      "faith": 200,
-      "hope": 100,
-      "love": 50
+      "faith": 30,
+      "hope": 10,
+      "love": 10
     }
   },
   {
     "id": "GALATI",
     "displayName": "Galati",
     "price": {
-      "faith": 200,
-      "hope": 100,
-      "love": 50
+      "faith": 10,
+      "hope": 10,
+      "love": 10
     }
   }
 ]

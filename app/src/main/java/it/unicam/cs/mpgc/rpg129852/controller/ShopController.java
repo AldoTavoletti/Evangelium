@@ -38,9 +38,9 @@ public class ShopController {
     private static final String EMPTY_BOOKS_MSG = "Tutti i libri sono stati acquistati.";
     private static final String ERR_BUY_MSG = "Impossibile comprare il libro";
 
-    private Image cartImageCache;
-
     private final ShopService shopService;
+    private Image cartImageCache;
+    private final ViewRouter sceneManager;
 
     @FXML
     private VBox booksContainer;
@@ -48,12 +48,8 @@ public class ShopController {
     @FXML
     private Label currentVirtuesLabel;
 
-    private final ViewRouter sceneManager;
-    private final BookCatalog bookCatalog;
-
-    public ShopController(BookCatalog bookCatalog, ShopService shopService, ViewRouter sceneManager) {
+    public ShopController(ShopService shopService, ViewRouter sceneManager) {
         this.sceneManager = sceneManager;
-        this.bookCatalog = bookCatalog;
         this.shopService = shopService;
     }
 
@@ -68,10 +64,7 @@ public class ShopController {
     private void refreshBooksList() {
         booksContainer.getChildren().clear();
 
-        // get the books
-        List<Book> alreadyBoughtBooks = shopService.getBoughtBooks();
-
-        List<Book> availableBooks = bookCatalog.getNotBoughtBooks(alreadyBoughtBooks);
+        List<Book> availableBooks = shopService.getAvailableBooks();
 
         if (availableBooks.isEmpty()) {
             booksContainer.getChildren().add(new Label(EMPTY_BOOKS_MSG));
@@ -116,7 +109,7 @@ public class ShopController {
             buyButton.setText("Buy");
         }
 
-        if (book.price().compareTo(shopService.getAvailableVirtues()) > 0)
+        if (!shopService.getAvailableVirtues().isGreaterThanOrEqualTo(book.price()))
             buyButton.setDisable(true);
 
         buyButton.setOnAction(event -> confirmAndBuyBook(book));
@@ -133,7 +126,7 @@ public class ShopController {
     private void executeBuy(Book book) {
         try {
             shopService.buy(book);
-            //todo: add book to inventory and take out spent virtues
+            currentVirtuesLabel.setText(shopService.getAvailableVirtues().toString());
             refreshBooksList();
         } catch (Exception e) {
             AlertHelper.showError(ERR_BUY_MSG, e.getMessage());

@@ -5,7 +5,7 @@ import it.unicam.cs.mpgc.rpg129852.dto.Book;
 import java.util.List;
 
 public interface Inventory {
-    void addBook(Book bookToAdd);
-    List<Book> books();
-    boolean contains(List<Book> books);
+    void addBookId(String bookId);
+    List<String> getBookIds();
+    boolean contains(List<String> bookIds);
 }

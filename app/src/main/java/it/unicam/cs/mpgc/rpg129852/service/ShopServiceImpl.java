@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg129852.service;
 
 import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
 import it.unicam.cs.mpgc.rpg129852.dto.Book;
+import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
 import it.unicam.cs.mpgc.rpg129852.model.Game;
 import it.unicam.cs.mpgc.rpg129852.model.Virtues;
 import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
@@ -12,15 +13,21 @@ public class ShopServiceImpl implements ShopService {
 
     private final GameSessionManager gameSessionManager;
     private final GameRepository repository;
+    private final BookCatalog bookCatalog;
 
-    public ShopServiceImpl(GameSessionManager gameSessionManager, GameRepository repository) {
+    public ShopServiceImpl(BookCatalog bookCatalog, GameSessionManager gameSessionManager, GameRepository repository) {
+        this.bookCatalog = bookCatalog;
         this.gameSessionManager = gameSessionManager;
         this.repository = repository;
     }
 
     public void buy(Book book) {
         Game game = gameSessionManager.getCurrentGame();
-        game.gameState().getInventory().addBook(book);
+        game.gameState().getInventory().addBookId(book.id());
+
+        DiscipleData discipleData = game.gameState().getDiscipleData();
+
+        discipleData.subtractVirtues(book.price());
 
         repository.save(game);
     }
@@ -31,8 +38,14 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public List<Book> getBoughtBooks() {
-        return gameSessionManager.getCurrentGame().gameState().getInventory().books();
+    public List<Book> getAvailableBooks() {
+        List<Book> allBooks = bookCatalog.getBooks();
+        List<String> boughtBookIds = gameSessionManager.getCurrentGame().gameState().getInventory().getBookIds();
+        List<Book> boughtBooks = bookCatalog.getBooksFromIds(boughtBookIds);
+
+        return allBooks.stream()
+                .filter(book -> !boughtBooks.contains(book))
+                .toList();
     }
 
 }

@@ -10,14 +10,12 @@ public record Virtues(
         return this.faith + this.hope + this.love;
     }
 
-    public int compareTo(Virtues other) {
-        if (this.getTotalPoints() > other.getTotalPoints())
-            return 1;
+    public boolean isGreaterThanOrEqualTo(Virtues other) {
+            return this.faith >= other.faith && this.hope >= other.hope && this.love >= other.love;
+    }
 
-        if (this.getTotalPoints() < other.getTotalPoints())
-            return -1;
-
-        return 0;
+    public boolean isLessThanOrEqualTo(Virtues other) {
+        return this.faith <= other.faith && this.hope <= other.hope && this.love <= other.love;
     }
 
     @Override
