@@ -5,6 +5,9 @@ import it.unicam.cs.mpgc.rpg129852.dto.PhaseAnswer;
 import it.unicam.cs.mpgc.rpg129852.model.ProblemType;
 import it.unicam.cs.mpgc.rpg129852.model.Virtues;
 import it.unicam.cs.mpgc.rpg129852.dto.LevelPhase;
+import it.unicam.cs.mpgc.rpg129852.service.level.LevelEngine;
+import it.unicam.cs.mpgc.rpg129852.service.level.LevelRewardsCalculator;
+import it.unicam.cs.mpgc.rpg129852.service.level.LevelSaver;
 
 import java.util.ArrayList;
 import java.util.List;

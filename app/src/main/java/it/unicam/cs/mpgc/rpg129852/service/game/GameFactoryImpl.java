@@ -1,6 +1,7 @@
-package it.unicam.cs.mpgc.rpg129852.service;
+package it.unicam.cs.mpgc.rpg129852.service.game;
 
 import it.unicam.cs.mpgc.rpg129852.model.*;
+import it.unicam.cs.mpgc.rpg129852.service.NewGameRequest;
 
 public class GameFactoryImpl implements GameFactory {
 

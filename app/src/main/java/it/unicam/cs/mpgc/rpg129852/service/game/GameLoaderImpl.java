@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg129852.service;
+package it.unicam.cs.mpgc.rpg129852.service.game;
 
 import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
 import it.unicam.cs.mpgc.rpg129852.model.Game;

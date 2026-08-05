@@ -1,12 +1,12 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
-import it.unicam.cs.mpgc.rpg129852.GameStorageException;
-import it.unicam.cs.mpgc.rpg129852.SaveCorruptedException;
-import it.unicam.cs.mpgc.rpg129852.SaveNotFoundException;
+import it.unicam.cs.mpgc.rpg129852.persistence.GameStorageException;
+import it.unicam.cs.mpgc.rpg129852.persistence.SaveCorruptedException;
+import it.unicam.cs.mpgc.rpg129852.persistence.SaveNotFoundException;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
-import it.unicam.cs.mpgc.rpg129852.service.GameLoader;
+import it.unicam.cs.mpgc.rpg129852.service.game.GameLoader;
 import it.unicam.cs.mpgc.rpg129852.ui.AlertHelper;
 import it.unicam.cs.mpgc.rpg129852.ui.SaveRowComponent;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;

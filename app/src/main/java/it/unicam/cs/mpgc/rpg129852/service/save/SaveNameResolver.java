@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg129852.util;
+package it.unicam.cs.mpgc.rpg129852.service.save;
 
 /**
  * Resolves and determines the final, safe name for a game save.

@@ -1,6 +1,6 @@
-package it.unicam.cs.mpgc.rpg129852.util;
+package it.unicam.cs.mpgc.rpg129852.service.save;
 
-import it.unicam.cs.mpgc.rpg129852.InvalidSaveNameException;
+import it.unicam.cs.mpgc.rpg129852.util.SyntaxValidator;
 
 public class SaveNameSyntaxValidator implements SyntaxValidator {
 

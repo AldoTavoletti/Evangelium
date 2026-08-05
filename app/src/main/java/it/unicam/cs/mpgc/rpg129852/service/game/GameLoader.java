@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg129852.service;
+package it.unicam.cs.mpgc.rpg129852.service.game;
 
 /**
  * Orchestrates the loading of a pre-existent game.
