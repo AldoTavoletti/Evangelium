@@ -1,6 +1,6 @@
 package it.unicam.cs.mpgc.rpg129852.service;
 
-import it.unicam.cs.mpgc.rpg129852.context.LevelSessionManager;
+import it.unicam.cs.mpgc.rpg129852.context.LevelProvider;
 import it.unicam.cs.mpgc.rpg129852.dto.PhaseAnswer;
 import it.unicam.cs.mpgc.rpg129852.model.ProblemType;
 import it.unicam.cs.mpgc.rpg129852.model.Virtues;
@@ -14,17 +14,17 @@ import java.util.List;
 
 public class GameplayServiceImpl implements GameplayService {
 
-    private final LevelSessionManager levelSessionManager;
+    private final LevelProvider levelProvider;
     private final LevelSaver levelSaver;
     private final LevelRewardsCalculator rewardsCalculator;
     private final LevelEngine levelEngine;
     private List<PhaseAnswer> phaseAnswers;
 
-    public GameplayServiceImpl(LevelSessionManager levelSessionManager,
+    public GameplayServiceImpl(LevelProvider levelProvider,
                                LevelSaver levelSaver,
                                LevelRewardsCalculator rewardsCalculator,
                                LevelEngine levelEngine) {
-        this.levelSessionManager = levelSessionManager;
+        this.levelProvider = levelProvider;
         this.levelSaver = levelSaver;
         this.rewardsCalculator = rewardsCalculator;
         this.levelEngine = levelEngine;
@@ -57,25 +57,25 @@ public class GameplayServiceImpl implements GameplayService {
 
     @Override
     public double getMaxProblemValue() {
-        return levelSessionManager.getCurrentLevel().scenario().npc().maxProblemValue();
+        return levelProvider.getCurrentLevel().scenario().npc().maxProblemValue();
     }
 
     @Override
     public String getNpcImagePath() {
-        return levelSessionManager.getCurrentLevel().scenario().npc().imagePath();
+        return levelProvider.getCurrentLevel().scenario().npc().imagePath();
     }
 
     public ProblemType getProblemType() {
-        System.out.println(levelSessionManager.getCurrentLevel().scenario().npc());
-        return levelSessionManager.getCurrentLevel().scenario().npc().problemType();
+        System.out.println(levelProvider.getCurrentLevel().scenario().npc());
+        return levelProvider.getCurrentLevel().scenario().npc().problemType();
     }
 
     @Override
     public void completeLevel(double remainingProblem) {
         int currentPhase = levelEngine.getCurrentPhaseNumber();
         int totalPhases = levelEngine.getTotalNumberOfPhases();
-        Virtues maxRewards = levelSessionManager.getCurrentLevel().metadata().maxRewards();
-        String currentLevelId = levelSessionManager.getCurrentLevel().metadata().id();
+        Virtues maxRewards = levelProvider.getCurrentLevel().metadata().maxRewards();
+        String currentLevelId = levelProvider.getCurrentLevel().metadata().id();
 
         Virtues obtainedRewards = rewardsCalculator.calculate(maxRewards, phaseAnswers);
 

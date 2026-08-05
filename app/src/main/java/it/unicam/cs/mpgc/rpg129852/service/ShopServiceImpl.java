@@ -1,6 +1,6 @@
 package it.unicam.cs.mpgc.rpg129852.service;
 
-import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
+import it.unicam.cs.mpgc.rpg129852.context.GameProvider;
 import it.unicam.cs.mpgc.rpg129852.dto.Book;
 import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
 import it.unicam.cs.mpgc.rpg129852.model.Game;
@@ -11,18 +11,18 @@ import java.util.List;
 
 public class ShopServiceImpl implements ShopService {
 
-    private final GameSessionManager gameSessionManager;
+    private final GameProvider gameProvider;
     private final GameRepository repository;
     private final BookCatalog bookCatalog;
 
-    public ShopServiceImpl(BookCatalog bookCatalog, GameSessionManager gameSessionManager, GameRepository repository) {
+    public ShopServiceImpl(BookCatalog bookCatalog, GameProvider gameProvider, GameRepository repository) {
         this.bookCatalog = bookCatalog;
-        this.gameSessionManager = gameSessionManager;
+        this.gameProvider = gameProvider;
         this.repository = repository;
     }
 
     public void buy(Book book) {
-        Game game = gameSessionManager.getCurrentGame();
+        Game game = gameProvider.getCurrentGame();
         game.gameState().getInventory().addBookId(book.id());
 
         DiscipleData discipleData = game.gameState().getDiscipleData();
@@ -34,13 +34,13 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public Virtues getAvailableVirtues() {
-        return gameSessionManager.getCurrentDiscipleData().getVirtues();
+        return gameProvider.getCurrentGame().gameState().getDiscipleData().getVirtues();
     }
 
     @Override
     public List<Book> getAvailableBooks() {
         List<Book> allBooks = bookCatalog.getBooks();
-        List<String> boughtBookIds = gameSessionManager.getCurrentGame().gameState().getInventory().getBookIds();
+        List<String> boughtBookIds = gameProvider.getCurrentGame().gameState().getInventory().getBookIds();
         List<Book> boughtBooks = bookCatalog.getBooksFromIds(boughtBookIds);
 
         return allBooks.stream()

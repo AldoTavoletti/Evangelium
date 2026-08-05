@@ -1,20 +1,21 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
-import it.unicam.cs.mpgc.rpg129852.dto.DiscipleAsset;
 import it.unicam.cs.mpgc.rpg129852.dto.LevelMetadata;
 import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
 import it.unicam.cs.mpgc.rpg129852.model.LevelCategory;
+import it.unicam.cs.mpgc.rpg129852.model.LevelCompletionState;
 import it.unicam.cs.mpgc.rpg129852.model.Virtues;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
-import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistry;
-import it.unicam.cs.mpgc.rpg129852.service.PlayerMenuService;
+import it.unicam.cs.mpgc.rpg129852.service.DiscipleProfileService;
+import it.unicam.cs.mpgc.rpg129852.service.LevelBrowserService;
+import it.unicam.cs.mpgc.rpg129852.service.level.LevelStarter;
+import it.unicam.cs.mpgc.rpg129852.ui.CategoryButtonComponent;
 import it.unicam.cs.mpgc.rpg129852.ui.LevelCardNode;
 import it.unicam.cs.mpgc.rpg129852.ui.LevelDetailsNode;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
@@ -27,177 +28,55 @@ import java.util.Optional;
 
 public class PlayerMenuController {
 
-    private static final String STYLE_CLASS_BUTTON = "button";
     private static final LevelCategory DEFAULT_CATEGORY = LevelCategory.SPIRITUAL_GUIDANCE;
 
+    private final DiscipleProfileService discipleProfile;
+    private final LevelBrowserService levelBrowser;
+    private final LevelStarter levelStarter;
     private final ViewRouter sceneManager;
-    private final PlayerMenuService menuService;
-    private final ResourceRegistry<DiscipleAsset> discipleAssetRegistry;
 
-    private LevelMetadata selectedLevel;
+    private LevelMetadata selectedLevelMetadata;
     private LevelCardNode selectedCardNode;
-    private int totalVirtues;
 
     @FXML
     private DiscipleHeaderController discipleHeaderController;
+
     @FXML
     private ToolBar categoryToolBar;
+
     @FXML
     private TilePane levelsContainer;
+
     @FXML
     private VBox detailsContainer;
+
     @FXML
     private Button playButton;
 
     @FXML
     private Button shopButton;
 
-    public PlayerMenuController(PlayerMenuService menuService,
-                                ResourceRegistry<DiscipleAsset> discipleAssetRegistry,
+    public PlayerMenuController(DiscipleProfileService discipleProfile,
+                                LevelStarter levelStarter,
+                                LevelBrowserService levelBrowser,
                                 ViewRouter sceneManager) {
-        this.menuService = menuService;
-        this.discipleAssetRegistry = discipleAssetRegistry;
+        this.discipleProfile = discipleProfile;
+        this.levelStarter = levelStarter;
+        this.levelBrowser = levelBrowser;
         this.sceneManager = sceneManager;
     }
 
     @FXML
     public void initialize() {
-        menuService.validateSession();
         setupDiscipleData();
-        initCategoryButtons();
+        initCategoryToolBar();
         loadCardsForCategory(DEFAULT_CATEGORY);
-    }
-
-    private void setupDiscipleData() {
-        DiscipleData data = menuService.getCurrentDiscipleData();
-        this.totalVirtues = menuService.getTotalVirtues();
-
-        DiscipleAsset asset = discipleAssetRegistry.getResource(data.getColor());
-        Image gif = ImageUtils.loadImage(asset.gifPath());
-
-        discipleHeaderController.initData(data, gif);
-    }
-
-    @FXML
-    void onGoToShopButton(ActionEvent event){
-        sceneManager.switchScene(ViewRoute.SHOP);
-    }
-
-
-    private void initCategoryButtons() {
-        List<Button> buttons = Arrays.stream(LevelCategory.values())
-                .map(this::createCategoryButton)
-                .toList();
-
-        categoryToolBar.getItems().setAll(buttons);
-    }
-
-    private Button createCategoryButton(LevelCategory category) {
-        Button btn = new Button(category.getDisplayName());
-        btn.getStyleClass().add(STYLE_CLASS_BUTTON);
-        btn.setOnAction(e -> loadCardsForCategory(category));
-        return btn;
-    }
-
-    private void loadCardsForCategory(LevelCategory category) {
-        resetUI();
-
-        List<LevelMetadata> categoryLevels = menuService.getLevelsByCategory(category);
-
-        populateGrid(categoryLevels);
-    }
-
-
-    private void populateGrid(List<LevelMetadata> levels) {
-        List<LevelCardNode> cards = levels.stream()
-                .map(level -> {
-                    Optional<Virtues> bestAttempt = menuService.getScoreForLevel(level.id());
-
-
-                    LevelCardNode.CompletionState state = determineCompletionState(level, bestAttempt);
-
-                    return new LevelCardNode(level, state, clickedCard -> handleCardClick(level, clickedCard));
-                })
-                .toList();
-
-        levelsContainer.getChildren().setAll(cards);
-    }
-
-    private LevelCardNode.CompletionState determineCompletionState(LevelMetadata level, Optional<Virtues> bestAttempt) {
-        if (bestAttempt.isEmpty()) {
-            return LevelCardNode.CompletionState.NONE;
-        }
-
-        Virtues scoreObtained = bestAttempt.get();
-        Virtues maxRewards = level.maxRewards();
-
-        if (scoreObtained.faith() == 0 && scoreObtained.hope() == 0 && scoreObtained.love() == 0) {
-            return LevelCardNode.CompletionState.FAILED;
-        } else if (scoreObtained.equals(maxRewards)) {
-            return LevelCardNode.CompletionState.PERFECT;
-        } else {
-            return LevelCardNode.CompletionState.PARTIAL;
-        }
-    }
-
-    private void handleCardClick(LevelMetadata level, LevelCardNode card) {
-        if (level.equals(this.selectedLevel)) {
-            unselectCurrentLevel();
-        } else {
-            selectLevel(level, card);
-        }
-    }
-
-    private void selectLevel(LevelMetadata level, LevelCardNode clickedCard) {
-        if (selectedCardNode != null) {
-            selectedCardNode.setSelected(false);
-        }
-
-        selectedCardNode = clickedCard;
-        selectedCardNode.setSelected(true);
-        selectedLevel = level;
-
-        boolean isUnlocked = menuService.hasRequiredBooks(level.requiredBookIds());
-
-        if (isUnlocked)
-            playButton.setDisable(false);
-
-        updateDetailsContainer(level);
-    }
-
-    private void unselectCurrentLevel() {
-        if (selectedCardNode != null) {
-            selectedCardNode.setSelected(false);
-        }
-        clearSelectionState();
-    }
-
-    private void resetUI() {
-        levelsContainer.getChildren().clear();
-        clearSelectionState();
-    }
-
-    private void clearSelectionState() {
-        selectedLevel = null;
-        selectedCardNode = null;
-        playButton.setDisable(true);
-        updateDetailsContainer(null);
-    }
-
-    private void updateDetailsContainer(LevelMetadata level) {
-        detailsContainer.getChildren().clear();
-
-        if (level != null) {
-            Optional<Virtues> bestAttempt = menuService.getScoreForLevel(level.id());
-            String requiredBookNames = menuService.getFormattedRequiredBookNames(level.requiredBookIds());
-            detailsContainer.getChildren().add(new LevelDetailsNode(level, requiredBookNames, bestAttempt));
-        }
     }
 
     @FXML
     void onPlayLevelAction(ActionEvent event) {
-        if (selectedLevel != null) {
-            menuService.startLevel(selectedLevel);
+        if (selectedLevelMetadata != null) {
+            levelStarter.start(selectedLevelMetadata);
             sceneManager.switchScene(ViewRoute.GAMEPLAY);
         }
     }
@@ -205,5 +84,103 @@ public class PlayerMenuController {
     @FXML
     void onReturnToMenuAction(ActionEvent event) {
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
+    }
+
+    @FXML
+    void onGoToShopButton(ActionEvent event) {
+        sceneManager.switchScene(ViewRoute.SHOP);
+    }
+
+    private void setupDiscipleData() {
+        DiscipleData data = discipleProfile.getCurrentData();
+        String gifPath = discipleProfile.getAvatarGifPath();
+        Image gif = ImageUtils.loadImage(gifPath);
+
+        discipleHeaderController.initData(data, gif);
+    }
+
+    private void initCategoryToolBar() {
+        List<CategoryButtonComponent> buttons = Arrays.stream(LevelCategory.values())
+                .map(category -> new CategoryButtonComponent(category, this::loadCardsForCategory))
+                .toList();
+
+        categoryToolBar.getItems().setAll(buttons);
+    }
+
+    private void loadCardsForCategory(LevelCategory category) {
+        resetUI();
+        List<LevelMetadata> categoryMetadataList = levelBrowser.getLevelsByCategory(category);
+        populateGrid(categoryMetadataList);
+    }
+
+    private void populateGrid(List<LevelMetadata> metadataList) {
+        List<LevelCardNode> cards = metadataList.stream()
+                .map(this::generateLevelCard)
+                .toList();
+
+        levelsContainer.getChildren().setAll(cards);
+    }
+
+    private LevelCardNode generateLevelCard(LevelMetadata levelMetadata) {
+        Optional<Virtues> bestAttempt = levelBrowser.getScoreForLevel(levelMetadata.id());
+        LevelCompletionState state = levelMetadata.evaluateAttempt(bestAttempt);
+
+        return new LevelCardNode(levelMetadata, state, clickedCard -> handleCardClick(levelMetadata, clickedCard));
+    }
+
+    private void handleCardClick(LevelMetadata levelMetadata, LevelCardNode clickedCard) {
+        if (levelMetadata.equals(this.selectedLevelMetadata)) {
+            clearSelection();
+        } else {
+            applyNewSelection(levelMetadata, clickedCard);
+        }
+    }
+
+    private void applyNewSelection(LevelMetadata levelMetadata, LevelCardNode clickedCard) {
+        if (selectedCardNode != null) {
+            selectedCardNode.setSelected(false);
+        }
+
+        selectedCardNode = clickedCard;
+        selectedCardNode.setSelected(true);
+        selectedLevelMetadata = levelMetadata;
+
+        refreshDetailsContainer(levelMetadata);
+
+        boolean isUnlocked = levelBrowser.isLevelUnlocked(levelMetadata);
+        playButton.setDisable(!isUnlocked);
+    }
+
+    private void refreshDetailsContainer(LevelMetadata levelMetadata) {
+        List<String> bookNames = levelBrowser.getRequiredBookNames(levelMetadata);
+        String formattedBookNames = formatRequiredBooks(bookNames);
+
+        Optional<Virtues> bestAttempt = levelBrowser.getScoreForLevel(levelMetadata.id());
+
+        detailsContainer.getChildren().setAll(new LevelDetailsNode(levelMetadata, formattedBookNames, bestAttempt));
+    }
+
+    private String formatRequiredBooks(List<String> bookNames) {
+        if (bookNames == null || bookNames.isEmpty()) {
+            return "Nessun requisito";
+        }
+        return String.join(", ", bookNames);
+    }
+
+    private void clearSelection() {
+        if (selectedCardNode != null) {
+            selectedCardNode.setSelected(false);
+        }
+
+        selectedLevelMetadata = null;
+        selectedCardNode = null;
+
+        playButton.setDisable(true);
+        detailsContainer.getChildren().clear();
+    }
+
+    private void resetUI() {
+        levelsContainer.getChildren().clear();
+        clearSelection();
     }
 }

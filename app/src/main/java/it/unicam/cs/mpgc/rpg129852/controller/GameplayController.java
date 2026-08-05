@@ -9,6 +9,7 @@ import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistry;
+import it.unicam.cs.mpgc.rpg129852.service.DiscipleProfileService;
 import it.unicam.cs.mpgc.rpg129852.service.GameplayService;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
 import javafx.animation.FadeTransition;
@@ -39,7 +40,7 @@ public class GameplayController {
     private static final String MSG_DEFEAT = "Hai perso!";
 
     private final GameplayService gameplayService;
-    private final GameSessionManager gameSessionManager;
+    private final DiscipleProfileService discipleProfile;
     private final ResourceRegistry<DiscipleAsset> discipleAssetRegistry;
     private final ResourceRegistry<ScriptureResource> scriptureResourceRegistry;
     private final ViewRouter sceneManager;
@@ -71,12 +72,12 @@ public class GameplayController {
     private SequentialTransition healAnimation;
 
     public GameplayController(GameplayService gameplayService,
-                              GameSessionManager gameSessionManager,
+                              DiscipleProfileService discipleProfile,
                               ResourceRegistry<DiscipleAsset> discipleAssetRegistry,
                               ResourceRegistry<ScriptureResource> scriptureResourceRegistry,
                               ViewRouter sceneManager) {
         this.gameplayService = gameplayService;
-        this.gameSessionManager = gameSessionManager;
+        this.discipleProfile = discipleProfile;
         this.discipleAssetRegistry = discipleAssetRegistry;
         this.scriptureResourceRegistry = scriptureResourceRegistry;
         this.sceneManager = sceneManager;
@@ -104,9 +105,11 @@ public class GameplayController {
     }
 
     private void initDiscipleImage() {
-        DiscipleData currentDiscipleData = gameSessionManager.getCurrentDiscipleData();
-        DiscipleAsset discipleImage = discipleAssetRegistry.getResource(currentDiscipleData.getColor());
-        discipleImageView.setImage(ImageUtils.loadImage(discipleImage.gifPath()));
+        DiscipleData data = discipleProfile.getCurrentData();
+        String gifPath = discipleProfile.getAvatarGifPath();
+        Image gif = ImageUtils.loadImage(gifPath);
+
+        discipleImageView.setImage(gif);
     }
 
     private void initNpcImage() {

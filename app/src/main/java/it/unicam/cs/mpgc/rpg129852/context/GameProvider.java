@@ -30,6 +30,4 @@ public interface GameProvider {
      * @return true if a game is currently active, false otherwise.
      */
     boolean hasActiveGame();
-
-    DiscipleData getCurrentDiscipleData();
 }

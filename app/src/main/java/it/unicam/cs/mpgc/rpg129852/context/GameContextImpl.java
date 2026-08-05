@@ -26,14 +26,6 @@ public class GameContextImpl implements GameSessionManager {
     }
 
     @Override
-    public DiscipleData getCurrentDiscipleData() {
-        if (!hasActiveGame())
-            throw new IllegalStateException("No active game in the context.");
-
-        return currentGame.gameState().getDiscipleData();
-    }
-
-    @Override
     public void clearSession() {
         this.currentGame = null;
     }
