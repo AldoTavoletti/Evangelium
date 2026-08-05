@@ -6,22 +6,25 @@ import it.unicam.cs.mpgc.rpg129852.model.ProblemType;
 
 public interface GameplayService {
 
-    void saveAnswer(PhaseAnswer answer);
+    void completeLevel();
+
+    void submitAnswer(PhaseAnswer answer);
+
+    boolean isLevelWon();
 
     boolean hasNextPhase();
 
+    double getCurrentProblemValue();
+
+    double getMaxProblemValue();
+
     LevelPhase getNextPhase();
+
+    ProblemType getProblemType();
 
     int getCurrentPhaseNumber();
 
     int getTotalNumberOfPhases();
 
-    double getMaxProblemValue();
-
     String getNpcImagePath();
-
-    ProblemType getProblemType();
-
-    void completeLevel(double remainingProblem);
-
 }

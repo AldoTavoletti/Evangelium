@@ -8,7 +8,7 @@ import it.unicam.cs.mpgc.rpg129852.model.Virtues;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.service.DiscipleProfileService;
-import it.unicam.cs.mpgc.rpg129852.service.LevelBrowserService;
+import it.unicam.cs.mpgc.rpg129852.service.level.LevelBrowserService;
 import it.unicam.cs.mpgc.rpg129852.service.level.LevelStarter;
 import it.unicam.cs.mpgc.rpg129852.ui.CategoryButtonComponent;
 import it.unicam.cs.mpgc.rpg129852.ui.LevelCardNode;

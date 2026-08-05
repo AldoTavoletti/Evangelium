@@ -1,11 +1,10 @@
-package it.unicam.cs.mpgc.rpg129852.service;
+package it.unicam.cs.mpgc.rpg129852.service.level;
 
 import it.unicam.cs.mpgc.rpg129852.context.GameProvider;
 import it.unicam.cs.mpgc.rpg129852.dto.LevelMetadata;
-import it.unicam.cs.mpgc.rpg129852.model.GameState;
 import it.unicam.cs.mpgc.rpg129852.model.LevelCategory;
 import it.unicam.cs.mpgc.rpg129852.model.Virtues;
-import it.unicam.cs.mpgc.rpg129852.service.level.LevelCatalog;
+import it.unicam.cs.mpgc.rpg129852.service.BookCatalog;
 
 import java.util.List;
 import java.util.Optional;

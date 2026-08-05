@@ -19,38 +19,38 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="300.0">
                <children>
                   <ImageView fx:id="discipleImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="currentPhaseLabel" />
+                  <Label fx:id="phaseCounterLabel" />
                   <ImageView fx:id="npcImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                </children>
                <VBox.margin>
                   <Insets bottom="100.0" />
                </VBox.margin>
             </HBox>
-            <Label fx:id="healFeedbackLabel" opacity="0.0">
+            <Label fx:id="feedbackLabel" opacity="0.0">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin></Label>
-            <Label fx:id="problemLabel">
+            <Label fx:id="problemSeverityLabel">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <ProgressBar fx:id="problemProgressBar" maxWidth="1000.0" prefWidth="200.0">
+            <ProgressBar fx:id="severityProgressBar" maxWidth="1000.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </ProgressBar>
-            <TextArea fx:id="npcDialogueTextArea" editable="false" maxHeight="150.0" maxWidth="1000.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+            <TextArea fx:id="dialogueTextArea" editable="false" maxHeight="150.0" maxWidth="1000.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                <children>
-                  <Button id="0" fx:id="firstOptionButton" mnemonicParsing="false" onAction="#onOptionButtonAction" onMouseEntered="#onOptionButtonHover" onMouseExited="#onOptionButtonExit" styleClass="option-button" text="Button" />
-                  <Button id="1" fx:id="secondOptionButton" mnemonicParsing="false" onAction="#onOptionButtonAction" onMouseEntered="#onOptionButtonHover" onMouseExited="#onOptionButtonExit" styleClass="option-button" text="Button" />
-                  <Button id="2" fx:id="thirdOptionButton" mnemonicParsing="false" onAction="#onOptionButtonAction" onMouseEntered="#onOptionButtonHover" onMouseExited="#onOptionButtonExit" styleClass="option-button" text="Button" />
+                  <Button id="0" fx:id="firstResponseButton" mnemonicParsing="false" onAction="#onResponseButtonClicked" onMouseEntered="#onResponseButtonHover" onMouseExited="#onResponseButtonExit" styleClass="response-button" text="Button" />
+                  <Button id="1" fx:id="secondResponseButton" mnemonicParsing="false" onAction="#onResponseButtonClicked" onMouseEntered="#onResponseButtonHover" onMouseExited="#onResponseButtonExit" styleClass="response-button" text="Button" />
+                  <Button id="2" fx:id="thirdResponseButton" mnemonicParsing="false" onAction="#onResponseButtonClicked" onMouseEntered="#onResponseButtonHover" onMouseExited="#onResponseButtonExit" styleClass="response-button" text="Button" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="returnToMenuButton" layoutX="20.0" layoutY="20.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#onReturnToMenuAction" prefHeight="60.0" prefWidth="60.0" styleClass="arrow">
+      <Button fx:id="returnToMenuButton" layoutX="20.0" layoutY="20.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#onReturnToMenuClicked" prefHeight="60.0" prefWidth="60.0" styleClass="arrow">
          <graphic>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>

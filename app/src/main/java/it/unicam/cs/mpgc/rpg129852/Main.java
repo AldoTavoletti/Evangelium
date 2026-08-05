@@ -46,6 +46,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle(APP_TITLE);
+        primaryStage.setResizable(false);
 
         // 1. Core Config & Persistence
         Gson gson = configureGson();
@@ -63,6 +64,7 @@ public class Main extends Application {
 
         // 4. Domain Services
         BookCatalog bookCatalog = new BookCatalogImpl(bookRegistry);
+        ScriptureCatalog scriptureCatalog = new ScriptureCatalogImpl(scriptureRegistry);
         GameLoader gameLoader = new GameLoaderImpl(repository, gameSessionManager);
         GameStarter gameStarter = createGameStarter(repository, gameSessionManager);
         LevelStarter levelStarter = createLevelStarter(levelSessionManager, gson);
@@ -79,7 +81,7 @@ public class Main extends Application {
 
         registerControllers(controllerFactory, sceneManager, gameSessionManager, levelSessionManager, repository,
                 gameStarter, gameLoader, levelStarter, levelBrowser, discipleProfile, shopService,
-                discipleRegistry, scriptureRegistry, discipleNavigator);
+                discipleRegistry, scriptureCatalog, discipleNavigator);
 
         // 6. App Startup
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
@@ -131,7 +133,7 @@ public class Main extends Application {
                                      LevelStarter levelStarter, LevelBrowserService levelBrowser,
                                      DiscipleProfileService discipleProfile, ShopService shopService,
                                      ResourceRegistry<DiscipleAsset> discipleRegistry,
-                                     ResourceRegistry<ScriptureResource> scriptureRegistry,
+                                     ScriptureCatalog scriptureCatalog,
                                      CircularListNavigator<DiscipleAsset> discipleNavigator) {
 
         factory.register(MainMenuController.class,
@@ -148,7 +150,7 @@ public class Main extends Application {
 
         factory.register(GameplayController.class,
                 () -> new GameplayController(createGameplayService(levelSessionManager, gameSessionManager, repository),
-                        discipleProfile, discipleRegistry, scriptureRegistry, sceneManager));
+                        discipleProfile, scriptureCatalog, sceneManager));
 
         factory.register(ShopController.class,
                 () -> new ShopController(shopService, sceneManager));

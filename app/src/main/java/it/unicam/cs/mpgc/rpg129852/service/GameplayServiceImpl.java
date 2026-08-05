@@ -1,10 +1,10 @@
 package it.unicam.cs.mpgc.rpg129852.service;
 
 import it.unicam.cs.mpgc.rpg129852.context.LevelProvider;
+import it.unicam.cs.mpgc.rpg129852.dto.LevelPhase;
 import it.unicam.cs.mpgc.rpg129852.dto.PhaseAnswer;
 import it.unicam.cs.mpgc.rpg129852.model.ProblemType;
 import it.unicam.cs.mpgc.rpg129852.model.Virtues;
-import it.unicam.cs.mpgc.rpg129852.dto.LevelPhase;
 import it.unicam.cs.mpgc.rpg129852.service.level.LevelEngine;
 import it.unicam.cs.mpgc.rpg129852.service.level.LevelRewardsCalculator;
 import it.unicam.cs.mpgc.rpg129852.service.level.LevelSaver;
@@ -18,7 +18,9 @@ public class GameplayServiceImpl implements GameplayService {
     private final LevelSaver levelSaver;
     private final LevelRewardsCalculator rewardsCalculator;
     private final LevelEngine levelEngine;
-    private List<PhaseAnswer> phaseAnswers;
+
+    private final List<PhaseAnswer> phaseAnswers;
+    private double currentProblemValue;
 
     public GameplayServiceImpl(LevelProvider levelProvider,
                                LevelSaver levelSaver,
@@ -28,11 +30,43 @@ public class GameplayServiceImpl implements GameplayService {
         this.levelSaver = levelSaver;
         this.rewardsCalculator = rewardsCalculator;
         this.levelEngine = levelEngine;
-        phaseAnswers = new ArrayList<>();
+        this.phaseAnswers = new ArrayList<>();
+
+        this.currentProblemValue = getMaxProblemValue();
     }
 
-    public void saveAnswer(PhaseAnswer answer) {
+    @Override
+    public void completeLevel() {
+
+        Virtues maxRewards = levelProvider.getCurrentLevel().metadata().maxRewards();
+        String currentLevelId = levelProvider.getCurrentLevel().metadata().id();
+
+        Virtues obtainedRewards = rewardsCalculator.calculate(maxRewards, phaseAnswers);
+
+        levelSaver.save(currentLevelId, obtainedRewards);
+    }
+
+    @Override
+    public void submitAnswer(PhaseAnswer answer) {
         phaseAnswers.add(answer);
+
+        double newProgress = this.currentProblemValue - answer.getHealValue();
+        this.currentProblemValue = Math.round(newProgress * 100.0) / 100.0;
+    }
+
+    @Override
+    public boolean isLevelWon() {
+        return this.currentProblemValue <= 0.0;
+    }
+
+    @Override
+    public double getCurrentProblemValue() {
+        return this.currentProblemValue;
+    }
+
+    @Override
+    public double getMaxProblemValue() {
+        return levelProvider.getCurrentLevel().scenario().npc().maxProblemValue();
     }
 
     @Override
@@ -56,29 +90,13 @@ public class GameplayServiceImpl implements GameplayService {
     }
 
     @Override
-    public double getMaxProblemValue() {
-        return levelProvider.getCurrentLevel().scenario().npc().maxProblemValue();
-    }
-
-    @Override
     public String getNpcImagePath() {
         return levelProvider.getCurrentLevel().scenario().npc().imagePath();
     }
 
+    @Override
     public ProblemType getProblemType() {
-        System.out.println(levelProvider.getCurrentLevel().scenario().npc());
         return levelProvider.getCurrentLevel().scenario().npc().problemType();
     }
 
-    @Override
-    public void completeLevel(double remainingProblem) {
-        int currentPhase = levelEngine.getCurrentPhaseNumber();
-        int totalPhases = levelEngine.getTotalNumberOfPhases();
-        Virtues maxRewards = levelProvider.getCurrentLevel().metadata().maxRewards();
-        String currentLevelId = levelProvider.getCurrentLevel().metadata().id();
-
-        Virtues obtainedRewards = rewardsCalculator.calculate(maxRewards, phaseAnswers);
-
-        levelSaver.save(currentLevelId, obtainedRewards);
-    }
 }
