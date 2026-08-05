@@ -1,10 +1,14 @@
 package it.unicam.cs.mpgc.rpg129852.persistence;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
+import it.unicam.cs.mpgc.rpg129852.GameStorageException;
+import it.unicam.cs.mpgc.rpg129852.SaveCorruptedException;
+import it.unicam.cs.mpgc.rpg129852.SaveNotFoundException;
 import it.unicam.cs.mpgc.rpg129852.model.Game;
 import it.unicam.cs.mpgc.rpg129852.model.GameState;
 import org.jspecify.annotations.NonNull;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -56,7 +60,7 @@ public class JsonGameRepository implements GameRepository {
                     .toList();
 
         } catch (IOException e) {
-            throw new RuntimeException("Cannot read the save directory.", e);
+            throw new GameStorageException("Cannot read the save directory.", e);
         }
     }
 
@@ -64,16 +68,17 @@ public class JsonGameRepository implements GameRepository {
         try (Writer writer = Files.newBufferedWriter(fullPath, StandardCharsets.UTF_8)) {
             gson.toJson(gameState, writer);
         } catch (IOException e) {
-            throw new RuntimeException("Cannot save the game in this path: " + fullPath, e);
+            throw new GameStorageException("Cannot save the game in this path: " + fullPath, e);
         }
     }
 
     private @NonNull GameState getGameState(Path fullPath) {
         try (Reader reader = Files.newBufferedReader(fullPath, StandardCharsets.UTF_8)) {
-            GameState loadedState = gson.fromJson(reader, GameState.class);
-            return loadedState;
-        } catch (Exception e) {
-            throw new RuntimeException("Cannot load the saving.", e);
+            return gson.fromJson(reader, GameState.class);
+        } catch (JsonParseException e) {
+            throw new SaveCorruptedException("The save file is corrupted or invalid: " + fullPath, e);
+        } catch (IOException e) {
+            throw new GameStorageException("Cannot read the save file at path: " + fullPath, e);
         }
     }
 
@@ -81,7 +86,7 @@ public class JsonGameRepository implements GameRepository {
         try {
             Files.delete(fullPath);
         } catch (IOException e) {
-            throw new RuntimeException("Cannot delete save file at this path:" + fullPath, e);
+            throw new GameStorageException("Cannot delete save file at this path:" + fullPath, e);
         }
     }
 
@@ -89,7 +94,7 @@ public class JsonGameRepository implements GameRepository {
         Path fullPath = saveDirectory.resolve(saveName + EXTENSION);
 
         if (!Files.exists(fullPath)) {
-            throw new IllegalArgumentException("The saving doesn't exist: " + saveName);
+            throw new SaveNotFoundException("The saving doesn't exist: " + saveName);
         }
 
         return fullPath;
@@ -99,8 +104,7 @@ public class JsonGameRepository implements GameRepository {
         try {
             Files.createDirectories(saveDirectory);
         } catch (IOException e) {
-            throw new RuntimeException("Cannot create the save directory in: " + saveDirectory, e);
+            throw new GameStorageException("Cannot create the save directory in: " + saveDirectory, e);
         }
     }
-
 }

@@ -10,6 +10,9 @@ import javafx.scene.control.Button;
 
 public class MainMenuController {
 
+    private final GameSessionManager gameSessionManager;
+    private final ViewRouter sceneManager;
+
     @FXML
     private Button loadGameButton;
 
@@ -18,10 +21,6 @@ public class MainMenuController {
 
     @FXML
     private Button quitButton;
-
-    private final ViewRouter sceneManager;
-
-    private final GameSessionManager gameSessionManager;
 
     public MainMenuController(GameSessionManager gameSessionManager, ViewRouter sceneManager) {
         this.sceneManager = sceneManager;
