@@ -28,7 +28,7 @@ public class LevelDetailsNode extends VBox {
         if (bestAttempt.isPresent()) {
             Label bestAttemptLabel = new Label("Miglior tentativo:\n" + formatRewardsText(bestAttempt.get()));
             bestAttemptLabel.getStyleClass().add("level-detail-rewards");
-            this.getChildren().addAll(title, description, rewards, requiredBooks, bestAttemptLabel);
+            this.getChildren().addAll(title, description, requiredBooks, rewards, bestAttemptLabel);
         }else{
             this.getChildren().addAll(title, description, requiredBooks, rewards);
         }
