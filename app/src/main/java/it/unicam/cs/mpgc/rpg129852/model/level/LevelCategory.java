@@ -5,14 +5,14 @@ import java.util.Optional;
 
 public enum LevelCategory {
 
-    @SerializedName("spiritual_guidance")
-    SPIRITUAL_GUIDANCE("Direzione Spirituale"),
+    @SerializedName("faith")
+    SPIRITUAL_GUIDANCE("Fede"),
 
-    @SerializedName("mercy")
-    MERCY("Livelli della Misericordia"),
+    @SerializedName("hope")
+    MERCY("Speranza"),
 
-    @SerializedName("theological_debate")
-    THEOLOGICAL_DEBATE("Dibattiti Teologici");
+    @SerializedName("love")
+    THEOLOGICAL_DEBATE("Carità");
 
     private final String displayName;
 
@@ -24,11 +24,4 @@ public enum LevelCategory {
         return this.displayName;
     }
 
-    public Optional<LevelCategory> getPrevious() {
-        int ordinal = this.ordinal();
-        if (ordinal == 0) {
-            return Optional.empty(); // La prima categoria non ha precedenti
-        }
-        return Optional.of(LevelCategory.values()[ordinal - 1]);
-    }
 }

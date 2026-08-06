@@ -1,7 +1,7 @@
 [
   {
     "id": "anger_marco",
-    "category": "spiritual_guidance",
+    "category": "faith",
     "title": "L'ira di Marco",
     "description": "Marco ha subito un grave torto sul lavoro ed è consumato dal rancore.",
     "maxRewards": {
@@ -11,83 +11,5 @@
     },
     "requiredBookIds": [],
     "scenarioPath": "/data/scenarios/anger_marco_scenario.json"
-  },
-  {
-    "id": "anxiety_elena",
-    "category": "spiritual_guidance",
-    "title": "L'ansia di Elena",
-    "description": "Elena è schiacciata dalle incertezze economiche e dal terrore di non poter provvedere alla sua famiglia.",
-    "maxRewards": {
-      "faith": 40,
-      "hope": 30,
-      "love": 10
-    },
-    "requiredBookIds": [],
-    "scenarioPath": "/data/scenarios/anxiety_elena_scenario.json"
-  },
-  {
-    "id": "guidance_lorenzo",
-    "category": "spiritual_guidance",
-    "title": "Lorenzo",
-    "description": "Lorenzo",
-    "maxRewards": {
-      "faith": 30,
-      "hope": 50,
-      "love": 20
-    },
-    "requiredBookIds": [],
-    "scenarioPath": "/data/scenarios/guidance_lorenzo_scenario.json"
-  },
-  {
-    "id": "envy_marta",
-    "category": "spiritual_guidance",
-    "title": "Marta",
-    "description": "Marta",
-    "maxRewards": {
-      "faith": 30,
-      "hope": 50,
-      "love": 20
-    },
-    "requiredBookIds": [],
-    "scenarioPath": "/data/scenarios/envy_marta_scenario.json"
-  },
-  {
-    "id": "despair_giulio",
-    "category": "mercy",
-    "title": "Giulio",
-    "description": "Giulio",
-    "maxRewards": {
-      "faith": 30,
-      "hope": 50,
-      "love": 20
-    },
-    "requiredBookIds": [],
-    "scenarioPath": "/data/scenarios/despair_giulio_scenario.json"
-  },
-  {
-    "id": "rancor_simone",
-    "category": "mercy",
-    "title": "Simone",
-    "description": "Simone",
-    "maxRewards": {
-      "faith": 30,
-      "hope": 50,
-      "love": 20
-    },
-    "requiredBookIds": [],
-    "scenarioPath": "/data/scenarios/rancor_simone_scenario.json"
-  },
-  {
-    "id": "doubt_tommaso",
-    "category": "theological_debate",
-    "title": "Il dubbio di Tommaso",
-    "description": "Una discussione sulla fede cieca.",
-    "maxRewards": {
-      "faith": 40,
-      "hope": 10,
-      "love": 10
-    },
-    "requiredBookIds": ["GALATI"],
-    "scenarioPath": "/data/scenarios/doubt_tommaso_scenario.json"
   }
 ]
