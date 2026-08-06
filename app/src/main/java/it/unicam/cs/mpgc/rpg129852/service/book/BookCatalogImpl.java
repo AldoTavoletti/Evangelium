@@ -14,15 +14,8 @@ public class BookCatalogImpl implements BookCatalog {
     }
 
     @Override
-    public List<Book> getBooks() {
+    public List<Book> getAllBooks() {
         return List.copyOf(registry.getAllResources());
-    }
-
-    @Override
-    public List<String> getBookIds() {
-        return registry.getAllResources().stream()
-                .map(Book::id)
-                .toList();
     }
 
     @Override

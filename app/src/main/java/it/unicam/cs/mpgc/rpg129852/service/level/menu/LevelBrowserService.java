@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface LevelBrowserService {
+
     List<LevelMetadata> getLevelsByCategory(LevelCategory category);
-    Optional<Virtues> getScoreForLevel(String levelId);
-    boolean isLevelUnlocked(LevelMetadata level);
     List<String> getRequiredBookNames(LevelMetadata level);
+    boolean isLevelUnlocked(LevelMetadata level);
+    Optional<Virtues> getScoreForLevel(String levelId);
+
 }

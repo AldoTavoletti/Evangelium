@@ -7,8 +7,6 @@ import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistry;
 
 public class DiscipleProfileServiceImpl implements DiscipleProfileService {
 
-    private static final String ERR_NO_SESSION = "Ci deve essere un contesto di gioco attivo per accedere al menu giocatore.";
-
     private final GameProvider gameProvider;
     private final ResourceRegistry<DiscipleAsset> discipleAssetRegistry;
 
@@ -16,13 +14,6 @@ public class DiscipleProfileServiceImpl implements DiscipleProfileService {
                                       ResourceRegistry<DiscipleAsset> discipleAssetRegistry) {
         this.gameProvider = gameProvider;
         this.discipleAssetRegistry = discipleAssetRegistry;
-    }
-
-    @Override
-    public void requireActiveSession() {
-        if (!gameProvider.hasActiveGame()) {
-            throw new IllegalStateException(ERR_NO_SESSION);
-        }
     }
 
     @Override

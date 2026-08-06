@@ -40,7 +40,7 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public List<Book> getAvailableBooks() {
-        List<Book> allBooks = bookCatalog.getBooks();
+        List<Book> allBooks = bookCatalog.getAllBooks();
         List<String> boughtBookIds = gameProvider.getCurrentGame().gameState().getInventory().getBookIds();
         List<Book> boughtBooks = bookCatalog.getBooksFromIds(boughtBookIds);
 
