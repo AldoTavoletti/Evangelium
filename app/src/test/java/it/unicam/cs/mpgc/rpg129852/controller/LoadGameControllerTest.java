@@ -1,10 +1,11 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
+import it.unicam.cs.mpgc.rpg129852.controller.menu.LoadGameController;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
-import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
+import it.unicam.cs.mpgc.rpg129852.persistence.game.GameRepository;
 import it.unicam.cs.mpgc.rpg129852.service.game.GameLoader;
-import it.unicam.cs.mpgc.rpg129852.model.Game;
+import it.unicam.cs.mpgc.rpg129852.model.game.Game;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

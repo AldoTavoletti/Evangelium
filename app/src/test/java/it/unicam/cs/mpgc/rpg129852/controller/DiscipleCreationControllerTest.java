@@ -1,11 +1,12 @@
 package it.unicam.cs.mpgc.rpg129852.controller;
 
+import it.unicam.cs.mpgc.rpg129852.controller.menu.DiscipleCreationController;
 import it.unicam.cs.mpgc.rpg129852.dto.AssetRegistry;
-import it.unicam.cs.mpgc.rpg129852.dto.DiscipleAsset;
+import it.unicam.cs.mpgc.rpg129852.dto.disciple.DiscipleAsset;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.service.game.GameStarter;
-import it.unicam.cs.mpgc.rpg129852.service.NewGameRequest;
+import it.unicam.cs.mpgc.rpg129852.service.game.NewGameRequest;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;

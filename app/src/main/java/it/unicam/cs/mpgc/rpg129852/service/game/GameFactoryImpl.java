@@ -1,7 +1,10 @@
 package it.unicam.cs.mpgc.rpg129852.service.game;
 
-import it.unicam.cs.mpgc.rpg129852.model.*;
-import it.unicam.cs.mpgc.rpg129852.service.NewGameRequest;
+import it.unicam.cs.mpgc.rpg129852.model.disciple.DiscipleData;
+import it.unicam.cs.mpgc.rpg129852.model.disciple.Inventory;
+import it.unicam.cs.mpgc.rpg129852.model.disciple.InventoryImpl;
+import it.unicam.cs.mpgc.rpg129852.model.game.Game;
+import it.unicam.cs.mpgc.rpg129852.model.game.GameState;
 
 public class GameFactoryImpl implements GameFactory {
 

@@ -2,9 +2,10 @@ package it.unicam.cs.mpgc.rpg129852.persistence;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import it.unicam.cs.mpgc.rpg129852.model.DiscipleData;
-import it.unicam.cs.mpgc.rpg129852.model.Game;
-import it.unicam.cs.mpgc.rpg129852.model.GameState;
+import it.unicam.cs.mpgc.rpg129852.model.disciple.DiscipleData;
+import it.unicam.cs.mpgc.rpg129852.model.game.Game;
+import it.unicam.cs.mpgc.rpg129852.model.game.GameState;
+import it.unicam.cs.mpgc.rpg129852.persistence.game.JsonGameRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

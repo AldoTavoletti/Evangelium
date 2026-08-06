@@ -1,6 +1,6 @@
 package it.unicam.cs.mpgc.rpg129852.service.save;
 
-import it.unicam.cs.mpgc.rpg129852.persistence.AvailableSavesProvider;
+import it.unicam.cs.mpgc.rpg129852.persistence.game.AvailableSavesProvider;
 import it.unicam.cs.mpgc.rpg129852.util.SyntaxValidator;
 
 import java.util.List;

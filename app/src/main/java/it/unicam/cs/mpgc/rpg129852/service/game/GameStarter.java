@@ -1,7 +1,5 @@
 package it.unicam.cs.mpgc.rpg129852.service.game;
 
-import it.unicam.cs.mpgc.rpg129852.service.NewGameRequest;
-
 /**
  * Orchestrates the initialization phase of a new game.
  *

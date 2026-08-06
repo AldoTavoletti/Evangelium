@@ -1,7 +1,6 @@
 package it.unicam.cs.mpgc.rpg129852.service.game;
 
-import it.unicam.cs.mpgc.rpg129852.model.Game;
-import it.unicam.cs.mpgc.rpg129852.service.NewGameRequest;
+import it.unicam.cs.mpgc.rpg129852.model.game.Game;
 
 /**
  * Creates a new game based on the data chosen by the user during the disciple creation.
