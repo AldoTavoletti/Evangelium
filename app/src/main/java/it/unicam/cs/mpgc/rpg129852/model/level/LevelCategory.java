@@ -6,13 +6,13 @@ import java.util.Optional;
 public enum LevelCategory {
 
     @SerializedName("faith")
-    SPIRITUAL_GUIDANCE("Fede"),
+    FAITH("Fede"),
 
     @SerializedName("hope")
-    MERCY("Speranza"),
+    HOPE("Speranza"),
 
     @SerializedName("love")
-    THEOLOGICAL_DEBATE("Carità");
+    LOVE("Carità");
 
     private final String displayName;
 

@@ -28,8 +28,6 @@ import java.util.Optional;
 
 public class PlayerMenuController {
 
-    private static final LevelCategory DEFAULT_CATEGORY = LevelCategory.SPIRITUAL_GUIDANCE;
-
     private final DiscipleProfileService discipleProfile;
     private final LevelBrowserService levelBrowser;
     private final LevelStarter levelStarter;
@@ -70,7 +68,6 @@ public class PlayerMenuController {
     public void initialize() {
         setupDiscipleData();
         initCategoryToolBar();
-        loadCardsForCategory(DEFAULT_CATEGORY);
     }
 
     @FXML
@@ -105,6 +102,7 @@ public class PlayerMenuController {
                 .toList();
 
         categoryToolBar.getItems().setAll(buttons);
+
     }
 
     private void loadCardsForCategory(LevelCategory category) {
