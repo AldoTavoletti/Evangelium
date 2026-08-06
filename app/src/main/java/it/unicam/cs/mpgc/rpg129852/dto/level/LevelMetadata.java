@@ -18,23 +18,5 @@ public record LevelMetadata(
         String scenarioPath
 ) implements Resource {
 
-    public LevelCompletionState evaluateAttempt(Optional<Virtues> bestAttempt) {
-        if (bestAttempt.isEmpty()) {
-            return LevelCompletionState.NONE;
-        }
-
-        Virtues scoreObtained = bestAttempt.get();
-
-        if (scoreObtained.faith() == 0 && scoreObtained.hope() == 0 && scoreObtained.love() == 0) {
-            return LevelCompletionState.FAILED;
-        }
-
-        if (scoreObtained.equals(this.maxRewards())) {
-            return LevelCompletionState.PERFECT;
-        }
-
-        return LevelCompletionState.PARTIAL;
-    }
-
 }
 

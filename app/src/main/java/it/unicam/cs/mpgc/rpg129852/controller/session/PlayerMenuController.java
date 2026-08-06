@@ -123,7 +123,7 @@ public class PlayerMenuController {
 
     private LevelCardNode generateLevelCard(LevelMetadata levelMetadata) {
         Optional<Virtues> bestAttempt = levelBrowser.getScoreForLevel(levelMetadata.id());
-        LevelCompletionState state = levelMetadata.evaluateAttempt(bestAttempt);
+        LevelCompletionState state = LevelCompletionState.evaluate(levelMetadata.maxRewards(), bestAttempt);
 
         return new LevelCardNode(levelMetadata, state, clickedCard -> handleCardClick(levelMetadata, clickedCard));
     }
