@@ -10,19 +10,34 @@
       "npcDialogue": "Non ne posso più! Per mesi ho lavorato giorno e notte su quel progetto aziendale, sacrificando i miei weekend e saltando ogni cena in famiglia, solo perché il mio superiore si prendesse tutti i meriti davanti al consiglio di amministrazione e mi facesse passare per incompetente di fronte ai colleghi. Mi hanno tolto l'aumento che mi spettava di diritto e ora mi guardano pure con aria di superiorità nei corridoi. Ho una tale rabbia dentro che spaccherei tutto, e sto scrivendo una mail al sindacato e a tutta la direzione per sputtanarli pubblicamente e rovinarli professionalmente!",
       "responses": [
         {
-          "displayReference": "Proverbi 24:29",
-          "scriptureId": "Proverbi-24:29",
-          "answerValue": "BAD"
-        },
-        {
           "displayReference": "Levitico 19:18",
           "scriptureId": "Levitico-19:18",
-          "answerValue": "PERFECT"
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
         },
         {
-          "displayReference": "Salmi 37:1-2",
-          "scriptureId": "Salmi-37:1-2",
-          "answerValue": "GOOD"
+          "displayReference": "Esodo 21:24",
+          "scriptureId": "Esodo-21:24",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "1 Samuele 24:10",
+          "scriptureId": "1Samuele-24:10",
+          "answerValue": "GOOD",
+          "requiredJob": "HISTORIAN"
+        },
+        {
+          "displayReference": "Proverbi 24:29",
+          "scriptureId": "Proverbi-24:29",
+          "answerValue": "BAD",
+          "requiredJob": "POET"
+        },
+        {
+          "displayReference": "Isaia 1:17",
+          "scriptureId": "Isaia-1:17",
+          "answerValue": "GOOD",
+          "requiredJob": "PROPHET"
         }
       ]
     },
@@ -30,19 +45,34 @@
       "npcDialogue": "La rabbia iniziale si è trasformata in un'ossessione costante che mi perseguita anche quando torno a casa la sera. Non riesco a dormire, rigirandomi nel letto mentre pianifico ogni singola mossa per fargliela pagare, e finisco per scaricare questa tensione nervosa sui miei familiari che non c'entrano nulla. Sento che questo rancore mi sta logorando dall'interno, ma l'idea di far finta di niente e lasciare che l'impunità trionfi mi fa ribollire il sangue ancora di più.",
       "responses": [
         {
+          "displayReference": "Esodo 23:4",
+          "scriptureId": "Esodo-23:4",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Genesi 50:19",
+          "scriptureId": "Genesi-50:19",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "1 Samuele 26:9",
+          "scriptureId": "1Samuele-26:9",
+          "answerValue": "PERFECT",
+          "requiredJob": "HISTORIAN"
+        },
+        {
           "displayReference": "Proverbi 20:22",
           "scriptureId": "Proverbi-20:22",
-          "answerValue": "GOOD"
+          "answerValue": "GOOD",
+          "requiredJob": "POET"
         },
         {
-          "displayReference": "Esodo 21:24",
-          "scriptureId": "Esodo-21:24",
-          "answerValue": "BAD"
-        },
-        {
-          "displayReference": "Giobbe 31:29-31",
-          "scriptureId": "Giobbe-31:29-31",
-          "answerValue": "PERFECT"
+          "displayReference": "Geremia 15:15",
+          "scriptureId": "Geremia-15:15",
+          "answerValue": "BAD",
+          "requiredJob": "PROPHET"
         }
       ]
     },
@@ -50,19 +80,34 @@
       "npcDialogue": "Il punto è che in questo ambiente lavorativo spietato tutti ti insegnano che chi si ferma è perduto e che bisogna difendersi con ogni mezzo per non essere calpestati dai più forti. Se decido di mollare la presa sulla vendetta, ho il terrore costante che penseranno tutti che sono un debole e che potranno continuare a sfruttarmi impunemente. Vorrei trovare un modo per recuperare la mia dignità e la mia pace interiore senza dover per forza distruggere gli altri o distruggere me stesso nel processo.",
       "responses": [
         {
+          "displayReference": "Deuteronomio 32:35",
+          "scriptureId": "Deuteronomio-32:35",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Genesi 45:5",
+          "scriptureId": "Genesi-45:5",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "2 Re 6:22",
+          "scriptureId": "2Re-6:22",
+          "answerValue": "GOOD",
+          "requiredJob": "HISTORIAN"
+        },
+        {
           "displayReference": "Proverbi 25:21-22",
           "scriptureId": "Proverbi-25:21-22",
-          "answerValue": "PERFECT"
+          "answerValue": "PERFECT",
+          "requiredJob": "POET"
         },
         {
           "displayReference": "Michea 6:8",
           "scriptureId": "Michea-6:8",
-          "answerValue": "GOOD"
-        },
-        {
-          "displayReference": "Salmi 137:8-9",
-          "scriptureId": "Salmi-137:8-9",
-          "answerValue": "BAD"
+          "answerValue": "GOOD",
+          "requiredJob": "PROPHET"
         }
       ]
     }

@@ -1,6 +1,6 @@
 package it.unicam.cs.mpgc.rpg129852.controller.session;
 
-import it.unicam.cs.mpgc.rpg129852.dto.disciple.DiscipleResponse;
+import it.unicam.cs.mpgc.rpg129852.dto.level.DiscipleResponse;
 import it.unicam.cs.mpgc.rpg129852.dto.level.LevelPhase;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;

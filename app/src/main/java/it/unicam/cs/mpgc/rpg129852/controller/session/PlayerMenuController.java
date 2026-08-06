@@ -76,7 +76,7 @@ public class PlayerMenuController {
     @FXML
     void onPlayLevelAction(ActionEvent event) {
         if (selectedLevelMetadata != null) {
-            levelStarter.start(selectedLevelMetadata);
+            levelStarter.start(selectedLevelMetadata, discipleProfile.getCurrentData().getJob());
             sceneManager.switchScene(ViewRoute.GAMEPLAY);
         }
     }

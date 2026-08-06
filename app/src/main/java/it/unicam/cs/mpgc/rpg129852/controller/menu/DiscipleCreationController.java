@@ -1,5 +1,6 @@
 package it.unicam.cs.mpgc.rpg129852.controller.menu;
 
+import it.unicam.cs.mpgc.rpg129852.model.disciple.Job;
 import it.unicam.cs.mpgc.rpg129852.service.save.InvalidSaveNameException;
 import it.unicam.cs.mpgc.rpg129852.service.save.SaveAlreadyExistsException;
 import it.unicam.cs.mpgc.rpg129852.dto.disciple.DiscipleAsset;
@@ -19,7 +20,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DiscipleCreationController {
 
@@ -30,13 +33,12 @@ public class DiscipleCreationController {
 
     private final GameStarter gameStarter;
     private final CircularListNavigator<DiscipleAsset> discipleAssetNavigator;
-    private final List<String> jobs;
     private final ViewRouter sceneManager;
 
     @FXML
     private ImageView currentGifImage;
     @FXML
-    private ChoiceBox<String> jobSelector;
+    private ChoiceBox<Job> jobSelector;
     @FXML
     private TextField discipleNameField;
     @FXML
@@ -46,11 +48,9 @@ public class DiscipleCreationController {
 
     public DiscipleCreationController(GameStarter gameStarter,
                                       CircularListNavigator<DiscipleAsset> discipleAssetNavigator,
-                                      List<String> jobs,
                                       ViewRouter sceneManager) {
         this.gameStarter = gameStarter;
         this.discipleAssetNavigator = discipleAssetNavigator;
-        this.jobs = jobs;
         this.sceneManager = sceneManager;
     }
 
@@ -108,7 +108,11 @@ public class DiscipleCreationController {
     }
 
     private void initJobSelector() {
-        jobSelector.getItems().addAll(jobs);
+        List<Job> selectableJobs = Arrays.stream(Job.values())
+                .filter(job -> job != Job.NONE)
+                .collect(Collectors.toList());
+
+        jobSelector.getItems().addAll(selectableJobs);
         jobSelector.getSelectionModel().selectFirst();
     }
 

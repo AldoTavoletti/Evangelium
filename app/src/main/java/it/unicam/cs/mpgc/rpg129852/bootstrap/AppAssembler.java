@@ -51,11 +51,6 @@ public class AppAssembler {
     private static final String BOOKS_ASSETS_PATH = "/data/books.json";
     private static final String LEVELS_METADATA_PATH = "/data/levels_metadata.json";
 
-    private static final List<String> DISCIPLE_JOBS = List.of(
-            "Pescatore", "Falegname", "Esattore delle imposte",
-            "Fabbricante di tende", "Contadino", "Fabbro", "Medico"
-    );
-
     public void assembleAndRun(Stage primaryStage) {
 
         Gson gson = InfrastructureFactory.createGson();
@@ -107,7 +102,7 @@ public class AppAssembler {
                 () -> new MainMenuController(gameSession, sceneManager));
 
         factory.register(DiscipleCreationController.class,
-                () -> new DiscipleCreationController(gameStarter, discipleNavigator, DISCIPLE_JOBS, sceneManager));
+                () -> new DiscipleCreationController(gameStarter, discipleNavigator, sceneManager));
 
         factory.register(LoadGameController.class,
                 () -> new LoadGameController(repository, gameLoader, sceneManager));

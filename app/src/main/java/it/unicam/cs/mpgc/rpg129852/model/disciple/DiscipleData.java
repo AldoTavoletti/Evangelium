@@ -5,7 +5,7 @@ import it.unicam.cs.mpgc.rpg129852.model.virtues.Virtues;
 public class DiscipleData {
 
     private String name;
-    private String job;
+    private Job job;
     private String color;
 
     private Virtues virtues;
@@ -14,7 +14,7 @@ public class DiscipleData {
     public DiscipleData() {
     }
 
-    public DiscipleData(String name, String job, String color) {
+    public DiscipleData(String name, Job job, String color) {
         this.name = name;
         this.job = job;
         this.color = color;
@@ -42,7 +42,7 @@ public class DiscipleData {
         return name;
     }
 
-    public String getJob() {
+    public Job getJob() {
         return job;
     }
 
@@ -54,7 +54,7 @@ public class DiscipleData {
         this.virtues = virtues;
     }
 
-    private Virtues getStartingVirtues(String job) {
+    private Virtues getStartingVirtues(Job job) {
         return new Virtues(0, 0, 0);
     }
 

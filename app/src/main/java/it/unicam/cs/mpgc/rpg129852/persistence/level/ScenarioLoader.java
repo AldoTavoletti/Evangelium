@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg129852.persistence.level;
 
 import it.unicam.cs.mpgc.rpg129852.dto.level.LevelScenario;
+import it.unicam.cs.mpgc.rpg129852.model.disciple.Job;
 
 public interface ScenarioLoader {
 
@@ -10,5 +11,5 @@ public interface ScenarioLoader {
      * @param scenarioPath Il percorso del file JSON contenente i dati dello scenario.
      * @return Un'istanza popolata di LevelScenario.
      */
-    LevelScenario loadScenario(String scenarioPath);
+    LevelScenario loadScenario(String scenarioPath, Job discipleJob);
 }

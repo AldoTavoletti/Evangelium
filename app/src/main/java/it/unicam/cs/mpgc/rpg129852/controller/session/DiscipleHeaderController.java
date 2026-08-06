@@ -29,7 +29,7 @@ public class DiscipleHeaderController {
         Virtues virtues = data.getVirtues();
         fillVirtuesLabels(virtues);
 
-        fillDiscipleLabel(data.getName(), data.getJob());
+        fillDiscipleLabel(data.getName(), data.getJob().getDisplayValue());
 
         setDiscipleImage(image);
 
