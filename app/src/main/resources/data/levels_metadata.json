@@ -10,7 +10,7 @@
       "love": 50
     },
     "requiredBookIds": [],
-    "scenarioPath": "/scenarios/anger_marco_scenario.json"
+    "scenarioPath": "/data/scenarios/anger_marco_scenario.json"
   },
   {
     "id": "anxiety_elena",
@@ -23,7 +23,7 @@
       "love": 10
     },
     "requiredBookIds": [],
-    "scenarioPath": "/scenarios/anxiety_elena_scenario.json"
+    "scenarioPath": "/data/scenarios/anxiety_elena_scenario.json"
   },
   {
     "id": "guidance_lorenzo",
@@ -36,7 +36,7 @@
       "love": 20
     },
     "requiredBookIds": [],
-    "scenarioPath": "/scenarios/guidance_lorenzo_scenario.json"
+    "scenarioPath": "/data/scenarios/guidance_lorenzo_scenario.json"
   },
   {
     "id": "envy_marta",
@@ -49,7 +49,7 @@
       "love": 20
     },
     "requiredBookIds": [],
-    "scenarioPath": "/scenarios/envy_marta_scenario.json"
+    "scenarioPath": "/data/scenarios/envy_marta_scenario.json"
   },
   {
     "id": "despair_giulio",
@@ -62,7 +62,7 @@
       "love": 20
     },
     "requiredBookIds": [],
-    "scenarioPath": "/scenarios/despair_giulio_scenario.json"
+    "scenarioPath": "/data/scenarios/despair_giulio_scenario.json"
   },
   {
     "id": "rancor_simone",
@@ -75,7 +75,7 @@
       "love": 20
     },
     "requiredBookIds": [],
-    "scenarioPath": "/scenarios/rancor_simone_scenario.json"
+    "scenarioPath": "/data/scenarios/rancor_simone_scenario.json"
   },
   {
     "id": "doubt_tommaso",
@@ -88,6 +88,6 @@
       "love": 10
     },
     "requiredBookIds": ["GALATI"],
-    "scenarioPath": "/scenarios/doubt_tommaso_scenario.json"
+    "scenarioPath": "/data/scenarios/doubt_tommaso_scenario.json"
   }
 ]

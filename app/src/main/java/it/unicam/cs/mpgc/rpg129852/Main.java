@@ -67,10 +67,10 @@ public class Main extends Application {
     private static final String SAVES_SUBFOLDER = "saves";
 
     // Resource Paths
-    private static final String DISCIPLE_ASSETS_PATH = "/disciples_assets.json";
-    private static final String SCRIPTURE_ASSETS_PATH = "/scripture.json";
-    private static final String BOOKS_ASSETS_PATH = "/books.json";
-    private static final String LEVELS_METADATA_PATH = "/levels_metadata.json";
+    private static final String DISCIPLE_ASSETS_PATH = "/data/disciples_assets.json";
+    private static final String SCRIPTURE_ASSETS_PATH = "/data/scripture.json";
+    private static final String BOOKS_ASSETS_PATH = "/data/books.json";
+    private static final String LEVELS_METADATA_PATH = "/data/levels_metadata.json";
 
     private static final List<String> DISCIPLE_JOBS = List.of(
             "Pescatore", "Falegname", "Esattore delle imposte",
