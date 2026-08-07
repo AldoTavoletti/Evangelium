@@ -2,9 +2,9 @@ package it.unicam.cs.mpgc.rpg129852.model.disciple;
 
 public enum Job {
     NONE ("Nessuno"),
-    HISTORIAN ("Storico"),
-    POET ("Poeta"),
-    PROPHET ("Profeta");
+    DOMENICAN ("Domenicano"),
+    FRANCISCAN ("Francescano"),
+    CARMELITAN ("Carmelitano");
 
     private final String displayValue;
 

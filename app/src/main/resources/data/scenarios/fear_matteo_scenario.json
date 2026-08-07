@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Matteo",
+    "imagePath": "/images/npcs/blue-npc.png",
+    "problemType": "FEAR",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Non riesco a chiudere occhio la notte. Guardo le notizie, l'inflazione, l'incertezza del mercato, e sono terrorizzato per il futuro della mia famiglia. E se perdessimo tutto? Continuo a fare calcoli e a cercare rassicurazioni umane, ma il panico mi divora. Come posso affidarmi a Dio quando tutto intorno a me sembra crollare e minaccia la mia sicurezza economica?",
+      "responses": [
+        {
+          "displayReference": "Genesi 28:15",
+          "scriptureId": "Genesi-28:15",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Levitico 26:16",
+          "scriptureId": "Levitico-26:16",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "2 Cronache 32:7-8",
+          "scriptureId": "2Cronache-32:7-8",
+          "answerValue": "PERFECT",
+          "requiredJob": "HISTORIAN"
+        },
+        {
+          "displayReference": "Salmi 46:1-2",
+          "scriptureId": "Salmi-46:1-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "POET"
+        },
+        {
+          "displayReference": "Isaia 43:1-2",
+          "scriptureId": "Isaia-43:1-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "PROPHET"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Per cercare di arginare quest'ansia, ho iniziato a pianificare ossessivamente ogni minimo dettaglio della mia vita. Pretendo di controllare ogni imprevisto, perché se abbasso la guardia sento che accadrà una catastrofe. Razionalmente so che non posso avere il controllo assoluto su tutto, ma l'idea di abbandonarmi alla volontà di Dio mi fa sentire indifeso e vulnerabile.",
+      "responses": [
+        {
+          "displayReference": "Esodo 14:13",
+          "scriptureId": "Esodo-14:13",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Numeri 32:23",
+          "scriptureId": "Numeri-32:23",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "1 Samuele 17:47",
+          "scriptureId": "1Samuele-17:47",
+          "answerValue": "PERFECT",
+          "requiredJob": "HISTORIAN"
+        },
+        {
+          "displayReference": "Proverbi 16:9",
+          "scriptureId": "Proverbi-16:9",
+          "answerValue": "PERFECT",
+          "requiredJob": "POET"
+        },
+        {
+          "displayReference": "Geremia 10:23",
+          "scriptureId": "Geremia-10:23",
+          "answerValue": "PERFECT",
+          "requiredJob": "PROPHET"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Questa continua ricerca di sicurezza terrena mi sta distruggendo spiritualmente. Sento che Dio mi sta chiamando a fare un passo di fede in una nuova direzione, ma sono bloccato. Le mie paure sono diventate catene che mi impediscono di agire. Vorrei avere il coraggio di mollare le mie reti di sicurezza e fidarmi di Lui, ma fare un salto nel buio mi terrorizza.",
+      "responses": [
+        {
+          "displayReference": "Genesi 12:1",
+          "scriptureId": "Genesi-12:1",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Deuteronomio 28:66",
+          "scriptureId": "Deuteronomio-28:66",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Giosuè 1:5",
+          "scriptureId": "Giosue-1:5",
+          "answerValue": "PERFECT",
+          "requiredJob": "HISTORIAN"
+        },
+        {
+          "displayReference": "Salmi 55:22",
+          "scriptureId": "Salmi-55:22",
+          "answerValue": "PERFECT",
+          "requiredJob": "POET"
+        },
+        {
+          "displayReference": "Isaia 50:10",
+          "scriptureId": "Isaia-50:10",
+          "answerValue": "PERFECT",
+          "requiredJob": "PROPHET"
+        }
+      ]
+    }
+  ]
+}

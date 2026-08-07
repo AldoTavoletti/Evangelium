@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Elena",
+    "imagePath": "/images/npcs/blue-npc.png",
+    "problemType": "DOUBT",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "(Ha gli occhi gonfi e rossi. Non ti guarda in faccia, fissa il pavimento con le braccia incrociate). Ieri notte sono crollata. Piangevo così forte da non riuscire a respirare, implorando Dio di darmi un solo maledetto segno che Gli importasse di me. Sai cosa ho ricevuto in cambio? Il silenzio. Il vuoto più totale. Mi sento come se stessi annegando in un abisso e Lui mi stesse guardando affondare senza muovere un dito. Se è davvero un Padre, perché mi lascia morire così?",
+      "responses": [
+        {
+          "displayReference": "Deuteronomio 33:27",
+          "scriptureId": "Deuteronomio-33:27",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Deuteronomio 31:17",
+          "scriptureId": "Deuteronomio-31:17",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Tommaso d'Aquino",
+          "scriptureId": "Aquinas-01",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMENICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "Francis-01",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "JohnCross-01",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITAN"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "(Prende la Bibbia dal tavolo e la lascia cadere con un tonfo sordo, scuotendo la testa). Inchiostro. È solo inchiostro su carta morta. Dicono di 'avere fede' e 'aspettare il Signore', ma tu hai mai provato a restare sveglio nel buio più totale, come una guardia terrorizzata che aspetta un'alba che non arriva mai? Io non ce la faccio più. Sto cercando una voce che spezzi questa tempesta, e trovo solo il gelo. Credo che ci stiamo solo illudendo per non impazzire, e che in fondo siamo drammaticamente soli.",
+      "responses": [
+        {
+          "displayReference": "Lamentazioni 3:26",
+          "scriptureId": "Lamentazioni-3:26",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Giobbe 30:26",
+          "scriptureId": "Giobbe-30:26",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Caterina da Siena",
+          "scriptureId": "Catherine-01",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMENICAN"
+        },
+        {
+          "displayReference": "Chiara d'Assisi",
+          "scriptureId": "Clare-01",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Teresa d'Avila",
+          "scriptureId": "Teresa-01",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITAN"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "(Ride, ma è una risata amara, quasi cattiva. Si asciuga bruscamente una lacrima e ti fissa con rabbia). Oggi i miei colleghi mi hanno derisa. Loro rubano, mentono, scendono a compromessi e vengono promossi. Io tengo le 'mani pulite' e mi trovo con il conto in rosso e la vita distrutta. 'Dov'è il tuo Dio?', mi chiedono. Già... dov'è?! Sono a un passo dal cedere. Voglio buttare all'aria la mia integrità e iniziare a giocare sporco come loro. Dimmi un solo, reale motivo per non farlo, senza usare le tue solite frasi fatte.",
+      "responses": [
+        {
+          "displayReference": "Proverbi 23:17-18",
+          "scriptureId": "Proverbi-23:17-18",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Salmi 37:16",
+          "scriptureId": "Salmi-37:16",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Tommaso d'Aquino (Trappola)",
+          "scriptureId": "Aquinas-02",
+          "answerValue": "BAD",
+          "requiredJob": "DOMENICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi (Trappola)",
+          "scriptureId": "Francis-02",
+          "answerValue": "BAD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce (Trappola)",
+          "scriptureId": "JohnCross-02",
+          "answerValue": "BAD",
+          "requiredJob": "CARMELITAN"
+        }
+      ]
+    }
+  ]
+}

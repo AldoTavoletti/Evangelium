@@ -1,13 +1,12 @@
 package it.unicam.cs.mpgc.rpg129852.model.level;
 
 public enum ProblemType {
-    ANGER ("Rabbia"),
-    SADNESS ("Tristezza"),
-    ANXIETY ("Ansia"),
-    LOST ("Smarrimento"),
-    ENVY ("Invidia"),
-    DESPAIR ("Disperazione"),
-    RANCOR ("Rancore");
+    DOUBT ("Dubbio"),
+    FEAR ("Paura"),
+    GUILT ("Senso di colpa"),
+    PRIDE ("Orgoglio"),
+    BITTERNESS ("Amarezza"),
+    DESPAIR ("Disperazione");
 
         private final String problem;
 

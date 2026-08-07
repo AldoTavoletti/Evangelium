@@ -1,15 +1,80 @@
 [
   {
-    "id": "anger_marco",
+    "id": "doubt_elena",
     "category": "faith",
-    "title": "L'ira di Marco",
-    "description": "Marco ha subito un grave torto sul lavoro ed è consumato dal rancore.",
+    "title": "Il dubbio di Elena",
+    "description": "Elena dubita della presenza e dell'amore di Dio.",
     "maxRewards": {
-      "faith": 10,
-      "hope": 20,
-      "love": 50
+      "faith": 50,
+      "hope": 10,
+      "love": 10
     },
     "requiredBookIds": [],
-    "scenarioPath": "/data/scenarios/anger_marco_scenario.json"
+    "scenarioPath": "/data/scenarios/doubt_elena_scenario.json"
+  },
+  {
+    "id": "fear_matteo",
+    "category": "faith",
+    "title": "La paura di Matteo",
+    "description": "Matteo ha paura.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": [],
+    "scenarioPath": "/data/scenarios/fear_matteo_scenario.json"
+  },
+  {
+    "id": "guilt_luca",
+    "category": "faith",
+    "title": "Il senso di colpa di Luca",
+    "description": "Luca ha sensi di colpa.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": ["LETTERE_PAOLO"],
+    "scenarioPath": "/data/scenarios/guilt_luca_scenario.json"
+  },
+  {
+    "id": "pride_riccardo",
+    "category": "faith",
+    "title": "L'orgoglio di Riccardo",
+    "description": "Riccardo è orgoglioso.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": ["LETTERE_PAOLO"],
+    "scenarioPath": "/data/scenarios/pride_riccardo_scenario.json"
+  },
+  {
+    "id": "bitterness_sara",
+    "category": "faith",
+    "title": "L'amarezza di Sara",
+    "description": "Sara soffre di amarezza.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": ["LETTERE_PAOLO"],
+    "scenarioPath": "/data/scenarios/bitterness_sara_scenario.json"
+  },
+  {
+    "id": "despair_sofia",
+    "category": "hope",
+    "title": "La disperazione di Sofia",
+    "description": "Sofia è disperata.",
+    "maxRewards": {
+      "faith": 10,
+      "hope": 50,
+      "love": 10
+    },
+    "requiredBookIds": [],
+    "scenarioPath": "/data/scenarios/despair_sofia_scenario.json"
   }
 ]

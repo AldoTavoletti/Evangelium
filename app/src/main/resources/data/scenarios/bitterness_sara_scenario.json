@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Sara",
+    "imagePath": "/images/npcs/blue-npc.png",
+    "problemType": "BITTERNESS",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Ho dato tutto per la mia chiesa. Ho servito, donato, sacrificato il mio tempo libero per anni. Ma quando ho attraversato io un periodo di crisi profonda, i leader e i fratelli mi hanno voltato le spalle. Mi hanno giudicata e isolata invece di sostenermi. Mi sento tradita proprio da quella che doveva essere la mia famiglia spirituale. Non voglio avere più nulla a che fare con nessun credente.",
+      "responses": [
+        {
+          "displayReference": "2 Timoteo 4:16-17",
+          "scriptureId": "2Timoteo-4:16-17",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "2 Corinzi 6:17",
+          "scriptureId": "2Corinzi-6:17",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "1 Samuele 30:6",
+          "scriptureId": "1Samuele-30:6",
+          "answerValue": "PERFECT",
+          "requiredJob": "HISTORIAN"
+        },
+        {
+          "displayReference": "Salmi 55:12-14",
+          "scriptureId": "Salmi-55:12-14",
+          "answerValue": "PERFECT",
+          "requiredJob": "POET"
+        },
+        {
+          "displayReference": "Michea 7:5-7",
+          "scriptureId": "Michea-7:5-7",
+          "answerValue": "PERFECT",
+          "requiredJob": "PROPHET"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Il problema più grave è che questa delusione verso gli uomini ha intaccato la mia visione di Dio. Inizio a credere che anche Lui sia come loro: pronto a chiedermi sacrifici, ma freddo e distante quando ho bisogno. Faccio fatica a pregare, perché proietto su di Lui l'immagine di quei leader esigenti e condannatori. Mi chiedo se la Sua misericordia sia solo una bella bugia.",
+      "responses": [
+        {
+          "displayReference": "Romani 8:38-39",
+          "scriptureId": "Romani-8:38-39",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Romani 2:5",
+          "scriptureId": "Romani-2:5",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "1 Cronache 21:13",
+          "scriptureId": "1Cronache-21:13",
+          "answerValue": "GOOD",
+          "requiredJob": "HISTORIAN"
+        },
+        {
+          "displayReference": "Salmi 27:10",
+          "scriptureId": "Salmi-27:10",
+          "answerValue": "GOOD",
+          "requiredJob": "POET"
+        },
+        {
+          "displayReference": "Isaia 55:8-9",
+          "scriptureId": "Isaia-55:8-9",
+          "answerValue": "GOOD",
+          "requiredJob": "PROPHET"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "So che covare questo risentimento mi sta indurendo il cuore. Vivo nel cinismo e critico ferocemente ogni cosa che riguarda la comunità. Ma perdonare chi non ha mai riconosciuto il dolore che mi ha provocato mi sembra un'ingiustizia. Preferisco tenermi stretto il mio rancore come uno scudo: sarò anche fredda e cinica, ma almeno mi assicuro che nessuno mi ferisca più.",
+      "responses": [
+        {
+          "displayReference": "Efesini 4:31-32",
+          "scriptureId": "Efesini-4:31-32",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Romani 12:21",
+          "scriptureId": "Romani-12:21",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "2 Cronache 24:22",
+          "scriptureId": "2Cronache-24:22",
+          "answerValue": "BAD",
+          "requiredJob": "HISTORIAN"
+        },
+        {
+          "displayReference": "Salmi 137:8",
+          "scriptureId": "Salmi-137:8",
+          "answerValue": "BAD",
+          "requiredJob": "POET"
+        },
+        {
+          "displayReference": "Geremia 15:15",
+          "scriptureId": "Geremia-15:15",
+          "answerValue": "BAD",
+          "requiredJob": "PROPHET"
+        }
+      ]
+    }
+  ]
+}
