@@ -10,13 +10,14 @@ import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.service.disciple.DiscipleProfileService;
 import it.unicam.cs.mpgc.rpg129852.service.level.menu.LevelBrowserService;
 import it.unicam.cs.mpgc.rpg129852.service.level.gameplay.LevelStarter;
-import it.unicam.cs.mpgc.rpg129852.ui.level.CategoryButtonComponent;
+import it.unicam.cs.mpgc.rpg129852.ui.playermenu.CategoryButtonComponent;
 import it.unicam.cs.mpgc.rpg129852.ui.level.LevelCardNode;
 import it.unicam.cs.mpgc.rpg129852.ui.level.LevelDetailsNode;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.TilePane;
@@ -97,8 +98,15 @@ public class PlayerMenuController {
     }
 
     private void initCategoryToolBar() {
+
+        ToggleGroup categoryGroup = new ToggleGroup();
+
         List<CategoryButtonComponent> buttons = Arrays.stream(LevelCategory.values())
-                .map(category -> new CategoryButtonComponent(category, this::loadCardsForCategory))
+                .map(category -> {
+                    CategoryButtonComponent btn = new CategoryButtonComponent(category, this::loadCardsForCategory);
+                    btn.setToggleGroup(categoryGroup);
+                    return btn;
+                })
                 .toList();
 
         categoryToolBar.getItems().setAll(buttons);
