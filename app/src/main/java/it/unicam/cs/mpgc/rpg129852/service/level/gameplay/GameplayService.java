@@ -17,5 +17,6 @@ public interface GameplayService {
     double getMaxProblemValue();
     ProblemType getProblemType();
     String getNpcImagePath();
+    String getNpcName();
 
 }

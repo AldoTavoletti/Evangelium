@@ -16,11 +16,21 @@
    <children>
       <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1250.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="300.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="200.0">
                <children>
-                  <ImageView fx:id="discipleImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <VBox>
+                     <children>
+                        <ImageView fx:id="discipleImageView" fitHeight="200.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="discipleNameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="150.0" />
+                     </children>
+                  </VBox>
                   <Label fx:id="phaseCounterLabel" />
-                  <ImageView fx:id="npcImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <VBox>
+                     <children>
+                        <ImageView fx:id="npcImageView" fitHeight="200.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="npcNameLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="150.0" />
+                     </children>
+                  </VBox>
                </children>
                <VBox.margin>
                   <Insets bottom="100.0" />

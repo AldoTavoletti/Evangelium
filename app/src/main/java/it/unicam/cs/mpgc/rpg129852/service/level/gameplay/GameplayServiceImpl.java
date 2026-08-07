@@ -91,6 +91,10 @@ public class GameplayServiceImpl implements GameplayService {
         return levelProvider.getCurrentLevel().scenario().npc().imagePath();
     }
 
+    public String getNpcName(){
+        return levelProvider.getCurrentLevel().scenario().npc().name();
+    }
+
     @Override
     public ProblemType getProblemType() {
         return levelProvider.getCurrentLevel().scenario().npc().problemType();

@@ -36,7 +36,9 @@ public class GameplayController {
 
     @FXML private Label problemSeverityLabel;
     @FXML private ImageView discipleImageView;
+    @FXML private Label discipleNameLabel;
     @FXML private ImageView npcImageView;
+    @FXML private Label npcNameLabel;
     @FXML private TextArea dialogueTextArea;
     @FXML private Button firstResponseButton;
     @FXML private Button secondResponseButton;
@@ -111,10 +113,12 @@ public class GameplayController {
     private void loadDiscipleAvatar() {
         String gifPath = discipleProfile.getAvatarGifPath();
         discipleImageView.setImage(ImageUtils.loadImage(gifPath));
+        discipleNameLabel.setText(discipleProfile.getCurrentData().getName());
     }
 
     private void loadNpcAvatar() {
         npcImageView.setImage(ImageUtils.loadImage(gameplayService.getNpcImagePath()));
+        npcNameLabel.setText(gameplayService.getNpcName());
     }
 
     private void loadNextPhase() {
