@@ -4,16 +4,18 @@ import it.unicam.cs.mpgc.rpg129852.dto.level.LevelMetadata;
 import it.unicam.cs.mpgc.rpg129852.model.disciple.DiscipleData;
 import it.unicam.cs.mpgc.rpg129852.model.level.LevelCategory;
 import it.unicam.cs.mpgc.rpg129852.model.level.LevelCompletionState;
-import it.unicam.cs.mpgc.rpg129852.model.virtues.Virtues;
+import it.unicam.cs.mpgc.rpg129852.model.level.Score;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.service.disciple.DiscipleProfileService;
 import it.unicam.cs.mpgc.rpg129852.service.level.menu.LevelBrowserService;
 import it.unicam.cs.mpgc.rpg129852.service.level.gameplay.LevelStarter;
+import it.unicam.cs.mpgc.rpg129852.service.level.menu.SummaryService;
 import it.unicam.cs.mpgc.rpg129852.ui.playermenu.CategoryButtonComponent;
 import it.unicam.cs.mpgc.rpg129852.ui.level.LevelCardNode;
 import it.unicam.cs.mpgc.rpg129852.ui.level.LevelDetailsNode;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -33,6 +35,7 @@ public class PlayerMenuController {
     private final LevelBrowserService levelBrowser;
     private final LevelStarter levelStarter;
     private final ViewRouter sceneManager;
+    private final SummaryService summaryService;
 
     private LevelMetadata selectedLevelMetadata;
     private LevelCardNode selectedCardNode;
@@ -55,11 +58,13 @@ public class PlayerMenuController {
     @FXML
     private Button shopButton;
 
-    public PlayerMenuController(DiscipleProfileService discipleProfile,
+    public PlayerMenuController(SummaryService summaryService,
+                                DiscipleProfileService discipleProfile,
                                 LevelStarter levelStarter,
                                 LevelBrowserService levelBrowser,
                                 ViewRouter sceneManager) {
         this.discipleProfile = discipleProfile;
+        this.summaryService = summaryService;
         this.levelStarter = levelStarter;
         this.levelBrowser = levelBrowser;
         this.sceneManager = sceneManager;
@@ -67,6 +72,12 @@ public class PlayerMenuController {
 
     @FXML
     public void initialize() {
+
+        if (summaryService.shouldSummaryBeShown()) {
+            Platform.runLater(() -> sceneManager.switchScene(ViewRoute.SUMMARY));
+            return;
+        }
+
         setupDiscipleData();
         initCategoryToolBar();
     }
@@ -128,7 +139,7 @@ public class PlayerMenuController {
     }
 
     private LevelCardNode generateLevelCard(LevelMetadata levelMetadata) {
-        Optional<Virtues> bestAttempt = levelBrowser.getScoreForLevel(levelMetadata.id());
+        Optional<Score> bestAttempt = levelBrowser.getScoreForLevel(levelMetadata.id());
         LevelCompletionState state = LevelCompletionState.evaluate(levelMetadata.maxRewards(), bestAttempt);
 
         return new LevelCardNode(levelMetadata, state, clickedCard -> handleCardClick(levelMetadata, clickedCard));
@@ -161,7 +172,7 @@ public class PlayerMenuController {
         List<String> bookNames = levelBrowser.getRequiredBookNames(levelMetadata);
         String formattedBookNames = formatRequiredBooks(bookNames);
 
-        Optional<Virtues> bestAttempt = levelBrowser.getScoreForLevel(levelMetadata.id());
+        Optional<Score> bestAttempt = levelBrowser.getScoreForLevel(levelMetadata.id());
 
         detailsContainer.getChildren().setAll(new LevelDetailsNode(levelMetadata, formattedBookNames, bestAttempt));
     }

@@ -4,6 +4,7 @@ import it.unicam.cs.mpgc.rpg129852.context.level.LevelProvider;
 import it.unicam.cs.mpgc.rpg129852.dto.level.LevelPhase;
 import it.unicam.cs.mpgc.rpg129852.dto.level.PhaseAnswer;
 import it.unicam.cs.mpgc.rpg129852.model.level.ProblemType;
+import it.unicam.cs.mpgc.rpg129852.model.level.Score;
 import it.unicam.cs.mpgc.rpg129852.model.virtues.Virtues;
 
 import java.util.ArrayList;
@@ -38,9 +39,9 @@ public class GameplayServiceImpl implements GameplayService {
         Virtues maxRewards = levelProvider.getCurrentLevel().metadata().maxRewards();
         String currentLevelId = levelProvider.getCurrentLevel().metadata().id();
 
-        Virtues obtainedRewards = rewardsCalculator.calculate(maxRewards, phaseAnswers);
+        Score score = rewardsCalculator.calculate(maxRewards, phaseAnswers);
 
-        levelSaver.save(currentLevelId, obtainedRewards);
+        levelSaver.save(currentLevelId, score);
     }
 
     @Override

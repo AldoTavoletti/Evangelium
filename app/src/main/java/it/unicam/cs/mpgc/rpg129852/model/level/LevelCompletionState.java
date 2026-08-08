@@ -10,12 +10,12 @@ public enum LevelCompletionState {
     PARTIAL,
     PERFECT;
 
-    public static LevelCompletionState evaluate(Virtues maxRewards, Optional<Virtues> bestAttempt) {
+    public static LevelCompletionState evaluate(Virtues maxRewards, Optional<Score> bestAttempt) {
         if (bestAttempt.isEmpty()) {
             return LevelCompletionState.NONE;
         }
 
-        Virtues scoreObtained = bestAttempt.get();
+        Virtues scoreObtained = bestAttempt.get().virtues();
 
         if (scoreObtained.faith() == 0 && scoreObtained.hope() == 0 && scoreObtained.love() == 0) {
             return LevelCompletionState.FAILED;

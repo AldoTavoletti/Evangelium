@@ -22,4 +22,8 @@ public record Virtues(
     public String toString() {
         return "Fede: " + faith + ", Speranza: " + hope + ", Carità: " + love;
     }
+
+    public boolean isZero() {
+        return faith == 0 && hope == 0 && love == 0;
+    }
 }

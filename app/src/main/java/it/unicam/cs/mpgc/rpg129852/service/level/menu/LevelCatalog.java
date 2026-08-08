@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface LevelCatalog {
     public List<LevelMetadata> getLevelsByCategory(LevelCategory category);
+    public List<LevelMetadata> getAllLevels();
+    public int getTotalNumberOfLevels();
 }

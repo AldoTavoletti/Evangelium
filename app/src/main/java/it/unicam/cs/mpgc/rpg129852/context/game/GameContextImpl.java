@@ -28,4 +28,5 @@ public class GameContextImpl implements GameSessionManager {
     public void clearSession() {
         this.currentGame = null;
     }
+
 }

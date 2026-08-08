@@ -19,4 +19,12 @@ public class LevelCatalogImpl implements LevelCatalog {
                 .filter(level -> level.category() == category)
                 .toList();
     }
+
+    public List<LevelMetadata> getAllLevels() {
+        return registry.getAllResources();
+    }
+
+    public int getTotalNumberOfLevels() {
+        return registry.getAllResources().size();
+    }
 }

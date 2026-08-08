@@ -2,7 +2,9 @@ package it.unicam.cs.mpgc.rpg129852.service.level.menu;
 
 import it.unicam.cs.mpgc.rpg129852.context.game.GameProvider;
 import it.unicam.cs.mpgc.rpg129852.dto.level.LevelMetadata;
+import it.unicam.cs.mpgc.rpg129852.model.game.GameState;
 import it.unicam.cs.mpgc.rpg129852.model.level.LevelCategory;
+import it.unicam.cs.mpgc.rpg129852.model.level.Score;
 import it.unicam.cs.mpgc.rpg129852.model.virtues.Virtues;
 import it.unicam.cs.mpgc.rpg129852.service.book.BookCatalog;
 
@@ -29,7 +31,7 @@ public class LevelBrowserServiceImpl implements LevelBrowserService {
     }
 
     @Override
-    public Optional<Virtues> getScoreForLevel(String levelId) {
+    public Optional<Score> getScoreForLevel(String levelId) {
         return gameProvider.getCurrentGame().gameState().getScoreForLevel(levelId);
     }
 

@@ -6,7 +6,8 @@ public enum ViewRoute {
     LOAD_GAME("/view/LoadGame.fxml"),
     PLAYER_MENU("/view/PlayerMenu.fxml"),
     GAMEPLAY("/view/Gameplay.fxml"),
-    SHOP("/view/Shop.fxml");
+    SHOP("/view/Shop.fxml"),
+    SUMMARY("/view/Summary.fxml");
 
     private final String path;
 

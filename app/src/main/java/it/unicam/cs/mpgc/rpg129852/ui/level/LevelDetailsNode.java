@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg129852.ui.level;
 
 import it.unicam.cs.mpgc.rpg129852.dto.level.LevelMetadata;
+import it.unicam.cs.mpgc.rpg129852.model.level.Score;
 import it.unicam.cs.mpgc.rpg129852.model.virtues.Virtues;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -9,7 +10,7 @@ import java.util.Optional;
 
 public class LevelDetailsNode extends VBox {
 
-    public LevelDetailsNode(LevelMetadata level, String requiredBookNames, Optional<Virtues> bestAttempt) {
+    public LevelDetailsNode(LevelMetadata level, String requiredBookNames, Optional<Score> bestAttempt) {
         this.setSpacing(10);
 
         Label title = new Label(level.title());
@@ -26,7 +27,7 @@ public class LevelDetailsNode extends VBox {
         requiredBooks.getStyleClass().add("level-detail-rewards");
 
         if (bestAttempt.isPresent()) {
-            Label bestAttemptLabel = new Label("Miglior tentativo:\n" + formatRewardsText(bestAttempt.get()));
+            Label bestAttemptLabel = new Label("Miglior tentativo:\n" + formatRewardsText(bestAttempt.get().virtues()));
             bestAttemptLabel.getStyleClass().add("level-detail-rewards");
             this.getChildren().addAll(title, description, requiredBooks, rewards, bestAttemptLabel);
         }else{

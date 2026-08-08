@@ -7,10 +7,7 @@ import it.unicam.cs.mpgc.rpg129852.model.level.Level;
 import it.unicam.cs.mpgc.rpg129852.persistence.game.GameRepository;
 import it.unicam.cs.mpgc.rpg129852.persistence.level.ScenarioLoader;
 import it.unicam.cs.mpgc.rpg129852.persistence.level.ScenarioLoaderImpl;
-import it.unicam.cs.mpgc.rpg129852.service.game.GameFactory;
-import it.unicam.cs.mpgc.rpg129852.service.game.GameFactoryImpl;
-import it.unicam.cs.mpgc.rpg129852.service.game.GameStarter;
-import it.unicam.cs.mpgc.rpg129852.service.game.GameStarterImpl;
+import it.unicam.cs.mpgc.rpg129852.service.game.*;
 import it.unicam.cs.mpgc.rpg129852.service.level.gameplay.*;
 import it.unicam.cs.mpgc.rpg129852.service.save.*;
 import it.unicam.cs.mpgc.rpg129852.util.SyntaxValidator;
@@ -39,4 +36,5 @@ class DomainFactory {
 
         return new GameplayServiceImpl(levelSessionManager, levelSaver, rewardsCalculator, levelEngine);
     }
+
 }

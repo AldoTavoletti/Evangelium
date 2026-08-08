@@ -1,5 +1,6 @@
 package it.unicam.cs.mpgc.rpg129852.bootstrap;
 
+import com.google.common.math.Stats;
 import com.google.gson.Gson;
 import it.unicam.cs.mpgc.rpg129852.context.game.GameContextImpl;
 import it.unicam.cs.mpgc.rpg129852.context.game.GameSessionManager;
@@ -11,6 +12,7 @@ import it.unicam.cs.mpgc.rpg129852.controller.menu.MainMenuController;
 import it.unicam.cs.mpgc.rpg129852.controller.session.GameplayController;
 import it.unicam.cs.mpgc.rpg129852.controller.session.PlayerMenuController;
 import it.unicam.cs.mpgc.rpg129852.controller.session.ShopController;
+import it.unicam.cs.mpgc.rpg129852.controller.session.SummaryController;
 import it.unicam.cs.mpgc.rpg129852.dto.book.Book;
 import it.unicam.cs.mpgc.rpg129852.dto.disciple.DiscipleAsset;
 import it.unicam.cs.mpgc.rpg129852.dto.level.LevelMetadata;
@@ -31,10 +33,7 @@ import it.unicam.cs.mpgc.rpg129852.service.game.GameStarter;
 import it.unicam.cs.mpgc.rpg129852.service.level.gameplay.LevelStarter;
 import it.unicam.cs.mpgc.rpg129852.service.level.gameplay.ScriptureCatalog;
 import it.unicam.cs.mpgc.rpg129852.service.level.gameplay.ScriptureCatalogImpl;
-import it.unicam.cs.mpgc.rpg129852.service.level.menu.LevelBrowserService;
-import it.unicam.cs.mpgc.rpg129852.service.level.menu.LevelBrowserServiceImpl;
-import it.unicam.cs.mpgc.rpg129852.service.level.menu.LevelCatalog;
-import it.unicam.cs.mpgc.rpg129852.service.level.menu.LevelCatalogImpl;
+import it.unicam.cs.mpgc.rpg129852.service.level.menu.*;
 import it.unicam.cs.mpgc.rpg129852.service.shop.ShopService;
 import it.unicam.cs.mpgc.rpg129852.service.shop.ShopServiceImpl;
 import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigator;
@@ -75,6 +74,8 @@ public class AppAssembler {
         LevelBrowserService levelBrowser = new LevelBrowserServiceImpl(levelCatalog, bookCatalog, gameSessionManager);
         DiscipleProfileService discipleProfile = new DiscipleProfileServiceImpl(gameSessionManager, discipleRegistry);
         ShopService shopService = new ShopServiceImpl(bookCatalog, gameSessionManager, repository);
+        SummaryService summaryService = new SummaryServiceImpl(gameSessionManager, levelCatalog);
+        StatsService statsService = new StatsServiceImpl(gameSessionManager, levelCatalog);
 
         CircularListNavigator<DiscipleAsset> discipleNavigator = new CircularListNavigatorImpl<>(discipleRegistry.getAllResources());
 
@@ -86,7 +87,7 @@ public class AppAssembler {
 
         registerControllers(controllerFactory, sceneManager, gameSessionManager, levelSessionManager, repository,
                 gameStarter, gameLoader, levelStarter, levelBrowser, discipleProfile, shopService,
-                scriptureCatalog, discipleNavigator);
+                scriptureCatalog, discipleNavigator, summaryService, statsService);
 
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }
@@ -96,7 +97,7 @@ public class AppAssembler {
                                      GameRepository repository, GameStarter gameStarter, GameLoader gameLoader,
                                      LevelStarter levelStarter, LevelBrowserService levelBrowser,
                                      DiscipleProfileService discipleProfile, ShopService shopService,
-                                     ScriptureCatalog scriptureCatalog, CircularListNavigator<DiscipleAsset> discipleNavigator) {
+                                     ScriptureCatalog scriptureCatalog, CircularListNavigator<DiscipleAsset> discipleNavigator,  SummaryService summaryService, StatsService statsService) {
 
         factory.register(MainMenuController.class,
                 () -> new MainMenuController(gameSession, sceneManager));
@@ -108,7 +109,7 @@ public class AppAssembler {
                 () -> new LoadGameController(repository, gameLoader, sceneManager));
 
         factory.register(PlayerMenuController.class,
-                () -> new PlayerMenuController(discipleProfile, levelStarter, levelBrowser, sceneManager));
+                () -> new PlayerMenuController(summaryService, discipleProfile, levelStarter, levelBrowser, sceneManager));
 
         factory.register(ShopController.class,
                 () -> new ShopController(shopService, sceneManager));
@@ -116,5 +117,8 @@ public class AppAssembler {
         factory.register(GameplayController.class,
                 () -> new GameplayController(DomainFactory.createGameplayService(levelSession, gameSession, repository),
                         discipleProfile, scriptureCatalog, sceneManager));
+
+        factory.register(SummaryController.class,
+                () -> new SummaryController(statsService, discipleProfile, sceneManager));
     }
 }

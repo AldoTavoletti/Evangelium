@@ -10,5 +10,5 @@ public interface LevelSessionManager extends LevelProvider {
 
     void setCurrentLevel(Level level);
 
-    void clearSession(); // Utile per pulire quando si torna al menu
+    void clearSession();
 }
