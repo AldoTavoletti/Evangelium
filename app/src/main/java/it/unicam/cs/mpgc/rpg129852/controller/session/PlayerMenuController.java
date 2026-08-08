@@ -58,6 +58,9 @@ public class PlayerMenuController {
     @FXML
     private Button shopButton;
 
+    @FXML
+    private Button summaryButton;
+
     public PlayerMenuController(SummaryService summaryService,
                                 DiscipleProfileService discipleProfile,
                                 LevelStarter levelStarter,
@@ -72,10 +75,9 @@ public class PlayerMenuController {
 
     @FXML
     public void initialize() {
-        if (summaryService.shouldSummaryBeShown()) {
-            Platform.runLater(() -> sceneManager.switchScene(ViewRoute.SUMMARY));
-            return;
-        }
+
+        if (summaryService.areAllLevelsWon())
+            summaryButton.setManaged(true);
 
         setupDiscipleData();
         initCategoryToolBar();
@@ -97,6 +99,11 @@ public class PlayerMenuController {
     @FXML
     void onGoToShopButton(ActionEvent event) {
         sceneManager.switchScene(ViewRoute.SHOP);
+    }
+
+    @FXML
+    void onGoToSummaryButton(ActionEvent event) {
+        sceneManager.switchScene(ViewRoute.SUMMARY);
     }
 
     private void setupDiscipleData() {

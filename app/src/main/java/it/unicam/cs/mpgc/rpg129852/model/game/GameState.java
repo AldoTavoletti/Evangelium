@@ -70,8 +70,7 @@ public class GameState {
         return Collections.unmodifiableMap(levelScores);
     }
 
-    public int getNumberOfCompletedLevels() {
+    public int getNumberOfPlayedLevels() {
         return levelScores.size();
-        // todo: voglio che restituisca solo il numero di livelli che ha uno score > 0
     }
 }

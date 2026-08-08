@@ -18,10 +18,18 @@ public class SummaryServiceImpl implements SummaryService {
             return false;
         }
 
-        int totalNumberOfLevels = levelCatalog.getTotalNumberOfLevels();
-        int numberOfCompletedLevels = gameProvider.getCurrentGame().gameState().getNumberOfCompletedLevels();
+        return areAllLevelsWon();
 
-        if(numberOfCompletedLevels == totalNumberOfLevels) {
+    }
+
+    public boolean areAllLevelsWon() {
+        int totalNumberOfLevels = levelCatalog.getTotalNumberOfLevels();
+
+        int numberOfWonLevels = (int) gameProvider.getCurrentGame().gameState().getAllLevelScores().values().stream()
+                .filter(score -> score != null && !score.virtues().isZero())
+                .count();
+
+        if (numberOfWonLevels == totalNumberOfLevels) {
             summaryShown = true;
             return true;
         }
