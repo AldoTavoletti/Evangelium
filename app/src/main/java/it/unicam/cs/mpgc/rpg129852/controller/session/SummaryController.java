@@ -11,7 +11,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 public class SummaryController {
 
@@ -44,10 +49,24 @@ public class SummaryController {
 
     private void populateStatsContainer() {
 
-        Label numPerfectLevelsLabel = new Label("Numero di livelli completati in modo perfetto: " + statsService.getNumberOfPerfectLevels());
-        Label numAttemptsLabel = new Label("Numero totale di tentativi eseguiti: " + statsService.getNumberOfPerfectLevels());
+        // Primo dato: Livelli perfetti
+        Text perfectDesc = new Text("Numero di livelli completati in modo perfetto: ");
+        perfectDesc.setFont(Font.font(perfectDesc.getFont().getFamily(), FontWeight.BOLD, perfectDesc.getFont().getSize()));
 
-        statsContainer.getChildren().addAll(numPerfectLevelsLabel, numAttemptsLabel);
+        Text perfectNum = new Text(String.valueOf(statsService.getNumberOfPerfectLevels()));
+
+        TextFlow perfectFlow = new TextFlow(perfectDesc, perfectNum);
+
+        // Secondo dato: Tentativi totali
+        Text attemptsDesc = new Text("Numero totale di tentativi eseguiti: ");
+        attemptsDesc.setFont(Font.font(attemptsDesc.getFont().getFamily(), FontWeight.BOLD, attemptsDesc.getFont().getSize()));
+
+        Text attemptsNum = new Text(String.valueOf(statsService.getNumberOfAttempts()));
+
+        TextFlow attemptsFlow = new TextFlow(attemptsDesc, attemptsNum);
+
+        // Aggiungi i TextFlow al contenitore principale
+        statsContainer.getChildren().addAll(perfectFlow, attemptsFlow);
 
     }
 

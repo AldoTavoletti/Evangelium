@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="750.0" maxWidth="1250.0" minHeight="750.0" minWidth="1250.0" prefHeight="750.0" prefWidth="1250.0" stylesheets="@../css/Global.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.rpg129852.controller.session.SummaryController">
+<AnchorPane maxHeight="750.0" maxWidth="1250.0" minHeight="750.0" minWidth="1250.0" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.rpg129852.controller.session.SummaryController">
    <children>
       <Button fx:id="returnToMenuButton" layoutX="30.0" layoutY="30.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#onReturnToMenuClicked" prefHeight="60.0" prefWidth="60.0" styleClass="arrow">
          <graphic>
@@ -20,18 +21,18 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="592.0" layoutY="48.0" text="Riepilogo" />
-      <VBox layoutX="288.0" layoutY="175.0">
+      <Label layoutX="512.0" layoutY="34.0" styleClass="title" text="Riepilogo" />
+      <VBox layoutX="226.0" layoutY="178.0" prefWidth="800.0">
          <children>
-            <Label alignment="CENTER" prefWidth="675.0" text="Congratulazioni, hai completato tutti i livelli." wrapText="true">
+            <Label alignment="CENTER" prefWidth="800.0" text="Congratulazioni, hai completato tutti i livelli." wrapText="true">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label alignment="CENTER" prefWidth="675.0" text="Ora porta il tuo discepolato anche nella vita reale, con la gioia e la pace del Cristo risorto!" wrapText="true" />
+            <Label alignment="CENTER" prefHeight="50.0" prefWidth="800.0" text="Ora porta il tuo discepolato anche nella vita reale, con la gioia e la pace del Cristo risorto!" wrapText="true" />
             <HBox alignment="CENTER" prefHeight="400.0" prefWidth="675.0">
                <children>
-                  <VBox fx:id="statsContainer" alignment="CENTER" prefWidth="525.0">
+                  <VBox fx:id="statsContainer" alignment="CENTER" prefWidth="650.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -44,6 +45,10 @@
             </HBox>
          </children>
       </VBox>
-      <Label alignment="CENTER" layoutX="321.0" layoutY="693.0" prefWidth="675.0" text="Puoi continuare a giocare i livelli e cercare di perfezionarli, se vuoi!" wrapText="true" />
+      <Label alignment="CENTER" layoutX="288.0" layoutY="712.0" prefWidth="675.0" text="Puoi continuare a giocare i livelli e cercare di perfezionarli, se vuoi!" wrapText="true" />
    </children>
+   <stylesheets>
+      <URL value="@../css/Global.css" />
+      <URL value="@../css/Summary.css" />
+   </stylesheets>
 </AnchorPane>

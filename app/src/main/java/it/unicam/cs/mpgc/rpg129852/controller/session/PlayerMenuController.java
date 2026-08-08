@@ -72,7 +72,6 @@ public class PlayerMenuController {
 
     @FXML
     public void initialize() {
-
         if (summaryService.shouldSummaryBeShown()) {
             Platform.runLater(() -> sceneManager.switchScene(ViewRoute.SUMMARY));
             return;
