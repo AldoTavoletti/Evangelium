@@ -23,7 +23,7 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="summaryButton" mnemonicParsing="false" onAction="#onGoToSummaryButton" styleClass="back-to-main-menu" text="Riepilogo" managed="false">
+            <Button fx:id="summaryButton" managed="false" mnemonicParsing="false" onAction="#onGoToSummaryButton" styleClass="summary-button" text="Riepilogo">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>

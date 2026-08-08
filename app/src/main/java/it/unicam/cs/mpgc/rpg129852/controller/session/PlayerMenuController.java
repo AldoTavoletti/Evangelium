@@ -76,8 +76,9 @@ public class PlayerMenuController {
     @FXML
     public void initialize() {
 
-        if (summaryService.areAllLevelsWon())
+        if (summaryService.areAllLevelsWon()) {
             summaryButton.setManaged(true);
+        }
 
         setupDiscipleData();
         initCategoryToolBar();

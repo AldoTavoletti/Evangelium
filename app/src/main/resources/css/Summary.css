@@ -37,8 +37,7 @@
     -fx-scale-y: 0.95;
 }
 
-/* Riquadro che conterrà le statistiche generate nel controller */
-#statsContainer {
+.panel {
     -fx-background-color: #ffffff;
     -fx-background-radius: 12px;
     -fx-border-color: #d2b48c;

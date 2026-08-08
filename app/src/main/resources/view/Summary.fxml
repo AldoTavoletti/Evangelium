@@ -30,7 +30,7 @@
                </VBox.margin>
             </Label>
             <Label alignment="CENTER" prefHeight="50.0" prefWidth="800.0" text="Ora porta il tuo discepolato anche nella vita reale, con la gioia e la pace del Cristo risorto!" wrapText="true" />
-            <HBox alignment="CENTER" prefHeight="400.0" prefWidth="675.0">
+            <HBox alignment="CENTER" prefHeight="400.0" prefWidth="675.0" styleClass="panel">
                <children>
                   <VBox fx:id="statsContainer" alignment="CENTER" prefWidth="650.0">
                      <HBox.margin>
@@ -45,7 +45,6 @@
             </HBox>
          </children>
       </VBox>
-      <Label alignment="CENTER" layoutX="288.0" layoutY="712.0" prefWidth="675.0" text="Puoi continuare a giocare i livelli e cercare di perfezionarli, se vuoi!" wrapText="true" />
    </children>
    <stylesheets>
       <URL value="@../css/Global.css" />
