@@ -1,12 +1,13 @@
 package it.unicam.cs.mpgc.rpg129852.controller.menu;
 
+import it.unicam.cs.mpgc.rpg129852.context.game.GameSessionManager;
+import it.unicam.cs.mpgc.rpg129852.model.game.Game;
 import it.unicam.cs.mpgc.rpg129852.persistence.game.GameStorageException;
 import it.unicam.cs.mpgc.rpg129852.persistence.game.SaveCorruptedException;
 import it.unicam.cs.mpgc.rpg129852.persistence.game.SaveNotFoundException;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.persistence.game.GameRepository;
-import it.unicam.cs.mpgc.rpg129852.service.game.GameLoader;
 import it.unicam.cs.mpgc.rpg129852.ui.common.AlertHelper;
 import it.unicam.cs.mpgc.rpg129852.ui.save.SaveRowComponent;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
@@ -26,6 +27,7 @@ public class LoadGameController {
     private static final String DELETE_TITLE = "Elimina Salvataggio";
     private static final String DELETE_HEADER = "Stai per eliminare il salvataggio: ";
     private static final String DELETE_CONTENT = "L'operazione è irreversibile. Vuoi continuare?";
+
     private static final String ERR_LOAD_MSG = "Impossibile caricare il salvataggio";
     private static final String ERR_DELETE_MSG = "Impossibile eliminare il file";
     private static final String ERR_CORRUPTED_MSG = "Il file di salvataggio è danneggiato o illeggibile.\n";
@@ -35,16 +37,16 @@ public class LoadGameController {
     private static final String ERR_DELETE_STORAGE_MSG = "Impossibile accedere al file per l'eliminazione.\n";
 
     private final GameRepository repository;
-    private final GameLoader gameLoader;
+    private final GameSessionManager gameSessionManager;
     private final ViewRouter sceneManager;
     private Image trashImageCache;
 
     @FXML
     private VBox savesContainer;
 
-    public LoadGameController(GameRepository repository, GameLoader gameLoader, ViewRouter sceneManager) {
+    public LoadGameController(GameRepository repository, GameSessionManager gameSessionManager, ViewRouter sceneManager) {
         this.repository = repository;
-        this.gameLoader = gameLoader;
+        this.gameSessionManager = gameSessionManager;
         this.sceneManager = sceneManager;
     }
 
@@ -74,7 +76,8 @@ public class LoadGameController {
     private void loadSelectedGame(String saveName) {
         try {
 
-            gameLoader.loadGame(saveName);
+            Game loadedGame = repository.load(saveName);
+            gameSessionManager.setCurrentGame(loadedGame);
             sceneManager.switchScene(ViewRoute.PLAYER_MENU);
 
         } catch (SaveCorruptedException e) {

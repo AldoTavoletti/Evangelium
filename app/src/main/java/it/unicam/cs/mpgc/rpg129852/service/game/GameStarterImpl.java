@@ -8,9 +8,9 @@ import it.unicam.cs.mpgc.rpg129852.service.save.SaveNameResolver;
 public class GameStarterImpl implements GameStarter {
 
     private final GameRepository repository;
-    private final SaveNameResolver saveNameResolver;
     private final GameSessionManager sessionManager;
     private final GameFactory gameFactory;
+    private final SaveNameResolver saveNameResolver;
 
 
     public GameStarterImpl(GameRepository repository, GameSessionManager sessionManager, GameFactory gameFactory,

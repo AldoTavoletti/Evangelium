@@ -22,7 +22,6 @@ import javafx.scene.image.ImageView;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DiscipleCreationController {
 
@@ -110,7 +109,7 @@ public class DiscipleCreationController {
     private void initJobSelector() {
         List<Job> selectableJobs = Arrays.stream(Job.values())
                 .filter(job -> job != Job.NONE)
-                .collect(Collectors.toList());
+                .toList();
 
         jobSelector.getItems().addAll(selectableJobs);
         jobSelector.getSelectionModel().selectFirst();

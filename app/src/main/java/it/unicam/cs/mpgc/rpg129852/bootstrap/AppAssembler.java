@@ -1,6 +1,5 @@
 package it.unicam.cs.mpgc.rpg129852.bootstrap;
 
-import com.google.common.math.Stats;
 import com.google.gson.Gson;
 import it.unicam.cs.mpgc.rpg129852.context.game.GameContextImpl;
 import it.unicam.cs.mpgc.rpg129852.context.game.GameSessionManager;
@@ -27,8 +26,6 @@ import it.unicam.cs.mpgc.rpg129852.service.book.BookCatalog;
 import it.unicam.cs.mpgc.rpg129852.service.book.BookCatalogImpl;
 import it.unicam.cs.mpgc.rpg129852.service.disciple.DiscipleProfileService;
 import it.unicam.cs.mpgc.rpg129852.service.disciple.DiscipleProfileServiceImpl;
-import it.unicam.cs.mpgc.rpg129852.service.game.GameLoader;
-import it.unicam.cs.mpgc.rpg129852.service.game.GameLoaderImpl;
 import it.unicam.cs.mpgc.rpg129852.service.game.GameStarter;
 import it.unicam.cs.mpgc.rpg129852.service.level.gameplay.LevelStarter;
 import it.unicam.cs.mpgc.rpg129852.service.level.gameplay.ScriptureCatalog;
@@ -39,8 +36,6 @@ import it.unicam.cs.mpgc.rpg129852.service.shop.ShopServiceImpl;
 import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigator;
 import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigatorImpl;
 import javafx.stage.Stage;
-
-import java.util.List;
 
 public class AppAssembler {
 
@@ -67,7 +62,6 @@ public class AppAssembler {
         LevelCatalog levelCatalog = new LevelCatalogImpl(levelMetadataRegistry);
         ScriptureCatalog scriptureCatalog = new ScriptureCatalogImpl(scriptureRegistry);
 
-        GameLoader gameLoader = new GameLoaderImpl(repository, gameSessionManager);
         GameStarter gameStarter = DomainFactory.createGameStarter(repository, gameSessionManager);
         LevelStarter levelStarter = DomainFactory.createLevelStarter(levelSessionManager, gson);
 
@@ -86,7 +80,7 @@ public class AppAssembler {
         ViewRouter sceneManager = new SceneManager(primaryStage, controllerFactory);
 
         registerControllers(controllerFactory, sceneManager, gameSessionManager, levelSessionManager, repository,
-                gameStarter, gameLoader, levelStarter, levelBrowser, discipleProfile, shopService,
+                gameStarter, levelStarter, levelBrowser, discipleProfile, shopService,
                 scriptureCatalog, discipleNavigator, summaryService, statsService);
 
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
@@ -94,7 +88,7 @@ public class AppAssembler {
 
     private void registerControllers(ControllerFactory factory, ViewRouter sceneManager,
                                      GameSessionManager gameSession, LevelSessionManager levelSession,
-                                     GameRepository repository, GameStarter gameStarter, GameLoader gameLoader,
+                                     GameRepository repository, GameStarter gameStarter,
                                      LevelStarter levelStarter, LevelBrowserService levelBrowser,
                                      DiscipleProfileService discipleProfile, ShopService shopService,
                                      ScriptureCatalog scriptureCatalog, CircularListNavigator<DiscipleAsset> discipleNavigator,  SummaryService summaryService, StatsService statsService) {
@@ -106,7 +100,7 @@ public class AppAssembler {
                 () -> new DiscipleCreationController(gameStarter, discipleNavigator, sceneManager));
 
         factory.register(LoadGameController.class,
-                () -> new LoadGameController(repository, gameLoader, sceneManager));
+                () -> new LoadGameController(repository, gameSession, sceneManager));
 
         factory.register(PlayerMenuController.class,
                 () -> new PlayerMenuController(summaryService, discipleProfile, levelStarter, levelBrowser, sceneManager));
