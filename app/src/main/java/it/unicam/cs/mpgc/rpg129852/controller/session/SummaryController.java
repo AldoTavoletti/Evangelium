@@ -17,9 +17,6 @@ import javafx.scene.text.TextFlow;
 
 public class SummaryController {
 
-    private static final String FONT_FAMILY = "Georgia";
-    private static final int FONT_SIZE = 20;
-
     private final StatsService statsService;
     private final DiscipleProfileService discipleProfile;
     private final ViewRouter sceneManager;
@@ -67,10 +64,10 @@ public class SummaryController {
 
     private TextFlow createStatRow(String description, int value) {
         Text descriptionText = new Text(description);
-        descriptionText.setFont(Font.font(FONT_FAMILY, FontWeight.BOLD, FONT_SIZE));
+        descriptionText.getStyleClass().add("stat-label");
 
         Text valueText = new Text(" " + value);
-        valueText.setFont(Font.font(FONT_FAMILY, FontWeight.NORMAL, FONT_SIZE));
+        valueText.getStyleClass().add("stat-value");
 
         return new TextFlow(descriptionText, valueText);
     }
