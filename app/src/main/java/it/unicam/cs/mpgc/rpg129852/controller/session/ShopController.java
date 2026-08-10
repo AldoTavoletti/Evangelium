@@ -1,8 +1,10 @@
 package it.unicam.cs.mpgc.rpg129852.controller.session;
 
 import it.unicam.cs.mpgc.rpg129852.dto.book.Book;
+import it.unicam.cs.mpgc.rpg129852.model.disciple.DiscipleData;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
+import it.unicam.cs.mpgc.rpg129852.service.disciple.DiscipleProfileService;
 import it.unicam.cs.mpgc.rpg129852.service.shop.ShopService;
 import it.unicam.cs.mpgc.rpg129852.ui.common.AlertHelper;
 import it.unicam.cs.mpgc.rpg129852.ui.shop.BookRowComponent;
@@ -29,11 +31,18 @@ public class ShopController {
 
     private Image cartImageCache;
 
-    @FXML private VBox booksContainer;
-    @FXML private Label currentVirtuesLabel;
+    @FXML
+    private DiscipleHeaderController discipleHeaderController;
+    @FXML
+    private VBox booksContainer;
+    @FXML
+    private Label currentVirtuesLabel;
+    @FXML
+    private DiscipleProfileService discipleProfile;
 
-    public ShopController(ShopService shopService, ViewRouter sceneManager) {
+    public ShopController(DiscipleProfileService discipleProfile, ShopService shopService, ViewRouter sceneManager) {
         this.shopService = shopService;
+        this.discipleProfile = discipleProfile;
         this.sceneManager = sceneManager;
     }
 
@@ -49,13 +58,18 @@ public class ShopController {
     }
 
     private void restartUI() {
-        updateVirtuesDisplay();
+        initializeDiscipleHeader();
         refreshBooksList();
     }
 
-    private void updateVirtuesDisplay() {
-        currentVirtuesLabel.setText(shopService.getAvailableVirtues().toString());
+    private void initializeDiscipleHeader() {
+        DiscipleData data = discipleProfile.getCurrentData();
+        String gifPath = discipleProfile.getAvatarGifPath();
+        Image gif = ImageUtils.loadImage(gifPath);
+
+        discipleHeaderController.initData(data, gif);
     }
+
 
     private void refreshBooksList() {
         booksContainer.getChildren().clear();

@@ -11,7 +11,7 @@
 <VBox maxHeight="750.0" maxWidth="1250.0" minHeight="750.0" minWidth="1250.0" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.rpg129852.controller.session.PlayerMenuController">
     <children>
 
-        <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0">
+        <HBox alignment="CENTER_LEFT">
             <children>
                 <Button mnemonicParsing="false" onAction="#onBackToMenuButtonClicked" styleClass="back-to-main-menu" text="Back to Main Menu">
                     <HBox.margin>
@@ -33,7 +33,7 @@
             </children>
         </HBox>
 
-        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+        <HBox VBox.vgrow="ALWAYS">
             <children>
 
                 <VBox maxWidth="850.0" HBox.hgrow="ALWAYS">
@@ -58,7 +58,7 @@
                 <VBox alignment="BOTTOM_CENTER" HBox.hgrow="ALWAYS">
                     <children>
                         <!-- Contenitore vuoto: il LevelDetailsNode verrà iniettato qui dal controller -->
-                        <VBox fx:id="detailsContainer" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                        <VBox fx:id="detailsContainer" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin></VBox>

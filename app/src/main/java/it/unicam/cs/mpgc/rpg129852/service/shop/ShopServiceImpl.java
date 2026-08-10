@@ -42,11 +42,6 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Virtues getAvailableVirtues() {
-        return getCurrentGameState().getDiscipleData().getVirtues();
-    }
-
-    @Override
     public List<Book> getAvailableBooks() {
         List<Book> allBooks = bookCatalog.getAllBooks();
         List<String> boughtBookIds = getCurrentGameState().getInventory().getBookIds();
@@ -60,6 +55,11 @@ public class ShopServiceImpl implements ShopService {
     public boolean canAfford(Book book) {
         return getAvailableVirtues().isGreaterThanOrEqualTo(book.price());
     }
+
+    private Virtues getAvailableVirtues() {
+        return getCurrentGameState().getDiscipleData().getVirtues();
+    }
+
 
     private GameState getCurrentGameState() {
         return gameProvider.getCurrentGame().gameState();

@@ -110,7 +110,7 @@ public class AppAssembler {
                 () -> new PlayerMenuController(summaryService, discipleProfile, levelStarter, levelBrowser, sceneManager));
 
         factory.register(ShopController.class,
-                () -> new ShopController(shopService, sceneManager));
+                () -> new ShopController(discipleProfile, shopService, sceneManager));
 
         factory.register(GameplayController.class,
                 () -> new GameplayController(DomainFactory.createGameplayService(levelSession, gameSession, repository),
