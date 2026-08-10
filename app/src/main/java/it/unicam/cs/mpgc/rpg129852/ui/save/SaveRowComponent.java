@@ -8,17 +8,38 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import org.jspecify.annotations.NonNull;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
+/**
+ * A custom UI component representing a single row in the load game screen.
+ * It provides interactive elements to either load or delete a specific save file.
+ */
 public class SaveRowComponent extends HBox {
+
+    private static final double DEFAULT_SPACING = 10.0;
 
     private static final String LOAD_BTN_CLASS = "load-btn";
     private static final String DELETE_BTN_CLASS = "delete-btn";
     private static final String FALLBACK_DELETE_TEXT = "X";
     private static final double ICON_SIZE = 24.0;
 
+    /**
+     * Constructs a new save row component.
+     *
+     * @param saveName   the name of the save file, displayed on the load button
+     * @param trashImage the icon to display on the delete button; if null or broken, a text fallback is used
+     * @param onLoad     the callback triggered when the load button is clicked
+     * @param onDelete   the callback triggered when the delete button is clicked
+     * @throws NullPointerException if saveName, onLoad, or onDelete is null
+     */
     public SaveRowComponent(final String saveName, final Image trashImage, final Consumer<String> onLoad, final Consumer<String> onDelete) {
-        super(10);
+        super(DEFAULT_SPACING);
+
+        Objects.requireNonNull(saveName, "The save name must not be null.");
+        Objects.requireNonNull(onLoad, "The onLoad callback must not be null.");
+        Objects.requireNonNull(onDelete, "The onDelete callback must not be null.");
+
         this.setAlignment(Pos.CENTER);
 
         Button loadButton = createLoadButton(saveName, onLoad);

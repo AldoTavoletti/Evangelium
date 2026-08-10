@@ -9,6 +9,10 @@ import javafx.stage.PopupWindow;
 
 import java.net.URL;
 
+/**
+ * A custom UI component to show the full scripture verse corresponding
+ * to the available responses in the levels.
+ */
 public class ScripturePopup extends Popup {
 
     private static final double POPUP_WIDTH = 350.0;
@@ -23,6 +27,9 @@ public class ScripturePopup extends Popup {
     private final Label popupTitle;
     private final Label popupContent;
 
+    /**
+     * Constructs a new scripture popup.
+     */
     public ScripturePopup() {
         this.setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_BOTTOM_LEFT);
 
@@ -38,6 +45,12 @@ public class ScripturePopup extends Popup {
         this.getContent().add(pane);
     }
 
+    /**
+     * Shows the scripture popup above the passed node.
+     * @param anchorNode    the node above which the popup will appear
+     * @param content       the content of the popup
+     * @param title         the title of the popup
+     */
     public void showAboveNode(Node anchorNode, String content, String title) {
         popupTitle.setText(title);
         popupContent.setText(content);
