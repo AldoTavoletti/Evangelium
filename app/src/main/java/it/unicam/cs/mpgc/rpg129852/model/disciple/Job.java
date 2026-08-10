@@ -1,10 +1,14 @@
 package it.unicam.cs.mpgc.rpg129852.model.disciple;
 
+/**
+ * Represents the chosen order or path of the disciple.
+ * This selection can influence dialogue availability and potential starting statistics.
+ */
 public enum Job {
-    NONE ("Nessuno"),
-    DOMINICAN ("Domenicano"),
-    FRANCISCAN ("Francescano"),
-    CARMELITE ("Carmelitano");
+    NONE("None"),
+    DOMINICAN("Dominican"),
+    FRANCISCAN("Franciscan"),
+    CARMELITE("Carmelite");
 
     private final String displayValue;
 
@@ -12,6 +16,11 @@ public enum Job {
         this.displayValue = displayValue;
     }
 
+    /**
+     * Retrieves the human-readable display name of the job.
+     *
+     * @return the display name
+     */
     public String getDisplayValue() {
         return displayValue;
     }

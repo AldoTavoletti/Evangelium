@@ -13,13 +13,26 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Objects;
 
+/**
+ * Concrete implementation of the {@link ScenarioLoader}.
+ * It parses JSON files from the application's classpath using Gson and filters the
+ * dialogue options within each phase to ensure the player only sees responses available
+ * to their current job classification.
+ */
 public class ScenarioLoaderImpl implements ScenarioLoader {
 
     private final Gson gson;
 
+    /**
+     * Constructs a new scenario loader.
+     *
+     * @param gson the configured Gson instance used for JSON deserialization
+     * @throws NullPointerException if the Gson instance is null
+     */
     public ScenarioLoaderImpl(Gson gson) {
-        this.gson = gson;
+        this.gson = Objects.requireNonNull(gson, "The Gson instance must not be null.");
     }
 
     @Override
@@ -37,27 +50,27 @@ public class ScenarioLoaderImpl implements ScenarioLoader {
 
     private void validatePath(String scenarioPath) {
         if (scenarioPath == null || scenarioPath.isBlank()) {
-            throw new IllegalArgumentException("Il path dello scenario non può essere nullo o vuoto.");
+            throw new IllegalArgumentException("The scenario path cannot be null or blank.");
         }
     }
 
     private LevelScenario parseScenarioFile(String scenarioPath) {
         try (InputStream inputStream = getClass().getResourceAsStream(scenarioPath)) {
             if (inputStream == null) {
-                throw new IllegalStateException("File di scenario non trovato al percorso specificato: " + scenarioPath);
+                throw new IllegalStateException("Scenario file not found at the specified path: " + scenarioPath);
             }
 
             try (Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
                 LevelScenario scenario = gson.fromJson(reader, LevelScenario.class);
 
                 if (scenario == null) {
-                    throw new IllegalStateException("Il file JSON dello scenario è vuoto o malformato: " + scenarioPath);
+                    throw new IllegalStateException("The JSON scenario file is empty or malformed: " + scenarioPath);
                 }
 
                 return scenario;
             }
         } catch (IOException | JsonSyntaxException e) {
-            throw new RuntimeException("Errore critico durante il caricamento dello scenario: " + scenarioPath, e);
+            throw new RuntimeException("Critical error while loading the scenario: " + scenarioPath, e);
         }
     }
 

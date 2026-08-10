@@ -4,7 +4,7 @@ import it.unicam.cs.mpgc.rpg129852.model.disciple.DiscipleData;
 import it.unicam.cs.mpgc.rpg129852.model.disciple.Inventory;
 import it.unicam.cs.mpgc.rpg129852.model.disciple.InventoryImpl;
 import it.unicam.cs.mpgc.rpg129852.model.game.Game;
-import it.unicam.cs.mpgc.rpg129852.model.game.GameState;
+import it.unicam.cs.mpgc.rpg129852.model.game.GameStateImpl;
 
 import java.util.Objects;
 
@@ -21,7 +21,7 @@ public class GameFactoryImpl implements GameFactory {
 
         DiscipleData discipleData = new DiscipleData(request.discipleName(), request.job(), request.color());
         Inventory inventory = new InventoryImpl();
-        GameState gameState = new GameState(discipleData, inventory);
+        GameStateImpl gameState = new GameStateImpl(discipleData, inventory);
         return new Game(request.saveName(), gameState);
     }
 }
