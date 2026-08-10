@@ -8,15 +8,24 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="750.0" maxWidth="1250.0" minHeight="750.0" minWidth="1250.0" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.rpg129852.controller.PlayerMenuController">
+<VBox maxHeight="750.0" maxWidth="1250.0" minHeight="750.0" minWidth="1250.0" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.rpg129852.controller.session.PlayerMenuController">
     <children>
 
-        <!-- HBox contenitore per la barra superiore: include il bottone Back e il custom header -->
-        <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0">
+        <HBox alignment="CENTER_LEFT">
             <children>
-                <Button mnemonicParsing="false" onAction="#onReturnToMenuAction" styleClass="back-to-main-menu" text="Back to Main Menu">
+                <Button mnemonicParsing="false" onAction="#onBackToMenuButtonClicked" styleClass="back-to-main-menu" text="Back to Main Menu">
                     <HBox.margin>
                         <Insets left="30.0" />
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="shopButton" mnemonicParsing="false" onAction="#onShopButtonClicked" styleClass="back-to-main-menu" text="Shop">
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="summaryButton" managed="false" mnemonicParsing="false" onAction="#onSummaryButtonClicked" styleClass="summary-button" text="Riepilogo">
+                    <HBox.margin>
+                        <Insets left="20.0" />
                     </HBox.margin>
                 </Button>
                 <!-- Include the external component -->
@@ -24,7 +33,7 @@
             </children>
         </HBox>
 
-        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+        <HBox VBox.vgrow="ALWAYS">
             <children>
 
                 <VBox maxWidth="850.0" HBox.hgrow="ALWAYS">
@@ -35,31 +44,31 @@
                         <!-- ToolBar dinamica: i bottoni vengono generati dal controller (Data-Driven UI) -->
                         <ToolBar fx:id="categoryToolBar" prefHeight="49.0" prefWidth="522.0" />
 
-                        <!-- TilePane: gestisce automaticamente il layout a griglia dei livelli (Layout Delegato) -->
-                        <TilePane fx:id="levelsContainer" alignment="TOP_LEFT" hgap="50.0" prefColumns="3" prefTileHeight="100.0" prefTileWidth="250.0" vgap="50.0">
+                        <!-- TilePane: gestisce automaticamente il layout a griglia dei livelli -->
+                        <TilePane fx:id="levelsContainer" alignment="TOP_LEFT" hgap="25.0" prefColumns="3" prefTileHeight="110.0" prefTileWidth="240.0" vgap="25.0">
                             <padding>
-                                <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                             </padding>
                         </TilePane>
                     </children>
                 </VBox>
 
-                <VBox alignment="BOTTOM_CENTER" HBox.hgrow="ALWAYS">
+                <VBox alignment="BOTTOM_CENTER" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" HBox.hgrow="ALWAYS">
                     <children>
-                        <!-- Contenitore vuoto: il LevelDetailsNode verrà iniettato qui dal controller -->
-                        <VBox fx:id="detailsContainer" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin></VBox>
-                        <Button fx:id="playButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayLevelAction" styleClass="start-button" text="Gioca!">
+                        <!-- Contenitore a dimensioni fisse: impedisce lo sfarfallio e il salto del layout -->
+                        <VBox fx:id="detailsContainer" alignment="TOP_CENTER" maxHeight="550.0" maxWidth="400.0" minHeight="550.0" minWidth="400.0" prefHeight="550.0" prefWidth="400.0">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin></VBox>
+                        <Button fx:id="playButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayButtonClicked" styleClass="start-button" text="Gioca!">
                             <VBox.margin>
                                 <Insets top="30.0" />
                             </VBox.margin>
                         </Button>
                     </children>
-               <HBox.margin>
-                  <Insets bottom="30.0" right="30.0" />
-               </HBox.margin>
+                    <HBox.margin>
+                        <Insets bottom="30.5" right="30.0" />
+                    </HBox.margin>
                 </VBox>
 
             </children>

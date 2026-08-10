@@ -1,0 +1,29 @@
+[
+  {
+    "id": "LETTERE_PAOLO",
+    "displayName": "Lettere di paolo",
+    "price": {
+      "faith": 30,
+      "hope": 10,
+      "love": 10
+    }
+  },
+  {
+    "id": "VANGELI",
+    "displayName": "Vangeli",
+    "price": {
+      "faith": 10,
+      "hope": 10,
+      "love": 10
+    }
+  },
+  {
+    "id": "LETTERE_CATTOLICHE",
+    "displayName": "Lettere Cattoliche",
+    "price": {
+      "faith": 10,
+      "hope": 10,
+      "love": 10
+    }
+  }
+]

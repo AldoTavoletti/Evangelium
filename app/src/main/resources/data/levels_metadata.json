@@ -1,0 +1,15 @@
+[
+  {
+    "id": "doubt_elena",
+    "category": "faith",
+    "title": "Il dubbio e il silenzio di Dio",
+    "description": "Il livello esplora la crisi dell'assenza percepita, affrontando il dolore di un silenzio divino che sembra indifferenza e mettendo alla prova la tenuta della fede e dell'integrità morale di fronte alle ingiustizie del mondo.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": [],
+    "scenarioPath": "/data/scenarios/doubt_elena_scenario.json"
+  }
+]

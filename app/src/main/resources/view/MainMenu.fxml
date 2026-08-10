@@ -6,56 +6,64 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="750.0" maxWidth="1250.0" minHeight="750.0" minWidth="1250.0" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.rpg129852.controller.MainMenuController">
+<HBox maxHeight="750.0" maxWidth="1250.0" minHeight="750.0" minWidth="1250.0" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.rpg129852.controller.menu.MainMenuController">
    <children>
-      <AnchorPane>
+
+      <!-- Sezione Sinistra: Menu e Testi in uno StackPane per il centraggio assoluto -->
+      <StackPane prefWidth="645.0" HBox.hgrow="ALWAYS">
          <children>
-            <Label layoutX="49.0" layoutY="147.0" prefHeight="50.0" prefWidth="547.0" text="In principio era il Verbo, e il Verbo era presso Dio e il Verbo era Dio. Tutte le cose sono state fatte per mezzo di lui. In lui era la vita e la vita era la luce degli uomini." textAlignment="CENTER" wrapText="true" AnchorPane.topAnchor="675.0" />
-            <Label id="title" alignment="CENTER" contentDisplay="CENTER" layoutY="1.0" prefHeight="171.0" prefWidth="645.0" text="EVANGELIUM" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" />
-            <VBox alignment="CENTER" maxHeight="750.0" maxWidth="671.0" minHeight="750.0" minWidth="600.0" prefHeight="750.0" prefWidth="645.0" spacing="15.0">
+
+            <!-- Intestazione: Titolo e Croce (Ancorati in alto) -->
+            <VBox alignment="TOP_CENTER" StackPane.alignment="TOP_CENTER">
+               <StackPane.margin>
+                  <Insets top="50.0" />
+               </StackPane.margin>
                <children>
-                  <Button fx:id="newGameButton" maxHeight="50.0" maxWidth="225.0" minHeight="50.0" minWidth="225.0" mnemonicParsing="false" onAction="#onNewGameAction" prefHeight="50.0" prefWidth="225.0" text="Nuova Partita">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="loadGameButton" maxHeight="50.0" maxWidth="225.0" minHeight="50.0" minWidth="225.0" mnemonicParsing="false" onAction="#onLoadGameAction" prefHeight="50.0" prefWidth="225.0" text="Carica Partita">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="quitButton" maxHeight="50.0" maxWidth="225.0" minHeight="50.0" minWidth="225.0" mnemonicParsing="false" onAction="#onQuitAction" prefHeight="50.0" prefWidth="225.0" text="Esci">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Button>
+                  <Label id="title" alignment="CENTER" text="EVANGELIUM" textAlignment="CENTER" />
+                  <ImageView fitHeight="93.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/cross.png" />
+                     </image>
+                  </ImageView>
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
             </VBox>
-            <ImageView fitHeight="125.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="125.0">
-               <image>
-                  <Image url="@../images/cross.png" />
-               </image>
-            </ImageView>
+
+            <!-- Centro: Pulsanti di Navigazione (Perfettamente al centro matematico) -->
+            <VBox alignment="CENTER" spacing="20.0">
+               <children>
+                  <Button fx:id="newGameButton" mnemonicParsing="false" onAction="#onNewGameAction" prefHeight="50.0" prefWidth="225.0" text="Nuova Partita" />
+                  <Button fx:id="loadGameButton" mnemonicParsing="false" onAction="#onLoadGameAction" prefHeight="50.0" prefWidth="225.0" text="Carica Partita" />
+                  <Button fx:id="quitButton" mnemonicParsing="false" onAction="#onQuitAction" prefHeight="50.0" prefWidth="225.0" text="Esci" />
+               </children>
+            </VBox>
+
+            <!-- Piè di pagina: Citazione Biblica (Ancorata in basso) -->
+            <Label alignment="CENTER" prefHeight="75.0" prefWidth="599.0" text="In principio era il Verbo, e il Verbo era presso Dio e il Verbo era Dio. Tutte le cose sono state fatte per mezzo di lui. In lui era la vita e la vita era la luce degli uomini." textAlignment="CENTER" wrapText="true" StackPane.alignment="BOTTOM_CENTER">
+               <StackPane.margin>
+                  <Insets bottom="50.0" />
+               </StackPane.margin>
+            </Label>
+
          </children>
-      </AnchorPane>
-      <Pane prefHeight="764.0" prefWidth="629.0">
+      </StackPane>
+
+      <!-- Sezione Destra: Immagine di Copertina -->
+      <StackPane prefWidth="605.0" HBox.hgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="756.0" fitWidth="605.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="750.0" fitWidth="605.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/trinita-rublev.jpg" />
                </image>
             </ImageView>
          </children>
-      </Pane>
+      </StackPane>
+
    </children>
+
    <stylesheets>
       <URL value="@../css/Global.css" />
       <URL value="@../css/MainMenu.css" />

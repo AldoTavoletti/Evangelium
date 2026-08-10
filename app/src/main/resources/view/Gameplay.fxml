@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="750.0" maxWidth="1250.0" minHeight="750.0" minWidth="1250.0" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.rpg129852.controller.session.GameplayController">
+   <children>
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1250.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="200.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <ImageView fx:id="discipleImageView" fitHeight="200.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="discipleNameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="150.0" />
+                     </children>
+                  </VBox>
+                  <Label fx:id="phaseCounterLabel" />
+                  <VBox>
+                     <children>
+                        <ImageView fx:id="npcImageView" fitHeight="200.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="npcNameLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="150.0" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="100.0" />
+               </VBox.margin>
+            </HBox>
+            <Label fx:id="feedbackLabel" opacity="0.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Label>
+            <Label fx:id="problemSeverityLabel">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <ProgressBar fx:id="severityProgressBar" maxWidth="1000.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </ProgressBar>
+            <TextArea fx:id="dialogueTextArea" editable="false" maxHeight="150.0" maxWidth="1000.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+               <children>
+                  <Button id="0" fx:id="firstResponseButton" mnemonicParsing="false" onAction="#onResponseButtonClicked" onMouseEntered="#onResponseButtonHover" onMouseExited="#onResponseButtonExit" styleClass="response-button" text="Button" />
+                  <Button id="1" fx:id="secondResponseButton" mnemonicParsing="false" onAction="#onResponseButtonClicked" onMouseEntered="#onResponseButtonHover" onMouseExited="#onResponseButtonExit" styleClass="response-button" text="Button" />
+                  <Button id="2" fx:id="thirdResponseButton" mnemonicParsing="false" onAction="#onResponseButtonClicked" onMouseEntered="#onResponseButtonHover" onMouseExited="#onResponseButtonExit" styleClass="response-button" text="Button" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button fx:id="returnToMenuButton" layoutX="20.0" layoutY="20.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#onReturnToMenuClicked" prefHeight="60.0" prefWidth="60.0" styleClass="arrow">
+         <graphic>
+            <ImageView pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/go-back-arrow.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+   <stylesheets>
+      <URL value="@../css/Global.css" />
+      <URL value="@../css/Gameplay.css" />
+   </stylesheets>
+</AnchorPane>

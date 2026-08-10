@@ -1,95 +1,15 @@
 package it.unicam.cs.mpgc.rpg129852;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import it.unicam.cs.mpgc.rpg129852.dto.*;
-import it.unicam.cs.mpgc.rpg129852.context.GameContextImpl;
-import it.unicam.cs.mpgc.rpg129852.context.GameSessionManager;
-import it.unicam.cs.mpgc.rpg129852.controller.DiscipleCreationController;
-import it.unicam.cs.mpgc.rpg129852.controller.LoadGameController;
-import it.unicam.cs.mpgc.rpg129852.controller.MainMenuController;
-import it.unicam.cs.mpgc.rpg129852.controller.PlayerMenuController;
-import it.unicam.cs.mpgc.rpg129852.navigation.SceneManager;
-import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
-import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
-import it.unicam.cs.mpgc.rpg129852.persistence.GameRepository;
-import it.unicam.cs.mpgc.rpg129852.persistence.JsonGameRepository;
-import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistry;
-import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistryImpl;
-import it.unicam.cs.mpgc.rpg129852.service.*;
-import it.unicam.cs.mpgc.rpg129852.util.*;
+import it.unicam.cs.mpgc.rpg129852.bootstrap.AppAssembler;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.logging.Level;
-
 public class Main extends Application {
-
-    private static final String DISCIPLE_ASSETS_PATH = "/disciples_assets.json";
-    private static final List<String> JOBS = List.of(
-            "Pescatore", "Falegname", "Esattore delle imposte",
-            "Fabbricante di tende", "Contadino", "Fabbro", "Medico"
-    );
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Evangelium");
-
-        String userHome = System.getProperty("user.home");
-        Path saveDirectory = Paths.get(userHome, ".evangelium", "saves");
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-        GameRepository repository = new JsonGameRepository(saveDirectory, gson);
-        GameSessionManager gameSessionManager = new GameContextImpl();
-
-        GameStarter gameStarter = createGameStarter(repository, gameSessionManager);
-        GameLoader gameLoader = createGameLoader(repository, gameSessionManager);
-
-        ResourceRegistry<DiscipleAsset> discipleAssetRegistry = new ResourceRegistryImpl<>("/disciples_assets.json", DiscipleAsset.class, gson);
-        discipleAssetRegistry.loadResources();
-
-        LevelCatalog levelCatalog = createLevelCatalog(gson);
-
-        ControllerFactory controllerFactory = new ControllerFactory();
-        ViewRouter sceneManager = new SceneManager(primaryStage, controllerFactory);
-
-        controllerFactory.register(MainMenuController.class,
-                () -> new MainMenuController(gameSessionManager, sceneManager));
-
-        controllerFactory.register(DiscipleCreationController.class,
-                () -> new DiscipleCreationController(gameStarter, discipleAssetRegistry, JOBS, sceneManager));
-
-        controllerFactory.register(LoadGameController.class,
-                ()-> new LoadGameController(repository, gameLoader, sceneManager));
-
-        controllerFactory.register(PlayerMenuController.class,
-                ()-> new PlayerMenuController(gameSessionManager, levelCatalog, discipleAssetRegistry,sceneManager));
-
-        sceneManager.switchScene(ViewRoute.MAIN_MENU);
-    }
-
-    private LevelCatalog createLevelCatalog(Gson gson) {
-        ResourceRegistry<LevelMetadata> levelMetadataRegistry = new ResourceRegistryImpl<>("/levels_metadata.json", LevelMetadata.class, gson);
-        levelMetadataRegistry.loadResources();
-        return new LevelCatalogImpl(levelMetadataRegistry);
-    }
-
-    private GameLoader createGameLoader(GameRepository repository, GameSessionManager gameSessionManager) {
-        return new GameLoaderImpl(repository, gameSessionManager);
-    }
-
-    private GameStarter createGameStarter(GameRepository repository, GameSessionManager sessionManager) {
-        SyntaxValidator syntaxValidator = new SaveNameSyntaxValidator();
-        SaveNameFallbackProvider fallbackProvider = new SaveNameFallbackProviderImpl();
-        SaveNameResolver saveNameResolver = new SaveNameResolverImpl(repository, syntaxValidator, fallbackProvider);
-
-        GameFactory gameFactory = new GameFactoryImpl();
-
-        return new GameStarterImpl(repository, sessionManager, gameFactory, saveNameResolver);
+        AppAssembler assembler = new AppAssembler();
+        assembler.assembleAndRun(primaryStage);
     }
 
     public static void main(String[] args) {

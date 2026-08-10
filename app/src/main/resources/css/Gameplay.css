@@ -1,0 +1,143 @@
+/* =========================================
+   HEADER (Disciple vs NPC)
+   ========================================= */
+#discipleImageView,
+#npcImageView {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0.0, 2, 2);
+}
+
+#phaseCounterLabel {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 20px 0 20px;
+}
+
+/* =========================================
+   HEALING FEEDBACK
+   ========================================= */
+#feedbackLabel {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #27ae60;
+    -fx-background-color: #eafaf1;
+    -fx-background-radius: 20px;
+    -fx-border-color: #2ecc71;
+    -fx-border-radius: 20px;
+    -fx-border-width: 2px;
+    -fx-padding: 6px 20px;
+}
+
+/* =========================================
+   PROGRESS BAR (Problem / Challenge)
+   ========================================= */
+#severityProgressBar {
+    -fx-pref-height: 16px;
+}
+
+#severityProgressBar > .track {
+    -fx-background-color: #ecf0f1;
+    -fx-background-radius: 10px;
+    -fx-background-insets: 0;
+}
+
+#severityProgressBar > .bar {
+    -fx-background-color: linear-gradient(to right, #3498db, #2ecc71);
+    -fx-background-radius: 10px;
+    -fx-background-insets: 0;
+    -fx-padding: 4px;
+}
+
+/* =========================================
+   DIALOGUE AREA (NPC)
+   ========================================= */
+#dialogueTextArea {
+    -fx-font-size: 16px;
+    -fx-text-fill: #555555;
+    -fx-background-color: transparent;
+    -fx-background-radius: 12px;
+    -fx-border-color: #ecf0f1;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.06), 10, 0.0, 0, 4);
+}
+
+#dialogueTextArea:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+#dialogueTextArea .content {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12px;
+}
+
+#dialogueTextArea .scroll-pane,
+#dialogueTextArea .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* =========================================
+   RESPONSE BUTTONS (Dialogue Responses)
+   ========================================= */
+.response-button {
+    -fx-font-size: 15px;
+    -fx-font-weight: normal;
+    -fx-text-fill: -text-color-main;
+    -fx-background-color: -primary-button-background;
+    -fx-background-radius: 8px;
+    -fx-border-color: #E2DFD8;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-padding: 14px 25px;
+    -fx-cursor: hand;
+    -fx-pref-width: 260px;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.04), 8, 0.0, 0, 4);
+}
+
+.response-button:hover {
+    -fx-background-color: -primary-button-background-hover;
+    -fx-border-color: #3498db;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 12, 0.0, 0, 6);
+    -fx-translate-y: -2px;
+}
+
+.response-button:pressed {
+    -fx-background-color: #E6E2D8;
+    -fx-border-color: #E2DFD8;
+    -fx-effect: none;
+    -fx-translate-y: 1px;
+}
+
+/* =========================================
+   SCRIPTURE HOVER POPUP
+   ========================================= */
+.popup-pane {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20px 25px;
+    -fx-background-radius: 12px;
+    -fx-border-color: #ecf0f1;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-max-width: 320px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.12), 20, 0.0, 0, 8);
+}
+
+.popup-text {
+    -fx-font-size: 15px;
+    -fx-font-style: italic;
+    -fx-text-fill: #555555;
+    -fx-line-spacing: 5px;
+    -fx-wrap-text: true;
+}
+
+.popup-source {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-style: normal;
+    -fx-text-fill: #8e44ad;
+    -fx-padding: 10px 0 0 0;
+}

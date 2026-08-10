@@ -1,32 +1,6 @@
 /* =========================================
    HEADER & VIRTÙ (Tema Chiaro)
    ========================================= */
-#discipleNameLabel {
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #2c3e50;
-}
-
-#discipleImageView {
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 2, 2);
-}
-
-#faithLabel, #hopeLabel, #loveLabel {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #2c3e50;
-    -fx-background-color: #ffffff;
-    -fx-background-radius: 20px;
-    -fx-padding: 8px 20px;
-    -fx-border-radius: 20px;
-    -fx-border-width: 2px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
-}
-
-/* Colori accento pastello per le virtù in linea con il tuo tema chiaro */
-#faithLabel { -fx-border-color: #3498db; }
-#hopeLabel { -fx-border-color: #2ecc71; }
-#loveLabel { -fx-border-color: #e74c3c; }
 
 /* =========================================
    TOOLBAR (CATEGORIE)
@@ -196,4 +170,60 @@
 .back-to-main-menu:pressed {
     -fx-background-color: #d6eaf8;
     -fx-translate-y: 1px;
+}
+
+.check-perfect {
+    -fx-fill: #2ecc71; /* Verde pastello della virtù Hope */
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-effect: dropshadow(three-pass-box, rgba(46, 204, 113, 0.4), 5, 0, 0, 2);
+}
+
+.check-partial {
+    -fx-fill: #f39c12; /* Arancione per il parziale */
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-effect: dropshadow(three-pass-box, rgba(243, 156, 18, 0.4), 5, 0, 0, 2);
+}
+
+.check-failed {
+    -fx-fill: #e74c3c; /* Rosso pastello usato anche per il danno */
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-effect: dropshadow(three-pass-box, rgba(231, 76, 60, 0.4), 5, 0, 0, 2);
+}
+
+/* Stato normale del bottone speciale */
+.summary-button {
+    /* Gradiente dorato al posto della tinta unita */
+    -fx-background-color: linear-gradient(to bottom, #ffe55c, #ffb300);
+    -fx-text-fill: #5c3a21; /* Un marrone scuro elegante invece del nero */
+    -fx-font-size: 16px; /* Leggermente più grande del normale */
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-color: #cca300;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+    /* Usa il dropshadow per creare un bagliore (glow) dorato attorno al bottone */
+    -fx-effect: dropshadow(gaussian, rgba(255, 204, 0, 0.6), 15, 0.4, 0, 0);
+}
+
+/* Quando il mouse passa sopra il bottone (hover) */
+.summary-button:hover {
+    /* Colori più chiari e luminosi */
+    -fx-background-color: linear-gradient(to bottom, #fff080, #ffcc00);
+    /* Il bagliore si espande e diventa più intenso */
+    -fx-effect: dropshadow(gaussian, rgba(255, 204, 0, 0.9), 25, 0.6, 0, 0);
+}
+
+/* Quando il giocatore clicca il bottone (pressed) */
+.summary-button:pressed {
+    /* Inverte il gradiente per dare l'effetto di pressione */
+    -fx-background-color: linear-gradient(to bottom, #ffb300, #ffe55c);
+    /* Riduce il bagliore */
+    -fx-effect: dropshadow(gaussian, rgba(255, 204, 0, 0.4), 10, 0.2, 0, 0);
+    /* Sposta fisicamente il bottone verso il basso di 2 pixel */
+    -fx-translate-y: 2px;
 }
