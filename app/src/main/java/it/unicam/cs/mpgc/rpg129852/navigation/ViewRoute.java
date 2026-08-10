@@ -1,5 +1,8 @@
 package it.unicam.cs.mpgc.rpg129852.navigation;
 
+/**
+ * Defines the fxml paths of the views.
+ */
 public enum ViewRoute {
     MAIN_MENU("/view/MainMenu.fxml"),
     DISCIPLE_CREATION("/view/DiscipleCreation.fxml"),
