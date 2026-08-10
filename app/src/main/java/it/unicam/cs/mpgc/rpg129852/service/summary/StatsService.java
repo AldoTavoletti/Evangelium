@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg129852.service.level.menu;
+package it.unicam.cs.mpgc.rpg129852.service.summary;
 
 public interface StatsService {
     int getNumberOfPerfectLevels();

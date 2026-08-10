@@ -1,11 +1,14 @@
-package it.unicam.cs.mpgc.rpg129852.service.level.menu;
+package it.unicam.cs.mpgc.rpg129852.service.summary;
 
 import it.unicam.cs.mpgc.rpg129852.context.game.GameProvider;
+import it.unicam.cs.mpgc.rpg129852.model.level.Score;
+import it.unicam.cs.mpgc.rpg129852.service.level.menu.LevelCatalog;
 
 public class SummaryServiceImpl implements SummaryService {
 
     private final GameProvider gameProvider;
     private final LevelCatalog levelCatalog;
+
     private boolean summaryShown = false;
 
     public SummaryServiceImpl (GameProvider gameProvider, LevelCatalog levelCatalog) {
@@ -13,27 +16,21 @@ public class SummaryServiceImpl implements SummaryService {
         this.levelCatalog = levelCatalog;
     }
 
-    public boolean shouldSummaryBeShown() {
-        if (summaryShown) {
-            return false;
-        }
-
-        return areAllLevelsWon();
-
-    }
-
     public boolean areAllLevelsWon() {
         int totalNumberOfLevels = levelCatalog.getTotalNumberOfLevels();
 
         int numberOfWonLevels = (int) gameProvider.getCurrentGame().gameState().getAllLevelScores().values().stream()
-                .filter(score -> score != null && !score.virtues().isZero())
+                .filter(score -> isLevelWon(score))
                 .count();
 
-        if (numberOfWonLevels == totalNumberOfLevels) {
-            summaryShown = true;
-            return true;
-        }
+        return numberOfWonLevels == totalNumberOfLevels;
+    }
 
-        return false;
+    public void setSummaryShown(boolean summaryShown) {
+        this.summaryShown = summaryShown;
+    }
+
+    private boolean isLevelWon(Score score) {
+        return score != null && !score.virtues().isZero();
     }
 }

@@ -6,7 +6,7 @@ import it.unicam.cs.mpgc.rpg129852.model.level.LevelCategory;
 import java.util.List;
 
 public interface LevelCatalog {
-    public List<LevelMetadata> getLevelsByCategory(LevelCategory category);
-    public List<LevelMetadata> getAllLevels();
+    public List<LevelMetadata> getLevelsMetadataByCategory(LevelCategory category);
+    public List<LevelMetadata> getAllLevelsMetadata();
     public int getTotalNumberOfLevels();
 }

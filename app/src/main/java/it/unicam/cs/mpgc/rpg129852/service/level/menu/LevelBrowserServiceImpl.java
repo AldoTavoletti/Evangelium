@@ -2,10 +2,8 @@ package it.unicam.cs.mpgc.rpg129852.service.level.menu;
 
 import it.unicam.cs.mpgc.rpg129852.context.game.GameProvider;
 import it.unicam.cs.mpgc.rpg129852.dto.level.LevelMetadata;
-import it.unicam.cs.mpgc.rpg129852.model.game.GameState;
 import it.unicam.cs.mpgc.rpg129852.model.level.LevelCategory;
 import it.unicam.cs.mpgc.rpg129852.model.level.Score;
-import it.unicam.cs.mpgc.rpg129852.model.virtues.Virtues;
 import it.unicam.cs.mpgc.rpg129852.service.book.BookCatalog;
 
 import java.util.List;
@@ -26,8 +24,8 @@ public class LevelBrowserServiceImpl implements LevelBrowserService {
     }
 
     @Override
-    public List<LevelMetadata> getLevelsByCategory(LevelCategory category) {
-        return levelCatalog.getLevelsByCategory(category);
+    public List<LevelMetadata> getLevelsMetadataByCategory(LevelCategory category) {
+        return levelCatalog.getLevelsMetadataByCategory(category);
     }
 
     @Override

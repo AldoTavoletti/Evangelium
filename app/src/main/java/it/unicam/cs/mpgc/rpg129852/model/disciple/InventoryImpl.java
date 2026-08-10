@@ -29,4 +29,8 @@ public record InventoryImpl(List<String> bookIds) implements Inventory {
     public boolean contains(List<String> bookIdsToCheck) {
         return this.bookIds.containsAll(bookIdsToCheck);
     }
+
+    public boolean contains(String bookId) {
+        return this.bookIds.contains(bookId);
+    }
 }

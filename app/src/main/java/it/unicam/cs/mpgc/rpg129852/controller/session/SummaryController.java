@@ -3,15 +3,12 @@ package it.unicam.cs.mpgc.rpg129852.controller.session;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.service.disciple.DiscipleProfileService;
-import it.unicam.cs.mpgc.rpg129852.service.level.menu.StatsService;
+import it.unicam.cs.mpgc.rpg129852.service.summary.StatsService;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -20,66 +17,61 @@ import javafx.scene.text.TextFlow;
 
 public class SummaryController {
 
+    private static final String FONT_FAMILY = "Georgia";
+    private static final int FONT_SIZE = 20;
+
+    private final StatsService statsService;
     private final DiscipleProfileService discipleProfile;
     private final ViewRouter sceneManager;
-    private final StatsService statsService;
 
-    @FXML
-    private ImageView discipleImageView;
-
-    @FXML
-    private Button returnToMenuButton;
-
-    @FXML
-    private VBox statsContainer;
+    @FXML private ImageView discipleImageView;
+    @FXML private Button returnToMenuButton;
+    @FXML private VBox statsContainer;
 
     public SummaryController(StatsService statsService, DiscipleProfileService discipleProfile, ViewRouter sceneManager) {
-        System.out.println("constructor");
-        this.discipleProfile = discipleProfile;
         this.statsService = statsService;
+        this.discipleProfile = discipleProfile;
         this.sceneManager = sceneManager;
     }
 
     @FXML
-    void initialize() {
-        System.out.println("init");
-        initDiscipleImage();
+    public void initialize() {
+        initializeDiscipleImage();
         populateStatsContainer();
     }
 
-    private void populateStatsContainer() {
-
-        // Primo dato: Livelli perfetti
-        Text perfectDesc = new Text("Numero di livelli completati in modo perfetto: ");
-        perfectDesc.setFont(Font.font(perfectDesc.getFont().getFamily(), FontWeight.BOLD, perfectDesc.getFont().getSize()));
-
-        Text perfectNum = new Text(String.valueOf(statsService.getNumberOfPerfectLevels()));
-
-        TextFlow perfectFlow = new TextFlow(perfectDesc, perfectNum);
-
-        // Secondo dato: Tentativi totali
-        Text attemptsDesc = new Text("Numero totale di tentativi eseguiti: ");
-        attemptsDesc.setFont(Font.font(attemptsDesc.getFont().getFamily(), FontWeight.BOLD, attemptsDesc.getFont().getSize()));
-
-        Text attemptsNum = new Text(String.valueOf(statsService.getNumberOfAttempts()));
-
-        TextFlow attemptsFlow = new TextFlow(attemptsDesc, attemptsNum);
-
-        // Aggiungi i TextFlow al contenitore principale
-        statsContainer.getChildren().addAll(perfectFlow, attemptsFlow);
-
+    @FXML
+    void onBackToMenuButtonClicked() {
+        sceneManager.switchScene(ViewRoute.PLAYER_MENU);
     }
 
-    private void initDiscipleImage() {
+    private void initializeDiscipleImage() {
         String gifPath = discipleProfile.getAvatarGifPath();
         Image gif = ImageUtils.loadImage(gifPath);
         discipleImageView.setImage(gif);
     }
 
-    @FXML
-    void onReturnToMenuClicked(ActionEvent event) {
-        sceneManager.switchScene(ViewRoute.PLAYER_MENU);
+    private void populateStatsContainer() {
+        TextFlow perfectLevelsStat = createStatRow(
+                "Numero di livelli completati in modo perfetto: ",
+                statsService.getNumberOfPerfectLevels()
+        );
+
+        TextFlow attemptsStat = createStatRow(
+                "Numero totale di tentativi eseguiti: ",
+                statsService.getNumberOfAttempts()
+        );
+
+        statsContainer.getChildren().setAll(perfectLevelsStat, attemptsStat);
     }
 
-}
+    private TextFlow createStatRow(String description, int value) {
+        Text descriptionText = new Text(description);
+        descriptionText.setFont(Font.font(FONT_FAMILY, FontWeight.BOLD, FONT_SIZE));
 
+        Text valueText = new Text(" " + value);
+        valueText.setFont(Font.font(FONT_FAMILY, FontWeight.NORMAL, FONT_SIZE));
+
+        return new TextFlow(descriptionText, valueText);
+    }
+}

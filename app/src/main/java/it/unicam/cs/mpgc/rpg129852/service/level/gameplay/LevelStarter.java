@@ -4,7 +4,5 @@ import it.unicam.cs.mpgc.rpg129852.dto.level.LevelMetadata;
 import it.unicam.cs.mpgc.rpg129852.model.disciple.Job;
 
 public interface LevelStarter {
-
-    public void start(LevelMetadata metadata, Job discipleJob);
-
+    void start(LevelMetadata metadata, Job discipleJob);
 }

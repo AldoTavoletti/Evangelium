@@ -7,7 +7,6 @@ import it.unicam.cs.mpgc.rpg129852.service.shop.ShopService;
 import it.unicam.cs.mpgc.rpg129852.ui.common.AlertHelper;
 import it.unicam.cs.mpgc.rpg129852.ui.shop.BookRowComponent;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -18,6 +17,7 @@ import java.util.List;
 public class ShopController {
 
     private static final String CART_ICON_PATH = "/images/shopping-cart.png";
+
     private static final String BUY_TITLE = "Acquista libro";
     private static final String BUY_HEADER = "Stai per acquistare il libro: ";
     private static final String BUY_CONTENT = "Vuoi continuare?";
@@ -26,13 +26,11 @@ public class ShopController {
 
     private final ShopService shopService;
     private final ViewRouter sceneManager;
+
     private Image cartImageCache;
 
-    @FXML
-    private VBox booksContainer;
-
-    @FXML
-    private Label currentVirtuesLabel;
+    @FXML private VBox booksContainer;
+    @FXML private Label currentVirtuesLabel;
 
     public ShopController(ShopService shopService, ViewRouter sceneManager) {
         this.shopService = shopService;
@@ -42,6 +40,15 @@ public class ShopController {
     @FXML
     public void initialize() {
         cartImageCache = ImageUtils.loadImage(CART_ICON_PATH);
+        restartUI();
+    }
+
+    @FXML
+    void onBackToMenuButtonClicked() {
+        sceneManager.switchScene(ViewRoute.PLAYER_MENU);
+    }
+
+    private void restartUI() {
         updateVirtuesDisplay();
         refreshBooksList();
     }
@@ -56,46 +63,47 @@ public class ShopController {
         List<Book> availableBooks = shopService.getAvailableBooks();
 
         if (availableBooks.isEmpty()) {
-            booksContainer.getChildren().add(new Label(EMPTY_BOOKS_MSG));
-            return;
+            displayEmptyShopMessage();
+        } else {
+            populateShopWithBooks(availableBooks);
         }
+    }
 
-        List<BookRowComponent> bookRows = generateBookRows(availableBooks);
+    private void displayEmptyShopMessage() {
+        booksContainer.getChildren().add(new Label(EMPTY_BOOKS_MSG));
+    }
+
+    private void populateShopWithBooks(List<Book> availableBooks) {
+        List<BookRowComponent> bookRows = availableBooks.stream()
+                .map(this::createBookRowComponent)
+                .toList();
 
         booksContainer.getChildren().addAll(bookRows);
     }
 
-    private List<BookRowComponent> generateBookRows(List<Book> availableBooks) {
-        return availableBooks.stream()
-                .map(book -> new BookRowComponent(
-                        book,
-                        shopService.canAfford(book),
-                        cartImageCache,
-                        this::confirmAndBuyBook
-                ))
-                .toList();
+    private BookRowComponent createBookRowComponent(Book book) {
+        return new BookRowComponent(
+                book,
+                shopService.canAfford(book),
+                cartImageCache,
+                this::confirmAndBuyBook
+        );
     }
 
     private void confirmAndBuyBook(Book book) {
-        boolean confirmed = AlertHelper.askConfirmation(BUY_TITLE, BUY_HEADER + book.displayName(), BUY_CONTENT);
+        boolean isConfirmed = AlertHelper.askConfirmation(BUY_TITLE, BUY_HEADER + book.displayName(), BUY_CONTENT);
 
-        if (confirmed) {
-            executeBuy(book);
+        if (isConfirmed) {
+            attemptPurchase(book);
         }
     }
 
-    private void executeBuy(Book book) {
+    private void attemptPurchase(Book book) {
         try {
             shopService.buy(book);
-            updateVirtuesDisplay();
-            refreshBooksList();
+            restartUI();
         } catch (IllegalStateException e) {
             AlertHelper.showError(ERR_BUY_MSG, e.getMessage());
         }
-    }
-
-    @FXML
-    void onReturnToMenuAction(ActionEvent event) {
-        sceneManager.switchScene(ViewRoute.PLAYER_MENU);
     }
 }

@@ -63,7 +63,7 @@ public class LevelCardNode extends StackPane {
                 icon.setContent(SVG_SAD);
                 icon.getStyleClass().add("check-failed");
             }
-            case PARTIAL -> {
+            case GOOD -> {
                 icon.setContent(SVG_NEUTRAL);
                 icon.getStyleClass().add("check-partial");
             }

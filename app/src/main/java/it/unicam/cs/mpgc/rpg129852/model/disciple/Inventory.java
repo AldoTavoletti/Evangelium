@@ -6,4 +6,5 @@ public interface Inventory {
     void addBookId(String bookId);
     List<String> getBookIds();
     boolean contains(List<String> bookIds);
+    boolean contains(String bookId);
 }

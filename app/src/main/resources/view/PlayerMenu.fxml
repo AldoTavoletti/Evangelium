@@ -13,17 +13,17 @@
 
         <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#onReturnToMenuAction" styleClass="back-to-main-menu" text="Back to Main Menu">
+                <Button mnemonicParsing="false" onAction="#onBackToMenuButtonClicked" styleClass="back-to-main-menu" text="Back to Main Menu">
                     <HBox.margin>
                         <Insets left="30.0" />
                     </HBox.margin>
                 </Button>
-            <Button fx:id="shopButton" mnemonicParsing="false" onAction="#onGoToShopButton" styleClass="back-to-main-menu" text="Shop">
+            <Button fx:id="shopButton" mnemonicParsing="false" onAction="#onShopButtonClicked" styleClass="back-to-main-menu" text="Shop">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="summaryButton" managed="false" mnemonicParsing="false" onAction="#onGoToSummaryButton" styleClass="summary-button" text="Riepilogo">
+            <Button fx:id="summaryButton" managed="false" mnemonicParsing="false" onAction="#onSummaryButtonClicked" styleClass="summary-button" text="Riepilogo">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
@@ -62,7 +62,7 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin></VBox>
-                        <Button fx:id="playButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayLevelAction" styleClass="start-button" text="Gioca!">
+                        <Button fx:id="playButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayButtonClicked" styleClass="start-button" text="Gioca!">
                             <VBox.margin>
                                 <Insets top="30.0" />
                             </VBox.margin>

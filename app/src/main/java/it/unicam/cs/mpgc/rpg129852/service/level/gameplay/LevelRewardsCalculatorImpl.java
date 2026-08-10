@@ -23,7 +23,7 @@ public class LevelRewardsCalculatorImpl implements LevelRewardsCalculator {
         }
 
         if (answers.contains(PhaseAnswer.BAD)) {
-            return new Score(getHalfRewards(maxRewards), LevelCompletionState.PARTIAL);
+            return new Score(getHalfRewards(maxRewards), LevelCompletionState.GOOD);
         } else {
             return new Score(maxRewards, LevelCompletionState.PERFECT);
 

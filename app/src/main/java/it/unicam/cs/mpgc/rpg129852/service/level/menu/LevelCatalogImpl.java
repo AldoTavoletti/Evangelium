@@ -14,13 +14,13 @@ public class LevelCatalogImpl implements LevelCatalog {
         this.registry = registry;
     }
 
-    public List<LevelMetadata> getLevelsByCategory(LevelCategory category) {
+    public List<LevelMetadata> getLevelsMetadataByCategory(LevelCategory category) {
         return registry.getAllResources().stream()
                 .filter(level -> level.category() == category)
                 .toList();
     }
 
-    public List<LevelMetadata> getAllLevels() {
+    public List<LevelMetadata> getAllLevelsMetadata() {
         return registry.getAllResources();
     }
 
