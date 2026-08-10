@@ -111,7 +111,7 @@ public class GameplayController {
     }
 
     private void loadDiscipleAvatar() {
-        String gifPath = discipleProfile.getAvatarGifPath();
+        String gifPath = discipleProfile.getGifPath();
         discipleImageView.setImage(ImageUtils.loadImage(gifPath));
         discipleNameLabel.setText(discipleProfile.getCurrentData().getName());
     }

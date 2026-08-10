@@ -10,8 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
@@ -43,7 +41,7 @@ public class SummaryController {
     }
 
     private void initializeDiscipleImage() {
-        String gifPath = discipleProfile.getAvatarGifPath();
+        String gifPath = discipleProfile.getGifPath();
         Image gif = ImageUtils.loadImage(gifPath);
         discipleImageView.setImage(gif);
     }

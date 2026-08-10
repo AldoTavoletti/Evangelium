@@ -64,7 +64,7 @@ public class ShopController {
 
     private void initializeDiscipleHeader() {
         DiscipleData data = discipleProfile.getCurrentData();
-        String gifPath = discipleProfile.getAvatarGifPath();
+        String gifPath = discipleProfile.getGifPath();
         Image gif = ImageUtils.loadImage(gifPath);
 
         discipleHeaderController.initData(data, gif);
