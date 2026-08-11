@@ -17,9 +17,9 @@
          <children>
             <HBox alignment="CENTER_LEFT" spacing="20.0" StackPane.alignment="CENTER_LEFT">
                <children>
-                  <Button fx:id="returnToMenuButton" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#onBackToMenuButtonClicked" prefHeight="60.0" prefWidth="60.0" styleClass="arrow">
+                  <Button fx:id="returnToMenuButton" mnemonicParsing="false" onAction="#onBackToMenuButtonClicked" styleClass="header-button">
                      <graphic>
-                        <Region maxHeight="24.0" maxWidth="24.0" prefHeight="24.0" prefWidth="24.0" styleClass="previous-scene-icon" />
+                        <Region maxHeight="24.0" maxWidth="24.0" prefHeight="18.0" prefWidth="18.0" styleClass="previous-scene-icon" />
                      </graphic>
                      <HBox.margin>
                         <Insets left="30.0" />

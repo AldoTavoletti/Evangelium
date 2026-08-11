@@ -81,6 +81,31 @@
 }
 
 /* ==========================================================================
+   Header Button
+   ========================================================================== */
+.header-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 15px;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+}
+
+.header-button:hover {
+    -fx-background-color: #ebf5fb;
+    -fx-text-fill: #3498db;
+    -fx-border-color: #3498db;
+}
+
+.header-button:pressed {
+    -fx-background-color: #d6eaf8;
+    -fx-translate-y: 1px;
+}
+
+/* ==========================================================================
    Scroll Pane Component
    ========================================================================== */
 .scroll-pane {
