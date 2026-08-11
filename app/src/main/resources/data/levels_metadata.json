@@ -37,5 +37,31 @@
     },
     "requiredBookIds": ["LETTERE_PAOLO"],
     "scenarioPath": "/data/scenarios/pride_lorenzo.json"
+  },
+  {
+    "id": "skepticism_valerio",
+    "category": "FAITH",
+    "title": "La risurrezione di Cristo",
+    "description": "Valerio, pur ammirando profondamente la figura di Gesù di Nazaret come maestro di morale e filosofo, non riesce in alcun modo ad accettare la realtà storica della risurrezione fisica, ritenendola un'invenzione successiva, un'allucinazione o una semplice metafora spirituale.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": ["LETTERE_PAOLO"],
+    "scenarioPath": "/data/scenarios/skepticism_valerio.json"
+  },
+  {
+    "id": "skepticism_riccardo",
+    "category": "FAITH",
+    "title": "La pienezza dei tempi",
+    "description": "Riccardo, pur credendo in un principio ordinatore dell'universo, è profondamente bloccato da quello che i teologi chiamano \"lo scandalo della particolarità\". Ritiene illogico e ingiusto che un Dio cosmico e universale abbia scelto di rivelarsi e operare la salvezza in un minuscolo frammento di spazio e di tempo, affidando un messaggio cruciale a mezzi umani fragili.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": ["LETTERE_PAOLO"],
+    "scenarioPath": "/data/scenarios/skepticism_riccardo.json"
   }
 ]

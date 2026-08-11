@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Riccardo",
+    "imagePath": "/images/npcs/riccardo.png",
+    "problemType": "SKEPTICISM",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Se Dio è il creatore dell'intero universo, perché avrebbe dovuto scegliere di rivelarsi in una remota e polverosa provincia dell'Impero Romano, appena duemila anni fa? Mi sembra un'idea troppo umana, quasi tribale. Un Dio veramente universale avrebbe dovuto manifestarsi contemporaneamente in Cina, in India, nelle Americhe, in modo chiaro e inequivocabile per tutti. Questa predilezione per un singolo popolo e per un'epoca così specifica mi fa pensare che il cristianesimo sia solo una costruzione culturale locale, non una verità cosmica.",
+      "responses": [
+        {
+          "displayReference": "1 Corinzi 1:27-29",
+          "scriptureId": "1cor-1-27-29",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Romani 9:20",
+          "scriptureId": "romani-9-20",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-pi1",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Bonaventura da Bagnoregio",
+          "scriptureId": "fra-pi1",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-pi1",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "E poi, che ne facciamo di tutte le generazioni vissute prima di questo presunto evento salvifico? L'umanità cammina su questa terra da centinaia di migliaia di anni. Se la venuta di Cristo era essenziale per la salvezza e per la vera comprensione del divino, perché aspettare così tanto? Immaginare che Dio abbia lasciato vagare nel buio e nell'ignoranza innumerevoli esseri umani per millenni, per poi improvvisamente decidere che era giunta 'la pienezza dei tempi', fa sembrare questo piano divino arbitrario o, peggio ancora, crudele.",
+      "responses": [
+        {
+          "displayReference": "Galati 4:4-5",
+          "scriptureId": "galati-4-4-5",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Romani 1:20",
+          "scriptureId": "romani-1-20",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-pi2",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Bonaventura da Bagnoregio",
+          "scriptureId": "fra-pi2",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa Benedetta della Croce",
+          "scriptureId": "car-pi2",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Infine, trovo assurdo il metodo scelto per tramandare questa presunta verità assoluta. Affidare il messaggio più importante della storia dell'universo a testimonianze orali, a pergamene ricopiate a mano soggette a traduzioni e interpretazioni, e a missionari umani fallibili... È un metodo di comunicazione intrinsecamente fragile. Se un medico scoprisse la cura per una malattia globale, non la sussurrerebbe all'orecchio di un gruppetto di pescatori in Medio Oriente sperando che il passaparola funzioni per i successivi duemila anni.",
+      "responses": [
+        {
+          "displayReference": "2 Corinzi 4:7",
+          "scriptureId": "2cor-4-7",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "1 Corinzi 1:21",
+          "scriptureId": "1cor-1-21",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-pi3",
+          "answerValue": "BAD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-pi3",
+          "answerValue": "BAD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-pi3",
+          "answerValue": "BAD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    }
+  ]
+}
