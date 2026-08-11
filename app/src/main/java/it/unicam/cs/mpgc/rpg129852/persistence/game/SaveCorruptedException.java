@@ -4,4 +4,8 @@ public class SaveCorruptedException extends RuntimeException {
     public SaveCorruptedException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    public SaveCorruptedException(String message) {
+        super(message);
+    }
 }

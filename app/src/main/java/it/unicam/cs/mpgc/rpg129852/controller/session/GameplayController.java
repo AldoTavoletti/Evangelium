@@ -19,10 +19,17 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
+/**
+ * Controller for the core gameplay screen.
+ * Manages the dialogue interaction between the disciple and the NPC,
+ * updates the visual state of the level, and evaluates the outcomes of player choices.
+ */
 public class GameplayController {
 
     private static final String VICTORY_MESSAGE = "Hai vinto!";
@@ -51,44 +58,69 @@ public class GameplayController {
     private FeedbackAnimator feedbackAnimator;
     private List<Button> responseButtons;
 
+    /**
+     * Constructs the gameplay controller with its required dependencies.
+     *
+     * @param gameplayService  the service managing the core gameplay loop and state
+     * @param discipleProfile  the service providing the player's character data
+     * @param scriptureCatalog the catalog to retrieve scripture texts for tooltips
+     * @param sceneManager     the router responsible for switching views
+     * @throws NullPointerException if any of the dependencies are null
+     */
     public GameplayController(GameplayService gameplayService,
                               DiscipleProfileService discipleProfile,
                               ScriptureCatalog scriptureCatalog,
                               ViewRouter sceneManager) {
-        this.gameplayService = gameplayService;
-        this.discipleProfile = discipleProfile;
-        this.scriptureCatalog = scriptureCatalog;
-        this.sceneManager = sceneManager;
+        this.gameplayService = Objects.requireNonNull(gameplayService, "The gameplay service must not be null.");
+        this.discipleProfile = Objects.requireNonNull(discipleProfile, "The disciple profile service must not be null.");
+        this.scriptureCatalog = Objects.requireNonNull(scriptureCatalog, "The scripture catalog must not be null.");
+        this.sceneManager = Objects.requireNonNull(sceneManager, "The scene manager must not be null.");
     }
 
     @FXML
-    void initialize() {
+    public void initialize() {
         this.responseButtons = List.of(firstResponseButton, secondResponseButton, thirdResponseButton);
         initializeVisualElements();
         loadNextPhase();
     }
 
+    /**
+     * Handles the hover event over a response button to display the scripture popup.
+     *
+     * @param event the mouse event triggered by hovering
+     */
     @FXML
     void onResponseButtonHover(MouseEvent event) {
         displayScriptureReference((Node) event.getSource());
     }
 
+    /**
+     * Handles the exit event from a response button to hide the scripture popup.
+     */
     @FXML
-    void onResponseButtonExit(MouseEvent event) {
+    void onResponseButtonExit() {
         scripturePopup.hide();
     }
 
+    /**
+     * Handles the click event on a response button to submit the chosen answer.
+     *
+     * @param event the action event triggered by clicking
+     */
     @FXML
     void onResponseButtonClicked(ActionEvent event) {
         DiscipleResponse selectedResponse = getResponseFromEvent(event);
 
         gameplayService.submitAnswer(selectedResponse.answerValue());
         refreshProgressBar();
-        resolveTurnOutcome(selectedResponse.answerValue().getHealValue());
+        resolvePhaseOutcome(selectedResponse.answerValue().getHealValue());
     }
 
+    /**
+     * Handles the click event to abandon the level and return to the player menu.
+     */
     @FXML
-    void onReturnToMenuClicked(ActionEvent event) {
+    void onReturnToMenuClicked() {
         returnToPlayerMenu();
     }
 
@@ -97,7 +129,7 @@ public class GameplayController {
         loadNpcAvatar();
 
         scripturePopup = new ScripturePopup();
-        feedbackAnimator = new FeedbackAnimator(feedbackLabel); // Inizializzazione animatore
+        feedbackAnimator = new FeedbackAnimator(feedbackLabel);
 
         hideImpactFeedback();
         severityProgressBar.setProgress(gameplayService.getCurrentProblemValue());
@@ -111,7 +143,7 @@ public class GameplayController {
     }
 
     private void loadDiscipleAvatar() {
-        String gifPath = discipleProfile.getAvatarGifPath();
+        String gifPath = discipleProfile.getGifPath();
         discipleImageView.setImage(ImageUtils.loadImage(gifPath));
         discipleNameLabel.setText(discipleProfile.getCurrentData().getName());
     }
@@ -126,17 +158,17 @@ public class GameplayController {
         dialogueTextArea.setText(currentPhase.npcDialogue());
 
         bindResponsesToButtons(currentPhase.responses());
-        updateTurnCounterText();
+        updatePhaseCounterText();
         updateProblemSeverityText();
     }
 
     private void updateProblemSeverityText() {
         String problemName = gameplayService.getProblemType().getDisplayValue();
-        double currentHealth = gameplayService.getCurrentProblemValue();
-        problemSeverityLabel.setText(problemName + ": " + (currentHealth * PERCENTAGE_MULTIPLIER));
+        int currentHealth = (int) (gameplayService.getCurrentProblemValue() * PERCENTAGE_MULTIPLIER);
+        problemSeverityLabel.setText(problemName + ": " + currentHealth);
     }
 
-    private void updateTurnCounterText() {
+    private void updatePhaseCounterText() {
         String phaseText = String.format("Turno: %d/%d",
                 gameplayService.getCurrentPhaseNumber(),
                 gameplayService.getTotalNumberOfPhases());
@@ -163,11 +195,11 @@ public class GameplayController {
         severityProgressBar.setProgress(gameplayService.getCurrentProblemValue());
     }
 
-    private void resolveTurnOutcome(double impactValue) {
+    private void resolvePhaseOutcome(double impactValue) {
         if (gameplayService.isLevelWon()) {
             handleLevelCompletion(VICTORY_MESSAGE);
         } else if (gameplayService.hasNextPhase()) {
-            transitionToNextTurn(impactValue);
+            transitionToNextPhase(impactValue);
         } else {
             handleLevelCompletion(DEFEAT_MESSAGE);
         }
@@ -182,7 +214,7 @@ public class GameplayController {
         feedbackAnimator.playFeedback(finalMessage, this::returnToPlayerMenu);
     }
 
-    private void transitionToNextTurn(double impactValue) {
+    private void transitionToNextPhase(double impactValue) {
         loadNextPhase();
         int displayValue = (int) (impactValue * PERCENTAGE_MULTIPLIER);
 

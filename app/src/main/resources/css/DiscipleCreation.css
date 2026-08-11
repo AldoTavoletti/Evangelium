@@ -1,4 +1,7 @@
-.scene-title {
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+.title {
     -fx-font-size: 64px;
     -fx-font-weight: bold;
     -fx-text-fill: -text-color-main;
@@ -12,6 +15,9 @@
     -fx-padding: 0 0 5px 0;
 }
 
+/* ==========================================================================
+   Input Controls (Text Field & Choice Box)
+   ========================================================================== */
 .text-field {
     -fx-background-color: #FFFFFF;
     -fx-border-color: #E2DFD8;
@@ -46,25 +52,20 @@
     -fx-text-fill: -text-color-main;
 }
 
-
-
-
-
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
 .start-button {
     -fx-font-size: 18px;
     -fx-font-weight: normal;
     -fx-text-fill: -text-color-main;
-
     -fx-background-color: -primary-button-background;
     -fx-background-radius: 6px;
-
     -fx-border-color: #E2DFD8;
     -fx-border-radius: 6px;
     -fx-border-width: 1px;
-
     -fx-padding: 12px 35px;
     -fx-cursor: hand;
-
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.03), 8, 0, 0, 4);
 }
 

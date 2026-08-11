@@ -39,15 +39,15 @@
                         <TextField fx:id="saveNameField" maxWidth="0.0" minWidth="300.0" promptText="e.g. mysave-1" />
                      </children>
                   </HBox>
-                  <Button fx:id="startGameButton" disable="true" mnemonicParsing="false" onAction="#onStartGameAction" styleClass="start-button" text="Inizia l'avventura!">
+                  <Button fx:id="startGameButton" disable="true" mnemonicParsing="false" onAction="#onStartGameButtonClicked" styleClass="start-button" text="Inizia l'avventura!">
                      <VBox.margin>
                         <Insets top="60.0" />
                      </VBox.margin>
                   </Button>
                </children>
             </VBox>
-            <Label alignment="CENTER" layoutY="54.0" prefHeight="81.0" prefWidth="629.0" styleClass="scene-title" text="CREA IL TUO DISCEPOLO!" />
-            <Button fx:id="returnToMenuButton" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#onReturnToMenuAction" prefHeight="60.0" prefWidth="60.0" styleClass="arrow" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+            <Label alignment="CENTER" layoutY="54.0" prefHeight="81.0" prefWidth="629.0" styleClass="title" text="CREA IL TUO DISCEPOLO!" />
+            <Button fx:id="returnToMenuButton" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#onBackToMenuButtonClicked" prefHeight="60.0" prefWidth="60.0" styleClass="arrow" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                <graphic>
                   <ImageView pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -60,7 +60,7 @@
       </AnchorPane>
       <HBox alignment="CENTER" maxHeight="750.0" maxWidth="625.0" minHeight="750.0" minWidth="625.0" prefHeight="750.0" prefWidth="625.0">
          <children>
-            <Button fx:id="previousGifButton" mnemonicParsing="false" onAction="#onPreviousGifAction" styleClass="arrow">
+            <Button fx:id="previousGifButton" mnemonicParsing="false" onAction="#onPreviousGifButtonClicked" styleClass="arrow">
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                      <image>
@@ -70,7 +70,7 @@
                </graphic>
             </Button>
             <ImageView fx:id="currentGifImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="nextGifButton" mnemonicParsing="false" onAction="#onNextGifAction" styleClass="arrow">
+            <Button fx:id="nextGifButton" mnemonicParsing="false" onAction="#onNextGifButtonClicked" styleClass="arrow">
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>

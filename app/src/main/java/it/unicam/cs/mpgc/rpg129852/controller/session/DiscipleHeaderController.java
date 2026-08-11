@@ -7,6 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.util.Objects;
+
+/**
+ * Controller for the disciple header UI component.
+ * It displays the player's current character information, including name, job,
+ * visual avatar, and currently accumulated virtues.
+ */
 public class DiscipleHeaderController {
 
     @FXML
@@ -24,7 +31,15 @@ public class DiscipleHeaderController {
     @FXML
     private Label loveLabel;
 
+    /**
+     * Initializes the header with the provided disciple data and image.
+     *
+     * @param data  the core character data containing name, job, and virtues
+     * @param image the visual avatar representing the disciple (can be null)
+     * @throws NullPointerException if the provided disciple data is null
+     */
     public void initData(DiscipleData data, Image image) {
+        Objects.requireNonNull(data, "The disciple data must not be null.");
 
         Virtues virtues = data.getVirtues();
         fillVirtuesLabels(virtues);
@@ -32,7 +47,6 @@ public class DiscipleHeaderController {
         fillDiscipleLabel(data.getName(), data.getJob().getDisplayValue());
 
         setDiscipleImage(image);
-
     }
 
     private void fillVirtuesLabels(Virtues virtues) {

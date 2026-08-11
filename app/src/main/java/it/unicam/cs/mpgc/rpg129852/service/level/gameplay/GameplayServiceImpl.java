@@ -9,7 +9,14 @@ import it.unicam.cs.mpgc.rpg129852.model.virtues.Virtues;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+/**
+ * Concrete implementation of the {@link GameplayService}.
+ * It acts as an orchestrator, delegating specific domain tasks (saving, calculating rewards,
+ * managing phase sequences) to specialized injected components, while maintaining the state
+ * of the current active gameplay session.
+ */
 public class GameplayServiceImpl implements GameplayService {
 
     private final LevelProvider levelProvider;
@@ -20,22 +27,30 @@ public class GameplayServiceImpl implements GameplayService {
     private final List<PhaseAnswer> phaseAnswers;
     private double currentProblemValue;
 
+    /**
+     * Constructs a new gameplay service session.
+     *
+     * @param levelProvider     provides access to the static data of the current level
+     * @param levelSaver        handles the persistence of the level outcome
+     * @param rewardsCalculator calculates the final score based on the player's choices
+     * @param levelEngine       manages the sequential progression of level phases
+     * @throws NullPointerException if any of the dependencies are null
+     */
     public GameplayServiceImpl(LevelProvider levelProvider,
                                LevelSaver levelSaver,
                                LevelRewardsCalculator rewardsCalculator,
                                LevelEngine levelEngine) {
-        this.levelProvider = levelProvider;
-        this.levelSaver = levelSaver;
-        this.rewardsCalculator = rewardsCalculator;
-        this.levelEngine = levelEngine;
-        this.phaseAnswers = new ArrayList<>();
+        this.levelProvider = Objects.requireNonNull(levelProvider, "The level provider must not be null.");
+        this.levelSaver = Objects.requireNonNull(levelSaver, "The level saver must not be null.");
+        this.rewardsCalculator = Objects.requireNonNull(rewardsCalculator, "The rewards calculator must not be null.");
+        this.levelEngine = Objects.requireNonNull(levelEngine, "The level engine must not be null.");
 
+        this.phaseAnswers = new ArrayList<>();
         this.currentProblemValue = getMaxProblemValue();
     }
 
     @Override
     public void completeLevel() {
-
         Virtues maxRewards = levelProvider.getCurrentLevel().metadata().maxRewards();
         String currentLevelId = levelProvider.getCurrentLevel().metadata().id();
 
@@ -46,6 +61,8 @@ public class GameplayServiceImpl implements GameplayService {
 
     @Override
     public void submitAnswer(PhaseAnswer answer) {
+        Objects.requireNonNull(answer, "The submitted answer must not be null.");
+
         phaseAnswers.add(answer);
 
         double newProgress = this.currentProblemValue - answer.getHealValue();
@@ -92,7 +109,8 @@ public class GameplayServiceImpl implements GameplayService {
         return levelProvider.getCurrentLevel().scenario().npc().imagePath();
     }
 
-    public String getNpcName(){
+    @Override
+    public String getNpcName() {
         return levelProvider.getCurrentLevel().scenario().npc().name();
     }
 
@@ -100,5 +118,4 @@ public class GameplayServiceImpl implements GameplayService {
     public ProblemType getProblemType() {
         return levelProvider.getCurrentLevel().scenario().npc().problemType();
     }
-
 }

@@ -20,14 +20,14 @@
                <children>
                   <VBox>
                      <children>
-                        <ImageView fx:id="discipleImageView" fitHeight="200.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="discipleImageView" fitHeight="200.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" styleClass="avatar-image" />
                         <Label fx:id="discipleNameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="150.0" />
                      </children>
                   </VBox>
-                  <Label fx:id="phaseCounterLabel" />
+                  <Label fx:id="phaseCounterLabel" styleClass="phase-counter" />
                   <VBox>
                      <children>
-                        <ImageView fx:id="npcImageView" fitHeight="200.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="npcImageView" fitHeight="200.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" styleClass="avatar-image" />
                         <Label fx:id="npcNameLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="150.0" />
                      </children>
                   </VBox>
@@ -36,7 +36,7 @@
                   <Insets bottom="100.0" />
                </VBox.margin>
             </HBox>
-            <Label fx:id="feedbackLabel" opacity="0.0">
+            <Label fx:id="feedbackLabel" opacity="0.0" styleClass="feedback-badge">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin></Label>
@@ -45,12 +45,12 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <ProgressBar fx:id="severityProgressBar" maxWidth="1000.0" prefWidth="200.0">
+            <ProgressBar fx:id="severityProgressBar" maxWidth="1000.0" prefWidth="200.0" styleClass="severity-progress-bar">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </ProgressBar>
-            <TextArea fx:id="dialogueTextArea" editable="false" maxHeight="150.0" maxWidth="1000.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+            <TextArea fx:id="dialogueTextArea" editable="false" maxHeight="150.0" maxWidth="1000.0" prefHeight="200.0" prefWidth="200.0" styleClass="dialogue-text-area" wrapText="true" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                <children>
                   <Button id="0" fx:id="firstResponseButton" mnemonicParsing="false" onAction="#onResponseButtonClicked" onMouseEntered="#onResponseButtonHover" onMouseExited="#onResponseButtonExit" styleClass="response-button" text="Button" />

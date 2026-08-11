@@ -6,29 +6,42 @@ import it.unicam.cs.mpgc.rpg129852.service.disciple.DiscipleProfileService;
 import it.unicam.cs.mpgc.rpg129852.service.summary.StatsService;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+import java.util.Objects;
+
+/**
+ * Controller for the summary screen.
+ * Displays the end-game statistics and the player's avatar.
+ */
 public class SummaryController {
+
+    private static final String PERFECT_LEVELS_TEXT = "Numero di livelli completati in modo perfetto: ";
+    private static final String TOTAL_ATTEMPTS_TEXT = "Numero totale di tentativi eseguiti: ";
 
     private final StatsService statsService;
     private final DiscipleProfileService discipleProfile;
     private final ViewRouter sceneManager;
 
     @FXML private ImageView discipleImageView;
-    @FXML private Button returnToMenuButton;
     @FXML private VBox statsContainer;
 
+    /**
+     * Constructs the summary controller with its required dependencies.
+     *
+     * @param statsService    the service providing the player's session statistics
+     * @param discipleProfile the service providing the player's character data and visuals
+     * @param sceneManager    the router responsible for switching views
+     * @throws NullPointerException if any of the dependencies are null
+     */
     public SummaryController(StatsService statsService, DiscipleProfileService discipleProfile, ViewRouter sceneManager) {
-        this.statsService = statsService;
-        this.discipleProfile = discipleProfile;
-        this.sceneManager = sceneManager;
+        this.statsService = Objects.requireNonNull(statsService, "The stats service must not be null.");
+        this.discipleProfile = Objects.requireNonNull(discipleProfile, "The disciple profile service must not be null.");
+        this.sceneManager = Objects.requireNonNull(sceneManager, "The scene manager must not be null.");
     }
 
     @FXML
@@ -43,19 +56,19 @@ public class SummaryController {
     }
 
     private void initializeDiscipleImage() {
-        String gifPath = discipleProfile.getAvatarGifPath();
+        String gifPath = discipleProfile.getGifPath();
         Image gif = ImageUtils.loadImage(gifPath);
         discipleImageView.setImage(gif);
     }
 
     private void populateStatsContainer() {
         TextFlow perfectLevelsStat = createStatRow(
-                "Numero di livelli completati in modo perfetto: ",
+                PERFECT_LEVELS_TEXT,
                 statsService.getNumberOfPerfectLevels()
         );
 
         TextFlow attemptsStat = createStatRow(
-                "Numero totale di tentativi eseguiti: ",
+                TOTAL_ATTEMPTS_TEXT,
                 statsService.getNumberOfAttempts()
         );
 

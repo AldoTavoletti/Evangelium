@@ -1,3 +1,6 @@
+/* ==========================================================================
+   Global Variables & Root Styling
+   ========================================================================== */
 .root {
     -primary-app-background: #F8F5EE;
     -primary-button-background: #FFFFFF;
@@ -9,6 +12,9 @@
     -fx-background-color: -primary-app-background;
 }
 
+/* ==========================================================================
+   Arrow Button Component
+   ========================================================================== */
 .arrow {
     -fx-background-color: transparent;
     -fx-cursor: hand;
@@ -23,4 +29,55 @@
 .arrow:pressed {
     -fx-background-color: rgba(0, 0, 0, 0.1);
     -fx-translate-y: 1px;
+}
+
+/* ==========================================================================
+   Scroll Pane Component
+   ========================================================================== */
+.scroll-pane {
+    -fx-background-color: -primary-app-background;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Scroll Bar - Vertical */
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 10px;
+}
+
+.scroll-pane .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: #E2DFD8;
+    -fx-background-radius: 5px;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #C5C2BC;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb:pressed {
+    -fx-background-color: #A09E98;
+}
+
+/* Scroll Bar - Buttons and Arrows Hidden */
+.scroll-pane .scroll-bar:vertical .increment-button,
+.scroll-pane .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-pane .scroll-bar:vertical .increment-arrow,
+.scroll-pane .scroll-bar:vertical .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0;
 }

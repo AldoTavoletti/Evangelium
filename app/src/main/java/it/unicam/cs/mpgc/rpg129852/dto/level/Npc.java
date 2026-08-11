@@ -7,4 +7,5 @@ public record Npc(
         String imagePath,
         ProblemType problemType,
         double maxProblemValue
-) {}
+) {
+}

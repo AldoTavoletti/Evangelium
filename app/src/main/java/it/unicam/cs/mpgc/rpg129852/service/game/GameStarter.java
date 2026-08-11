@@ -1,8 +1,9 @@
 package it.unicam.cs.mpgc.rpg129852.service.game;
 
+import it.unicam.cs.mpgc.rpg129852.dto.game.NewGameRequest;
+
 /**
  * Orchestrates the initialization phase of a new game.
- *
  * This service acts as a facade that bridges the domain creation logic,
  * the persistence layer, and the session context. It ensures that a newly
  * created game is properly instantiated, safely saved to the storage,
@@ -19,6 +20,7 @@ public interface GameStarter {
      *                               preventing accidental data loss.
      * @throws IllegalArgumentException if the provided save name violates the syntax rules
      *                                  or contains forbidden characters.
+     * @throws NullPointerException if the provided new game request is null.
      */
     void startNewGame(NewGameRequest request);
 
@@ -29,6 +31,7 @@ public interface GameStarter {
      * @param request the data transfer object containing the initial player choices.
      * @throws IllegalArgumentException if the provided save name violates the syntax rules
      *                                  or contains forbidden characters.
+     * @throws NullPointerException if the provided new game request is null.
      */
     void overwriteAndStartNewGame(NewGameRequest request);
 }

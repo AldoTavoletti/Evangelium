@@ -17,6 +17,5 @@ public record LevelMetadata(
         List<String> requiredBookIds,
         String scenarioPath
 ) implements Resource {
-
 }
 

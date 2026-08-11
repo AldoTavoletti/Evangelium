@@ -1,18 +1,21 @@
 package it.unicam.cs.mpgc.rpg129852.model.level;
 
 import com.google.gson.annotations.SerializedName;
-import java.util.Optional;
 
+/**
+ * Represents the overarching category or thematic focus of a level.
+ * These categories align with the primary virtues tracked in the game.
+ */
 public enum LevelCategory {
 
     @SerializedName("faith")
-    FAITH("Fede"),
+    FAITH("Faith"),
 
     @SerializedName("hope")
-    HOPE("Speranza"),
+    HOPE("Hope"),
 
     @SerializedName("love")
-    LOVE("Carità");
+    LOVE("Love");
 
     private final String displayName;
 
@@ -20,8 +23,12 @@ public enum LevelCategory {
         this.displayName = displayName;
     }
 
+    /**
+     * Retrieves the human-readable display name of the category.
+     *
+     * @return the display name
+     */
     public String getDisplayName() {
         return this.displayName;
     }
-
 }

@@ -1,36 +1,53 @@
 package it.unicam.cs.mpgc.rpg129852.model.disciple;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
-public record InventoryImpl(List<String> bookIds) implements Inventory {
+/**
+ * Concrete implementation of the {@link Inventory}.
+ * It safely manages a mutable list of acquired books, ensuring that external
+ * components cannot directly modify the internal state without using the exposed methods.
+ */
+public class InventoryImpl implements Inventory {
 
-    // Compact constructor: fondamentale per Gson!
-    // Intercetta la creazione dell'oggetto e forza la lista ad essere un'ArrayList mutabile.
-    public InventoryImpl {
-        bookIds = new ArrayList<>(bookIds != null ? bookIds : new ArrayList<>());
-    }
+    private final List<String> bookIds;
 
+    /**
+     * Constructs a new, empty inventory.
+     * This is also the default constructor invoked by Gson during deserialization.
+     */
     public InventoryImpl() {
-        this(new ArrayList<>());
+        this.bookIds = new ArrayList<>();
     }
 
     @Override
     public void addBookId(String bookId) {
-        bookIds.add(bookId);
+        validateBookId(bookId);
+        this.bookIds.add(bookId);
     }
 
     @Override
     public List<String> getBookIds() {
-        return List.copyOf(bookIds);
+        return List.copyOf(this.bookIds);
     }
 
     @Override
     public boolean contains(List<String> bookIdsToCheck) {
-        return this.bookIds.containsAll(bookIdsToCheck);
+        Objects.requireNonNull(bookIdsToCheck, "The list of book IDs to check must not be null.");
+        return new HashSet<>(this.bookIds).containsAll(bookIdsToCheck);
     }
 
+    @Override
     public boolean contains(String bookId) {
+        validateBookId(bookId);
         return this.bookIds.contains(bookId);
+    }
+
+    private void validateBookId(String bookId) {
+        if (bookId == null || bookId.isBlank()) {
+            throw new IllegalArgumentException("The book ID must not be null or blank.");
+        }
     }
 }

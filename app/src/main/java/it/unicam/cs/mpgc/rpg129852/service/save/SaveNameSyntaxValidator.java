@@ -2,6 +2,11 @@ package it.unicam.cs.mpgc.rpg129852.service.save;
 
 import it.unicam.cs.mpgc.rpg129852.util.SyntaxValidator;
 
+/**
+ * Concrete implementation of {@link SyntaxValidator} for save file names.
+ * It enforces OS-level constraints to ensure the name can be safely written to the file system,
+ * preventing the use of forbidden characters, reserved Windows names, and excessive lengths.
+ */
 public class SaveNameSyntaxValidator implements SyntaxValidator {
 
     private static final String ILLEGAL_CHARACTERS_REGEX = ".*[\\\\/:*?\"<>|].*";

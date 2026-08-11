@@ -6,28 +6,42 @@ import it.unicam.cs.mpgc.rpg129852.model.level.Score;
 import it.unicam.cs.mpgc.rpg129852.model.virtues.Virtues;
 
 import java.util.List;
+import java.util.Objects;
 
+/**
+ * Concrete implementation of the {@link LevelRewardsCalculator}.
+ * It computes the final rewards applying specific gameplay rules:
+ * - If the total healing value is below the required threshold, the level is failed (no rewards).
+ * - If the player gave at least one 'BAD' answer, they receive half of the rewards (partial success).
+ * - Otherwise, the player receives the maximum rewards (perfect success).
+ */
 public class LevelRewardsCalculatorImpl implements LevelRewardsCalculator {
 
     private static final double REQUIRED_HEAL = 1.0;
+    private static final Virtues ZERO_REWARDS = new Virtues(0, 0, 0);
 
     @Override
     public Score calculate(Virtues maxRewards, List<PhaseAnswer> answers) {
+        Objects.requireNonNull(maxRewards, "The maximum rewards must not be null.");
+        Objects.requireNonNull(answers, "The list of answers must not be null.");
 
-        double totalHeal = answers.stream()
-                .mapToDouble(PhaseAnswer::getHealValue)
-                .sum();
+        double totalHeal = calculateTotalHeal(answers);
 
         if (totalHeal < REQUIRED_HEAL) {
-            return new Score(new Virtues(0, 0, 0), LevelCompletionState.FAILED);
+            return new Score(ZERO_REWARDS, LevelCompletionState.FAILED);
         }
 
         if (answers.contains(PhaseAnswer.BAD)) {
             return new Score(getHalfRewards(maxRewards), LevelCompletionState.GOOD);
-        } else {
-            return new Score(maxRewards, LevelCompletionState.PERFECT);
-
         }
+
+        return new Score(maxRewards, LevelCompletionState.PERFECT);
+    }
+
+    private double calculateTotalHeal(List<PhaseAnswer> answers) {
+        return answers.stream()
+                .mapToDouble(PhaseAnswer::getHealValue)
+                .sum();
     }
 
     private Virtues getHalfRewards(Virtues maxRewards) {

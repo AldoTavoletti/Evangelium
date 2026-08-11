@@ -1,17 +1,13 @@
-/* =========================================
-   HEADER & VIRTÙ (Tema Chiaro)
-   ========================================= */
-
-/* =========================================
-   TOOLBAR (CATEGORIE)
-   ========================================= */
-#categoryToolBar {
+/* ==========================================================================
+   Category Toolbar
+   ========================================================================== */
+.category-toolbar {
     -fx-background-color: transparent;
     -fx-padding: 15px 20px 20px 20px;
     -fx-spacing: 25px;
 }
 
-#categoryToolBar .button {
+.category-toolbar .button {
     -fx-background-color: transparent;
     -fx-text-fill: #7f8c8d;
     -fx-font-size: 16px;
@@ -22,25 +18,25 @@
     -fx-border-width: 0 0 3px 0;
 }
 
-#categoryToolBar .button:hover {
+.category-toolbar .button:hover {
     -fx-text-fill: #2c3e50;
     -fx-border-color: transparent transparent #2c3e50 transparent;
 }
 
-#categoryToolBar .button:pressed {
+.category-toolbar .button:pressed {
     -fx-translate-y: 1px;
 }
 
-/* Stato attivo/selezionato per i tab della toolbar */
-#categoryToolBar .button:selected, #categoryToolBar .button:focused {
+.category-toolbar .button:selected,
+.category-toolbar .button:focused {
     -fx-background-insets: 0;
     -fx-text-fill: #2c3e50;
     -fx-border-color: transparent transparent #3498db transparent;
 }
 
-/* =========================================
-   LEVEL CARDS (GRIGLIA)
-   ========================================= */
+/* ==========================================================================
+   Level Cards
+   ========================================================================== */
 .level-card {
     -fx-background-color: #ffffff;
     -fx-background-radius: 12px;
@@ -76,10 +72,10 @@
     -fx-background-radius: 12px;
 }
 
-/* =========================================
-   PANNELLO DETTAGLI (DESTRA)
-   ========================================= */
-#detailsContainer {
+/* ==========================================================================
+   Level Details Container
+   ========================================================================== */
+.details-container {
     -fx-background-color: #ffffff;
     -fx-background-radius: 12px;
     -fx-padding: 25px;
@@ -107,9 +103,33 @@
     -fx-padding: 0 0 30px 0;
 }
 
-/* =========================================
-   START BUTTON
-   ========================================= */
+/* ==========================================================================
+   Completion Status Icons
+   ========================================================================== */
+.check-perfect {
+    -fx-fill: #2ecc71;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-effect: dropshadow(three-pass-box, rgba(46, 204, 113, 0.4), 5, 0, 0, 2);
+}
+
+.check-partial {
+    -fx-fill: #f39c12;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-effect: dropshadow(three-pass-box, rgba(243, 156, 18, 0.4), 5, 0, 0, 2);
+}
+
+.check-failed {
+    -fx-fill: #e74c3c;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-effect: dropshadow(three-pass-box, rgba(231, 76, 60, 0.4), 5, 0, 0, 2);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
 .start-button {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
@@ -121,8 +141,6 @@
     -fx-padding: 15px 40px;
     -fx-cursor: hand;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.15), 10, 0, 0, 4);
-    -fx-transition: all 0.2s;
-    /* Margine superiore per distanziarlo dal detailsContainer */
     -fx-margin: 30px 0 0 0;
 }
 
@@ -145,10 +163,7 @@
     -fx-translate-y: 0;
 }
 
-/* =========================================
-   BACK BUTTON (Ritorno al Menu)
-   ========================================= */
-.back-to-main-menu {
+.header-button {
     -fx-background-color: transparent;
     -fx-text-fill: #7f8c8d;
     -fx-font-size: 14px;
@@ -158,47 +173,23 @@
     -fx-border-radius: 8px;
     -fx-border-width: 1px;
     -fx-cursor: hand;
-    -fx-transition: all 0.2s;
 }
 
-.back-to-main-menu:hover {
+.header-button:hover {
     -fx-background-color: #ebf5fb;
     -fx-text-fill: #3498db;
     -fx-border-color: #3498db;
 }
 
-.back-to-main-menu:pressed {
+.header-button:pressed {
     -fx-background-color: #d6eaf8;
     -fx-translate-y: 1px;
 }
 
-.check-perfect {
-    -fx-fill: #2ecc71; /* Verde pastello della virtù Hope */
-    -fx-scale-x: 1.2;
-    -fx-scale-y: 1.2;
-    -fx-effect: dropshadow(three-pass-box, rgba(46, 204, 113, 0.4), 5, 0, 0, 2);
-}
-
-.check-partial {
-    -fx-fill: #f39c12; /* Arancione per il parziale */
-    -fx-scale-x: 1.2;
-    -fx-scale-y: 1.2;
-    -fx-effect: dropshadow(three-pass-box, rgba(243, 156, 18, 0.4), 5, 0, 0, 2);
-}
-
-.check-failed {
-    -fx-fill: #e74c3c; /* Rosso pastello usato anche per il danno */
-    -fx-scale-x: 1.2;
-    -fx-scale-y: 1.2;
-    -fx-effect: dropshadow(three-pass-box, rgba(231, 76, 60, 0.4), 5, 0, 0, 2);
-}
-
-/* Stato normale del bottone speciale */
 .summary-button {
-    /* Gradiente dorato al posto della tinta unita */
     -fx-background-color: linear-gradient(to bottom, #ffe55c, #ffb300);
-    -fx-text-fill: #5c3a21; /* Un marrone scuro elegante invece del nero */
-    -fx-font-size: 16px; /* Leggermente più grande del normale */
+    -fx-text-fill: #5c3a21;
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-padding: 10px 20px;
     -fx-border-color: #cca300;
@@ -206,24 +197,16 @@
     -fx-border-radius: 10px;
     -fx-border-width: 2px;
     -fx-cursor: hand;
-    /* Usa il dropshadow per creare un bagliore (glow) dorato attorno al bottone */
     -fx-effect: dropshadow(gaussian, rgba(255, 204, 0, 0.6), 15, 0.4, 0, 0);
 }
 
-/* Quando il mouse passa sopra il bottone (hover) */
 .summary-button:hover {
-    /* Colori più chiari e luminosi */
     -fx-background-color: linear-gradient(to bottom, #fff080, #ffcc00);
-    /* Il bagliore si espande e diventa più intenso */
     -fx-effect: dropshadow(gaussian, rgba(255, 204, 0, 0.9), 25, 0.6, 0, 0);
 }
 
-/* Quando il giocatore clicca il bottone (pressed) */
 .summary-button:pressed {
-    /* Inverte il gradiente per dare l'effetto di pressione */
     -fx-background-color: linear-gradient(to bottom, #ffb300, #ffe55c);
-    /* Riduce il bagliore */
     -fx-effect: dropshadow(gaussian, rgba(255, 204, 0, 0.4), 10, 0.2, 0, 0);
-    /* Sposta fisicamente il bottone verso il basso di 2 pixel */
     -fx-translate-y: 2px;
 }
