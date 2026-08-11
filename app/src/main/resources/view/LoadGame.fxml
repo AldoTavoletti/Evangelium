@@ -15,7 +15,7 @@
             <VBox fx:id="savesContainer" maxWidth="675.0" minWidth="675.0" prefWidth="675.0" spacing="15.0" />
          </content>
       </ScrollPane>
-      <Button fx:id="returnToMenuButton" layoutX="10.0" layoutY="10.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#onReturnToMenuAction" prefHeight="60.0" prefWidth="60.0" styleClass="arrow">
+      <Button fx:id="returnToMenuButton" layoutX="10.0" layoutY="10.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#onBackToMenuButtonClicked" prefHeight="60.0" prefWidth="60.0" styleClass="arrow">
          <graphic>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>

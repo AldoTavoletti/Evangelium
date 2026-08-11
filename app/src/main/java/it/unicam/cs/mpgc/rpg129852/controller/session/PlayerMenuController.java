@@ -22,12 +22,17 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import org.jspecify.annotations.NonNull;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Controller for the player's main hub menu.
+ * Handles level browsing, category selection, displaying level requirements,
+ * and navigating to the shop, gameplay, or summary screens.
+ */
 public class PlayerMenuController {
 
     private final SummaryService summaryService;
@@ -41,8 +46,6 @@ public class PlayerMenuController {
     @FXML
     private Button playButton;
     @FXML
-    private Button shopButton;
-    @FXML
     private Button summaryButton;
     @FXML
     private ToolBar categoryToolBar;
@@ -54,16 +57,26 @@ public class PlayerMenuController {
     private LevelMetadata selectedLevelMetadata;
     private LevelCardNode selectedCardNode;
 
+    /**
+     * Constructs the player menu controller with its required dependencies.
+     *
+     * @param summaryService  the service evaluating overall game completion
+     * @param discipleProfile the service managing the player's character data
+     * @param levelStarter    the service handling the transition into a playable level
+     * @param levelBrowser    the service fetching level metadata and unlock requirements
+     * @param sceneManager    the router responsible for switching views
+     * @throws NullPointerException if any of the dependencies are null
+     */
     public PlayerMenuController(SummaryService summaryService,
                                 DiscipleProfileService discipleProfile,
                                 LevelStarter levelStarter,
                                 LevelBrowserService levelBrowser,
                                 ViewRouter sceneManager) {
-        this.summaryService = summaryService;
-        this.discipleProfile = discipleProfile;
-        this.levelStarter = levelStarter;
-        this.levelBrowser = levelBrowser;
-        this.sceneManager = sceneManager;
+        this.summaryService = Objects.requireNonNull(summaryService, "The summary service must not be null.");
+        this.discipleProfile = Objects.requireNonNull(discipleProfile, "The disciple profile service must not be null.");
+        this.levelStarter = Objects.requireNonNull(levelStarter, "The level starter must not be null.");
+        this.levelBrowser = Objects.requireNonNull(levelBrowser, "The level browser service must not be null.");
+        this.sceneManager = Objects.requireNonNull(sceneManager, "The scene manager must not be null.");
     }
 
     @FXML
@@ -99,6 +112,7 @@ public class PlayerMenuController {
     private void evaluateSummaryVisibility() {
         if (summaryService.areAllLevelsWon()) {
             summaryButton.setManaged(true);
+            summaryButton.setVisible(true);
             summaryService.setSummaryShown(true);
         }
     }
@@ -121,7 +135,7 @@ public class PlayerMenuController {
         categoryToolBar.getItems().setAll(buttons);
     }
 
-    private @NonNull CategoryButtonComponent createCategoryButton(LevelCategory category, ToggleGroup categoryGroup) {
+    private CategoryButtonComponent createCategoryButton(LevelCategory category, ToggleGroup categoryGroup) {
         CategoryButtonComponent button = new CategoryButtonComponent(category, this::loadLevelCardsForCategory);
         button.setToggleGroup(categoryGroup);
         return button;
@@ -140,7 +154,10 @@ public class PlayerMenuController {
 
     private LevelCardNode createLevelCard(LevelMetadata levelMetadata) {
         Optional<Score> bestAttempt = levelBrowser.getScoreForLevel(levelMetadata.id());
-        LevelCompletionState state = bestAttempt.isPresent() ? bestAttempt.get().completionState() : LevelCompletionState.NONE;
+
+        LevelCompletionState state = bestAttempt
+                .map(Score::completionState)
+                .orElse(LevelCompletionState.NONE);
 
         return new LevelCardNode(levelMetadata, state, clickedCard -> handleCardSelection(levelMetadata, clickedCard));
     }
@@ -197,5 +214,4 @@ public class PlayerMenuController {
         playButton.setDisable(true);
         detailsContainer.getChildren().clear();
     }
-
 }

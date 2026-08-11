@@ -13,7 +13,6 @@ import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigator;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -22,13 +21,19 @@ import javafx.scene.image.ImageView;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
+/**
+ * Controller for the disciple creation screen.
+ * Manages the UI for starting a new game, allowing the player to choose their
+ * character's name, visual appearance, job, and the save file name.
+ */
 public class DiscipleCreationController {
 
-    private static final String INVALID_NAME_HEADER = "Nome non adatto";
-    private static final String OVERWRITE_TITLE = "Salvataggio Esistente";
-    private static final String OVERWRITE_HEADER = "Esiste già un salvataggio con questo nome.";
-    private static final String OVERWRITE_CONTENT = "Vuoi sovrascriverlo e perdere i vecchi progressi?";
+    private static final String INVALID_NAME_HEADER = "Invalid Name";
+    private static final String OVERWRITE_TITLE = "Existing Save";
+    private static final String OVERWRITE_HEADER = "A save with this name already exists.";
+    private static final String OVERWRITE_CONTENT = "Do you want to overwrite it and lose your previous progress?";
 
     private final GameStarter gameStarter;
     private final CircularListNavigator<DiscipleAsset> discipleAssetNavigator;
@@ -45,12 +50,20 @@ public class DiscipleCreationController {
     @FXML
     private Button startGameButton;
 
+    /**
+     * Constructs the controller with its required dependencies.
+     *
+     * @param gameStarter            the service handling the initialization of a new game session
+     * @param discipleAssetNavigator the navigator for cycling through available character visuals
+     * @param sceneManager           the router responsible for switching views
+     * @throws NullPointerException if any of the dependencies are null
+     */
     public DiscipleCreationController(GameStarter gameStarter,
                                       CircularListNavigator<DiscipleAsset> discipleAssetNavigator,
                                       ViewRouter sceneManager) {
-        this.gameStarter = gameStarter;
-        this.discipleAssetNavigator = discipleAssetNavigator;
-        this.sceneManager = sceneManager;
+        this.gameStarter = Objects.requireNonNull(gameStarter, "The game starter must not be null.");
+        this.discipleAssetNavigator = Objects.requireNonNull(discipleAssetNavigator, "The disciple asset navigator must not be null.");
+        this.sceneManager = Objects.requireNonNull(sceneManager, "The scene manager must not be null.");
     }
 
     @FXML
@@ -61,24 +74,24 @@ public class DiscipleCreationController {
     }
 
     @FXML
-    void onReturnToMenuAction(ActionEvent event) {
+    void onBackToMenuButtonClicked() {
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }
 
     @FXML
-    void onNextGifAction(ActionEvent event) {
+    void onNextGifButtonClicked() {
         discipleAssetNavigator.moveToNext();
         updateGifImage();
     }
 
     @FXML
-    void onPreviousGifAction(ActionEvent event) {
+    void onPreviousGifButtonClicked() {
         discipleAssetNavigator.moveToPrevious();
         updateGifImage();
     }
 
     @FXML
-    void onStartGameAction(ActionEvent event) {
+    void onStartGameButtonClicked() {
         NewGameRequest request = buildRequest();
         executeStart(request);
     }
@@ -132,5 +145,4 @@ public class DiscipleCreationController {
                 saveNameField.getText()
         );
     }
-
 }

@@ -5,10 +5,10 @@ package it.unicam.cs.mpgc.rpg129852.model.disciple;
  * This selection can influence dialogue availability and potential starting statistics.
  */
 public enum Job {
-    NONE("None"),
-    DOMINICAN("Dominican"),
-    FRANCISCAN("Franciscan"),
-    CARMELITE("Carmelite");
+    NONE("Nessuno"),
+    DOMINICAN("Domenicano"),
+    FRANCISCAN("Francescano"),
+    CARMELITE("Carmelitano");
 
     private final String displayValue;
 

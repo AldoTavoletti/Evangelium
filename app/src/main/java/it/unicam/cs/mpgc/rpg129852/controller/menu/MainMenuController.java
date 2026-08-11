@@ -3,27 +3,30 @@ package it.unicam.cs.mpgc.rpg129852.controller.menu;
 import it.unicam.cs.mpgc.rpg129852.context.game.GameSessionManager;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import java.util.Objects;
 
+/**
+ * Controller for the main menu view.
+ * Handles the initial interactions of the player, such as starting a new game,
+ * loading an existing save, or quitting the application.
+ */
 public class MainMenuController {
 
     private final GameSessionManager gameSessionManager;
     private final ViewRouter sceneManager;
 
-    @FXML
-    private Button loadGameButton;
-
-    @FXML
-    private Button newGameButton;
-
-    @FXML
-    private Button quitButton;
-
+    /**
+     * Constructs the main menu controller with its required dependencies.
+     *
+     * @param gameSessionManager the manager handling the active game session
+     * @param sceneManager       the router responsible for switching views
+     * @throws NullPointerException if any of the dependencies are null
+     */
     public MainMenuController(GameSessionManager gameSessionManager, ViewRouter sceneManager) {
-        this.sceneManager = sceneManager;
-        this.gameSessionManager = gameSessionManager;
+        this.gameSessionManager = Objects.requireNonNull(gameSessionManager, "The game session manager must not be null.");
+        this.sceneManager = Objects.requireNonNull(sceneManager, "The scene manager must not be null.");
     }
 
     @FXML
@@ -31,19 +34,27 @@ public class MainMenuController {
         gameSessionManager.clearSession();
     }
 
+    /**
+     * Handles the action triggered when the player chooses to start a new game.
+     */
     @FXML
-    void onNewGameAction(ActionEvent event) {
+    void onNewGameAction() {
         sceneManager.switchScene(ViewRoute.DISCIPLE_CREATION);
     }
 
+    /**
+     * Handles the action triggered when the player chooses to load an existing game.
+     */
     @FXML
-    void onLoadGameAction(ActionEvent event) {
+    void onLoadGameAction() {
         sceneManager.switchScene(ViewRoute.LOAD_GAME);
     }
 
+    /**
+     * Handles the action triggered when the player chooses to quit the game.
+     */
     @FXML
-    void onQuitAction(ActionEvent event) {
-        javafx.application.Platform.exit();
+    void onQuitAction() {
+        Platform.exit();
     }
-
 }

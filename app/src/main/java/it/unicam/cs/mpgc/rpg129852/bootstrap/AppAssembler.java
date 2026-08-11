@@ -41,6 +41,13 @@ import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigator;
 import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigatorImpl;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
+/**
+ * The Composition Root of the application.
+ * This class is responsible for instantiating and wiring together all the dependencies,
+ * services, and controllers needed to bootstrap and run the game.
+ */
 public class AppAssembler {
 
     private static final String APP_TITLE = "Evangelium";
@@ -49,7 +56,14 @@ public class AppAssembler {
     private static final String BOOKS_ASSETS_PATH = "/data/books.json";
     private static final String LEVELS_METADATA_PATH = "/data/levels_metadata.json";
 
+    /**
+     * Assembles the application dependencies and starts the initial scene.
+     *
+     * @param primaryStage the primary window of the JavaFX application
+     * @throws NullPointerException if the primary stage is null
+     */
     public void assembleAndRun(Stage primaryStage) {
+        Objects.requireNonNull(primaryStage, "The primary stage must not be null.");
 
         Gson gson = InfrastructureFactory.createGson();
         GameRepository repository = InfrastructureFactory.createGameRepository(gson);
@@ -83,40 +97,30 @@ public class AppAssembler {
         ControllerFactory controllerFactory = new ControllerFactory();
         ViewRouter sceneManager = new SceneManager(primaryStage, controllerFactory);
 
-        registerControllers(controllerFactory, sceneManager, gameSessionManager, levelSessionManager, repository,
-                gameStarter, levelStarter, levelBrowser, discipleProfile, shopService,
-                scriptureCatalog, discipleNavigator, summaryService, statsService);
+        // Controllers Registration
+        controllerFactory.register(MainMenuController.class,
+                () -> new MainMenuController(gameSessionManager, sceneManager));
 
-        sceneManager.switchScene(ViewRoute.MAIN_MENU);
-    }
-
-    private void registerControllers(ControllerFactory factory, ViewRouter sceneManager,
-                                     GameSessionManager gameSession, LevelSessionManager levelSession,
-                                     GameRepository repository, GameStarter gameStarter,
-                                     LevelStarter levelStarter, LevelBrowserService levelBrowser,
-                                     DiscipleProfileService discipleProfile, ShopService shopService,
-                                     ScriptureCatalog scriptureCatalog, CircularListNavigator<DiscipleAsset> discipleNavigator,  SummaryService summaryService, StatsService statsService) {
-
-        factory.register(MainMenuController.class,
-                () -> new MainMenuController(gameSession, sceneManager));
-
-        factory.register(DiscipleCreationController.class,
+        controllerFactory.register(DiscipleCreationController.class,
                 () -> new DiscipleCreationController(gameStarter, discipleNavigator, sceneManager));
 
-        factory.register(LoadGameController.class,
-                () -> new LoadGameController(repository, gameSession, sceneManager));
+        controllerFactory.register(LoadGameController.class,
+                () -> new LoadGameController(repository, gameSessionManager, sceneManager));
 
-        factory.register(PlayerMenuController.class,
+        controllerFactory.register(PlayerMenuController.class,
                 () -> new PlayerMenuController(summaryService, discipleProfile, levelStarter, levelBrowser, sceneManager));
 
-        factory.register(ShopController.class,
+        controllerFactory.register(ShopController.class,
                 () -> new ShopController(discipleProfile, shopService, sceneManager));
 
-        factory.register(GameplayController.class,
-                () -> new GameplayController(DomainFactory.createGameplayService(levelSession, gameSession, repository),
+        controllerFactory.register(GameplayController.class,
+                () -> new GameplayController(DomainFactory.createGameplayService(levelSessionManager, gameSessionManager, repository),
                         discipleProfile, scriptureCatalog, sceneManager));
 
-        factory.register(SummaryController.class,
+        controllerFactory.register(SummaryController.class,
                 () -> new SummaryController(statsService, discipleProfile, sceneManager));
+
+        // Start the application
+        sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }
 }

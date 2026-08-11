@@ -15,7 +15,13 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
+import java.util.Objects;
 
+/**
+ * Controller for the Shop screen.
+ * Manages the display of available books, evaluates if the player can afford them,
+ * and handles the purchasing process by delegating logic to the underlying services.
+ */
 public class ShopController {
 
     private static final String CART_ICON_PATH = "/images/shopping-cart.png";
@@ -28,22 +34,28 @@ public class ShopController {
 
     private final ShopService shopService;
     private final ViewRouter sceneManager;
+    private final DiscipleProfileService discipleProfile;
 
     private Image cartImageCache;
 
     @FXML
     private DiscipleHeaderController discipleHeaderController;
+
     @FXML
     private VBox booksContainer;
-    @FXML
-    private Label currentVirtuesLabel;
-    @FXML
-    private DiscipleProfileService discipleProfile;
 
+    /**
+     * Constructs the shop controller with its required dependencies.
+     *
+     * @param discipleProfile the service providing the player's current stats and inventory
+     * @param shopService     the service handling the shop logic and transactions
+     * @param sceneManager    the router responsible for switching views
+     * @throws NullPointerException if any of the dependencies are null
+     */
     public ShopController(DiscipleProfileService discipleProfile, ShopService shopService, ViewRouter sceneManager) {
-        this.shopService = shopService;
-        this.discipleProfile = discipleProfile;
-        this.sceneManager = sceneManager;
+        this.discipleProfile = Objects.requireNonNull(discipleProfile, "The disciple profile service must not be null.");
+        this.shopService = Objects.requireNonNull(shopService, "The shop service must not be null.");
+        this.sceneManager = Objects.requireNonNull(sceneManager, "The scene manager must not be null.");
     }
 
     @FXML
@@ -69,7 +81,6 @@ public class ShopController {
 
         discipleHeaderController.initData(data, gif);
     }
-
 
     private void refreshBooksList() {
         booksContainer.getChildren().clear();
