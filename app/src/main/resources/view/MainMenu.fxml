@@ -49,7 +49,7 @@
 
       <StackPane prefWidth="605.0" HBox.hgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="750.0" fitWidth="605.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="750.0" fitWidth="605.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/trinita-rublev.jpg" />
                </image>
