@@ -7,7 +7,7 @@ import it.unicam.cs.mpgc.rpg129852.dto.disciple.DiscipleAsset;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.service.game.GameStarter;
-import it.unicam.cs.mpgc.rpg129852.service.game.NewGameRequest;
+import it.unicam.cs.mpgc.rpg129852.dto.game.NewGameRequest;
 import it.unicam.cs.mpgc.rpg129852.ui.common.AlertHelper;
 import it.unicam.cs.mpgc.rpg129852.util.CircularListNavigator;
 import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;

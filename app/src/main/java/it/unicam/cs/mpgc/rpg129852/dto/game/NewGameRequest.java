@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg129852.service.game;
+package it.unicam.cs.mpgc.rpg129852.dto.game;
 
 import it.unicam.cs.mpgc.rpg129852.model.disciple.Job;
 

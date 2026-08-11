@@ -21,7 +21,6 @@ import it.unicam.cs.mpgc.rpg129852.navigation.ViewRoute;
 import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.persistence.ResourceRegistry;
 import it.unicam.cs.mpgc.rpg129852.persistence.game.GameRepository;
-import it.unicam.cs.mpgc.rpg129852.service.ControllerFactory;
 import it.unicam.cs.mpgc.rpg129852.service.book.BookCatalog;
 import it.unicam.cs.mpgc.rpg129852.service.book.BookCatalogImpl;
 import it.unicam.cs.mpgc.rpg129852.service.disciple.DiscipleProfileService;

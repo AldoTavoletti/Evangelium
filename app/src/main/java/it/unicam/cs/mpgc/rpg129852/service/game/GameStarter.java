@@ -1,5 +1,7 @@
 package it.unicam.cs.mpgc.rpg129852.service.game;
 
+import it.unicam.cs.mpgc.rpg129852.dto.game.NewGameRequest;
+
 /**
  * Orchestrates the initialization phase of a new game.
  * This service acts as a facade that bridges the domain creation logic,

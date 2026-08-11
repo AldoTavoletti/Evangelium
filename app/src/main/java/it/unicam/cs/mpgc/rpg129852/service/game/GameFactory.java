@@ -1,5 +1,6 @@
 package it.unicam.cs.mpgc.rpg129852.service.game;
 
+import it.unicam.cs.mpgc.rpg129852.dto.game.NewGameRequest;
 import it.unicam.cs.mpgc.rpg129852.model.game.Game;
 
 /**
