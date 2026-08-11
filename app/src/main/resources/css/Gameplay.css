@@ -1,8 +1,15 @@
 /* ==========================================================================
-   Character Images
+   Character Images and Names
    ========================================================================== */
 .avatar-image {
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0.0, 2, 2);
+}
+
+.name-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -brown-deep;
+    -fx-padding: 8px 0 0 0;
 }
 
 /* ==========================================================================

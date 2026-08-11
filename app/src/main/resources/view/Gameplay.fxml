@@ -21,14 +21,14 @@
                   <VBox>
                      <children>
                         <ImageView fx:id="discipleImageView" fitHeight="200.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" styleClass="avatar-image" />
-                        <Label fx:id="discipleNameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="150.0" />
+                        <Label fx:id="discipleNameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="150.0" styleClass="name-label" />
                      </children>
                   </VBox>
                   <Label fx:id="phaseCounterLabel" styleClass="phase-counter" />
                   <VBox>
                      <children>
                         <ImageView fx:id="npcImageView" fitHeight="200.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" styleClass="avatar-image" />
-                        <Label fx:id="npcNameLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="150.0" />
+                        <Label fx:id="npcNameLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="150.0" styleClass="name-label" />
                      </children>
                   </VBox>
                </children>
