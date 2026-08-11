@@ -21,7 +21,6 @@
          </StackPane.margin>
       </Button>
 
-      <!-- Contenitore Principale: "certificato" di completamento -->
       <VBox alignment="CENTER" maxHeight="600.0" maxWidth="900.0" spacing="16.0" styleClass="certificate-card" StackPane.alignment="CENTER">
          <children>
             <Label styleClass="ornament" text="✝" />
@@ -30,7 +29,6 @@
             <Label alignment="CENTER" prefWidth="700.0" styleClass="message-primary" text="Congratulazioni, hai completato tutti i livelli." textAlignment="CENTER" wrapText="true" />
             <Label alignment="CENTER" prefHeight="37.0" prefWidth="657.0" styleClass="message-blessing" text="Ora porta il tuo discepolato anche nella vita reale, con la gioia e la pace del Cristo risorto!" textAlignment="CENTER" wrapText="true" />
 
-            <!-- Riquadro Statistiche e Discepolo -->
             <VBox maxWidth="800.0" prefWidth="800.0" styleClass="panel">
                <children>
                   <Region maxWidth="Infinity" prefHeight="6.0" styleClass="panel-accent" />

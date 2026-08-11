@@ -15,7 +15,6 @@
    <top>
       <StackPane prefHeight="80.0" prefWidth="1250.0" BorderPane.alignment="CENTER">
          <children>
-            <!-- Sezione Sinistra: Pulsante Indietro e Header del Discepolo nella posizione originale -->
             <HBox alignment="CENTER_LEFT" spacing="20.0" StackPane.alignment="CENTER_LEFT">
                <children>
                   <Button fx:id="returnToMenuButton" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#onBackToMenuButtonClicked" prefHeight="60.0" prefWidth="60.0" styleClass="arrow">
@@ -30,7 +29,6 @@
                </children>
             </HBox>
 
-            <!-- Centro della barra superiore: Etichetta delle Virtù -->
             <Label fx:id="currentVirtuesLabel" alignment="CENTER" prefHeight="25.0" prefWidth="443.0" StackPane.alignment="CENTER" />
          </children>
       </StackPane>
