@@ -1,3 +1,6 @@
+/* ==========================================================================
+   Delete Button
+   ========================================================================== */
 .delete-btn {
     -fx-background-color: transparent;
     -fx-cursor: hand;
@@ -17,6 +20,9 @@
     -fx-background-color: #FFE6E6;
 }
 
+/* ==========================================================================
+   Load Button
+   ========================================================================== */
 .load-btn {
     -fx-font-size: 20px;
     -fx-font-weight: normal;
@@ -33,7 +39,7 @@
 }
 
 .load-btn:hover {
-    -fx-background-color: #FCFA÷F5;
+    -fx-background-color: #FCFAF5;
     -fx-border-color: #D5D2CB;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.08), 12, 0, 0, 4);
     -fx-translate-y: -2px;
@@ -43,50 +49,4 @@
     -fx-background-color: #F0EDE6;
     -fx-effect: none;
     -fx-translate-y: 1px;
-}
-
-.scroll-pane {
-    -fx-background-color: -primary-app-background;
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-}
-
-.scroll-pane .viewport {
-    -fx-background-color: transparent;
-}
-
-.scroll-pane .scroll-bar:vertical {
-    -fx-background-color: transparent;
-    -fx-pref-width: 10px;
-}
-
-.scroll-pane .scroll-bar:vertical .track {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-background-radius: 0;
-}
-
-.scroll-pane .scroll-bar:vertical .thumb {
-    -fx-background-color: #E2DFD8;
-    -fx-background-radius: 5px;
-}
-
-.scroll-pane .scroll-bar:vertical .thumb:hover {
-    -fx-background-color: #C5C2BC;
-}
-
-.scroll-pane .scroll-bar:vertical .thumb:pressed {
-    -fx-background-color: #A09E98;
-}
-
-.scroll-pane .scroll-bar:vertical .increment-button,
-.scroll-pane .scroll-bar:vertical .decrement-button {
-    -fx-background-color: transparent;
-    -fx-padding: 0;
-}
-
-.scroll-pane .scroll-bar:vertical .increment-arrow,
-.scroll-pane .scroll-bar:vertical .decrement-arrow {
-    -fx-shape: " ";
-    -fx-padding: 0;
 }

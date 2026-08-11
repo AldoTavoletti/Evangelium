@@ -46,7 +46,7 @@
                   </Button>
                </children>
             </VBox>
-            <Label alignment="CENTER" layoutY="54.0" prefHeight="81.0" prefWidth="629.0" styleClass="scene-title" text="CREA IL TUO DISCEPOLO!" />
+            <Label alignment="CENTER" layoutY="54.0" prefHeight="81.0" prefWidth="629.0" styleClass="title" text="CREA IL TUO DISCEPOLO!" />
             <Button fx:id="returnToMenuButton" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#onBackToMenuButtonClicked" prefHeight="60.0" prefWidth="60.0" styleClass="arrow" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                <graphic>
                   <ImageView pickOnBounds="true" preserveRatio="true">

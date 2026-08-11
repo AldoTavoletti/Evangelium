@@ -12,7 +12,7 @@ public class Main extends Application {
         assembler.assembleAndRun(primaryStage);
     }
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         launch(args);
     }
 }

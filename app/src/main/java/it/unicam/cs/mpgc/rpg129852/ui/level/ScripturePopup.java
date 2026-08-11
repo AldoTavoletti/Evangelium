@@ -20,8 +20,8 @@ public class ScripturePopup extends Popup {
     private static final double Y_AXIS_OFFSET = 5.0;
 
     private static final String DEFAULT_CSS_PATH = "/css/Gameplay.css";
-    private static final String TITLE_STYLE_CLASS = "popup-source";
-    private static final String CONTENT_STYLE_CLASS = "popup-text";
+    private static final String TITLE_STYLE_CLASS = "popup-title";
+    private static final String CONTENT_STYLE_CLASS = "popup-content";
     private static final String PANE_STYLE_CLASS = "popup-pane";
 
     private final Label popupTitle;

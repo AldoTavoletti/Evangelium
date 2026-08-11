@@ -1,14 +1,22 @@
-#discipleNameLabel {
+/* ==========================================================================
+   Disciple Profile Components
+   ========================================================================== */
+
+.disciple-name {
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: #2c3e50;
 }
 
-#discipleImageView {
+.avatar-image {
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 2, 2);
 }
 
-#faithLabel, #hopeLabel, #loveLabel {
+/* ==========================================================================
+   Virtue Badges
+   ========================================================================== */
+
+.virtue-badge {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: #2c3e50;
@@ -20,7 +28,14 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
 }
 
-/* Colori accento pastello per le virtù in linea con il tuo tema chiaro */
-#faithLabel { -fx-border-color: #3498db; }
-#hopeLabel { -fx-border-color: #2ecc71; }
-#loveLabel { -fx-border-color: #e74c3c; }
+.virtue-faith {
+    -fx-border-color: #3498db;
+}
+
+.virtue-hope {
+    -fx-border-color: #2ecc71;
+}
+
+.virtue-love {
+    -fx-border-color: #e74c3c;
+}

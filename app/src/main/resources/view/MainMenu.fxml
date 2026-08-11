@@ -23,7 +23,7 @@
                   <Insets top="50.0" />
                </StackPane.margin>
                <children>
-                  <Label id="title" alignment="CENTER" text="EVANGELIUM" textAlignment="CENTER" />
+                  <Label alignment="CENTER" styleClass="title" text="EVANGELIUM" textAlignment="CENTER" />
                   <ImageView fitHeight="93.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/cross.png" />
