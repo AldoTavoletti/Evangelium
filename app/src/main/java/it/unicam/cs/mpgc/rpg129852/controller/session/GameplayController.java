@@ -113,7 +113,7 @@ public class GameplayController {
 
         gameplayService.submitAnswer(selectedResponse.answerValue());
         refreshProgressBar();
-        resolveTurnOutcome(selectedResponse.answerValue().getHealValue());
+        resolvePhaseOutcome(selectedResponse.answerValue().getHealValue());
     }
 
     /**
@@ -158,7 +158,7 @@ public class GameplayController {
         dialogueTextArea.setText(currentPhase.npcDialogue());
 
         bindResponsesToButtons(currentPhase.responses());
-        updateTurnCounterText();
+        updatePhaseCounterText();
         updateProblemSeverityText();
     }
 
@@ -168,8 +168,8 @@ public class GameplayController {
         problemSeverityLabel.setText(problemName + ": " + currentHealth);
     }
 
-    private void updateTurnCounterText() {
-        String phaseText = String.format("Turn: %d/%d",
+    private void updatePhaseCounterText() {
+        String phaseText = String.format("Turno: %d/%d",
                 gameplayService.getCurrentPhaseNumber(),
                 gameplayService.getTotalNumberOfPhases());
         phaseCounterLabel.setText(phaseText);
@@ -195,11 +195,11 @@ public class GameplayController {
         severityProgressBar.setProgress(gameplayService.getCurrentProblemValue());
     }
 
-    private void resolveTurnOutcome(double impactValue) {
+    private void resolvePhaseOutcome(double impactValue) {
         if (gameplayService.isLevelWon()) {
             handleLevelCompletion(VICTORY_MESSAGE);
         } else if (gameplayService.hasNextPhase()) {
-            transitionToNextTurn(impactValue);
+            transitionToNextPhase(impactValue);
         } else {
             handleLevelCompletion(DEFEAT_MESSAGE);
         }
@@ -214,7 +214,7 @@ public class GameplayController {
         feedbackAnimator.playFeedback(finalMessage, this::returnToPlayerMenu);
     }
 
-    private void transitionToNextTurn(double impactValue) {
+    private void transitionToNextPhase(double impactValue) {
         loadNextPhase();
         int displayValue = (int) (impactValue * PERCENTAGE_MULTIPLIER);
 

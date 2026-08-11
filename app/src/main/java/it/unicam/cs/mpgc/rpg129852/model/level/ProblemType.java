@@ -4,12 +4,7 @@ package it.unicam.cs.mpgc.rpg129852.model.level;
  * Defines the psychological or spiritual challenges an NPC might face during a level.
  */
 public enum ProblemType {
-    DOUBT("Doubt"),
-    FEAR("Fear"),
-    GUILT("Guilt"),
-    PRIDE("Pride"),
-    BITTERNESS("Bitterness"),
-    DESPAIR("Despair");
+    DOUBT("Dubbio");
 
     private final String displayValue;
 
