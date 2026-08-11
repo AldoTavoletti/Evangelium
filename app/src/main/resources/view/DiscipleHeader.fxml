@@ -9,7 +9,7 @@
 
 <HBox alignment="CENTER_LEFT" maxHeight="80.0" maxWidth="1250.0" minHeight="80.0" minWidth="850.0" prefHeight="80.0" prefWidth="850.0" stylesheets="@../css/DiscipleHeader.css" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.rpg129852.controller.session.DiscipleHeaderController">
     <children>
-        <Label fx:id="discipleLabel" styleClass="disciple-name">
+        <Label fx:id="discipleLabel" maxWidth="300.0" styleClass="disciple-name">
             <HBox.margin>
                 <Insets left="30.0" />
             </HBox.margin>

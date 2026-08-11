@@ -26,7 +26,6 @@ import java.util.Objects;
  */
 public class LoadGameController {
 
-    private static final String TRASH_ICON_PATH = "/images/recycle-bin.png";
     private static final String EMPTY_SAVES_MSG = "Nessun salvataggio trovato.";
 
     private static final String DELETE_TITLE = "Elimina Salvataggio";
@@ -65,7 +64,6 @@ public class LoadGameController {
 
     @FXML
     public void initialize() {
-        trashImageCache = ImageUtils.loadImage(TRASH_ICON_PATH);
         refreshSavesList();
     }
 
@@ -125,7 +123,7 @@ public class LoadGameController {
 
     private List<SaveRowComponent> generateSaveRows(List<String> saveNames) {
         return saveNames.stream()
-                .map(saveName -> new SaveRowComponent(saveName, trashImageCache, this::loadSelectedGame, this::confirmAndDeleteSave))
+                .map(saveName -> new SaveRowComponent(saveName, this::loadSelectedGame, this::confirmAndDeleteSave))
                 .toList();
     }
 

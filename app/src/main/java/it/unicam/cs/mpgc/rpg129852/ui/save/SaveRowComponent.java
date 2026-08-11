@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import org.jspecify.annotations.NonNull;
 
 import java.util.Objects;
@@ -19,21 +20,20 @@ public class SaveRowComponent extends HBox {
 
     private static final double DEFAULT_SPACING = 10.0;
 
+    private static final String TRASH_ICON_CLASS = "bin-icon";
     private static final String LOAD_BTN_CLASS = "load-btn";
     private static final String DELETE_BTN_CLASS = "delete-btn";
-    private static final String FALLBACK_DELETE_TEXT = "X";
     private static final double ICON_SIZE = 24.0;
 
     /**
      * Constructs a new save row component.
      *
      * @param saveName   the name of the save file, displayed on the load button
-     * @param trashImage the icon to display on the delete button; if null or broken, a text fallback is used
      * @param onLoad     the callback triggered when the load button is clicked
      * @param onDelete   the callback triggered when the delete button is clicked
      * @throws NullPointerException if saveName, onLoad, or onDelete is null
      */
-    public SaveRowComponent(final String saveName, final Image trashImage, final Consumer<String> onLoad, final Consumer<String> onDelete) {
+    public SaveRowComponent(final String saveName, final Consumer<String> onLoad, final Consumer<String> onDelete) {
         super(DEFAULT_SPACING);
 
         Objects.requireNonNull(saveName, "The save name must not be null.");
@@ -43,7 +43,7 @@ public class SaveRowComponent extends HBox {
         this.setAlignment(Pos.CENTER);
 
         Button loadButton = createLoadButton(saveName, onLoad);
-        Button deleteButton = createDeleteButton(saveName, trashImage, onDelete);
+        Button deleteButton = createDeleteButton(saveName, onDelete);
 
         this.getChildren().addAll(loadButton, deleteButton);
     }
@@ -59,29 +59,23 @@ public class SaveRowComponent extends HBox {
         return loadButton;
     }
 
-    private Button createDeleteButton(String saveName, Image trashImage, Consumer<String> onDelete) {
+    private Button createDeleteButton(String saveName, Consumer<String> onDelete) {
         Button deleteButton = new Button();
         deleteButton.getStyleClass().add(DELETE_BTN_CLASS);
 
-        applyIconOrFallbackText(deleteButton, trashImage);
+        applyIcon(deleteButton);
 
         deleteButton.setOnAction(event -> onDelete.accept(saveName));
 
         return deleteButton;
     }
 
-    private void applyIconOrFallbackText(Button button, Image iconImage) {
-        if (iconImage != null && !iconImage.isError()) {
-            button.setGraphic(createIconView(iconImage));
-        } else {
-            button.setText(FALLBACK_DELETE_TEXT);
-        }
+    private void applyIcon(Button button) {
+            Region icon = new Region();
+            icon.setPrefHeight(ICON_SIZE);
+            icon.setPrefWidth(ICON_SIZE);
+            icon.getStyleClass().add(TRASH_ICON_CLASS);
+            button.setGraphic(icon);
     }
 
-    private @NonNull ImageView createIconView(Image image) {
-        ImageView iconView = new ImageView(image);
-        iconView.setFitWidth(ICON_SIZE);
-        iconView.setFitHeight(ICON_SIZE);
-        return iconView;
-    }
 }

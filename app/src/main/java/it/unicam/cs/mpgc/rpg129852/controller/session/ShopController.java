@@ -24,8 +24,6 @@ import java.util.Objects;
  */
 public class ShopController {
 
-    private static final String CART_ICON_PATH = "/images/shopping-cart.png";
-
     private static final String BUY_TITLE = "Acquista libro";
     private static final String BUY_HEADER = "Stai per acquistare il libro: ";
     private static final String BUY_CONTENT = "Vuoi continuare?";
@@ -35,8 +33,6 @@ public class ShopController {
     private final ShopService shopService;
     private final ViewRouter sceneManager;
     private final DiscipleProfileService discipleProfile;
-
-    private Image cartImageCache;
 
     @FXML
     private DiscipleHeaderController discipleHeaderController;
@@ -60,7 +56,6 @@ public class ShopController {
 
     @FXML
     public void initialize() {
-        cartImageCache = ImageUtils.loadImage(CART_ICON_PATH);
         restartUI();
     }
 
@@ -110,7 +105,6 @@ public class ShopController {
         return new BookRowComponent(
                 book,
                 shopService.canAfford(book),
-                cartImageCache,
                 this::confirmAndBuyBook
         );
     }

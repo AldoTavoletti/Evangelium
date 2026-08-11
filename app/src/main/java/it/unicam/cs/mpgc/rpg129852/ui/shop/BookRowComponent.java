@@ -24,7 +24,7 @@ public class BookRowComponent extends HBox {
     private static final double ICON_SIZE = 24.0;
 
     private static final String BUY_BTN_CLASS = "buy-btn";
-    private static final String FALLBACK_BUY_TEXT = "Buy";
+    private static final String SHOPPING_CART_ICON_CLASS = "shopping-cart-icon";
     private static final String PRICE_PREFIX = "Costo: ";
 
     private static final String TITLE_CLASS = "book-title";
@@ -36,18 +36,17 @@ public class BookRowComponent extends HBox {
      *
      * @param book        the book data to display
      * @param canAfford   true if the player has enough currency to buy the book, false otherwise
-     * @param cartIcon    the icon to display on the buy button; if null or broken, a text fallback is used
      * @param onBuyAction the callback triggered when the buy button is clicked
      * @throws NullPointerException if the book or the onBuyAction callback is null
      */
-    public BookRowComponent(Book book, boolean canAfford, Image cartIcon, Consumer<Book> onBuyAction) {
+    public BookRowComponent(Book book, boolean canAfford, Consumer<Book> onBuyAction) {
         super(SPACING);
 
         Objects.requireNonNull(book, "The book must not be null.");
         Objects.requireNonNull(onBuyAction, "The onBuyAction callback must not be null.");
 
         setupContainer();
-        buildContent(book, canAfford, cartIcon, onBuyAction);
+        buildContent(book, canAfford, onBuyAction);
     }
 
     private void setupContainer() {
@@ -55,7 +54,7 @@ public class BookRowComponent extends HBox {
         this.getStyleClass().add(ROW_CLASS);
     }
 
-    private void buildContent(Book book, boolean canAfford, Image cartIcon, Consumer<Book> onBuyAction) {
+    private void buildContent(Book book, boolean canAfford, Consumer<Book> onBuyAction) {
         Label nameLabel = new Label(book.displayName());
         nameLabel.getStyleClass().add(TITLE_CLASS);
 
@@ -65,16 +64,16 @@ public class BookRowComponent extends HBox {
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        Button buyButton = buildBuyButton(book, canAfford, cartIcon, onBuyAction);
+        Button buyButton = buildBuyButton(book, canAfford, onBuyAction);
 
         this.getChildren().addAll(nameLabel, priceLabel, spacer, buyButton);
     }
 
-    private Button buildBuyButton(Book book, boolean canAfford, Image cartIcon, Consumer<Book> onBuyAction) {
+    private Button buildBuyButton(Book book, boolean canAfford, Consumer<Book> onBuyAction) {
         Button buyButton = new Button();
         buyButton.getStyleClass().add(BUY_BTN_CLASS);
 
-        applyIconOrFallbackText(buyButton, cartIcon);
+        applyIcon(buyButton);
 
         buyButton.setDisable(!canAfford);
         buyButton.setOnAction(event -> onBuyAction.accept(book));
@@ -82,14 +81,11 @@ public class BookRowComponent extends HBox {
         return buyButton;
     }
 
-    private void applyIconOrFallbackText(Button button, Image iconImage) {
-        if (iconImage != null && !iconImage.isError()) {
-            ImageView iconView = new ImageView(iconImage);
-            iconView.setFitWidth(ICON_SIZE);
-            iconView.setFitHeight(ICON_SIZE);
-            button.setGraphic(iconView);
-        } else {
-            button.setText(FALLBACK_BUY_TEXT);
-        }
+    private void applyIcon(Button button) {
+        Region icon = new Region();
+        icon.setPrefHeight(ICON_SIZE);
+        icon.setPrefWidth(ICON_SIZE);
+        icon.getStyleClass().add(SHOPPING_CART_ICON_CLASS);
+        button.setGraphic(icon);
     }
 }
