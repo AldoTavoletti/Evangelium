@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Mattia",
+    "imagePath": "/images/npcs/blue-npc.png",
+    "problemType": "DOUBT",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Sono esausto. Continuo a pregare, a cercare una risposta o anche solo un minimo segno, ma dall'altra parte trovo soltanto un muro di silenzio. Se a Dio importasse davvero qualcosa di me, non mi lascerebbe brancolare nel buio in questo modo. Forse è arrivato il momento di smettere di aspettare un aiuto dall'alto e iniziare a risolvere i miei problemi da solo.",
+      "responses": [
+        {
+          "displayReference": "Lamentazioni 3:25-26",
+          "scriptureId": "lamentazioni-3-25-26",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Proverbi 1:28-29",
+          "scriptureId": "proverbi-1-28-29",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Santa Caterina da Siena",
+          "scriptureId": "dom-p1",
+          "answerValue": "GOOD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-p1",
+          "answerValue": "GOOD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-p1",
+          "answerValue": "GOOD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Ho sempre creduto per inerzia, semplicemente perché la mia famiglia mi ha cresciuto così. Ma quando ti scontri con la realtà, inizi a farti delle domande. Guardo il mondo razionale di oggi, che va avanti basandosi su fatti tangibili. Mi sento un ingenuo ad aver trascorso la mia vita pensando che Gesù Cristo sia vivo. Forse hanno ragione gli altri, forse è davvero tutta un'illusione.",
+      "responses": [
+        {
+          "displayReference": "Proverbi 3:5-6",
+          "scriptureId": "proverbi-3-5-6",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Geremia 17:5-6",
+          "scriptureId": "geremia-17-5-6",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-p2",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-p2",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa d'Avila",
+          "scriptureId": "car-p2",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Oggi abbiamo gli strumenti per spiegare come funziona la realtà. Perché dovrei continuare a credere alla storia di un profeta vissuto duemila anni fa che guarisce i malati e sconfigge la morte? È del tutto irrazionale. La verità è molto più cruda: non c'è nessun regno dei cieli ad attenderci, dopo la morte c'è solo il nulla assoluto. E io devo imparare ad accettarlo.",
+      "responses": [
+        {
+          "displayReference": "Ecclesiaste 3:11",
+          "scriptureId": "ecclesiaste-3-11",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Salmi 14:1",
+          "scriptureId": "salmi-14-1",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-p3",
+          "answerValue": "GOOD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-p3",
+          "answerValue": "GOOD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-p3",
+          "answerValue": "GOOD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    }
+  ]
+}

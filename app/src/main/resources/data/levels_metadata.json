@@ -1,15 +1,28 @@
 [
   {
-    "id": "doubt_elena",
-    "category": "faith",
+    "id": "doubt_mattia",
+    "category": "FAITH",
     "title": "Il dubbio e il silenzio di Dio",
-    "description": "Il livello esplora la crisi dell'assenza percepita, affrontando il dolore di un silenzio divino che sembra indifferenza e mettendo alla prova la tenuta della fede e dell'integrità morale di fronte alle ingiustizie del mondo.",
+    "description": "Mattia attraversa una profonda crisi spirituale. Il dolore personale e le difficoltà della vita si scontrano con l'assordante silenzio di Dio, portandolo a mettere in discussione le fondamenta stesse del suo credo.",
     "maxRewards": {
       "faith": 50,
       "hope": 10,
       "love": 10
     },
     "requiredBookIds": [],
-    "scenarioPath": "/data/scenarios/doubt_elena_scenario.json"
+    "scenarioPath": "/data/scenarios/doubt_mattia.json"
+  },
+  {
+    "id": "suffering_sofia",
+    "category": "FAITH",
+    "title": "Il problema del male",
+    "description": "Sofia è un medico che si scontra quotidianamente con la malattia e il decadimento fisico. Non riesce più a conciliare l'idea di un Dio onnipotente e infinitamente buono con la crudele realtà del dolore innocente, un conflitto interiore che sta distruggendo la sua spiritualità.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": [],
+    "scenarioPath": "/data/scenarios/suffering_sofia.json"
   }
 ]
