@@ -1,3 +1,19 @@
+@font-face {
+    src: url("../fonts/lmroman10-regular.otf");
+}
+
+@font-face {
+    src: url("../fonts/lmroman10-bold.otf");
+}
+
+@font-face {
+    src: url("../fonts/lmroman10-italic.otf");
+}
+
+@font-face {
+    src: url("../fonts/lmroman10-bolditalic.otf");
+}
+
 /* ==========================================================================
    Global Variables & Root Styling
    ========================================================================== */
@@ -7,7 +23,7 @@
     -primary-button-background-hover: #F0EDE6;
     -text-color-main: #2C2C2C;
 
-    -fx-font-family: "LM Roman 10", "Georgia", serif;
+    -fx-font-family: "LM Roman 10", serif;
     -fx-font-size: 16px;
     -fx-background-color: -primary-app-background;
 }
