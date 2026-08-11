@@ -59,64 +59,124 @@
     "id": "car-p3",
     "text": "L'anima che fa conto del suo sapere e si appoggia sulle proprie ragioni è davanti a Dio assai stolta, perché la sapienza di questo mondo è suprema ignoranza."
   },
-    {
-      "id": "isaia-49-15",
-      "text": "Si dimentica forse una donna del suo bambino, così da non commuoversi per il figlio delle sue viscere? Anche se costoro si dimenticassero, io invece non ti dimenticherò mai."
-    },
-    {
-      "id": "giobbe-4-7-8",
-      "text": "Ricorda bene: quale innocente è mai perito e quando mai uomini retti furono distrutti? Per quanto io ho visto, chi ara iniquità e semina affanni, li raccoglie."
-    },
-    {
-      "id": "dom-s1",
-      "text": "Dio, per la sua infinita bontà, non permetterebbe mai che ci fosse del male nelle sue opere, se non fosse talmente onnipotente e buono da trarre il bene anche dal male."
-    },
-    {
-      "id": "fra-s1",
-      "text": "Laudato si', mi' Signore, per quelli ke perdonano per lo tuo amore, e sostengo infirmitate e tribolazione. Beati quelli ke 'l sosterranno in pace, ka da te, Altissimo, sirano incoronati."
-    },
-    {
-      "id": "car-s1",
-      "text": "Credo che il buon Dio non abbia bisogno di anni per compiere la sua opera. A volte, vedendo un fiore troppo fragile per resistere alle tempeste di questa terra, lo coglie teneramente per farlo sbocciare per sempre nel suo giardino."
-    },
-    {
-      "id": "isaia-55-8-9",
-      "text": "Perché i miei pensieri non sono i vostri pensieri, le vostre vie non sono le mie vie. Quanto il cielo sovrasta la terra, tanto le mie vie sovrastano le vostre vie, i miei pensieri sovrastano i vostri pensieri."
-    },
-    {
-      "id": "isaia-45-7",
-      "text": "Io formo la luce e creo le tenebre, faccio il bene e provoco la sciagura; io, il Signore, compio tutto questo."
-    },
-    {
-      "id": "dom-s2",
-      "text": "La divina provvidenza non esclude totalmente il male dalle cose. Se infatti venissero impediti tutti i mali, verrebbero a mancare all'universo molti beni. Non vi sarebbe la virtù della pazienza né il dono eroico di sé, e l'uomo non potrebbe mai scegliere liberamente il bene supremo."
-    },
-    {
-      "id": "fra-s2",
-      "text": "L'albero della vita è la croce di Cristo. Chi non sa leggere in questo libro, ogni logica umana gli è vana. Lì l'apparente impotenza si fa vera onnipotenza, e il dolore incomprensibile si trasforma nella massima espressione dell'amore divino."
-    },
-    {
-      "id": "car-s2",
-      "text": "La ragione e la filosofia non possono penetrare il mistero della sofferenza. Ma la croce non è l'inazione di Dio: è il luogo dove Egli, rinunciando all'uso della potenza mondana, scende nel nostro stesso dolore per condividerlo e redimerlo dall'interno."
-    },
-    {
-      "id": "sapienza-3-1-3",
-      "text": "Le anime dei giusti, invece, sono nelle mani di Dio, nessun tormento le toccherà. Agli occhi degli stolti parve che morissero, la loro fine fu ritenuta una sciagura, la loro partenza da noi una rovina, ma essi sono nella pace."
-    },
-    {
-      "id": "lamentazioni-3-31-33",
-      "text": "Poiché il Signore non rigetta per sempre. Ma, se affligge, avrà anche pietà secondo la sua grande misericordia. Poiché egli non umilia né affligge volentieri i figli dell'uomo."
-    },
-    {
-      "id": "dom-s3",
-      "text": "L'intelletto umano ha un limite naturale. Pertanto, chi presume di poter giudicare i decreti insondabili di Dio con la propria ragione si macchia di superbia, ignorando che Egli agisce per un fine a noi nascosto."
-    },
-    {
-      "id": "fra-s3",
-      "text": "E non dobbiamo essere sapienti e prudenti secondo la carne, ma piuttosto dobbiamo essere semplici, umili e sottomessi... poiché chi confida troppo nella propria intelligenza non comprenderà mai il mistero del Suo volere."
-    },
-    {
-      "id": "car-s3",
-      "text": "Per giungere alla divina unione, l'anima deve annientare il proprio intelletto, svuotarsi di ogni ragionamento umano e procedere alla cieca, poiché il mistero di Dio supera infinitamente ogni nostra logica e ogni nostro senso."
-    }
+  {
+    "id": "isaia-49-15",
+    "text": "Si dimentica forse una donna del suo bambino, così da non commuoversi per il figlio delle sue viscere? Anche se costoro si dimenticassero, io invece non ti dimenticherò mai."
+  },
+  {
+    "id": "giobbe-4-7-8",
+    "text": "Ricorda bene: quale innocente è mai perito e quando mai uomini retti furono distrutti? Per quanto io ho visto, chi ara iniquità e semina affanni, li raccoglie."
+  },
+  {
+    "id": "dom-s1",
+    "text": "Dio, per la sua infinita bontà, non permetterebbe mai che ci fosse del male nelle sue opere, se non fosse talmente onnipotente e buono da trarre il bene anche dal male."
+  },
+  {
+    "id": "fra-s1",
+    "text": "Laudato si', mi' Signore, per quelli ke perdonano per lo tuo amore, e sostengo infirmitate e tribolazione. Beati quelli ke 'l sosterranno in pace, ka da te, Altissimo, sirano incoronati."
+  },
+  {
+    "id": "car-s1",
+    "text": "Credo che il buon Dio non abbia bisogno di anni per compiere la sua opera. A volte, vedendo un fiore troppo fragile per resistere alle tempeste di questa terra, lo coglie teneramente per farlo sbocciare per sempre nel suo giardino."
+  },
+  {
+    "id": "isaia-55-8-9",
+    "text": "Perché i miei pensieri non sono i vostri pensieri, le vostre vie non sono le mie vie. Quanto il cielo sovrasta la terra, tanto le mie vie sovrastano le vostre vie, i miei pensieri sovrastano i vostri pensieri."
+  },
+  {
+    "id": "isaia-45-7",
+    "text": "Io formo la luce e creo le tenebre, faccio il bene e provoco la sciagura; io, il Signore, compio tutto questo."
+  },
+  {
+    "id": "dom-s2",
+    "text": "La divina provvidenza non esclude totalmente il male dalle cose. Se infatti venissero impediti tutti i mali, verrebbero a mancare all'universo molti beni. Non vi sarebbe la virtù della pazienza né il dono eroico di sé, e l'uomo non potrebbe mai scegliere liberamente il bene supremo."
+  },
+  {
+    "id": "fra-s2",
+    "text": "L'albero della vita è la croce di Cristo. Chi non sa leggere in questo libro, ogni logica umana gli è vana. Lì l'apparente impotenza si fa vera onnipotenza, e il dolore incomprensibile si trasforma nella massima espressione dell'amore divino."
+  },
+  {
+    "id": "car-s2",
+    "text": "La ragione e la filosofia non possono penetrare il mistero della sofferenza. Ma la croce non è l'inazione di Dio: è il luogo dove Egli, rinunciando all'uso della potenza mondana, scende nel nostro stesso dolore per condividerlo e redimerlo dall'interno."
+  },
+  {
+    "id": "sapienza-3-1-3",
+    "text": "Le anime dei giusti, invece, sono nelle mani di Dio, nessun tormento le toccherà. Agli occhi degli stolti parve che morissero, la loro fine fu ritenuta una sciagura, la loro partenza da noi una rovina, ma essi sono nella pace."
+  },
+  {
+    "id": "lamentazioni-3-31-33",
+    "text": "Poiché il Signore non rigetta per sempre. Ma, se affligge, avrà anche pietà secondo la sua grande misericordia. Poiché egli non umilia né affligge volentieri i figli dell'uomo."
+  },
+  {
+    "id": "dom-s3",
+    "text": "L'intelletto umano ha un limite naturale. Pertanto, chi presume di poter giudicare i decreti insondabili di Dio con la propria ragione si macchia di superbia, ignorando che Egli agisce per un fine a noi nascosto."
+  },
+  {
+    "id": "fra-s3",
+    "text": "E non dobbiamo essere sapienti e prudenti secondo la carne, ma piuttosto dobbiamo essere semplici, umili e sottomessi... poiché chi confida troppo nella propria intelligenza non comprenderà mai il mistero del Suo volere."
+  },
+  {
+    "id": "car-s3",
+    "text": "Per giungere alla divina unione, l'anima deve annientare il proprio intelletto, svuotarsi di ogni ragionamento umano e procedere alla cieca, poiché il mistero di Dio supera infinitamente ogni nostra logica e ogni nostro senso."
+  },
+  {
+    "id": "romani-3-23-24",
+    "text": "Tutti hanno peccato e sono privi della gloria di Dio, ma sono giustificati gratuitamente per la sua grazia, in virtù della redenzione realizzata da Cristo Gesù."
+  },
+  {
+    "id": "romani-2-5",
+    "text": "Tu, con il tuo cuore duro e ostinato, accumuli collera su di te per il giorno dell'ira e della rivelazione del giusto giudizio di Dio."
+  },
+  {
+    "id": "dom-pr1",
+    "text": "Senza la grazia, l'uomo non può in alcun modo meritare la vita eterna, perché le opere umane, per quanto buone secondo la nostra natura, sono sproporzionate rispetto alla maestà della gloria divina."
+  },
+  {
+    "id": "fra-pr1",
+    "text": "E non dobbiamo appropriarci di nulla, ma restituire tutti i beni al Signore Dio altissimo, riconoscendo che tutti i beni sono suoi, compreso il bene che compiamo."
+  },
+  {
+    "id": "car-pr1",
+    "text": "Alla sera di questa vita, comparirò davanti a te a mani vuote, perché non ti chiedo, Signore, di contare le mie opere. Tutte le nostre giustizie hanno macchie ai tuoi occhi."
+  },
+  {
+    "id": "efesini-2-8-9",
+    "text": "Per grazia infatti siete salvati mediante la fede; e ciò non viene da voi, ma è dono di Dio; né viene dalle opere, perché nessuno possa vantarsene."
+  },
+  {
+    "id": "galati-2-21",
+    "text": "Non annullo la grazia di Dio; infatti, se la giustizia si ottiene per mezzo della legge, Cristo è morto invano."
+  },
+  {
+    "id": "dom-pr2",
+    "text": "Poiché l'uomo è stato spogliato dei doni gratuiti e ferito nei doni naturali a causa del peccato originale, pensare di potersi salvare con la sola ragione umana è una presunzione che conduce dritti alla dannazione."
+  },
+  {
+    "id": "fra-pr2",
+    "text": "Tutti quelli che non fanno penitenza e confidano nella propria sapienza terrena sono ciechi e figli del diavolo; la loro finta giustizia umana non servirà a nulla."
+  },
+  {
+    "id": "car-pr2",
+    "text": "Ogni saggezza umana e ogni rettitudine della terra sono pura e suprema ignoranza davanti a Dio. Chi si fida di queste illusioni vive nelle tenebre più fitte."
+  },
+  {
+    "id": "filippesi-3-7-9",
+    "text": "Ma quelle cose che per me erano guadagni, io le ho considerate una perdita a motivo di Cristo... per essere trovato in lui, non con una mia giustizia derivante dalla legge, ma con quella che viene dalla fede in Cristo, la giustizia che viene da Dio, basata sulla fede."
+  },
+  {
+    "id": "romani-1-21-22",
+    "text": "Pur avendo conosciuto Dio, non lo hanno glorificato né ringraziato come Dio, ma si sono perduti nei loro vani ragionamenti e la loro mente ottusa si è ottenebrata. Mentre si dichiaravano sapienti, sono diventati stolti."
+  },
+  {
+    "id": "dom-pr3",
+    "text": "La superbia è l'avversione a Dio, in quanto l'uomo non vuole sottomettersi a Lui e alla Sua grazia, presumendo di poter bastare a se stesso. Questo orgoglio di salvarsi da soli è il principio di ogni peccato."
+  },
+  {
+    "id": "fra-pr3",
+    "text": "E possiamo gloriarci solo delle nostre infermità e di portare quotidianamente la santa croce... poiché l'uomo non ha nulla di suo se non il peccato e il vizio. Di ogni altro bene deve rendere grazie al Signore."
+  },
+  {
+    "id": "car-pr3",
+    "text": "L'umiltà è camminare nella verità, poiché è una grandissima verità che da noi stessi non abbiamo nulla di buono, ma solo miseria e nullità; chi si appoggia ai propri meriti e non alla misericordia, cammina in una pericolosa menzogna."
+  }
 ]

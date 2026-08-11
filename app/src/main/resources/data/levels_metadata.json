@@ -16,7 +16,7 @@
     "id": "suffering_sofia",
     "category": "FAITH",
     "title": "Il problema del male",
-    "description": "Sofia è un medico che si scontra quotidianamente con la malattia e il decadimento fisico. Non riesce più a conciliare l'idea di un Dio onnipotente e infinitamente buono con la crudele realtà del dolore innocente, un conflitto interiore che sta distruggendo la sua spiritualità.",
+    "description": "Sofia non riesce più a conciliare l'idea di un Dio onnipotente e infinitamente buono con la crudele realtà del dolore innocente, un conflitto interiore che sta distruggendo la sua spiritualità.",
     "maxRewards": {
       "faith": 50,
       "hope": 10,
@@ -24,5 +24,18 @@
     },
     "requiredBookIds": [],
     "scenarioPath": "/data/scenarios/suffering_sofia.json"
+  },
+  {
+    "id": "pride_lorenzo",
+    "category": "FAITH",
+    "title": "La necessità di salvezza",
+    "description": "Lorenzo non riesce a comprendere l'insistenza del Cristianesimo sul peccato e sulla necessità assoluta di un Salvatore, ritenendo che per essere in pace con l'universo sia sufficiente essere semplicemente una \"brava persona\".",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": ["LETTERE_PAOLO"],
+    "scenarioPath": "/data/scenarios/pride_lorenzo.json"
   }
 ]

@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Lorenzo",
+    "imagePath": "/images/npcs/blue-npc.png",
+    "problemType": "PRIDE",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Non capisco questa continua insistenza della Chiesa sul peccato e sulla redenzione. Io non rubo, non uccido, pago le tasse e faccio regolarmente beneficenza. Cerco di trattare ogni singola persona con rispetto. Perché dovrei aver bisogno di un Salvatore che debba addirittura morire su una croce per me? Non credi che basti essere semplicemente delle brave persone per essere a posto con la propria coscienza e con Dio?",
+      "responses": [
+        {
+          "displayReference": "Romani 3:23-24",
+          "scriptureId": "romani-3-23-24",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Romani 2:5",
+          "scriptureId": "romani-2-5",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-pr1",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-pr1",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa di Lisieux",
+          "scriptureId": "car-pr1",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Più ci rifletto, più mi sembra che l'idea di un'umanità intimamente 'decaduta' e bisognosa di salvezza sia solo un retaggio di tempi antichi, studiato per tenere le masse sottomesse attraverso il senso di colpa. L'uomo moderno ha sviluppato l'etica, la filosofia, i diritti umani. Possiamo costruire un mondo giusto e pacifico con le nostre sole forze, attraverso l'educazione e la ragione. Sentirmi dire che siamo tutti corrotti fin dalla nascita lo trovo un insulto alla dignità umana.",
+      "responses": [
+        {
+          "displayReference": "Efesini 2:8-9",
+          "scriptureId": "efesini-2-8-9",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Galati 2:21",
+          "scriptureId": "galati-2-21",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-pr2",
+          "answerValue": "BAD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-pr2",
+          "answerValue": "BAD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-pr2",
+          "answerValue": "BAD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Smettiamola con questa favola della grazia e del bisogno di perdono. La verità è che il concetto stesso di 'salvezza' è stato inventato per vendere la cura a una malattia che non esiste affatto. Io sono l'unico padrone morale della mia vita, e se davvero ci fosse un giudizio alla fine dei tempi, mi presenterei a testa alta con i miei meriti. Non ho bisogno che qualcun altro paghi il prezzo per me, né ho la minima intenzione di inginocchiarmi a chiedere pietà per colpe che non mi appartengono.",
+      "responses": [
+        {
+          "displayReference": "Filippesi 3:7-9",
+          "scriptureId": "filippesi-3-7-9",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Romani 1:21-22",
+          "scriptureId": "romani-1-21-22",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-pr3",
+          "answerValue": "GOOD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-pr3",
+          "answerValue": "GOOD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa d'Avila",
+          "scriptureId": "car-pr3",
+          "answerValue": "GOOD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    }
+  ]
+}
