@@ -1,7 +1,7 @@
 {
   "npc": {
     "name": "Riccardo",
-    "imagePath": "/images/npcs/riccardo.png",
+    "imagePath": "/images/npcs/blue-npc.png",
     "problemType": "SKEPTICISM",
     "maxProblemValue": 1.0
   },

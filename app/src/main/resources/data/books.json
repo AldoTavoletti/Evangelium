@@ -3,27 +3,27 @@
     "id": "LETTERE_PAOLO",
     "displayName": "Lettere di paolo",
     "price": {
-      "faith": 30,
-      "hope": 10,
-      "love": 10
+      "faith": 100,
+      "hope": 50,
+      "love": 75
     }
   },
   {
     "id": "VANGELI",
     "displayName": "Vangeli",
     "price": {
-      "faith": 10,
-      "hope": 10,
-      "love": 10
+      "faith": 75,
+      "hope": 100,
+      "love": 50
     }
   },
   {
     "id": "LETTERE_CATTOLICHE",
     "displayName": "Lettere Cattoliche",
     "price": {
-      "faith": 10,
-      "hope": 10,
-      "love": 10
+      "faith": 50,
+      "hope": 75,
+      "love": 100
     }
   }
 ]
