@@ -4,7 +4,6 @@ import it.unicam.cs.mpgc.rpg129852.model.game.Game;
 
 /**
  * Provides read-only access to the currently active game session.
- *
  * This interface adheres to the Interface Segregation Principle, allowing
  * components (such as UI controllers or gameplay mechanics) to query the
  * current game state without having the authority to modify or clear
@@ -14,7 +13,6 @@ public interface GameProvider {
 
     /**
      * Retrieves the currently active game instance.
-     *
      * It is highly recommended to verify the presence of an active game
      * via {@link #hasActiveGame()} before calling this method to avoid
      * unexpected behaviors or exceptions.

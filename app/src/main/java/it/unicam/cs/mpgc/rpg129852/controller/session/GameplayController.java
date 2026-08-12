@@ -176,6 +176,8 @@ public class GameplayController {
     }
 
     private void bindResponsesToButtons(DiscipleResponse[] responses) {
+
+        // it shuffles the position of the responses so that they are different at every attempt
         List<DiscipleResponse> shuffledResponses = new ArrayList<>(List.of(responses));
         Collections.shuffle(shuffledResponses);
 

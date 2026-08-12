@@ -1,7 +1,6 @@
 package it.unicam.cs.mpgc.rpg129852.model.disciple;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,7 +35,12 @@ public class InventoryImpl implements Inventory {
     @Override
     public boolean contains(List<String> bookIdsToCheck) {
         Objects.requireNonNull(bookIdsToCheck, "The list of book IDs to check must not be null.");
-        return new HashSet<>(this.bookIds).containsAll(bookIdsToCheck);
+
+        if (bookIdsToCheck.isEmpty()) {
+            return true;
+        }
+
+        return this.bookIds.containsAll(bookIdsToCheck);
     }
 
     @Override
