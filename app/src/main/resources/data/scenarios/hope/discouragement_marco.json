@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Marco",
+    "imagePath": "/images/npcs/blue-npc.png",
+    "problemType": "DISCOURAGEMENT",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Sinceramente, non so per quanto ancora riuscirò ad andare avanti. Cerco di vivere secondo la mia fede, di educare i miei figli con dei valori, ma là fuori è una giungla. Il mondo sembra andare esattamente nella direzione opposta: chi è onesto viene deriso, l'egoismo e la furbizia vengono esaltati. Mi sento un idiota, l'ultimo dei romantici a combattere una guerra già persa.",
+      "responses": [
+        {
+          "displayReference": "Salmi 37:7",
+          "scriptureId": "salmi-37-7",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Salmi 102:4-5",
+          "scriptureId": "salmi-102-4-5",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Santa Caterina da Siena",
+          "scriptureId": "dom-h2-1",
+          "answerValue": "GOOD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-h2-1",
+          "answerValue": "GOOD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa d'Avila",
+          "scriptureId": "car-h2-1",
+          "answerValue": "GOOD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "A volte mi chiedo se ne valga davvero la pena. Guardo le persone senza scrupoli, chi pensa solo al proprio tornaconto calpestando gli altri... e sembrano avere una vita facilissima, piena di successi e priva di preoccupazioni. Io invece mi logoro per fare la cosa giusta e raccolgo solo stanchezza e incomprensioni. Viene voglia di gettare la spugna e unirsi al coro.",
+      "responses": [
+        {
+          "displayReference": "Abacuc 3:17-18",
+          "scriptureId": "abacuc-3-17-18",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Salmi 12:2-3",
+          "scriptureId": "salmi-12-2-3",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-h2-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-h2-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa Benedetta della Croce",
+          "scriptureId": "car-h2-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Il rischio più grande è che questa stanchezza si trasformi in rabbia. Inizio a guardare gli altri con disprezzo, a chiudermi nel mio guscio e a pensare che l'unico modo per salvarsi sia isolarsi completamente da questa società malata. Divento cinico e ostile. E so che questo non è cristiano, ma come faccio a restare aperto e amorevole in un mondo che sembra godere nel farti a pezzi?",
+      "responses": [
+        {
+          "displayReference": "Giosuè 1:9",
+          "scriptureId": "giosue-1-9",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Isaia 35:3-4",
+          "scriptureId": "isaia-35-3-4",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-h2-3",
+          "answerValue": "BAD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-h2-3",
+          "answerValue": "BAD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-h2-3",
+          "answerValue": "BAD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    }
+  ]
+}

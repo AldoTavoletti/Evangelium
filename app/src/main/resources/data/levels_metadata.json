@@ -10,7 +10,7 @@
       "love": 10
     },
     "requiredBookIds": [],
-    "scenarioPath": "/data/scenarios/doubt_mattia.json"
+    "scenarioPath": "/data/scenarios/faith/doubt_mattia.json"
   },
   {
     "id": "suffering_sofia",
@@ -23,7 +23,7 @@
       "love": 10
     },
     "requiredBookIds": [],
-    "scenarioPath": "/data/scenarios/suffering_sofia.json"
+    "scenarioPath": "/data/scenarios/faith/suffering_sofia.json"
   },
   {
     "id": "pride_lorenzo",
@@ -36,7 +36,7 @@
       "love": 10
     },
     "requiredBookIds": ["LETTERE_PAOLO"],
-    "scenarioPath": "/data/scenarios/pride_lorenzo.json"
+    "scenarioPath": "/data/scenarios/faith/pride_lorenzo.json"
   },
   {
     "id": "skepticism_valerio",
@@ -49,7 +49,7 @@
       "love": 10
     },
     "requiredBookIds": ["LETTERE_PAOLO"],
-    "scenarioPath": "/data/scenarios/skepticism_valerio.json"
+    "scenarioPath": "/data/scenarios/faith/skepticism_valerio.json"
   },
   {
     "id": "skepticism_riccardo",
@@ -62,6 +62,71 @@
       "love": 10
     },
     "requiredBookIds": ["LETTERE_PAOLO"],
-    "scenarioPath": "/data/scenarios/skepticism_riccardo.json"
+    "scenarioPath": "/data/scenarios/faith/skepticism_riccardo.json"
+  },
+  {
+    "id": "guilt_elena",
+    "category": "HOPE",
+    "title": "Il perdono dei nostri peccati",
+    "description": "Elena teme che i suoi peccati siano troppo gravi per poter essere perdonati e si ritiene definitivamente indegna dell'amore di Dio, intrappolata in un profondo senso di colpa che le impedisce di perdonare se stessa.\n",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": [],
+    "scenarioPath": "/data/scenarios/hope/guilt_elena.json"
+  },
+  {
+    "id": "discouragement_marco",
+    "category": "HOPE",
+    "title": "Remare contro il mondo",
+    "description": "Marco si sente completamente isolato ed esausto. La società gli appare ostile, i valori cristiani capovolti, e lui sente che i suoi sforzi per \"remare controcorrente\" sono diventati inutili e destinati al fallimento, portandolo allo scoraggiamento.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": [],
+    "scenarioPath": "/data/scenarios/hope/discouragement_marco.json"
+  },
+  {
+    "id": "weakness_giulia",
+    "category": "HOPE",
+    "title": "La forza che viene da Dio",
+    "description": "",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": ["VANGELI"],
+    "scenarioPath": "/data/scenarios/hope/weakness_giulia.json"
+  },
+  {
+    "id": "doubt_alessandro",
+    "category": "HOPE",
+    "title": "La nostra risurrezione",
+    "description": "Alessandro, sebbene sia affascinato dall'idea di una sopravvivenza puramente spirituale, trova incomprensibile e fiabesca la dottrina della \"risurrezione della carne\", temendo che la fine del corpo biologico coincida con il nulla e l'annientamento totale della persona.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": ["VANGELI"],
+    "scenarioPath": "/data/scenarios/hope/doubt_alessandro.json"
+  },
+  {
+    "id": "skepticism_davide",
+    "category": "HOPE",
+    "title": "L'attesa: già ma non ancora",
+    "description": "Davide non riesce a conciliare la fede in Cristo come Salvatore con la realtà oggettiva di un mondo ancora dominato dal male, dalla violenza e dall'ingiustizia. Per lui, il \"già e non ancora\" del Regno di Dio è solo un sofisma teologico per mascherare una promessa fallita.\n",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": ["VANGELI"],
+    "scenarioPath": "/data/scenarios/hope/skepticism_davide.json"
   }
 ]

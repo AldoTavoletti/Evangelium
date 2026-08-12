@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Elena",
+    "imagePath": "/images/npcs/blue-npc.png",
+    "problemType": "GUILT",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Non c'è speranza per me. Ho commesso errori terribili e ho ferito profondamente le persone che amavo. Sento un peso sul petto che non mi fa respirare. Come posso pensare che Dio mi perdoni? La mia colpa è troppo grande, è una macchia che non andrà mai più via.",
+      "responses": [
+        {
+          "displayReference": "Isaia 1:18",
+          "scriptureId": "isaia-1-18",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Numeri 14:18",
+          "scriptureId": "numeri-14-18",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-h1-1",
+          "answerValue": "GOOD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-h1-1",
+          "answerValue": "GOOD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa di Lisieux",
+          "scriptureId": "car-h1-1",
+          "answerValue": "GOOD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Forse, in un momento di grande pietà, Dio potrebbe anche perdonarmi. Ma so come sono fatta. Sono debole. So che cadrei di nuovo, che ripeterei gli stessi identici errori. A che serve chiedere perdono oggi, se so già che domani tradirò di nuovo la Sua fiducia? Mi sento condannata alla mia stessa miseria.",
+      "responses": [
+        {
+          "displayReference": "Salmi 103:8,10",
+          "scriptureId": "salmi-103-8-10",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Isaia 43:25",
+          "scriptureId": "isaia-43-25",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-h1-2",
+          "answerValue": "BAD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-h1-2",
+          "answerValue": "BAD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-h1-2",
+          "answerValue": "BAD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Voi parlate del perdono di Dio, ma c'è un ostacolo ancora più insormontabile. Anche se Lui decidesse di perdonarmi, io non potrò mai perdonare me stessa. Guardo allo specchio e provo solo disgusto. Non riesco a lasciar andare il passato, mi tormenta giorno e notte come un giudice spietato.",
+      "responses": [
+        {
+          "displayReference": "Salmi 103:12",
+          "scriptureId": "salmi-103-12",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Salmi 51:5",
+          "scriptureId": "salmi-51-5",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-h1-3",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "Sant'Antonio di Padova",
+          "scriptureId": "fra-h1-3",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa d'Avila",
+          "scriptureId": "car-h1-3",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    }
+  ]
+}

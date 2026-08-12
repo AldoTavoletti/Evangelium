@@ -5,9 +5,12 @@ package it.unicam.cs.mpgc.rpg129852.model.level;
  */
 public enum ProblemType {
     DOUBT("Dubbio"),
-    SUFFERING ("Sofferenza"),
-    PRIDE ("Orgoglio"),
-    SKEPTICISM ("Scetticismo");
+    SUFFERING("Sofferenza"),
+    PRIDE("Orgoglio"),
+    SKEPTICISM("Scetticismo"),
+    GUILT("Senso di colpa"),
+    DISCOURAGEMENT("Scoraggiamento"),
+    WEAKNESS("Debolezza");
 
     private final String displayValue;
 

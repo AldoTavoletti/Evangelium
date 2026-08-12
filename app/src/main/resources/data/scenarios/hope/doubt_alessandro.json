@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Alessandro",
+    "imagePath": "/images/npcs/blue-npc.png",
+    "problemType": "DOUBT",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Posso arrivare a concepire l'idea di un'anima immortale, una scintilla spirituale che al momento della morte ritorna al suo Creatore. Ma la 'risurrezione della carne' mi sembra una credenza arcaica e primitiva. Come si può pensare che questo corpo fisico, destinato biologicamente a decomporsi e a polverizzarsi, venga ricostituito? Mi sembra un attaccamento infantile, quasi materialistico, alla nostra biologia.",
+      "responses": [
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-h4-1",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Bonaventura da Bagnoregio",
+          "scriptureId": "fra-h4-1",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa d'Avila",
+          "scriptureId": "car-h4-1",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        },
+        {
+          "displayReference": "Giovanni 6:40",
+          "scriptureId": "giovanni-6-40",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Luca 9:60",
+          "scriptureId": "luca-9-60",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Ma se provo a pensare a corpi inceneriti, distrutti dalle malattie o sparsi nel mondo da secoli, come può la biologia tornare indietro? E ammettendo l'impossibile, risorgeremmo con i nostri difetti, le nostre menomazioni, la nostra vecchiaia? Quale sarebbe il vantaggio di una simile eternità materiale? Non riesco a trovarci alcun conforto, ma solo il prolungamento dei nostri limiti.",
+      "responses": [
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-h4-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Bonaventura da Bagnoregio",
+          "scriptureId": "fra-h4-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-h4-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        },
+        {
+          "displayReference": "Matteo 22:30",
+          "scriptureId": "matteo-22-30",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Marco 9:43",
+          "scriptureId": "marco-9-43",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Forse è solo la disperata paura della fine che ci spinge a inventare l'idea del paradiso. Guardando l'immensità dell'universo, la nostra esistenza è solo un minuscolo battito di ciglia. Mi chiedo se non sia intellettualmente più dignitoso accettare che il nostro destino sia il nulla, e che l'unica eternità possibile risieda nel ricordo di chi ci ha amato. Sperare in un mondo ultraterreno non è forse un'infantile illusione per sfuggire all'angoscia della nostra mortalità?",
+      "responses": [
+        {
+          "displayReference": "Luca 20:38",
+          "scriptureId": "luca-20-38",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Giovanni 14:1-2",
+          "scriptureId": "giovanni-14-1-2",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-h4-3",
+          "answerValue": "BAD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-h4-3",
+          "answerValue": "BAD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-h4-3",
+          "answerValue": "BAD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    }
+  ]
+}
