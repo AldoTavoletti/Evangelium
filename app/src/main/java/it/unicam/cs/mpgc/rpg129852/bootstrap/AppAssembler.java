@@ -50,10 +50,10 @@ import java.util.Objects;
 public class AppAssembler {
 
     private static final String APP_TITLE = "Evangelium";
-    private static final String DISCIPLE_ASSETS_PATH = "/data/characters_assets.json";
-    private static final String SCRIPTURE_ASSETS_PATH = "/data/scripture.json";
-    private static final String BOOKS_ASSETS_PATH = "/data/books.json";
-    private static final String LEVELS_METADATA_PATH = "/data/levels_metadata.json";
+    private static final String CHARACTERS_ASSETS_JSON = "/data/characters_assets.json";
+    private static final String SCRIPTURE_JSON = "/data/scripture.json";
+    private static final String BOOKS_JSON = "/data/books.json";
+    private static final String LEVELS_METADATA_JSON = "/data/levels_metadata.json";
 
     /**
      * Assembles the application dependencies and starts the initial scene.
@@ -64,39 +64,40 @@ public class AppAssembler {
     public void assembleAndRun(Stage primaryStage) {
         Objects.requireNonNull(primaryStage, "The primary stage must not be null.");
 
+        primaryStage.setTitle(APP_TITLE);
+        primaryStage.setResizable(false);
+
+        // persistency and context creation
         Gson gson = InfrastructureFactory.createGson();
         GameRepository repository = InfrastructureFactory.createGameRepository(gson);
-
-        ResourceRegistry<DiscipleAsset> discipleRegistry = InfrastructureFactory.loadRegistry(DISCIPLE_ASSETS_PATH, DiscipleAsset.class, gson);
-        ResourceRegistry<ScriptureResource> scriptureRegistry = InfrastructureFactory.loadRegistry(SCRIPTURE_ASSETS_PATH, ScriptureResource.class, gson);
-        ResourceRegistry<Book> bookRegistry = InfrastructureFactory.loadRegistry(BOOKS_ASSETS_PATH, Book.class, gson);
-        ResourceRegistry<LevelMetadata> levelMetadataRegistry = InfrastructureFactory.loadRegistry(LEVELS_METADATA_PATH, LevelMetadata.class, gson);
-
         GameSessionManager gameSessionManager = new GameContextImpl();
         LevelSessionManager levelSessionManager = new LevelContextImpl();
 
+        // registries creation
+        ResourceRegistry<DiscipleAsset> discipleRegistry = InfrastructureFactory.loadRegistry(CHARACTERS_ASSETS_JSON, DiscipleAsset.class, gson);
+        ResourceRegistry<ScriptureResource> scriptureRegistry = InfrastructureFactory.loadRegistry(SCRIPTURE_JSON, ScriptureResource.class, gson);
+        ResourceRegistry<Book> bookRegistry = InfrastructureFactory.loadRegistry(BOOKS_JSON, Book.class, gson);
+        ResourceRegistry<LevelMetadata> levelMetadataRegistry = InfrastructureFactory.loadRegistry(LEVELS_METADATA_JSON, LevelMetadata.class, gson);
+
+        // catalogs creation
         BookCatalog bookCatalog = new BookCatalogImpl(bookRegistry);
         LevelCatalog levelCatalog = new LevelCatalogImpl(levelMetadataRegistry);
         ScriptureCatalog scriptureCatalog = new ScriptureCatalogImpl(scriptureRegistry);
 
+        // services creation
         GameStarter gameStarter = DomainFactory.createGameStarter(repository, gameSessionManager);
         LevelStarter levelStarter = DomainFactory.createLevelStarter(levelSessionManager, gson);
-
         LevelBrowserService levelBrowser = new LevelBrowserServiceImpl(levelCatalog, bookCatalog, gameSessionManager);
-        DiscipleProfileService discipleProfile = new DiscipleProfileServiceImpl(gameSessionManager, discipleRegistry);
         ShopService shopService = new ShopServiceImpl(bookCatalog, gameSessionManager, repository);
         SummaryService summaryService = new SummaryServiceImpl(gameSessionManager, levelCatalog);
         StatsService statsService = new StatsServiceImpl(gameSessionManager, levelCatalog);
-
+        DiscipleProfileService discipleProfile = new DiscipleProfileServiceImpl(gameSessionManager, discipleRegistry);
         CircularListNavigator<DiscipleAsset> discipleNavigator = new CircularListNavigatorImpl<>(discipleRegistry.getAllResources());
 
-        primaryStage.setTitle(APP_TITLE);
-        primaryStage.setResizable(false);
-
+        // controllers registration
         ControllerFactory controllerFactory = new ControllerFactory();
         ViewRouter sceneManager = new SceneManager(primaryStage, controllerFactory);
 
-        // Controllers Registration
         controllerFactory.register(MainMenuController.class,
                 () -> new MainMenuController(gameSessionManager, sceneManager));
 
@@ -119,7 +120,7 @@ public class AppAssembler {
         controllerFactory.register(SummaryController.class,
                 () -> new SummaryController(statsService, discipleProfile, sceneManager));
 
-        // Start the application
+        // start the application
         sceneManager.switchScene(ViewRoute.MAIN_MENU);
     }
 }

@@ -10,8 +10,8 @@ import java.util.Optional;
  */
 public class AlertHelper {
 
-    // to prevent instantiation
     private AlertHelper() {
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated.");
     }
 
     /**

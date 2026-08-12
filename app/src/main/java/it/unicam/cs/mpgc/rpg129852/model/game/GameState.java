@@ -62,10 +62,4 @@ public interface GameState {
      */
     Map<String, Score> getAllLevelScores();
 
-    /**
-     * Retrieves the total count of distinct levels the player has completed at least once.
-     *
-     * @return the number of played levels
-     */
-    int getNumberOfPlayedLevels();
 }

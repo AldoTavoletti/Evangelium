@@ -10,12 +10,9 @@ import it.unicam.cs.mpgc.rpg129852.navigation.ViewRouter;
 import it.unicam.cs.mpgc.rpg129852.persistence.game.GameRepository;
 import it.unicam.cs.mpgc.rpg129852.ui.common.AlertHelper;
 import it.unicam.cs.mpgc.rpg129852.ui.save.SaveRowComponent;
-import it.unicam.cs.mpgc.rpg129852.util.ImageUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -43,7 +40,6 @@ public class LoadGameController {
     private final GameRepository repository;
     private final GameSessionManager gameSessionManager;
     private final ViewRouter sceneManager;
-    private Image trashImageCache;
 
     @FXML
     private VBox savesContainer;
@@ -126,5 +122,4 @@ public class LoadGameController {
                 .map(saveName -> new SaveRowComponent(saveName, this::loadSelectedGame, this::confirmAndDeleteSave))
                 .toList();
     }
-
 }

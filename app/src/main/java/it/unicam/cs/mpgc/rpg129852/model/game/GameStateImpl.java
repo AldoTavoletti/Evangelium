@@ -86,8 +86,4 @@ public class GameStateImpl implements GameState {
         return Collections.unmodifiableMap(levelScores);
     }
 
-    @Override
-    public int getNumberOfPlayedLevels() {
-        return levelScores.size();
-    }
 }

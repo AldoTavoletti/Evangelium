@@ -45,7 +45,7 @@ public class DiscipleData {
         this.name = name;
         this.job = Objects.requireNonNull(job, "The disciple job must not be null.");
         this.color = color;
-        this.virtues = getStartingVirtues(job);
+        this.virtues = STARTING_VIRTUES;
     }
 
     /**
@@ -80,15 +80,6 @@ public class DiscipleData {
         );
     }
 
-    /**
-     * Retrieves the total sum of all virtue points combined.
-     *
-     * @return the total amount of virtue points
-     */
-    public int getTotalVirtues() {
-        return virtues.getTotalPoints();
-    }
-
     public Virtues getVirtues() {
         return virtues;
     }
@@ -107,9 +98,5 @@ public class DiscipleData {
 
     public String getColor() {
         return color;
-    }
-
-    private Virtues getStartingVirtues(Job job) {
-        return STARTING_VIRTUES;
     }
 }

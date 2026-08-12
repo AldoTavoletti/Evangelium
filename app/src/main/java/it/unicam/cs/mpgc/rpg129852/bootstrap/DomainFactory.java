@@ -20,9 +20,6 @@ import java.util.Objects;
  */
 class DomainFactory {
 
-    /**
-     * Private constructor to prevent instantiation of this utility class.
-     */
     private DomainFactory() {
         throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
@@ -30,21 +27,19 @@ class DomainFactory {
     /**
      * Creates a fully configured {@link GameStarter} instance.
      *
-     * @param repository     the repository for saving and loading games
-     * @param sessionManager the manager holding the current game session
+     * @param repository         the repository for saving and loading games
+     * @param gameSessionManager the manager holding the current game session
      * @return a new GameStarter instance
      * @throws NullPointerException if any of the parameters are null
      */
-    static GameStarter createGameStarter(GameRepository repository, GameSessionManager sessionManager) {
+    static GameStarter createGameStarter(GameRepository repository, GameSessionManager gameSessionManager) {
         Objects.requireNonNull(repository, "The repository must not be null.");
-        Objects.requireNonNull(sessionManager, "The session manager must not be null.");
+        Objects.requireNonNull(gameSessionManager, "The game session manager must not be null.");
 
-        SyntaxValidator syntaxValidator = new SaveNameSyntaxValidator();
-        SaveNameFallbackProvider fallbackProvider = new SaveNameFallbackProviderImpl();
-        SaveNameResolver saveNameResolver = new SaveNameResolverImpl(repository, syntaxValidator, fallbackProvider);
+        SaveNameResolver saveNameResolver = createSaveNameResolver(repository);
         GameFactory gameFactory = new GameFactoryImpl();
 
-        return new GameStarterImpl(repository, sessionManager, gameFactory, saveNameResolver);
+        return new GameStarterImpl(repository, gameSessionManager, gameFactory, saveNameResolver);
     }
 
     /**
@@ -72,7 +67,7 @@ class DomainFactory {
      * @param gameSessionManager  the manager holding the current game session
      * @param repository          the repository for saving game progress
      * @return a new GameplayService instance
-     * @throws NullPointerException if any of the parameters are null
+     * @throws NullPointerException  if any of the parameters are null
      * @throws IllegalStateException if there is no active level in the session manager
      */
     static GameplayService createGameplayService(LevelSessionManager levelSessionManager, GameSessionManager gameSessionManager, GameRepository repository) {
@@ -87,5 +82,11 @@ class DomainFactory {
         LevelEngine levelEngine = new LevelEngineImpl(currentLevel.scenario().phases());
 
         return new GameplayServiceImpl(levelSessionManager, levelSaver, rewardsCalculator, levelEngine);
+    }
+
+    private static SaveNameResolver createSaveNameResolver(GameRepository repository) {
+        SyntaxValidator syntaxValidator = new SaveNameSyntaxValidator();
+        SaveNameFallbackProvider fallbackProvider = new SaveNameFallbackProviderImpl();
+        return new SaveNameResolverImpl(repository, syntaxValidator, fallbackProvider);
     }
 }

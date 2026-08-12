@@ -2,7 +2,7 @@ package it.unicam.cs.mpgc.rpg129852.model.disciple;
 
 /**
  * Represents the chosen order or path of the disciple.
- * This selection can influence dialogue availability and potential starting statistics.
+ * This selection can influence dialogue availability.
  */
 public enum Job {
     NONE("Nessuno"),

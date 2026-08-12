@@ -24,9 +24,6 @@ class InfrastructureFactory {
     private static final String SAVE_FOLDER_NAME = ".evangelium";
     private static final String SAVES_SUBFOLDER = "saves";
 
-    /**
-     * Private constructor to prevent instantiation of this utility class.
-     */
     private InfrastructureFactory() {
         throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
@@ -39,6 +36,12 @@ class InfrastructureFactory {
     static Gson createGson() {
         return new GsonBuilder()
                 .setPrettyPrinting()
+                /*
+                 * 'Inventory' is an interface, so Gson cannot instantiate it automatically
+                 * when encountering it as a nested field inside other objects.
+                 * This adapter tells Gson to explicitly build an 'InventoryImpl'
+                 * whenever it needs to deserialize an 'Inventory' from the JSON.
+                 */
                 .registerTypeAdapter(Inventory.class, (JsonDeserializer<Inventory>) (json, typeOfT, context) ->
                         context.deserialize(json, InventoryImpl.class))
                 .create();

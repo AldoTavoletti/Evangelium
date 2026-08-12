@@ -9,8 +9,8 @@ import java.util.Objects;
 
 /**
  * Controller for the main menu view.
- * Handles the initial interactions of the player, such as starting a new game,
- * loading an existing save, or quitting the application.
+ * Handles the initial interactions of the player, such as choosing to start a new game,
+ * to load an existing save, or to quit the application.
  */
 public class MainMenuController {
 
@@ -34,25 +34,16 @@ public class MainMenuController {
         gameSessionManager.clearSession();
     }
 
-    /**
-     * Handles the action triggered when the player chooses to start a new game.
-     */
     @FXML
     void onNewGameAction() {
         sceneManager.switchScene(ViewRoute.DISCIPLE_CREATION);
     }
 
-    /**
-     * Handles the action triggered when the player chooses to load an existing game.
-     */
     @FXML
     void onLoadGameAction() {
         sceneManager.switchScene(ViewRoute.LOAD_GAME);
     }
 
-    /**
-     * Handles the action triggered when the player chooses to quit the game.
-     */
     @FXML
     void onQuitAction() {
         Platform.exit();
