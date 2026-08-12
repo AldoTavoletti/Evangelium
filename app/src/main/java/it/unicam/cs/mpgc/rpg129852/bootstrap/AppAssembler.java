@@ -50,7 +50,7 @@ import java.util.Objects;
 public class AppAssembler {
 
     private static final String APP_TITLE = "Evangelium";
-    private static final String DISCIPLE_ASSETS_PATH = "/data/disciples_assets.json";
+    private static final String DISCIPLE_ASSETS_PATH = "/data/characters_assets.json";
     private static final String SCRIPTURE_ASSETS_PATH = "/data/scripture.json";
     private static final String BOOKS_ASSETS_PATH = "/data/books.json";
     private static final String LEVELS_METADATA_PATH = "/data/levels_metadata.json";

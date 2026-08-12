@@ -1,7 +1,7 @@
 {
   "npc": {
     "name": "Filippo",
-    "imagePath": "/images/npcs/blue-npc.png",
+    "imagePath": "/images/characters/red-character.png",
     "problemType": "CYNICISM",
     "maxProblemValue": 1.0
   },

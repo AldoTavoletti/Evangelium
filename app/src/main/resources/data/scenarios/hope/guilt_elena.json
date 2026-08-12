@@ -1,7 +1,7 @@
 {
   "npc": {
     "name": "Elena",
-    "imagePath": "/images/npcs/blue-npc.png",
+    "imagePath": "/images/characters/red-character.png",
     "problemType": "GUILT",
     "maxProblemValue": 1.0
   },

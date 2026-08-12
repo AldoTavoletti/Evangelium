@@ -1,7 +1,7 @@
 {
   "npc": {
     "name": "Mattia",
-    "imagePath": "/images/npcs/blue-npc.png",
+    "imagePath": "/images/characters/blue-character.png",
     "problemType": "DOUBT",
     "maxProblemValue": 1.0
   },

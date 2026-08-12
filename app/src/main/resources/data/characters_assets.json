@@ -1,0 +1,22 @@
+[
+  {
+    "id": "RED",
+    "gifPath": "/gifs/red-character.gif",
+    "imagePath": "/images/characters/red-character.png"
+  },
+  {
+    "id": "BLUE",
+    "gifPath": "/gifs/blue-character.gif",
+    "imagePath": "/images/characters/blue-character.png"
+  },
+  {
+    "id": "GREEN",
+    "gifPath": "/gifs/green-character.gif",
+    "imagePath": "/images/characters/green-character.png"
+  },
+  {
+    "id": "YELLOW",
+    "gifPath": "/gifs/yellow-character.gif",
+    "imagePath": "/images/characters/yellow-character.png"
+  }
+]

@@ -1,7 +1,7 @@
 {
   "npc": {
     "name": "Letizia",
-    "imagePath": "/images/npcs/blue-npc.png",
+    "imagePath": "/images/characters/yellow-character.png",
     "problemType": "RESENTMENT",
     "maxProblemValue": 1.0
   },

@@ -1,7 +1,7 @@
 {
   "npc": {
     "name": "Sofia",
-    "imagePath": "/images/npcs/blue-npc.png",
+    "imagePath": "/images/characters/blue-character.png",
     "problemType": "SUFFERING",
     "maxProblemValue": 1.0
   },

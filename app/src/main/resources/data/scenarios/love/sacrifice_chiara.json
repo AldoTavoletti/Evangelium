@@ -1,7 +1,7 @@
 {
   "npc": {
     "name": "Chiara",
-    "imagePath": "/images/npcs/blue-npc.png",
+    "imagePath": "/images/characters/blue-character.png",
     "problemType": "SACRIFICE",
     "maxProblemValue": 1.0
   },

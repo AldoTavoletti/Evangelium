@@ -1,7 +1,7 @@
 {
   "npc": {
     "name": "Marco",
-    "imagePath": "/images/npcs/blue-npc.png",
+    "imagePath": "/images/characters/yellow-character.png",
     "problemType": "DISCOURAGEMENT",
     "maxProblemValue": 1.0
   },
