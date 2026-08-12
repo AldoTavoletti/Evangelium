@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Valerio",
+    "imagePath": "/images/characters/red-character.png",
+    "problemType": "SKEPTICISM",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Ho passato anni ad analizzare i testi antichi. Il bacino del Mediterraneo pullulava di miti su divinità che muoiono e risorgono. Perché il caso di Gesù dovrebbe essere storicamente diverso? Mi sembra molto più plausibile pensare che, dopo il trauma di una crocifissione così ignominiosa, i suoi discepoli abbiano elaborato il lutto prendendo in prestito questi archetipi culturali. Hanno trasformato un maestro sconfitto in una figura divina, creando un mito che si è poi ingigantito col passare dei decenni.",
+      "responses": [
+        {
+          "displayReference": "1 Corinzi 15:3-5",
+          "scriptureId": "1cor-15-3-5",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "2 Timoteo 4:3-4",
+          "scriptureId": "2tim-4-3-4",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-sk1",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "Sant'Antonio di Padova",
+          "scriptureId": "fra-sk1",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa d'Avila",
+          "scriptureId": "car-sk1",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Anche ammettendo che la tomba fosse stata trovata effettivamente vuota, ci sono spiegazioni molto più razionali e scientifiche rispetto a un cadavere che riprende vita. I discepoli potrebbero aver spostato il corpo, o le autorità stesse potrebbero averlo rimosso. E le famose apparizioni di cui parlano i testi? La psicologia clinica moderna conosce molto bene i fenomeni di allucinazione collettiva scaturiti dal trauma e dalla suggestione. Erano persone disperate che volevano a tutti i costi credere che il loro leader fosse ancora lì.",
+      "responses": [
+        {
+          "displayReference": "1 Corinzi 15:6-7",
+          "scriptureId": "1cor-15-6-7",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Colossesi 2:8",
+          "scriptureId": "colossesi-2-8",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-sk2",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Bonaventura da Bagnoregio",
+          "scriptureId": "fra-sk2",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa Benedetta della Croce",
+          "scriptureId": "car-sk2",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Forse l'errore di fondo del cristianesimo moderno è prendere i Vangeli in modo troppo letterale. La 'risurrezione' non deve necessariamente essere intesa come un evento biologico o fisico. Non pensi che i primi cristiani volessero semplicemente comunicare che Gesù era 'risorto' nei loro cuori e che il suo messaggio d'amore continuava a vivere attraverso le loro azioni? Insistere sulla rianimazione letterale di un corpo di carne mi sembra un approccio primitivo che svilisce la vera bellezza e la portata spirituale del suo insegnamento.",
+      "responses": [
+        {
+          "displayReference": "1 Corinzi 15:14-17",
+          "scriptureId": "1cor-15-14-17",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "1 Timoteo 6:20-21",
+          "scriptureId": "1tim-6-20-21",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-sk3",
+          "answerValue": "GOOD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-sk3",
+          "answerValue": "GOOD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa d'Avila",
+          "scriptureId": "car-sk3",
+          "answerValue": "GOOD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    }
+  ]
+}

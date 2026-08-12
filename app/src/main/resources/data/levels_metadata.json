@@ -1,15 +1,215 @@
 [
   {
-    "id": "doubt_elena",
-    "category": "faith",
+    "id": "doubt_mattia",
+    "category": "FAITH",
     "title": "Il dubbio e il silenzio di Dio",
-    "description": "Il livello esplora la crisi dell'assenza percepita, affrontando il dolore di un silenzio divino che sembra indifferenza e mettendo alla prova la tenuta della fede e dell'integrità morale di fronte alle ingiustizie del mondo.",
+    "description": "Mattia attraversa una profonda crisi spirituale. Il dolore personale e le difficoltà della vita si scontrano con l'assordante silenzio di Dio, portandolo a mettere in discussione le fondamenta stesse del suo credo.",
     "maxRewards": {
-      "faith": 50,
-      "hope": 10,
-      "love": 10
+      "faith": 100,
+      "hope": 60,
+      "love": 80
     },
     "requiredBookIds": [],
-    "scenarioPath": "/data/scenarios/doubt_elena_scenario.json"
+    "scenarioPath": "/data/scenarios/faith/doubt_mattia.json"
+  },
+  {
+    "id": "suffering_sofia",
+    "category": "FAITH",
+    "title": "Il problema del male",
+    "description": "Sofia non riesce più a conciliare l'idea di un Dio onnipotente e infinitamente buono con la crudele realtà del dolore innocente, un conflitto interiore che sta distruggendo la sua spiritualità.",
+    "maxRewards": {
+      "faith": 100,
+      "hope": 60,
+      "love": 80
+    },
+    "requiredBookIds": [],
+    "scenarioPath": "/data/scenarios/faith/suffering_sofia.json"
+  },
+  {
+    "id": "pride_lorenzo",
+    "category": "FAITH",
+    "title": "La necessità di salvezza",
+    "description": "Lorenzo non riesce a comprendere l'insistenza del Cristianesimo sul peccato e sulla necessità assoluta di un Salvatore, ritenendo che per essere in pace con l'universo sia sufficiente essere semplicemente una \"brava persona\".",
+    "maxRewards": {
+      "faith": 100,
+      "hope": 60,
+      "love": 80
+    },
+    "requiredBookIds": [
+      "LETTERE_PAOLO"
+    ],
+    "scenarioPath": "/data/scenarios/faith/pride_lorenzo.json"
+  },
+  {
+    "id": "skepticism_valerio",
+    "category": "FAITH",
+    "title": "La risurrezione di Cristo",
+    "description": "Valerio, pur ammirando profondamente la figura di Gesù di Nazaret come maestro di morale e filosofo, non riesce in alcun modo ad accettare la realtà storica della risurrezione fisica, ritenendola un'invenzione successiva, un'allucinazione o una semplice metafora spirituale.",
+    "maxRewards": {
+      "faith": 100,
+      "hope": 60,
+      "love": 80
+    },
+    "requiredBookIds": [
+      "LETTERE_PAOLO"
+    ],
+    "scenarioPath": "/data/scenarios/faith/skepticism_valerio.json"
+  },
+  {
+    "id": "skepticism_riccardo",
+    "category": "FAITH",
+    "title": "La pienezza dei tempi",
+    "description": "Riccardo, pur credendo in un principio ordinatore dell'universo, è profondamente bloccato da quello che i teologi chiamano \"lo scandalo della particolarità\". Ritiene illogico e ingiusto che un Dio cosmico e universale abbia scelto di rivelarsi e operare la salvezza in un minuscolo frammento di spazio e di tempo, affidando un messaggio cruciale a mezzi umani fragili.",
+    "maxRewards": {
+      "faith": 100,
+      "hope": 60,
+      "love": 80
+    },
+    "requiredBookIds": [
+      "LETTERE_PAOLO"
+    ],
+    "scenarioPath": "/data/scenarios/faith/skepticism_riccardo.json"
+  },
+  {
+    "id": "guilt_elena",
+    "category": "HOPE",
+    "title": "Il perdono dei nostri peccati",
+    "description": "Elena teme che i suoi peccati siano troppo gravi per poter essere perdonati e si ritiene definitivamente indegna dell'amore di Dio, intrappolata in un profondo senso di colpa che le impedisce di perdonare se stessa.",
+    "maxRewards": {
+      "faith": 80,
+      "hope": 100,
+      "love": 60
+    },
+    "requiredBookIds": [],
+    "scenarioPath": "/data/scenarios/hope/guilt_elena.json"
+  },
+  {
+    "id": "discouragement_marco",
+    "category": "HOPE",
+    "title": "Remare contro il mondo",
+    "description": "Marco si sente completamente isolato ed esausto. La società gli appare ostile, i valori cristiani capovolti, e lui sente che i suoi sforzi per \"remare controcorrente\" sono diventati inutili e destinati al fallimento, portandolo allo scoraggiamento.",
+    "maxRewards": {
+      "faith": 80,
+      "hope": 100,
+      "love": 60
+    },
+    "requiredBookIds": [],
+    "scenarioPath": "/data/scenarios/hope/discouragement_marco.json"
+  },
+  {
+    "id": "weakness_giulia",
+    "category": "HOPE",
+    "title": "La forza che viene da Dio",
+    "description": "Giulia vorrebbe vivere il Vangelo radicalmente e donarsi agli altri, ma si scontra continuamente con i propri limiti, l'egoismo e la stanchezza, arrivando a pensare che la santità sia un traguardo impossibile per lei e che a Dio si chieda troppo.",
+    "maxRewards": {
+      "faith": 80,
+      "hope": 100,
+      "love": 60
+    },
+    "requiredBookIds": [
+      "VANGELI"
+    ],
+    "scenarioPath": "/data/scenarios/hope/weakness_giulia.json"
+  },
+  {
+    "id": "doubt_alessandro",
+    "category": "HOPE",
+    "title": "La nostra risurrezione",
+    "description": "Alessandro, sebbene sia affascinato dall'idea di una sopravvivenza puramente spirituale, trova incomprensibile e fiabesca la dottrina della \"risurrezione della carne\", temendo che la fine del corpo biologico coincida con il nulla e l'annientamento totale della persona.",
+    "maxRewards": {
+      "faith": 80,
+      "hope": 100,
+      "love": 60
+    },
+    "requiredBookIds": [
+      "VANGELI"
+    ],
+    "scenarioPath": "/data/scenarios/hope/doubt_alessandro.json"
+  },
+  {
+    "id": "skepticism_davide",
+    "category": "HOPE",
+    "title": "L'attesa: già ma non ancora",
+    "description": "Davide non riesce a conciliare la fede in Cristo come Salvatore con la realtà oggettiva di un mondo ancora dominato dal male, dalla violenza e dall'ingiustizia. Per lui, il \"già e non ancora\" del Regno di Dio è solo un sofisma teologico per mascherare una promessa fallita.",
+    "maxRewards": {
+      "faith": 80,
+      "hope": 100,
+      "love": 60
+    },
+    "requiredBookIds": [
+      "VANGELI"
+    ],
+    "scenarioPath": "/data/scenarios/hope/skepticism_davide.json"
+  },
+  {
+    "id": "resentment_letizia",
+    "category": "LOVE",
+    "title": "70 volte 7",
+    "description": "Letizia è consumata dalla rabbia e dal dolore. Considera il comandamento cristiano del perdono incondizionato (\"70 volte 7\") non solo impossibile, ma profondamente ingiusto, vedendolo come una giustificazione del male subito.",
+    "maxRewards": {
+      "faith": 60,
+      "hope": 80,
+      "love": 100
+    },
+    "requiredBookIds": [],
+    "scenarioPath": "/data/scenarios/love/resentment_letizia.json"
+  },
+  {
+    "id": "cynicism_filippo",
+    "category": "LOVE",
+    "title": "Come bambini",
+    "description": "Filippo ritiene che il richiamo di Cristo a diventare \"come bambini\" sia un invito all'ingenuità, un atteggiamento debole, irrazionale e del tutto inadeguato per affrontare la spietata realtà del mondo moderno.",
+    "maxRewards": {
+      "faith": 60,
+      "hope": 80,
+      "love": 100
+    },
+    "requiredBookIds": [],
+    "scenarioPath": "/data/scenarios/love/cynicism_filippo.json"
+  },
+  {
+    "id": "sacrifice_chiara",
+    "category": "LOVE",
+    "title": "Portare la propria croce",
+    "description": "Chiara è disposta a voler bene al prossimo, ma quando l'amore le richiede sacrifici quotidiani e la rinuncia a se stessa (il \"portare la croce\"), si ribella. Teme che donarsi totalmente significhi annullare la propria identità e la propria felicità per far contenti gli altri.",
+    "maxRewards": {
+      "faith": 60,
+      "hope": 80,
+      "love": 100
+    },
+    "requiredBookIds": [
+      "LETTERE_CATTOLICHE"
+    ],
+    "scenarioPath": "/data/scenarios/love/sacrifice_chiara.json"
+  },
+  {
+    "id": "hypocrisy_matteo",
+    "category": "LOVE",
+    "title": "I due comandamenti",
+    "description": "Matteo trova le relazioni umane insopportabili. Evita il prossimo, considerandolo una distrazione spirituale e una fonte di corruzione, convincendosi che la vera fede consista esclusivamente in un rapporto intimo e verticale con Dio, ignorando completamente i bisogni dei fratelli.",
+    "maxRewards": {
+      "faith": 60,
+      "hope": 80,
+      "love": 100
+    },
+    "requiredBookIds": [
+      "LETTERE_CATTOLICHE"
+    ],
+    "scenarioPath": "/data/scenarios/love/hypocrisy_matteo.json"
+  },
+  {
+    "id": "unworthiness_simone",
+    "category": "LOVE",
+    "title": "L'amore di Dio",
+    "description": "Simone vive la fede come una prestazione continua, convinto che le sue cadute, le sue imperfezioni e le sue miserie lo rendano indegno dello sguardo del Signore. Non riesce ad abbandonarsi alla gratuità dell'amore divino, trasformando la religione in un opprimente tribunale interiore.",
+    "maxRewards": {
+      "faith": 60,
+      "hope": 80,
+      "love": 100
+    },
+    "requiredBookIds": [
+      "LETTERE_CATTOLICHE"
+    ],
+    "scenarioPath": "/data/scenarios/love/unworthiness_simone.json"
   }
 ]

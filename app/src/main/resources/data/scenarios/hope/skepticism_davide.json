@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Davide",
+    "imagePath": "/images/characters/green-character.png",
+    "problemType": "SKEPTICISM",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Se Gesù è il Messia che doveva salvare il mondo, cosa ha effettivamente salvato? Se guardo i libri di storia, o anche solo il telegiornale, il mondo è esattamente lo stesso inferno di violenza, corruzione e ingiustizia di duemila anni fa. Il regno di pace che era stato promesso non si è mai visto. A me sembra che la redenzione non abbia cambiato assolutamente nulla della realtà concreta.",
+      "responses": [
+        {
+          "displayReference": "Luca 17:20-21",
+          "scriptureId": "luca-17-20-21",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Luca 24:21",
+          "scriptureId": "luca-24-21",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-h5-1",
+          "answerValue": "GOOD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Bonaventura da Bagnoregio",
+          "scriptureId": "fra-h5-1",
+          "answerValue": "GOOD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-h5-1",
+          "answerValue": "GOOD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Va bene, ammettiamo che il Suo sia un regno interiore e spirituale. Ma allora perché questo ritardo insopportabile? Questa teologia del 'già e non ancora' mi suona come una scusa perfetta per giustificare una promessa mancata. Se Cristo ha sconfitto la morte e il male sulla croce, perché lasciare l'umanità a sanguinare in questa sala d'attesa per millenni? Non era meglio manifestare subito la sua vittoria?",
+      "responses": [
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-h5-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Bonaventura da Bagnoregio",
+          "scriptureId": "fra-h5-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa di Lisieux",
+          "scriptureId": "car-h5-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        },
+        {
+          "displayReference": "Marco 4:26-27",
+          "scriptureId": "marco-4-26-27",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Matteo 24:6-7",
+          "scriptureId": "matteo-24-6-7",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Ma se la vittoria finale è già scritta e decisa, e nel frattempo il mondo è destinato a soffrire o addirittura a peggiorare fino alla fine dei tempi, a che serve il nostro sforzo? Mi chiedo che senso abbia impegnarsi, cercare di costruire un mondo più giusto o lottare contro il male, se alla fine è tutta un'illusione o, nel migliore dei casi, un'opera destinata a essere cancellata. Non sarebbe più logico arrendersi e aspettare?",
+      "responses": [
+        {
+          "displayReference": "Matteo 25:40",
+          "scriptureId": "matteo-25-40",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Matteo 5:13-14",
+          "scriptureId": "matteo-5-13-14",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-h5-3",
+          "answerValue": "BAD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-h5-3",
+          "answerValue": "BAD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-h5-3",
+          "answerValue": "BAD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Sofia",
+    "imagePath": "/images/characters/blue-character.png",
+    "problemType": "SUFFERING",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Oggi ho dovuto comunicare a due genitori che per la loro bambina non c'è più nulla da fare. Ho visto il mondo crollare attraverso i loro occhi. Come si può credere in un Dio Padre, infinitamente amorevole, quando permette che una creatura innocente venga divorata dalla malattia? Qualsiasi padre umano farebbe l'impossibile, si strapperebbe il cuore dal petto per salvare sua figlia, mentre Lui resta immobile e lontano a guardare.",
+      "responses": [
+        {
+          "displayReference": "Isaia 49:15",
+          "scriptureId": "isaia-49-15",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Giobbe 4:7-8",
+          "scriptureId": "giobbe-4-7-8",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-s1",
+          "answerValue": "GOOD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-s1",
+          "answerValue": "GOOD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa di Lisieux",
+          "scriptureId": "car-s1",
+          "answerValue": "GOOD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Ho cercato delle spiegazioni nei libri, ma la logica stessa smonta ogni giustificazione. La questione è semplice: se Dio è onnipotente, ha il potere assoluto di fermare questa sofferenza insopportabile. Se è davvero buono, dovrebbe volerlo fare a tutti i costi. Eppure il male esiste, dilaga e vince. A questo punto la conclusione è inevitabile: o non è abbastanza forte per impedirlo, oppure è crudele e non gliene importa assolutamente nulla.",
+      "responses": [
+        {
+          "displayReference": "Isaia 55:8-9",
+          "scriptureId": "isaia-55-8-9",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Isaia 45:7",
+          "scriptureId": "isaia-45-7",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-s2",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Bonaventura da Bagnoregio",
+          "scriptureId": "fra-s2",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa Benedetta della Croce",
+          "scriptureId": "car-s2",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Non provate a venirmi a parlare del 'mistero divino' o di un ineffabile 'piano superiore' che la nostra mente non può comprendere. Trovo che sia una scusa codarda, una frase fatta per anestetizzare l'orrore di fronte all'ingiustificabile. La nuda e cruda verità è che siamo totalmente soli in un meccanismo biologico cieco e spietato. Preferisco accettare la fredda assurdità del caso, piuttosto che giustificare l'inazione di un tiranno sadico.",
+      "responses": [
+        {
+          "displayReference": "Sapienza 3:1-3",
+          "scriptureId": "sapienza-3-1-3",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Lamentazioni 3:31-33",
+          "scriptureId": "lamentazioni-3-31-33",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-s3",
+          "answerValue": "BAD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-s3",
+          "answerValue": "BAD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-s3",
+          "answerValue": "BAD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    }
+  ]
+}

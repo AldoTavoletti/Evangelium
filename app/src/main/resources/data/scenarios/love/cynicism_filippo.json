@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Filippo",
+    "imagePath": "/images/characters/red-character.png",
+    "problemType": "CYNICISM",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Trovo che l'insistenza del Vangelo sul diventare 'come bambini' sia, onestamente, ridicola nel mondo in cui viviamo. Un bambino è debole, manipolabile, vive nelle favole ed è totalmente dipendente dagli altri. La vita reale è spietata, richiede scaltrezza, cinismo e forza. Se ti comporti come un bambino innocente, gli altri ti calpestano senza pensarci due volte.",
+      "responses": [
+        {
+          "displayReference": "Salmi 131:1-2",
+          "scriptureId": "salmi-131-1-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Proverbi 22:3",
+          "scriptureId": "proverbi-22-3",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l2-1",
+          "answerValue": "GOOD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l2-1",
+          "answerValue": "GOOD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa di Lisieux",
+          "scriptureId": "car-l2-1",
+          "answerValue": "GOOD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Ma questa vostra 'santa umiltà' non vi protegge. Nel mio ambiente, se abbassi la guardia, se cedi il passo per amore o mostri compassione, sei finito. Le persone là fuori non rispettano la carità, rispettano unicamente il potere e il denaro. Perché dovrei rinunciare alla mia corazza per farmi fare a pezzi da un mondo di lupi affamati?",
+      "responses": [
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l2-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l2-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa di Lisieux",
+          "scriptureId": "car-l2-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        },
+        {
+          "displayReference": "Isaia 11:6",
+          "scriptureId": "isaia-11-6",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Ecclesiaste 7:16",
+          "scriptureId": "ecclesiaste-7-16",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Quindi mi state dicendo di mettere da parte la mia intelligenza, le mie strategie e il mio spirito critico? Un bambino non fa domande complesse, accetta tutto passivamente. Se Dio mi ha dato una mente brillante e razionale, capace di decifrare la complessità, spegnerla per abbracciare una 'fede bambina' irrazionale e passiva mi sembra il peggiore degli sprechi.",
+      "responses": [
+        {
+          "displayReference": "Salmi 8:3",
+          "scriptureId": "salmi-8-3",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Sapienza 10:21",
+          "scriptureId": "sapienza-10-21",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l2-3",
+          "answerValue": "BAD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l2-3",
+          "answerValue": "BAD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-l2-3",
+          "answerValue": "BAD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Letizia",
+    "imagePath": "/images/characters/yellow-character.png",
+    "problemType": "RESENTMENT",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Tutti mi dicono che devo perdonare per essere una vera cristiana. Ma quello che ho subito è imperdonabile. Chi mi ha ferito mi ha rovinato la vita e non ha mostrato il minimo pentimento. Perché dovrei regalare il mio perdono a chi non lo merita e non lo chiede? Mi sembra solo un modo per giustificare il male e calpestare la mia dignità.",
+      "responses": [
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l1-1",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l1-1",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa d'Avila",
+          "scriptureId": "car-l1-1",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        },
+        {
+          "displayReference": "Levitico 19:18",
+          "scriptureId": "levitico-19-18",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Esodo 21:24-25",
+          "scriptureId": "esodo-21-24-25",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Ma se perdono chi mi fa del male senza che paghi per ciò che ha fatto, non sto forse diventando complice dell'ingiustizia? La giustizia richiede che chi sbaglia subisca le conseguenze delle proprie azioni. Se perdoniamo tutti incondizionatamente, stiamo dicendo al mondo che si può distruggere la vita degli altri senza temere nulla. Questa non è misericordia, è debolezza.",
+      "responses": [
+        {
+          "displayReference": "Proverbi 24:29",
+          "scriptureId": "proverbi-24-29",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Proverbi 25:21-22",
+          "scriptureId": "proverbi-25-21-22",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l1-2",
+          "answerValue": "BAD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l1-2",
+          "answerValue": "BAD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa d'Avila",
+          "scriptureId": "car-l1-2",
+          "answerValue": "BAD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "D'accordo, supponiamo che io decida di perdonare con un atto di volontà. Ma il dolore non scompare con una parola magica. Le cicatrici sono ancora qui, bruciano e mi tolgono il sonno. Quando cerco di pregare, il ricordo di quell'umiliazione si intromette e il risentimento torna più forte di prima. Come posso perdonare veramente, se la mia mente e il mio cuore non riescono a dimenticare l'offesa?",
+      "responses": [
+        {
+          "displayReference": "Siracide 28:2-3",
+          "scriptureId": "siracide-28-2-3",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l1-3",
+          "answerValue": "GOOD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l1-3",
+          "answerValue": "GOOD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-l1-3",
+          "answerValue": "GOOD",
+          "requiredJob": "CARMELITE"
+        },
+        {
+          "displayReference": "Salmi 137:8-9",
+          "scriptureId": "salmi-137-8-9",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        }
+      ]
+    }
+  ]
+}

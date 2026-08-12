@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Giulia",
+    "imagePath": "/images/characters/yellow-character.png",
+    "problemType": "WEAKNESS",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Leggo il Vangelo e mi sento schiacciata. Mi è stato detto mille volte di essere perfetta, impeccabile, irreprensibile. Come posso anche solo avvicinarmi a un simile ideale? Ci provo, cerco di essere paziente, di aiutare chi ha bisogno, ma alla fine cedo sempre al nervosismo o all'egoismo. Non ho la forza interiore per essere la cristiana che dovrei essere. Sento che Dio mi chiede di scalare una montagna e io non ho nemmeno l'energia per fare un passo.",
+      "responses": [
+        {
+          "displayReference": "Matteo 19:26",
+          "scriptureId": "matteo-19-26",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Matteo 5:48",
+          "scriptureId": "matteo-5-48",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-h3-1",
+          "answerValue": "GOOD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Bonaventura da Bagnoregio",
+          "scriptureId": "fra-h3-1",
+          "answerValue": "GOOD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa di Lisieux",
+          "scriptureId": "car-h3-1",
+          "answerValue": "GOOD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Quando cerco di donarmi agli altri mi svuoto del tutto. Vedo persone che dedicano la vita ai poveri, ai malati, e sono sempre sorridenti. Io invece, dopo un solo giorno in cui metto i bisogni degli altri prima dei miei, mi sento prosciugata, inaridita e perfino risentita. Da dove prendono quell'energia inesauribile? Perché io, per quanto mi sforzi, non riesco ad amare così? Le mie forze non bastano.",
+      "responses": [
+        {
+          "displayReference": "Giovanni 15:5",
+          "scriptureId": "giovanni-15-5",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Giovanni 7:37-38",
+          "scriptureId": "giovanni-7-37-38",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-h3-2",
+          "answerValue": "BAD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-h3-2",
+          "answerValue": "BAD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-h3-2",
+          "answerValue": "BAD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Quindi la soluzione sarebbe non contare sulle mie forze, ma lasciare che sia Lui ad agire in me? Sembra bello a dirsi, ma come si fa in pratica? Ho paura che sia solo un modo per deresponsabilizzarmi. Se mi arrendo, se smetto di lottare con i denti per essere migliore, temo che mi lascerò andare alla mia mediocrità, diventando una persona passiva e peggiore di quella che sono ora.",
+      "responses": [
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-h3-3",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Bonaventura da Bagnoregio",
+          "scriptureId": "fra-h3-3",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa d'Avila",
+          "scriptureId": "car-h3-3",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        },
+        {
+          "displayReference": "Matteo 11:28-29",
+          "scriptureId": "matteo-11-28-29",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Matteo 25:29-30",
+          "scriptureId": "matteo-25-29-30",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        }
+      ]
+    }
+  ]
+}

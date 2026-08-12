@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Simone",
+    "imagePath": "/images/characters/yellow-character.png",
+    "problemType": "UNWORTHINESS",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Sento sempre dire che Dio ci ama in modo incondizionato, ma io non riesco a crederci. Come può amare me, che sono pieno di difetti, di cadute e di ipocrisie? L'amore umano si basa sul merito: ti amo se sei degno, ti amo se sei bravo. Perché per Dio dovrebbe essere diverso? Finché non sarò perfetto e purificato, sento che Lui non potrà fare altro che giudicarmi severamente per i miei innumerevoli fallimenti.",
+      "responses": [
+        {
+          "displayReference": "1 Giovanni 4:10",
+          "scriptureId": "1giovanni-4-10",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l5-1",
+          "answerValue": "GOOD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l5-1",
+          "answerValue": "GOOD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa di Lisieux",
+          "scriptureId": "car-l5-1",
+          "answerValue": "GOOD",
+          "requiredJob": "CARMELITE"
+        },
+        {
+          "displayReference": "2 Pietro 2:20",
+          "scriptureId": "2pietro-2-20",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Ma allora, se il suo amore è gratuito e scende su di me anche se sono una nullità, mi sento umiliato. Vorrei potermi presentare davanti a Lui a testa alta, potergli offrire le mie virtù, le mie vittorie spirituali. Questa idea di dover dipendere totalmente dalla sua misericordia, come un mendicante che non ha nulla da offrire, mi ferisce nell'orgoglio. Che senso ha il mio libero arbitrio, che senso ha il mio sforzo morale se fa tutto Lui?",
+      "responses": [
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l5-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l5-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa di Lisieux",
+          "scriptureId": "car-l5-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        },
+        {
+          "displayReference": "Giacomo 4:6-7",
+          "scriptureId": "giacomo-4-6-7",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "1 Giovanni 2:4",
+          "scriptureId": "1giovanni-2-4",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Se davvero mi abbandonassi a questo amore infinito e smettessi di difendermi... ho paura che mi trasformerebbe completamente. Ho il terrore che Dio, entrando nella mia vita senza le mie resistenze, distrugga la mia identità. Se lascio che questo fuoco divino prenda il controllo, cosa resterà di me? Come faccio a non aver paura di farmi consumare e perdere tutto ciò che sono?",
+      "responses": [
+        {
+          "displayReference": "1 Giovanni 4:16",
+          "scriptureId": "1giovanni-4-16",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Giuda 1:21",
+          "scriptureId": "giuda-1-21",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l5-3",
+          "answerValue": "BAD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l5-3",
+          "answerValue": "BAD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-l5-3",
+          "answerValue": "BAD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    }
+  ]
+}
