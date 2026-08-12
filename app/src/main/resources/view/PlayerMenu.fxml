@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ScrollPane?>
 <VBox maxHeight="750.0" maxWidth="1250.0" minHeight="750.0" minWidth="1250.0" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.rpg129852.controller.session.PlayerMenuController">
     <children>
 
@@ -63,10 +64,15 @@
                 <VBox alignment="BOTTOM_CENTER" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" HBox.hgrow="ALWAYS">
                     <children>
                         <!-- Contenitore a dimensioni fisse: impedisce lo sfarfallio e il salto del layout -->
-                        <VBox fx:id="detailsContainer" alignment="TOP_CENTER" maxHeight="550.0" maxWidth="400.0" minHeight="550.0" minWidth="400.0" prefHeight="550.0" prefWidth="400.0" styleClass="details-container">
+                        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" maxHeight="550.0" maxWidth="400.0" minHeight="550.0" minWidth="400.0" prefHeight="550.0" prefWidth="400.0" styleClass="details-container">
                             <VBox.margin>
                                 <Insets />
-                            </VBox.margin></VBox>
+                            </VBox.margin>
+                            <content>
+                                <!-- Il VBox interno ora può allungarsi all'infinito verso il basso -->
+                                <VBox fx:id="detailsContainer" alignment="TOP_CENTER" />
+                            </content>
+                        </ScrollPane>
                         <Button fx:id="playButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayButtonClicked" styleClass="start-button" text="Gioca!">
                             <VBox.margin>
                                 <Insets top="30.0" />
