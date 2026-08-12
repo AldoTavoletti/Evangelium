@@ -63,13 +63,11 @@
 
                 <VBox alignment="BOTTOM_CENTER" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" HBox.hgrow="ALWAYS">
                     <children>
-                        <!-- Contenitore a dimensioni fisse: impedisce lo sfarfallio e il salto del layout -->
                         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" maxHeight="550.0" maxWidth="400.0" minHeight="550.0" minWidth="400.0" prefHeight="550.0" prefWidth="400.0" styleClass="details-container">
                             <VBox.margin>
                                 <Insets />
                             </VBox.margin>
                             <content>
-                                <!-- Il VBox interno ora può allungarsi all'infinito verso il basso -->
                                 <VBox fx:id="detailsContainer" alignment="TOP_CENTER" />
                             </content>
                         </ScrollPane>
