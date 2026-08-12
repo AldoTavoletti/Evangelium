@@ -128,5 +128,72 @@
     },
     "requiredBookIds": ["VANGELI"],
     "scenarioPath": "/data/scenarios/hope/skepticism_davide.json"
+  },
+  {
+    "id": "resentment_letizia",
+    "category": "LOVE",
+    "title": "70 volte 7",
+    "description": "Letizia è consumata dalla rabbia e dal dolore. Considera il comandamento cristiano del perdono incondizionato (\"70 volte 7\") non solo impossibile, ma profondamente ingiusto, vedendolo come una giustificazione del male subito.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": [],
+    "scenarioPath": "/data/scenarios/love/resentment_letizia.json"
+  },
+  {
+    "id": "cynicism_filippo",
+    "category": "LOVE",
+    "title": "Come bambini",
+    "description": "Filippo ritiene che il richiamo di Cristo a diventare \"come bambini\" sia un invito all'ingenuità, un atteggiamento debole, irrazionale e del tutto inadeguato per affrontare la spietata realtà del mondo moderno.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": [],
+    "scenarioPath": "/data/scenarios/love/cynicism_filippo.json"
+  },
+  {
+    "id": "sacrifice_chiara",
+    "category": "LOVE",
+    "title": "Portare la propria croce",
+    "description": " Chiara è disposta a voler bene al prossimo, ma quando l'amore le richiede sacrifici quotidiani e la rinuncia a se stessa (il \"portare la croce\"), si ribella. Teme che donarsi totalmente significhi annullare la propria identità e la propria felicità per far contenti gli altri.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": ["LETTERE_CATTOLICHE"],
+    "scenarioPath": "/data/scenarios/love/sacrifice_chiara.json"
+  },
+
+  {
+    "id": "hypocrisy_matteo",
+    "category": "LOVE",
+    "title": "I due comandamenti",
+    "description": "Matteo trova le relazioni umane insopportabili. Evita il prossimo, considerandolo una distrazione spirituale e una fonte di corruzione, convincendosi che la vera fede consista esclusivamente in un rapporto intimo e verticale con Dio, ignorando completamente i bisogni dei fratelli.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": ["LETTERE_CATTOLICHE"],
+    "scenarioPath": "/data/scenarios/love/hypocrisy_matteo.json"
+  },
+
+  {
+    "id": "unworthiness_simone",
+    "category": "LOVE",
+    "title": "L'amore di Dio",
+    "description": "Simone vive la fede come una prestazione continua, convinto che le sue cadute, le sue imperfezioni e le sue miserie lo rendano indegno dello sguardo del Signore. Non riesce ad abbandonarsi alla gratuità dell'amore divino, trasformando la religione in un opprimente tribunale interiore.",
+    "maxRewards": {
+      "faith": 50,
+      "hope": 10,
+      "love": 10
+    },
+    "requiredBookIds": ["LETTERE_CATTOLICHE"],
+    "scenarioPath": "/data/scenarios/love/unworthiness_simone.json"
   }
 ]

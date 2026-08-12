@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Matteo",
+    "imagePath": "/images/npcs/blue-npc.png",
+    "problemType": "HYPOCRISY",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "Prego ogni giorno, partecipo a tutte le liturgie e nel silenzio della mia stanza mi sento vicinissimo a Dio. Ma la gente... la gente mi esaspera. Trovo le persone superficiali, egoiste, una continua distrazione dalla mia vita spirituale. Sono arrivato alla conclusione che mi basta amare il Signore con tutto il mio cuore; amare il prossimo è secondario, se non impossibile. Il mio rapporto con Dio è l'unica cosa che conta davvero.",
+      "responses": [
+        {
+          "displayReference": "1 Giovanni 4:20",
+          "scriptureId": "1giovanni-4-20",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "1 Giovanni 2:15",
+          "scriptureId": "1giovanni-2-15",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l4-1",
+          "answerValue": "GOOD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l4-1",
+          "answerValue": "GOOD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa d'Avila",
+          "scriptureId": "car-l4-1",
+          "answerValue": "GOOD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Ma il mondo è pieno di malizia! Ogni volta che ho provato ad aprire il mio cuore agli altri, ho perso la mia pace interiore. Non è forse meglio preservare la propria anima dalla corruzione del mondo? Quando posso do qualcosa in beneficenza, ma mantenere le distanze è l'unico modo per non farsi sporcare dalle bassezze altrui. La mia purezza vale più del compromesso sociale.",
+      "responses": [
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l4-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l4-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa di Lisieux",
+          "scriptureId": "car-l4-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        },
+        {
+          "displayReference": "1 Giovanni 3:17-18",
+          "scriptureId": "1giovanni-3-17-18",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "2 Giovanni 1:10",
+          "scriptureId": "2giovanni-1-10",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "La verità, forse, è che amare le persone fa male. Le relazioni umane sono complicate, disordinate, piene di tradimenti. È molto più sicuro amare Dio, perché Lui non ti delude mai. Perché non posso semplicemente adorarLo direttamente? Perché dovrei sporcarmi le mani passando attraverso il dolore e il caos delle altre persone per poter raggiungere Lui?",
+      "responses": [
+        {
+          "displayReference": "1 Giovanni 4:11-12",
+          "scriptureId": "1giovanni-4-11-12",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Giacomo 2:14,17",
+          "scriptureId": "giacomo-2-14-17",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l4-3",
+          "answerValue": "BAD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l4-3",
+          "answerValue": "BAD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-l4-3",
+          "answerValue": "BAD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    }
+  ]
+}

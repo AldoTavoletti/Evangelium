@@ -1,0 +1,115 @@
+{
+  "npc": {
+    "name": "Chiara",
+    "imagePath": "/images/npcs/blue-npc.png",
+    "problemType": "SACRIFICE",
+    "maxProblemValue": 1.0
+  },
+  "phases": [
+    {
+      "npcDialogue": "La mia fede dovrebbe essere fonte di gioia, e invece la Chiesa parla continuamente di sacrificio, di rinnegare se stessi e portare la croce ogni giorno. Perché amare Dio e il prossimo deve significare soffrire e mettersi da parte? Vorrei poter essere una brava cristiana senza dover rinunciare alla mia felicità e alla mia serenità. Mi sembra quasi un ricatto: se ami, devi per forza soffrire.",
+      "responses": [
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l3-1",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l3-1",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa d'Avila",
+          "scriptureId": "car-l3-1",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        },
+        {
+          "displayReference": "1 Giovanni 3:16",
+          "scriptureId": "1giovanni-3-16",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "2 Giovanni 1:10",
+          "scriptureId": "2giovanni-1-10",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Posso capire i grandi atti di eroismo, ma è la croce quotidiana che mi logora. Sopportare colleghi difficili, dedicare il mio tempo libero a parenti ingrati, cedere sempre il passo senza mai pretendere nulla per me. È uno svuotamento continuo. Se mi spoglio costantemente di ogni mio diritto e desiderio, cosa resta di me? Perché Dio vuole annullare la mia individualità?",
+      "responses": [
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l3-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l3-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "Santa Teresa di Lisieux",
+          "scriptureId": "car-l3-2",
+          "answerValue": "PERFECT",
+          "requiredJob": "CARMELITE"
+        },
+        {
+          "displayReference": "Giacomo 1:2-3",
+          "scriptureId": "giacomo-1-2-3",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "Giacomo 4:4",
+          "scriptureId": "giacomo-4-4",
+          "answerValue": "BAD",
+          "requiredJob": "NONE"
+        }
+      ]
+    },
+    {
+      "npcDialogue": "Ma è proprio questo il punto: mi fa paura. Ho il terrore che se inizio ad abbracciare questa logica del sacrificio totale, le persone se ne approfitteranno e io verrò schiacciata. Vorrei avere il coraggio di donarmi completamente, ma il mio istinto di conservazione mi urla di proteggermi, di difendere il mio spazio e il mio ego. Se cedo, chi si prenderà cura di me?",
+      "responses": [
+        {
+          "displayReference": "1 Giovanni 4:18",
+          "scriptureId": "1giovanni-4-18",
+          "answerValue": "PERFECT",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "1 Pietro 5:6-7",
+          "scriptureId": "1pietro-5-6-7",
+          "answerValue": "GOOD",
+          "requiredJob": "NONE"
+        },
+        {
+          "displayReference": "San Tommaso d'Aquino",
+          "scriptureId": "dom-l3-3",
+          "answerValue": "BAD",
+          "requiredJob": "DOMINICAN"
+        },
+        {
+          "displayReference": "San Francesco d'Assisi",
+          "scriptureId": "fra-l3-3",
+          "answerValue": "BAD",
+          "requiredJob": "FRANCISCAN"
+        },
+        {
+          "displayReference": "San Giovanni della Croce",
+          "scriptureId": "car-l3-3",
+          "answerValue": "BAD",
+          "requiredJob": "CARMELITE"
+        }
+      ]
+    }
+  ]
+}

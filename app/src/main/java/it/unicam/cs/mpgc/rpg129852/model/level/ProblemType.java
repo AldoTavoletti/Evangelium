@@ -10,7 +10,12 @@ public enum ProblemType {
     SKEPTICISM("Scetticismo"),
     GUILT("Senso di colpa"),
     DISCOURAGEMENT("Scoraggiamento"),
-    WEAKNESS("Debolezza");
+    WEAKNESS("Debolezza"),
+    RESENTMENT ("Risentimento"),
+    CYNICISM ("Cinismo"),
+    SACRIFICE ("Sacrificio"),
+    HYPOCRISY("Ipocrisia"),
+    UNWORTHINESS("Sentirsi indegno");
 
     private final String displayValue;
 
