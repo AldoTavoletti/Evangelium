@@ -8,13 +8,10 @@ import com.google.gson.annotations.SerializedName;
  */
 public enum LevelCategory {
 
-    @SerializedName("FAITH")
     FAITH("Faith"),
 
-    @SerializedName("HOPE")
     HOPE("Hope"),
 
-    @SerializedName("LOVE")
     LOVE("Love");
 
     private final String displayName;
