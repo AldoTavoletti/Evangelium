@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg129852.service.summary;
 
 import it.unicam.cs.mpgc.rpg129852.context.game.GameProvider;
 import it.unicam.cs.mpgc.rpg129852.dto.level.LevelMetadata;
+import it.unicam.cs.mpgc.rpg129852.model.level.LevelCompletionState;
 import it.unicam.cs.mpgc.rpg129852.model.level.Score;
 import it.unicam.cs.mpgc.rpg129852.service.level.menu.LevelCatalog;
 
@@ -36,7 +37,10 @@ public class StatsServiceImpl implements StatsService {
         Map<String, Score> scoresMap = gameProvider.getCurrentGame().gameState().getAllLevelScores();
 
         return (int) allLevels.stream()
-                .filter(level -> isPerfect(level, scoresMap))
+                .filter(level -> {
+                    Score score = scoresMap.get(level.id());
+                    return isScorePerfect(score);
+                })
                 .count();
     }
 
@@ -45,8 +49,7 @@ public class StatsServiceImpl implements StatsService {
         return gameProvider.getCurrentGame().gameState().getNumTotalAttempts();
     }
 
-    private boolean isPerfect(LevelMetadata level, Map<String, Score> scoresMap) {
-        Score score = scoresMap.get(level.id());
-        return score != null && score.virtues().equals(level.maxRewards());
+    private boolean isScorePerfect(Score score) {
+        return score != null && score.completionState().equals(LevelCompletionState.PERFECT);
     }
 }
