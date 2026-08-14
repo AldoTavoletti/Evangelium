@@ -40,7 +40,7 @@ Per la realizzazione di Evangelium è stato utilizzato Gemini come assistente te
 * **Principi SOLID:** analisi congiunta per identificare potenziali criticità nel codice e valutare opzioni di refactoring.
 * **Generazione dei contenuti:** stesura creativa dei dialoghi teologici e strutturazione dei file JSON che compongono la campagna di gioco.
 * **Stile dell'interfaccia:** supporto per la stesura dei fogli di stile (CSS) e per l'ottimizzazione dell'interfaccia utente.
-* **Redazione della documentazione:** stesura delle bozze testuali iniziali per questo file README e per le pagine della Wiki, accuratamente revisionate e riadattate.
+* **Redazione della documentazione:** stesura delle bozze testuali iniziali per questo file README e per le pagine della Wiki, accuratamente revisionate, riadattate e in molte parti completamente sostituite dalla mia analisi personale.
 
 ### Intervento personale
 
