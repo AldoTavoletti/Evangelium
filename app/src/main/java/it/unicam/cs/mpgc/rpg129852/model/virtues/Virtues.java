@@ -20,15 +20,6 @@ public record Virtues(
 ) {
 
     /**
-     * Calculates the total sum of all virtue points combined.
-     *
-     * @return the total amount of points
-     */
-    public int getTotalPoints() {
-        return this.faith + this.hope + this.love;
-    }
-
-    /**
      * Checks if every virtue in this instance is greater than or equal to the corresponding
      * virtue in the specified instance. Useful for checking if a player can afford an item.
      *
