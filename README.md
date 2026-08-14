@@ -40,7 +40,7 @@ Per la realizzazione di Evangelium è stato utilizzato Gemini come assistente te
 * **Principi SOLID:** analisi congiunta per identificare potenziali criticità nel codice e valutare opzioni di refactoring.
 * **Generazione dei contenuti:** stesura creativa dei dialoghi teologici e strutturazione dei file JSON che compongono la campagna di gioco.
 * **Stile dell'interfaccia:** supporto per la stesura dei fogli di stile (CSS) e per l'ottimizzazione dell'interfaccia utente.
-* **Redazione della documentazione:** stesura delle bozze testuali iniziali per questo file README e per le pagine della Wiki, accuratamente revisionate, riadattate e in molte parti completamente sostituite dalla mia analisi personale.
+* **Redazione della documentazione:** riscrittura con tono formale del README e di alcune pagine della Wiki. 
 
 ### Intervento personale
 
@@ -49,6 +49,7 @@ L'intelligenza artificiale ha ricoperto esclusivamente il ruolo di supporto cons
 * Ciascuna opzione o soluzione proposta è stata analizzata criticamente, testata e riadattata in base alle specifiche esigenze del progetto.
 * L'ideazione del gioco, la definizione dei requisiti e la stesura dell'intera architettura sono frutto esclusivo del lavoro personale.
 * Ogni decisione progettuale finale, così come l'implementazione del codice, rispecchia scelte autonome e consapevoli, maturate valutando i pro e i contro emersi durante il confronto con l'AI.
+* Tutti i concetti esposti nella documentazione sono stati scritti da me, e solo successivamente rielaborati dall'AI per migliorarne il tono e l'esposizione.
 
 In sintesi, l'intelligenza artificiale ha operato come un'estensione della mia capacità analitica, non come un sostituto. È stata uno strumento al servizio della logica, escludendo ogni forma di automatismo per garantire che ogni riga di codice riflettesse una mia precisa e consapevole scelta ingegneristica.
 
