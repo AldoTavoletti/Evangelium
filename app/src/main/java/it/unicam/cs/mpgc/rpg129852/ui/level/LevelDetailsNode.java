@@ -70,7 +70,7 @@ public class LevelDetailsNode extends VBox {
     }
 
     private String formatRewardsText(Virtues rewards) {
-        return String.format("%d Fede | %d Speranza | %d Amore",
+        return String.format("%d Fede | %d Speranza | %d Carità",
                 rewards.faith(),
                 rewards.hope(),
                 rewards.love());
