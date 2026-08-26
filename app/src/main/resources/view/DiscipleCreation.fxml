@@ -28,7 +28,7 @@
                         <Insets bottom="30.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label prefWidth="300.0" text="Lavoro del discepolo:" />
+                  <Label prefWidth="300.0" text="Ordine religioso:" />
                   <ChoiceBox fx:id="jobSelector" maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
                      <VBox.margin>
                         <Insets bottom="30.0" />
