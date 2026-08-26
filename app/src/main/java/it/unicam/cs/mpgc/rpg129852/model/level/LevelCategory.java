@@ -1,7 +1,5 @@
 package it.unicam.cs.mpgc.rpg129852.model.level;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Represents the overarching category or thematic focus of a level.
  * These categories align with the primary virtues tracked in the game.
